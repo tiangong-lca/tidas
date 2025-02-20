@@ -27,6 +27,7 @@ This command generates static content into the `build` directory and can be serv
 ```bash
 npx docusaurus write-translations --locale en
 npx docusaurus write-translations --locale zh-CN
+npx docusaurus write-translations --locale ja
 ```
 
 ### Publish
