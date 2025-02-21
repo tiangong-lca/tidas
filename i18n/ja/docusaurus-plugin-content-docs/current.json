@@ -1,26 +1,26 @@
 {
   "version.label": {
-    "message": "Next",
-    "description": "The label for version current"
+    "message": "未公開版 🚧",
+    "description": "現在のバージョンのラベル"
   },
   "sidebar.tutorialSidebar.category.Quick Start": {
-    "message": "Quick Start",
-    "description": "The label for category Quick Start in sidebar tutorialSidebar"
+    "message": "クイックスタート",
+    "description": "サイドバーのチュートリアルセクションにおけるQuick Startカテゴリのラベル"
   },
   "sidebar.tutorialSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Quick Start in sidebar tutorialSidebar"
+    "message": "最も重要なDocusaurusの概念を学ぶのに5分。",
+    "description": "Quick Startカテゴリの生成されたインデックスページの説明"
   },
   "sidebar.tutorialSidebar.category.User Guide": {
-    "message": "User Guide",
-    "description": "The label for category User Guide in sidebar tutorialSidebar"
+    "message": "ユーザーガイド",
+    "description": "サイドバーのチュートリアルセクションにおけるUser Guideカテゴリのラベル"
   },
   "sidebar.tutorialSidebar.category.FAQ": {
     "message": "FAQ",
-    "description": "The label for category FAQ in sidebar tutorialSidebar"
+    "description": "サイドバーのチュートリアルセクションにおけるFAQカテゴリのラベル"
   },
   "sidebar.tutorialSidebar.category.FAQ.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category FAQ in sidebar tutorialSidebar"
+    "message": "最も重要なDocusaurusの概念を学ぶのに5分。",
+    "description": "FAQカテゴリの生成されたインデックスページの説明"
   }
 }
