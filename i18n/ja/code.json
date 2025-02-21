@@ -98,7 +98,7 @@
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "最新のドキュメントは{latestVersionLink}（{versionLabel}）をご確認ください",
+    "message": "正式なリリース版は{latestVersionLink}（{versionLabel}）をご覧ください",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
