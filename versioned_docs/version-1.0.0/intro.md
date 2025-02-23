@@ -4,7 +4,6 @@ sidebar_position: 1
 
 # 简介
 
-TianGong LCA是一个自主研发的先进生命周期评估数据录入平台，用于精准量化环境影响并推动可持续发展研究。
 
 TianGong LCA 平台支持以下关键功能：
 
