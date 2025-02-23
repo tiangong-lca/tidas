@@ -1,0 +1,15 @@
+---
+sidebar_position: 6
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Schema from "@site/static/schemas/tidas_processes.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+# My super Schema 
+
+<JSONSchemaViewer schema={ Schema } />
+
+# Source :
+
+<CodeBlock language="json-schema">{JSON.stringify(Schema, null, 2)}</CodeBlock>

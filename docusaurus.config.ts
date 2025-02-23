@@ -29,6 +29,8 @@ const config: Config = {
     locales: ['zh-CN', 'en', 'ja'],
 
   },
+  
+  themes: ["docusaurus-json-schema-plugin"],
 
   presets: [
     [
