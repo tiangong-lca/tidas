@@ -14,19 +14,70 @@
   --ifm-color-primary-lighter: #6a297a;
   --ifm-color-primary-lightest: #782f8a;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(247, 243, 243, 0.1);
+
+  /* Custom heading font sizes */
+  --heading-font-size-h1: 2.25rem;
+  --heading-font-size-h2: 2rem;
+  --heading-font-size-h3: 1.75rem;
+  --heading-font-size-h4: 1.5rem;
+  --heading-font-size-h5: 1.25rem;
+  --heading-font-size-h6: 1rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #c68ce4;
-  --ifm-color-primary-dark: #b76edd;
-  --ifm-color-primary-darker: #b05fda;
-  --ifm-color-primary-darkest: #9a33cf;
-  --ifm-color-primary-light: #d5aaeb;
-  --ifm-color-primary-lighter: #dcb9ee;
-  --ifm-color-primary-lightest: #f2e5f9;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #9e3ffd;
+  --ifm-color-primary-dark: #8f2efd;
+  --ifm-color-primary-darker: #821bfd;
+  --ifm-color-primary-darkest: #6c09e8;
+  --ifm-color-primary-light: #ad5efd;
+  --ifm-color-primary-lighter: #bc7afd;
+  --ifm-color-primary-lightest: #d1a1fd;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Apply the custom heading sizes */
+h1 {
+  font-size: var(--heading-font-size-h1);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--heading-font-size-h2);
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: var(--heading-font-size-h3);
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: var(--heading-font-size-h4);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+h5 {
+  font-size: var(--heading-font-size-h5);
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+h6 {
+  font-size: var(--heading-font-size-h6);
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+/* Optional: Adjust spacing before and after headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* GitHub */

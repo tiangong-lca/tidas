@@ -443,5 +443,42 @@
   "theme.tags.tagsPageTitle": {
     "message": "タグ",
     "description": "The title of the tag list page"
+  },
+  "homepage.tagline": {
+    "message": "促进产业协同，推动技术创新，支撑国家战略"
+  },
+  "homepage.button1": {
+    "message": "开放知识中心"
+  },
+  "homepage.button2": {
+    "message": "天工 LCA 数据平台"
+  },
+  "web-title": {
+    "message": "web-title",
+    "description": "The title of the website"
+  },
+  "homepage.sub-title-chair-unit": {
+    "message": "理事长单位"
+  },
+  "homepage.sub-title-vice-chair-unit": {
+    "message": "副理事长单位"
+  },
+  "homepage.sub-title-member-unit": {
+    "message": "会员单位"
+  },
+  "homepage.sub-title-chair": {
+    "message": "理事长"
+  },
+  "homepage.sub-title-vice-chair": {
+    "message": "副理事长"
+  },
+  "homepage.sub-title-secretariat": {
+    "message": "秘书处"
+  },
+  "homepage.sub-title-secretariat-general": {
+    "message": "秘书长"
+  },
+  "homepage.sub-title-vice-secretariat-general": {
+    "message": "副秘书长"
   }
 }

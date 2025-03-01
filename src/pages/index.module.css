@@ -8,6 +8,18 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url(../../static/img/background.jpg);
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  height: 500px;
+}
+
+.heroSubtitle {
+  padding-top: 4rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 996px) {
@@ -20,4 +32,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.buttons>* {
+  margin: 0 2rem;
+}
+
+.customBackground {
+  background-color: #ffffff;
+}
+
+.customBackgroundSection1 {
+  background-color: #ffffff;
+}
+
+.customBackgroundSection2 {
+  background-color: #f8f9fa;
+}
+
+.customBackgroundSection3 {
+  background-color: #ffffff;
+}
+
+[data-theme='dark'] {
+  .customBackground {
+    background-color: var(--ifm-footer-background-color);
+  }
+
+  .customBackgroundSection1 {
+    background-color: #E6E6E6;
+    color: black;
+  }
+
+  .customBackgroundSection2 {
+    background-color: var(--ifm-footer-background-color);
+  }
+
+  .customBackgroundSection3 {
+    background-color: #ffffff;
+    color: black;
+  }
+
 }

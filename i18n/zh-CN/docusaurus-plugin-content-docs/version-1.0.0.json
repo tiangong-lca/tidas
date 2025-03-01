@@ -1,18 +1,18 @@
 {
   "version.label": {
-    "message": "未公開版 🚧",
-    "description": "The label for version current"
+    "message": "1.0.0",
+    "description": "The label for version 1.0.0"
   },
   "sidebar.tutorialSidebar.category.Quick Start": {
-    "message": "クイックスタート",
+    "message": "Quick Start",
     "description": "The label for category Quick Start in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "最も重要なDocusaurusの概念を学ぶのに5分。",
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
     "description": "The generated-index page description for category Quick Start in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.User Guide": {
-    "message": "ユーザーガイド",
+    "message": "User Guide",
     "description": "The label for category User Guide in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ": {
@@ -20,7 +20,7 @@
     "description": "The label for category FAQ in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ.link.generated-index.description": {
-    "message": "最も重要なDocusaurusの概念を学ぶのに5分。",
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
     "description": "The generated-index page description for category FAQ in sidebar tutorialSidebar"
   }
 }

@@ -36,7 +36,7 @@
     "description": "The label of footer link with label=GitHub linking to https://github.com/facebook/docusaurus"
   },
   "copyright": {
-    "message": "Copyright © 2024 TianGong LCA. Built with Docusaurus.",
+    "message": "版权所有 © 2025 天工 LCA",
     "description": "The footer copyright"
   }
 }

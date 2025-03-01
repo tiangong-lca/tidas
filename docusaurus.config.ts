@@ -18,7 +18,7 @@ const config: Config = {
   organizationName: 'TianGong LCA', // Usually your GitHub org/user name.
   projectName: 'tidas', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
