@@ -8,11 +8,11 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.Tutorial": {
-    "message": "教程",
+    "message": "文档",
     "description": "Navbar item with label Tutorial"
   },
   "item.label.Blog": {
-    "message": "博客",
+    "message": "新闻",
     "description": "Navbar item with label Blog"
   },
   "item.label.GitHub": {

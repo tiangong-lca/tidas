@@ -18,7 +18,7 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">
           <Translate id="homepage.tagline">
-            促进产业协同，推动技术创新，支撑国家战略
+          全球数据共享 LCA数据格式无损转换
           </Translate>
         </p>
         <div className={styles.buttons}>
