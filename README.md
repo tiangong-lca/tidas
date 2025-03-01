@@ -30,6 +30,12 @@ npx docusaurus write-translations --locale zh-CN
 npx docusaurus write-translations --locale ja
 ```
 
+### Version
+
+```bash
+npm run docusaurus docs:version 0.0.1
+```
+
 ### Publish
 
 ```bash

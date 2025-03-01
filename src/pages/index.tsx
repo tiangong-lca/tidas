@@ -26,13 +26,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
-            <Translate id="homepage.button1">开放知识中心</Translate>
-          </Link>
-          <Link
-            className="button button--secondary button--lg"
-            href="https://lca.tiangong.earth"
-          >
-            <Translate id="homepage.button2">天工 LCA 数据平台</Translate>
+            <Translate id="homepage.button1">⏱️ 一分钟了解TIDAS</Translate>
           </Link>
         </div>
       </div>
@@ -55,45 +49,8 @@ export default function Home(): ReactNode {
         <div className={styles.customBackgroundSection1}>
           <div className="container">
             <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-chair-unit">
-                理事长单位
-              </Translate>
-            </p>
-            <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-vice-chair-unit">
-                副理事长单位
-              </Translate>
-            </p>
-            <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-member-unit">
-                会员单位
-              </Translate>
-            </p>
-          </div>
-        </div>
-        <div className={styles.customBackgroundSection2}>
-          <div className="container">
-          <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-chair">理事长</Translate>
-            </p>
-            <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-vice-chair">副理事长</Translate>
-            </p>
-          </div>
-        </div>
-        <div className={styles.customBackgroundSection3}>
-          <div className="container">
-          <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-secretariat">秘书处</Translate>
-            </p>
-            <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-secretariat-general">
-                秘书长
-              </Translate>
-            </p>
-            <p className={styles.heroSubtitle}>
-              <Translate id="homepage.sub-title-vice-secretariat-general">
-                副秘书长
+              <Translate id="homepage.section1">
+                内容待补充
               </Translate>
             </p>
           </div>
