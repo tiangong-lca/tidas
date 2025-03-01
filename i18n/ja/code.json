@@ -1,6 +1,6 @@
 {
   "homepage.title": {
-    "message": "天工 LCA"
+    "message": "天工 LCA データシステム"
   },
   "theme.ErrorPageContent.title": {
     "message": "エラーが発生しました",
@@ -445,16 +445,16 @@
     "description": "The title of the tag list page"
   },
   "homepage.tagline": {
-    "message": ""
+    "message": "グローバルに共有、LCA データのロスレス変換"
   },
   "homepage.button1": {
-    "message": "开放知识中心"
+    "message": "⏱️ 1分で TIDAS を知る"
   },
   "web-title": {
     "message": "web-title",
     "description": "The title of the website"
   },
   "homepage.section1": {
-    "message": "内容待补充"
+    "message": "内容は追って補充"
   }
 }
