@@ -8,13 +8,13 @@ TIDAS（TianGong LCA Data System）是一个基于JSON的开源数据结构体�
 
 TIDAS简化了生命周期数据管理流程：
 
-  **方法层**: 生命周期数据管理遵循**[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)**,完全兼容[ISO 14040/44](https://www.iso.org/standard/37456.html)，[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)以及[ecoinvent](https://www.ecoinvent.org/)等标准。
+  **方法层**: 生命周期数据管理遵循[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline),完全兼容[ISO 14040/44](https://www.iso.org/standard/37456.html)，**[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)以及[ecoinvent](https://www.ecoinvent.org/)等标准。
 
   **数据层**: TIDAS采用统一的数据格式，基于JSON结构和JSON Schema验证，具有高度可扩展性和兼容性，可以支持未来全域技术架构（区块链、数据空间、AI）。
 
   **转换层**: TIDAS和eILCD具有多语言双向无损映射服务，实现数据格式无损转换，支持与eILCD等主流格式互通，让不同系统间的数据交换变得简单高效。
 
-  **平台层**: **[TianGong LCA平台](https://docs.tiangong.earth/)**可以实现LCA数据的研制和发布需求，支持开放平台和私有部署两种模式，满足不同机构的应用需求。
+  **平台层**: [TianGong LCA平台](https://docs.tiangong.earth/)可以实现LCA数据的研制和发布需求，支持开放平台和私有部署两种模式，满足不同机构的应用需求。
 
 import TidasImage from '@site/src/components/TidasImage';
 
@@ -23,48 +23,29 @@ import TidasImage from '@site/src/components/TidasImage';
 
 TianGong LCA 平台将为您的 LCA 数据管理和环境影响评估提供全面的支持，帮助您在可持续发展研究中取得更加精准的成果。
 
-## 快速开始
+## TIDAS 框架
 
-**快速开始**模块旨在帮助您迅速上手 TianGong LCA 平台，完成关键的初始操作：
+TIDAS 框架是一个基于 JSON 的开源数据结构体系，提供了标准化、可扩展的数据管理解决方案。TIDAS 框架包括以下核心组件：
 
-  **首次登录与注册**: 学习如何创建账户、登录平台，并了解主界面的基本布局，快速定位所需功能。
+  - **`TIDAS-schemas`**: 基于JSON结构的schema验证，确保数据结构的完整性。
 
-  **数据集的搜索与下载**: 掌握在平台上搜索和下载 LCA 数据集的基础操作，确保您能够快速获取所需数据。
+  - **`tiangong-tool`**: 集成了数据的导入、导出、验证、发布等工具，支持数据平台功能模块的开发。
 
-  **操作演示**: 通过示例操作，了解如何执行基础数据操作，例如简单的数据集下载或数据浏览。这将帮助您熟悉平台的核心功能。
-<!-- Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**. -->
+  - **`TIDAS-EF`**: 提供了标准化的生命周期数据初始化包，包括单元过程、基本流、流属性、LCIA方法文件等数据，确保数据的一致性。
 
-<!-- ### 必备环节
+  - **`TIDAS-convert`**: 与 eILCD 等主流格式具有多语言双向无损映射服务，实现数据格式无损转换，让不同系统间的数据交换变得简单高效。
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies. -->
+  - **`tiangong-lca-next-docs`**: 提供了完整的数据管理解决方案，用于快速构建数据管理平台，支持私有部署。
 
-## 用户指引
+  - **[TianGong LCA 平台](https://docs.tiangong.earth/)**: 免费开放的 LCA 数据管理平台，具有数据的创建、编辑、验证、发布等功能，注册即用。
 
-**用户指引**模块详细介绍 TianGong LCA 平台的各项核心功能，帮助您全面掌握平台的使用方法：
 
-  **我的数据**: 了解如何创建、编辑和管理单元过程、物质流、流属性以及相关的联系人和数据源，确保数据的准确性和完整性。
+## 指南
 
-  **天工数据**: 探索平台提供的标准化 LCA 数据集，学习如何浏览、引用和管理这些数据，确保数据的一致性和可追溯性。
+### [快速开始](/docs/category/quick-start)
 
-  **个人页**: 掌握如何管理个人账户信息、设置安全选项，以及调整平台的使用偏好，确保您的数据和账户安全。
+### [具体操作](/docs/category/user-guide)
 
-## 常见问题
+### [概念与方法学](/docs/resources-and-support)
 
-**常见问题**模块帮助您快速找到关于 TianGong LCA 平台的解答。以下是我们涵盖的主要问题类别，点击相关链接查看详细解答：
-
-  **系统建模问题**：了解如何创建和管理模型，包括单元过程、物质流和流属性等方面的常见问题和解决方案。
-
-  **数据来源和引用问题**：获取关于数据集来源、引用规范，以及如何确保数据可靠性的常见问题解答。
-
-  **更多问题**：访问 完整FAQ页面 获取所有常见问题的详细解答。
-
-## 资源与支持
-
-TianGong LCA 平台为用户提供了广泛的资源和支持，确保您能够高效使用平台并解决在使用过程中可能遇到的问题。无论是学习操作流程，还是遵循相关标准，我们都为您提供了必要的工具和指导。
-
-  **学习资源**：您可访问按知识模块划分的操作视频和教程，帮助您系统地学习 TianGong LCA 的各项功能，逐步掌握从基础到高级的操作方法。
-
-  **相关标准**：获取 ISO、GHG、EPD、ILCD 等关键标准的概述和应用指南。这些资源帮助您理解并遵循相关标准，提高您的生命周期评估 (LCA) 的准确性和合规性。
-
-  **更多支持**：访问 资源与支持页面 获取详细的学习资料和技术支持信息。
+### [TIDAS-shema](/docs/json-schema)
