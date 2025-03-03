@@ -1,0 +1,51 @@
+---
+sidebar_position: 1
+---
+
+# 简介
+
+TIDAS（TianGong LCA Data System）是一个基于JSON的开源数据结构体系，提供了标准化、可扩展的数据管理解决方案。
+
+TIDAS简化了生命周期数据管理流程：
+
+  **方法层**: 生命周期数据管理遵循[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline),完全兼容[ISO 14040/44](https://www.iso.org/standard/37456.html)，**[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)以及[ecoinvent](https://www.ecoinvent.org/)等标准。
+
+  **数据层**: TIDAS采用统一的数据格式，基于JSON结构和JSON Schema验证，具有高度可扩展性和兼容性，可以支持未来全域技术架构（区块链、数据空间、AI）。
+
+  **转换层**: TIDAS和eILCD具有多语言双向无损映射服务，实现数据格式无损转换，支持与eILCD等主流格式互通，让不同系统间的数据交换变得简单高效。
+
+  **平台层**: [TianGong LCA平台](https://docs.tiangong.earth/)可以实现LCA数据的研制和发布需求，支持开放平台和私有部署两种模式，满足不同机构的应用需求。
+
+import TidasImage from '@site/src/components/TidasImage';
+
+<TidasImage filename="TIDAS" />
+
+
+TianGong LCA 平台将为您的 LCA 数据管理和环境影响评估提供全面的支持，帮助您在可持续发展研究中取得更加精准的成果。
+
+## TIDAS 框架
+
+TIDAS 框架是一个基于 JSON 的开源数据结构体系，提供了标准化、可扩展的数据管理解决方案。TIDAS 框架包括以下核心组件：
+
+  - **`TIDAS-schemas`**: 基于JSON结构的schema验证，确保数据结构的完整性。
+
+  - **`tiangong-tool`**: 集成了数据的导入、导出、验证、发布等工具，支持数据平台功能模块的开发。
+
+  - **`TIDAS-EF`**: 提供了标准化的生命周期数据初始化包，包括单元过程、基本流、流属性、LCIA方法文件等数据，确保数据的一致性。
+
+  - **`TIDAS-convert`**: 与 eILCD 等主流格式具有多语言双向无损映射服务，实现数据格式无损转换，让不同系统间的数据交换变得简单高效。
+
+  - **`tiangong-lca-next-docs`**: 提供了完整的数据管理解决方案，用于快速构建数据管理平台，支持私有部署。
+
+  - **[TianGong LCA 平台](https://docs.tiangong.earth/)**: 免费开放的 LCA 数据管理平台，具有数据的创建、编辑、验证、发布等功能，注册即用。
+
+
+## 指南
+
+### [快速开始](/docs/category/quick-start)
+
+### [具体操作](/docs/category/user-guide)
+
+### [概念与方法学](/docs/resources-and-support)
+
+### [TIDAS-shema](/docs/json-schema)
