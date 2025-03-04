@@ -39,7 +39,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={translate({
-        message: "web-title",
+        message: "TIDAS",
         description: "The title of the website",
       })}
       description="Description will go into a meta tag in <head />"
