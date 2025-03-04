@@ -11,6 +11,7 @@ sidebar_position: 2
 - 访问[TIDAS GitHub页面](https://github.com/tiangong-lca/tidas)
 - 点击右上角的"Fork"按钮
 - 选择你的GitHub账户作为目标
+
 ![Fork位置](./img/GIT_FORK.png)
 
 ## 2. 克隆仓库
