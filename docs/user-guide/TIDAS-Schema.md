@@ -25,11 +25,12 @@ TIDAS Schema 是一个基于JSON结构的schema验证，确保数据结构的规
 - **`tidas_sources.json`**: 包含了生命周期数据的数据来源，包括数据来源的名称、描述、数据来源等信息。
 - **`tidas_unitgroups.json`**: 包含了生命周期数据的单位组，包括单位组的名称、描述、单位等信息。
 
-具体内容详见[TIDAS Schema](docs/json-schema.mdx)
+具体内容详见[TIDAS Schema](/docs/json-schema)
 
 ## TIDAS Schema 使用场景
 
 TIDAS Schema 主要用于以下场景：
+
 - 数据交换和共享时的格式验证
 - 数据质量控制和完整性检查
 - 数据建模和系统集成
@@ -38,6 +39,7 @@ TIDAS Schema 主要用于以下场景：
 ## Schema 验证规则
 
 TIDAS Schema 包含以下验证规则：
+
 1. 数据类型验证：确保字段值符合定义的数据类型
 2. 必填字段验证：检查所有必填字段是否已填写
 3. 值域验证：验证字段值是否在允许的范围内
@@ -47,6 +49,7 @@ TIDAS Schema 包含以下验证规则：
 ## Schema 版本管理
 
 TIDAS Schema 采用语义化版本控制（SemVer）：
+
 - 主版本号：不兼容的API修改
 - 次版本号：向下兼容的功能新增
 - 修订号：向下兼容的问题修正
@@ -54,13 +57,10 @@ TIDAS Schema 采用语义化版本控制（SemVer）：
 ## Schema 扩展与自定义
 
 用户可以通过以下方式扩展Schema：
+
 1. 添加自定义字段
 2. 定义新的数据类型
 3. 创建新的分类体系
 4. 扩展验证规则
 
 ## 如何使用Schema文件
-
-
-
-

@@ -6,5 +6,4 @@ sidebar_position: 3
 
 Demonstrates the platform's usage process through sample datasets:
 
-## 
-
+##

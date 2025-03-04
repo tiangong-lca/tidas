@@ -12,7 +12,7 @@ Here, you can view your current email, role, and nickname. You can also edit you
 
 ## Change Password
 
-The system keeps your initial password on file. To change it, simply enter your new password and confirm it. 
+The system keeps your initial password on file. To change it, simply enter your new password and confirm it.
 
 ## Change Email
 

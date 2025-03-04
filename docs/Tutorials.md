@@ -8,12 +8,11 @@ sidebar_position: 2
 
 ## 用户指南
 
-1. [TIDAS schema](/docs/User-Guide/TIDAS-Schema.md)
-2. [TIDAS conventer](/docs/User-Guide/tidas-convert)
+1. [TIDAS schema](docs/user-guide/TIDAS-Schema.md)
+2. TIDAS conventer
 3. [TianGong LCA 平台](https://docs.tiangong.earth/)
-6. [TianGong LCA 私有部署](https://docs.tiangong.earth/deploy/local-deploy)
-
+4. [TianGong LCA 私有部署](https://docs.tiangong.earth/deploy/local-deploy)
 
 ## 贡献
 
-希望为此文档做贡献，欢迎参考我们的[贡献指南](/docs/User-Guide/how-to-contribut-tidas-doc.md)。
+希望为此文档做贡献，欢迎参考我们的[贡献指南](/docs/user-guide/how-to-contribut-tidas-doc.md)。

@@ -25,4 +25,3 @@ TIDAS 系统的开发遵循生命周期评价（LCA）的基本原则和框架�
 **[环境产品声明 (EPD)](https://www.environdec.com/home)**: 是一种标准化的环境信息报告，用于展示产品在整个生命周期中对环境的影响。
 
 **[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)**: 由欧盟委员会开发的标准化指南，为生命周期评估提供统一的数据格式和方法论框架。
-

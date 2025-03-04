@@ -44,5 +44,4 @@ If you have forgotten your password, follow these steps to recover it:
 
 The system will send a verification email to the address you provided. Please follow the instructions in the email to complete the password reset process.
 
-
 [Download this picture](./img/forgotpwd.png)
