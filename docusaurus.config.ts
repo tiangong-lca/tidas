@@ -146,12 +146,12 @@ const config: Config = {
     },
     algolia: {
       // The application ID provided by Algolia
-      appId: 'XXS1TUP7PE',
+      appId: 'LUUPJIAL12',
 
       // Public API key: it is safe to commit it
-      apiKey: 'c70256947408a1b5a7093bbc0d3c0950',
+      apiKey: 'd3c06654d99e1cca92a36a1feb65137b',
 
-      indexName: 'tiangong',
+      indexName: 'tidas-tiangong',
 
       // Optional: see doc section below
       contextualSearch: true,
