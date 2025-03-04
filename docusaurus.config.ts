@@ -111,8 +111,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'LinkedIn',
+              href: 'http://linkedin.com/company/tiangonglca',
             },
             {
               label: 'Discord',
