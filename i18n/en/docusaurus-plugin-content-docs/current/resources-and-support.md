@@ -2,42 +2,26 @@
 sidebar_position: 5
 ---
 
-# Resources and Support
+# Concepts and Methodologies
 
-The TianGong LCA platform provides comprehensive resources and support to ensure that you can use the system efficiently and maximize its potential. We offer a variety of learning materials and technical support to help you quickly get started and resolve any issues you may encounter during use.
+The development of the TIDAS system follows the basic principles and framework of Life Cycle Assessment (LCA). The following content will help you understand the basic concepts of LCA, core principles of dataset construction, dataset composition, and other essential information.
 
-## Learning Resources
+## [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
 
-### Platform Overview
-
-Get acquainted with the TianGong LCA platform's key features and interface layout through brief introductory videos, designed to help you get started quickly.
-
-**Data Creation and Management**: Detailed tutorials demonstrate how to create and manage life cycle inventory (LCI) data on the platform, including steps for handling unit processes, flows, and flow properties.
-
-**Dataset Search and Download**: Watch demonstration videos to learn how to use the platform's search functionality to find and download the LCA datasets you need.
-
-**Collaboration Features**: Video tutorials explain how to utilize the platform's collaboration tools for team project management, ensuring efficient multi-user cooperation.
-
-### User Manuals & Documentation
-
-**Quick Start Guide**: Download the PDF user manual that covers key steps from registration and login to initial data operations.
-
-**Advanced User Guide**: Access detailed instructions aimed at advanced users to help you fully utilize all the platform's features.
-
-## Relevant Standards
+These guidelines include basic concepts of Life Cycle Assessment/Carbon Footprint data (hereinafter referred to as LCA data), core principles of dataset construction, dataset composition, as well as specifications for data collection, documentation, and data quality assessment. They are used to guide dataset developers in constructing LCA datasets that meet high-quality, internationally recognized requirements.
 
 ### ISO Standards
 
-**ISO 14040/14044**: Understand the core standards for life cycle assessment (LCA) and their application within the TianGong LCA platform.
+**[ISO 14040/14044](https://www.iso.org/home.html)**: Principles and framework for Life Cycle Assessment, including the purpose, scope, data quality, and interpretation of LCA.
 
-**ISO 14067**: Learn about the carbon footprint assessment standard and how it is implemented in the platform.
+**[ISO 14067](https://www.iso.org/home.html)**: International standard for carbon footprint calculation, including basic principles, scope, data quality, and interpretation of carbon footprint accounting.
 
-### GHG Standards
+### GHG Protocol
 
-**Greenhouse Gas Accounting**: Detailed explanations of GHG accounting methods and their integration with TianGong LCA data, enabling precise greenhouse gas assessments.
+**[Greenhouse Gas Protocol](https://ghgprotocol.org/standards-guidance)**: A widely used global standard for greenhouse gas accounting and reporting, providing a framework and methodology for businesses, governments, and other organizations to measure and manage greenhouse gas emissions.
 
 ### EPD and ILCD Guidelines
 
-**Environmental Product Declarations (EPD)**: Learn how to use the platform to support EPD standards for analyzing the environmental impacts of products.
+**[Environmental Product Declaration (EPD)](https://www.environdec.com/home)**: A standardized environmental information report that demonstrates a product's environmental impact throughout its life cycle.
 
-**ILCD Handbook**: Access key summaries from the ILCD Handbook to ensure your life cycle data complies with international standards.
+**[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)**: A standardized guideline developed by the European Commission, providing a unified data format and methodological framework for life cycle assessment.
