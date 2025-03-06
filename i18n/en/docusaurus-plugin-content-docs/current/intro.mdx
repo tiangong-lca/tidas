@@ -4,62 +4,60 @@ sidebar_position: 1
 
 # Introduction
 
-**TianGong LCA** is an advanced, self-developed platform for life cycle assessment (LCA) data entry, designed to accurately quantify environmental impacts and promote sustainability research.
+TIDAS (TianGong LCA Data System) is an open-source JSON-based data structure system that provides standardized, extensible data management solutions.
 
-The TianGong LCA platform supports the following key functions:
+TIDAS simplifies lifecycle data management processes:
 
-  **Creation**: Build and manage your life cycle inventory (LCI) data using the TianGong LCA platform, including unit processes, flows, and flow properties, ensuring data accuracy and completeness.
+  **Methodology Layer**: Lifecycle data management follows the [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline), fully compatible with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and [ecoinvent](https://www.ecoinvent.org/) standards.
 
-  **Reference**: Access and utilize standardized LCI datasets from the TianGong database, ensuring data consistency and traceability.
+  **Data Layer**: TIDAS adopts a unified data format based on JSON structure and JSON Schema validation, with high scalability and compatibility to support future domain-wide technical architectures (blockchain, data spaces, AI).
 
-  **Collaboration**: Leverage the platform's multi-user collaboration features to enable team members to work together on complex LCA projects, facilitating efficient project management and transparent communication.
+  **Conversion Layer**: TIDAS and eILCD have multi-language bidirectional lossless mapping services, enabling lossless data format conversion and interoperability with mainstream formats like eILCD, making data exchange between different systems simple and efficient.
 
-  **Security**: Protect your sensitive data with advanced encryption technology and access control mechanisms, ensuring data integrity and security.
-
-  **Updates**: Benefit from regular database and methodology updates, ensuring that you are always working with the latest LCA standards and industry best practices.
+  **Platform Layer**: [TianGong LCA Platform](https://docs.tiangong.earth/) can meet LCA data development and publishing needs, supporting both open platform and private deployment modes to satisfy different organizations' application requirements.
 
 import TidasImage from '@site/src/components/TidasImage';
 
 <TidasImage filename="TIDAS" />
 
-The TianGong LCA platform provides comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research. 
+The TianGong LCA platform will provide comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research.
 
-## Quick Start
+## TIDAS Framework
 
-The **Quick Start** module is designed to help you quickly get started with the TianGong LCA platform by completing essential initial operations:
+The TIDAS framework is an open-source JSON-based data structure system that provides standardized, extensible data management solutions. The TIDAS framework includes the following core components:
 
-  **First-Time Login and Registration**: Learn how to create an account, log in to the platform, and familiarize yourself with the basic layout of the main interface to quickly locate the tools you need.
+  - **`TIDAS-schemas`**: JSON-based schema validation ensuring data structure standardization.
 
-  **Dataset Search and Download**: Master the basics of searching for and downloading LCA datasets on the platform, ensuring you can quickly access the data you need.
+  - **`tiangong-tool`**: Integrated tools for data import, export, validation, and publishing, supporting data platform module development.
 
-  **Demonstration**: Understand the core functions of the platform through example operations, such as basic dataset download or data browsing. This will help you become familiar with the platform's essential features.
+  - **`TIDAS-EF`**: Provides standardized lifecycle data initialization packages, including unit processes, elementary flows, flow properties, LCIA method files, etc., ensuring data consistency.
 
-## User Guide
+  - **`TIDAS-convert`**: Multi-language bidirectional lossless mapping services with eILCD and other mainstream formats, enabling lossless data format conversion for efficient data exchange between different systems.
 
-The **User Guide** module provides detailed instructions on the key features of the TianGong LCA platform, helping you fully understand how to use it effectively:
+  - **`tiangong-lca-next-docs`**: Provides complete data management solutions for rapid data platform construction, supporting private deployment.
 
-  **My Data**: Learn how to create, edit, and manage unit processes, flows, flow properties, as well as associated contacts and data sources, ensuring data accuracy and completeness.
+  - **[TianGong LCA Platform](https://docs.tiangong.earth/)**: Free and open LCA data management platform with data creation, editing, validation, and publishing features, ready to use upon registration.
 
-  **TianGong Data**: Explore the standardized LCI datasets provided by the platform, and learn how to browse, reference, and manage these datasets to ensure consistency and traceability.
+## Guides
 
-  **Personal Page**: Discover how to manage your account information, configure security settings, and customize your platform experience to ensure your data and account security.
+### [Quick Start](/docs/Tutorials)
 
-## FAQ
+If you're new to TIDAS, start here.
 
-The **FAQ** module helps you quickly find answers related to the TianGong LCA platform. Below are the main categories of questions covered; click the relevant links to view detailed answers:
+- Build your own LCA database
+- [Deploy your own LCA platform on your system](https://docs.tiangong.earth/deploy/local-deploy)
+- Directly use [TianGong LCA Platform](https://lca.tiangong.earth)
 
-  **System Modeling Issues**: Learn how to create and manage models, including unit processes, flows, and flow properties, with common questions and solutions.
+### [User Guide](/docs/category/user-guide)
 
-  **Data Source and Citation Issues**: Find answers to questions about dataset sources, citation guidelines, and how to ensure data reliability.
+1. [TIDAS schema deployment](/docs/user-guide/TIDAS-Schema)
+2. [How to use TianGong LCA Platform](https://docs.tiangong.earth/)
+3. [How to privately deploy TianGong LCA Platform](https://docs.tiangong.earth/deploy/local-deploy)
 
-  **More questions**: Visit the full FAQ page for detailed answers to all frequently asked questions.
+### [Concepts & Methodology](/docs/resources-and-support)
 
-## Resources and Support
+### [TIDAS-schema](/docs/json-schema)
 
-The TianGong LCA platform provides extensive resources and support to ensure you can use the platform efficiently and resolve any issues you may encounter. 
+## Contribution
 
-  **Learning Resources**: Access operation videos and tutorials categorized by knowledge modules, helping you systematically learn the functions of TianGong LCA and gradually master both basic and advanced operations.
-
-  **Relevant Standards**: Get an overview and application guide for key standards such as ISO, GHG, EPD, and ILCD. These resources help you understand and adhere to relevant standards, improving the accuracy and compliance of your life cycle assessments (LCA).
-
-  **More support**: Visit the Resources & Support page for detailed learning materials and technical support information.
+Want to contribute to this documentation? Check out our contribution guide.
