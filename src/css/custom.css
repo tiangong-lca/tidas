@@ -115,3 +115,9 @@ html[data-theme='dark'] .header-github-link:before {
 .footer__items {
   padding-left: 0;
 }
+
+.markdown img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
