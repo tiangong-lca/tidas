@@ -1,0 +1,2593 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "oneOf": [
+    {
+      "const": "NULL",
+      "description": "None"
+    },
+    {
+      "const": "GLO",
+      "description": "Global"
+    },
+    {
+      "const": "RAF",
+      "description": "Africa"
+    },
+    {
+      "const": "RAM",
+      "description": "Americas"
+    },
+    {
+      "const": "RAS",
+      "description": "Asia and Pacific"
+    },
+    {
+      "const": "RER",
+      "description": "Europe"
+    },
+    {
+      "const": "OCE",
+      "description": "Oceania"
+    },
+    {
+      "const": "MEA",
+      "description": "Middle East and North Africa"
+    },
+    {
+      "const": "AFR",
+      "description": "Sub-Saharan Africa"
+    },
+    {
+      "const": "RLA",
+      "description": "Latin America & the Caribbean"
+    },
+    {
+      "const": "RNA",
+      "description": "Northern America"
+    },
+    {
+      "const": "CPA",
+      "description": "Centrally Planned Asia and China"
+    },
+    {
+      "const": "EAS",
+      "description": "Eastern Asia"
+    },
+    {
+      "const": "PAS",
+      "description": "Other Pacific Asia"
+    },
+    {
+      "const": "SAS",
+      "description": "South Asia"
+    },
+    {
+      "const": "EEU",
+      "description": "Central and Eastern Europe"
+    },
+    {
+      "const": "WEU",
+      "description": "Western Europe"
+    },
+    {
+      "const": "RNE",
+      "description": "Near East"
+    },
+    {
+      "const": "RME",
+      "description": "Middle East"
+    },
+    {
+      "const": "EU-15",
+      "description": "EU 15"
+    },
+    {
+      "const": "EU-NMC",
+      "description": "EU New Member Countries 2004"
+    },
+    {
+      "const": "EU-25",
+      "description": "EU 25"
+    },
+    {
+      "const": "EC-CC",
+      "description": "EU Candidate Countries 2005"
+    },
+    {
+      "const": "EU-25&CC",
+      "description": "EU 25 Plus Candidate Countries 2005"
+    },
+    {
+      "const": "EU-AC",
+      "description": "EU Associated Countries 2005"
+    },
+    {
+      "const": "EU-25&CC&AC",
+      "description": "EU 25 Plus Candidate Countries and Associated Countries 2005"
+    },
+    {
+      "const": "EU-27",
+      "description": "EU 27"
+    },
+    {
+      "const": "PAO",
+      "description": "Pacific OECD (Japan, Australia, New Zealand)"
+    },
+    {
+      "const": "FSU",
+      "description": "Independent States of the Former Soviet Union"
+    },
+    {
+      "const": "UCTE",
+      "description": "Union for the Co-ordination of Transmission of Electricity"
+    },
+    {
+      "const": "CENTREL",
+      "description": "Central european power association"
+    },
+    {
+      "const": "NORDEL",
+      "description": "Nordic countries power association"
+    },
+    {
+      "const": "EU+EFTA+UK",
+      "description": "complete EU"
+    },
+    {
+      "const": "AD",
+      "description": "Andorra"
+    },
+    {
+      "const": "AE",
+      "description": "United Arab Emirates"
+    },
+    {
+      "const": "AF",
+      "description": "Afghanistan"
+    },
+    {
+      "const": "AG",
+      "description": "Antigua and Barbuda"
+    },
+    {
+      "const": "AI",
+      "description": "Anguilla"
+    },
+    {
+      "const": "AL",
+      "description": "Albania"
+    },
+    {
+      "const": "AM",
+      "description": "Armenia"
+    },
+    {
+      "const": "AO",
+      "description": "Angola"
+    },
+    {
+      "const": "AQ",
+      "description": "Antarctica"
+    },
+    {
+      "const": "AR",
+      "description": "Argentina"
+    },
+    {
+      "const": "AS",
+      "description": "American Samoa"
+    },
+    {
+      "const": "AT",
+      "description": "Austria"
+    },
+    {
+      "const": "AU",
+      "description": "Australia"
+    },
+    {
+      "const": "AW",
+      "description": "Aruba"
+    },
+    {
+      "const": "AX",
+      "description": "Åland Islands"
+    },
+    {
+      "const": "AZ",
+      "description": "Azerbaijan"
+    },
+    {
+      "const": "BA",
+      "description": "Bosnia and Herzegovina"
+    },
+    {
+      "const": "BB",
+      "description": "Barbados"
+    },
+    {
+      "const": "BD",
+      "description": "Bangladesh"
+    },
+    {
+      "const": "BE",
+      "description": "Belgium"
+    },
+    {
+      "const": "BF",
+      "description": "Burkina Faso"
+    },
+    {
+      "const": "BG",
+      "description": "Bulgaria"
+    },
+    {
+      "const": "BH",
+      "description": "Bahrain"
+    },
+    {
+      "const": "BI",
+      "description": "Burundi"
+    },
+    {
+      "const": "BJ",
+      "description": "Benin"
+    },
+    {
+      "const": "BL",
+      "description": "Saint Barthélemy"
+    },
+    {
+      "const": "BM",
+      "description": "Bermuda"
+    },
+    {
+      "const": "BN",
+      "description": "Brunei Darussalam"
+    },
+    {
+      "const": "BO",
+      "description": "Bolivia (Plurinational State of)"
+    },
+    {
+      "const": "BQ",
+      "description": "Bonaire, Sint Eustatius and Saba"
+    },
+    {
+      "const": "BR",
+      "description": "Brazil"
+    },
+    {
+      "const": "BS",
+      "description": "Bahamas"
+    },
+    {
+      "const": "BT",
+      "description": "Bhutan"
+    },
+    {
+      "const": "BV",
+      "description": "Bouvet Island"
+    },
+    {
+      "const": "BW",
+      "description": "Botswana"
+    },
+    {
+      "const": "BY",
+      "description": "Belarus"
+    },
+    {
+      "const": "BZ",
+      "description": "Belize"
+    },
+    {
+      "const": "CA",
+      "description": "Canada"
+    },
+    {
+      "const": "CC",
+      "description": "Cocos (Keeling) Islands"
+    },
+    {
+      "const": "CD",
+      "description": "Congo, Democratic Republic of the"
+    },
+    {
+      "const": "CF",
+      "description": "Central African Republic"
+    },
+    {
+      "const": "CG",
+      "description": "Congo"
+    },
+    {
+      "const": "CH",
+      "description": "Switzerland"
+    },
+    {
+      "const": "CI",
+      "description": "Côte d'Ivoire"
+    },
+    {
+      "const": "CK",
+      "description": "Cook Islands"
+    },
+    {
+      "const": "CL",
+      "description": "Chile"
+    },
+    {
+      "const": "CM",
+      "description": "Cameroon"
+    },
+    {
+      "const": "CO",
+      "description": "Colombia"
+    },
+    {
+      "const": "CR",
+      "description": "Costa Rica"
+    },
+    {
+      "const": "CU",
+      "description": "Cuba"
+    },
+    {
+      "const": "CV",
+      "description": "Cabo Verde"
+    },
+    {
+      "const": "CW",
+      "description": "Curaçao"
+    },
+    {
+      "const": "CX",
+      "description": "Christmas Island"
+    },
+    {
+      "const": "CY",
+      "description": "Cyprus"
+    },
+    {
+      "const": "CZ",
+      "description": "Czechia"
+    },
+    {
+      "const": "DE",
+      "description": "Germany"
+    },
+    {
+      "const": "DJ",
+      "description": "Djibouti"
+    },
+    {
+      "const": "DK",
+      "description": "Denmark"
+    },
+    {
+      "const": "DM",
+      "description": "Dominica"
+    },
+    {
+      "const": "DO",
+      "description": "Dominican Republic"
+    },
+    {
+      "const": "DZ",
+      "description": "Algeria"
+    },
+    {
+      "const": "EC",
+      "description": "Ecuador"
+    },
+    {
+      "const": "EE",
+      "description": "Estonia"
+    },
+    {
+      "const": "EG",
+      "description": "Egypt"
+    },
+    {
+      "const": "EH",
+      "description": "Western Sahara"
+    },
+    {
+      "const": "ER",
+      "description": "Eritrea"
+    },
+    {
+      "const": "ES",
+      "description": "Spain"
+    },
+    {
+      "const": "ET",
+      "description": "Ethiopia"
+    },
+    {
+      "const": "FI",
+      "description": "Finland"
+    },
+    {
+      "const": "FJ",
+      "description": "Fiji"
+    },
+    {
+      "const": "FK",
+      "description": "Falkland Islands (Malvinas)"
+    },
+    {
+      "const": "FM",
+      "description": "Micronesia (Federated States of)"
+    },
+    {
+      "const": "FO",
+      "description": "Faroe Islands"
+    },
+    {
+      "const": "FR",
+      "description": "France"
+    },
+    {
+      "const": "GA",
+      "description": "Gabon"
+    },
+    {
+      "const": "GB",
+      "description": "United Kingdom of Great Britain and Northern Ireland"
+    },
+    {
+      "const": "GD",
+      "description": "Grenada"
+    },
+    {
+      "const": "GE",
+      "description": "Georgia"
+    },
+    {
+      "const": "GF",
+      "description": "French Guiana"
+    },
+    {
+      "const": "GG",
+      "description": "Guernsey"
+    },
+    {
+      "const": "GH",
+      "description": "Ghana"
+    },
+    {
+      "const": "GI",
+      "description": "Gibraltar"
+    },
+    {
+      "const": "GL",
+      "description": "Greenland"
+    },
+    {
+      "const": "GM",
+      "description": "Gambia"
+    },
+    {
+      "const": "GN",
+      "description": "Guinea"
+    },
+    {
+      "const": "GP",
+      "description": "Guadeloupe"
+    },
+    {
+      "const": "GQ",
+      "description": "Equatorial Guinea"
+    },
+    {
+      "const": "GR",
+      "description": "Greece"
+    },
+    {
+      "const": "GS",
+      "description": "South Georgia and the South Sandwich Islands"
+    },
+    {
+      "const": "GT",
+      "description": "Guatemala"
+    },
+    {
+      "const": "GU",
+      "description": "Guam"
+    },
+    {
+      "const": "GW",
+      "description": "Guinea-Bissau"
+    },
+    {
+      "const": "GY",
+      "description": "Guyana"
+    },
+    {
+      "const": "HM",
+      "description": "Heard Island and McDonald Islands"
+    },
+    {
+      "const": "HN",
+      "description": "Honduras"
+    },
+    {
+      "const": "HR",
+      "description": "Croatia"
+    },
+    {
+      "const": "HT",
+      "description": "Haiti"
+    },
+    {
+      "const": "HU",
+      "description": "Hungary"
+    },
+    {
+      "const": "ID",
+      "description": "Indonesia"
+    },
+    {
+      "const": "IE",
+      "description": "Ireland"
+    },
+    {
+      "const": "IL",
+      "description": "Israel"
+    },
+    {
+      "const": "IM",
+      "description": "Isle of Man"
+    },
+    {
+      "const": "IN",
+      "description": "India"
+    },
+    {
+      "const": "IO",
+      "description": "British Indian Ocean Territory"
+    },
+    {
+      "const": "IQ",
+      "description": "Iraq"
+    },
+    {
+      "const": "IR",
+      "description": "Iran (Islamic Republic of)"
+    },
+    {
+      "const": "IS",
+      "description": "Iceland"
+    },
+    {
+      "const": "IT",
+      "description": "Italy"
+    },
+    {
+      "const": "JE",
+      "description": "Jersey"
+    },
+    {
+      "const": "JM",
+      "description": "Jamaica"
+    },
+    {
+      "const": "JO",
+      "description": "Jordan"
+    },
+    {
+      "const": "JP",
+      "description": "Japan"
+    },
+    {
+      "const": "KE",
+      "description": "Kenya"
+    },
+    {
+      "const": "KG",
+      "description": "Kyrgyzstan"
+    },
+    {
+      "const": "KH",
+      "description": "Cambodia"
+    },
+    {
+      "const": "KI",
+      "description": "Kiribati"
+    },
+    {
+      "const": "KM",
+      "description": "Comoros"
+    },
+    {
+      "const": "KN",
+      "description": "Saint Kitts and Nevis"
+    },
+    {
+      "const": "KP",
+      "description": "Korea (Democratic People's Republic of)"
+    },
+    {
+      "const": "KR",
+      "description": "Korea, Republic of"
+    },
+    {
+      "const": "KW",
+      "description": "Kuwait"
+    },
+    {
+      "const": "KY",
+      "description": "Cayman Islands"
+    },
+    {
+      "const": "KZ",
+      "description": "Kazakhstan"
+    },
+    {
+      "const": "LA",
+      "description": "Lao People's Democratic Republic"
+    },
+    {
+      "const": "LB",
+      "description": "Lebanon"
+    },
+    {
+      "const": "LC",
+      "description": "Saint Lucia"
+    },
+    {
+      "const": "LI",
+      "description": "Liechtenstein"
+    },
+    {
+      "const": "LK",
+      "description": "Sri Lanka"
+    },
+    {
+      "const": "LR",
+      "description": "Liberia"
+    },
+    {
+      "const": "LS",
+      "description": "Lesotho"
+    },
+    {
+      "const": "LT",
+      "description": "Lithuania"
+    },
+    {
+      "const": "LU",
+      "description": "Luxembourg"
+    },
+    {
+      "const": "LV",
+      "description": "Latvia"
+    },
+    {
+      "const": "LY",
+      "description": "Libya"
+    },
+    {
+      "const": "MA",
+      "description": "Morocco"
+    },
+    {
+      "const": "MC",
+      "description": "Monaco"
+    },
+    {
+      "const": "MD",
+      "description": "Moldova, Republic of"
+    },
+    {
+      "const": "ME",
+      "description": "Montenegro"
+    },
+    {
+      "const": "MF",
+      "description": "Saint Martin (French part)"
+    },
+    {
+      "const": "MG",
+      "description": "Madagascar"
+    },
+    {
+      "const": "MH",
+      "description": "Marshall Islands"
+    },
+    {
+      "const": "MK",
+      "description": "North Macedonia"
+    },
+    {
+      "const": "ML",
+      "description": "Mali"
+    },
+    {
+      "const": "MM",
+      "description": "Myanmar"
+    },
+    {
+      "const": "MN",
+      "description": "Mongolia"
+    },
+    {
+      "const": "MP",
+      "description": "Northern Mariana Islands"
+    },
+    {
+      "const": "MQ",
+      "description": "Martinique"
+    },
+    {
+      "const": "MR",
+      "description": "Mauritania"
+    },
+    {
+      "const": "MS",
+      "description": "Montserrat"
+    },
+    {
+      "const": "MT",
+      "description": "Malta"
+    },
+    {
+      "const": "MU",
+      "description": "Mauritius"
+    },
+    {
+      "const": "MV",
+      "description": "Maldives"
+    },
+    {
+      "const": "MW",
+      "description": "Malawi"
+    },
+    {
+      "const": "MX",
+      "description": "Mexico"
+    },
+    {
+      "const": "MY",
+      "description": "Malaysia"
+    },
+    {
+      "const": "MZ",
+      "description": "Mozambique"
+    },
+    {
+      "const": "NA",
+      "description": "Namibia"
+    },
+    {
+      "const": "NC",
+      "description": "New Caledonia"
+    },
+    {
+      "const": "NE",
+      "description": "Niger"
+    },
+    {
+      "const": "NF",
+      "description": "Norfolk Island"
+    },
+    {
+      "const": "NG",
+      "description": "Nigeria"
+    },
+    {
+      "const": "NI",
+      "description": "Nicaragua"
+    },
+    {
+      "const": "NL",
+      "description": "Netherlands"
+    },
+    {
+      "const": "NO",
+      "description": "Norway"
+    },
+    {
+      "const": "NP",
+      "description": "Nepal"
+    },
+    {
+      "const": "NR",
+      "description": "Nauru"
+    },
+    {
+      "const": "NU",
+      "description": "Niue"
+    },
+    {
+      "const": "NZ",
+      "description": "New Zealand"
+    },
+    {
+      "const": "OM",
+      "description": "Oman"
+    },
+    {
+      "const": "PA",
+      "description": "Panama"
+    },
+    {
+      "const": "PE",
+      "description": "Peru"
+    },
+    {
+      "const": "PF",
+      "description": "French Polynesia"
+    },
+    {
+      "const": "PG",
+      "description": "Papua New Guinea"
+    },
+    {
+      "const": "PH",
+      "description": "Philippines"
+    },
+    {
+      "const": "PK",
+      "description": "Pakistan"
+    },
+    {
+      "const": "PL",
+      "description": "Poland"
+    },
+    {
+      "const": "PM",
+      "description": "Saint Pierre and Miquelon"
+    },
+    {
+      "const": "PN",
+      "description": "Pitcairn"
+    },
+    {
+      "const": "PR",
+      "description": "Puerto Rico"
+    },
+    {
+      "const": "PS",
+      "description": "Palestine, State of"
+    },
+    {
+      "const": "PT",
+      "description": "Portugal"
+    },
+    {
+      "const": "PW",
+      "description": "Palau"
+    },
+    {
+      "const": "PY",
+      "description": "Paraguay"
+    },
+    {
+      "const": "QA",
+      "description": "Qatar"
+    },
+    {
+      "const": "RE",
+      "description": "Réunion"
+    },
+    {
+      "const": "RO",
+      "description": "Romania"
+    },
+    {
+      "const": "RS",
+      "description": "Serbia"
+    },
+    {
+      "const": "RU",
+      "description": "Russian Federation"
+    },
+    {
+      "const": "RW",
+      "description": "Rwanda"
+    },
+    {
+      "const": "SA",
+      "description": "Saudi Arabia"
+    },
+    {
+      "const": "SB",
+      "description": "Solomon Islands"
+    },
+    {
+      "const": "SC",
+      "description": "Seychelles"
+    },
+    {
+      "const": "SD",
+      "description": "Sudan"
+    },
+    {
+      "const": "SE",
+      "description": "Sweden"
+    },
+    {
+      "const": "SG",
+      "description": "Singapore"
+    },
+    {
+      "const": "SH",
+      "description": "Saint Helena, Ascension and Tristan da Cunha"
+    },
+    {
+      "const": "SI",
+      "description": "Slovenia"
+    },
+    {
+      "const": "SJ",
+      "description": "Svalbard and Jan Mayen"
+    },
+    {
+      "const": "SK",
+      "description": "Slovakia"
+    },
+    {
+      "const": "SL",
+      "description": "Sierra Leone"
+    },
+    {
+      "const": "SM",
+      "description": "San Marino"
+    },
+    {
+      "const": "SN",
+      "description": "Senegal"
+    },
+    {
+      "const": "SO",
+      "description": "Somalia"
+    },
+    {
+      "const": "SR",
+      "description": "Suriname"
+    },
+    {
+      "const": "SS",
+      "description": "South Sudan"
+    },
+    {
+      "const": "ST",
+      "description": "Sao Tome and Principe"
+    },
+    {
+      "const": "SV",
+      "description": "El Salvador"
+    },
+    {
+      "const": "SX",
+      "description": "Sint Maarten (Dutch part)"
+    },
+    {
+      "const": "SY",
+      "description": "Syrian Arab Republic"
+    },
+    {
+      "const": "SZ",
+      "description": "Eswatini"
+    },
+    {
+      "const": "TC",
+      "description": "Turks and Caicos Islands"
+    },
+    {
+      "const": "TD",
+      "description": "Chad"
+    },
+    {
+      "const": "TF",
+      "description": "French Southern Territories"
+    },
+    {
+      "const": "TG",
+      "description": "Togo"
+    },
+    {
+      "const": "TH",
+      "description": "Thailand"
+    },
+    {
+      "const": "TJ",
+      "description": "Tajikistan"
+    },
+    {
+      "const": "TK",
+      "description": "Tokelau"
+    },
+    {
+      "const": "TL",
+      "description": "Timor-Leste"
+    },
+    {
+      "const": "TM",
+      "description": "Turkmenistan"
+    },
+    {
+      "const": "TN",
+      "description": "Tunisia"
+    },
+    {
+      "const": "TO",
+      "description": "Tonga"
+    },
+    {
+      "const": "TR",
+      "description": "Türkiye"
+    },
+    {
+      "const": "TT",
+      "description": "Trinidad and Tobago"
+    },
+    {
+      "const": "TV",
+      "description": "Tuvalu"
+    },
+    {
+      "const": "TZ",
+      "description": "Tanzania, United Republic of"
+    },
+    {
+      "const": "UA",
+      "description": "Ukraine"
+    },
+    {
+      "const": "UG",
+      "description": "Uganda"
+    },
+    {
+      "const": "UM",
+      "description": "United States Minor Outlying Islands"
+    },
+    {
+      "const": "US",
+      "description": "United States of America"
+    },
+    {
+      "const": "UY",
+      "description": "Uruguay"
+    },
+    {
+      "const": "UZ",
+      "description": "Uzbekistan"
+    },
+    {
+      "const": "VA",
+      "description": "Holy See"
+    },
+    {
+      "const": "VC",
+      "description": "Saint Vincent and the Grenadines"
+    },
+    {
+      "const": "VE",
+      "description": "Venezuela (Bolivarian Republic of)"
+    },
+    {
+      "const": "VG",
+      "description": "Virgin Islands (British)"
+    },
+    {
+      "const": "VI",
+      "description": "Virgin Islands (U.S.)"
+    },
+    {
+      "const": "VN",
+      "description": "Viet Nam"
+    },
+    {
+      "const": "VU",
+      "description": "Vanuatu"
+    },
+    {
+      "const": "WF",
+      "description": "Wallis and Futuna"
+    },
+    {
+      "const": "WS",
+      "description": "Samoa"
+    },
+    {
+      "const": "YE",
+      "description": "Yemen"
+    },
+    {
+      "const": "YT",
+      "description": "Mayotte"
+    },
+    {
+      "const": "ZA",
+      "description": "South Africa"
+    },
+    {
+      "const": "ZM",
+      "description": "Zambia"
+    },
+    {
+      "const": "ZW",
+      "description": "Zimbabwe"
+    },
+    {
+      "const": "CIS",
+      "description": "Commonwealth of Independent States"
+    },
+    {
+      "const": "CN",
+      "description": "China"
+    },
+    {
+      "const": "CN-BJ",
+      "description": "Beijing City,China"
+    },
+    {
+      "const": "CN-TJ",
+      "description": "Tianjin City,China"
+    },
+    {
+      "const": "CN-HE",
+      "description": "Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-SJW",
+      "description": "Shijiazhuang City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-TGS",
+      "description": "Tangshan City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-SHP",
+      "description": "Qinhuangdao City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-HDS",
+      "description": "Handan City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-XTS",
+      "description": "Xingtai City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-BDS",
+      "description": "Baoding City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-ZJK",
+      "description": "Zhangjiakou City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-CDS",
+      "description": "Chengde City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-CGZ",
+      "description": "Cangzhou City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-LFS",
+      "description": "Langfang City,Hebei Province,China"
+    },
+    {
+      "const": "CN-HE-HGS",
+      "description": "Hengshui City,Hebei Province,China"
+    },
+    {
+      "const": "CN-SX",
+      "description": "Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-TYN",
+      "description": "Taiyuan City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-DTG",
+      "description": "Datong City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-YQS",
+      "description": "Yangquan City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-CZS",
+      "description": "Changzhi City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-JCG",
+      "description": "Jincheng City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-SZJ",
+      "description": "Shuozhou City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-JZN",
+      "description": "Jinzhong City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-YCE",
+      "description": "Yuncheng City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-XZS",
+      "description": "Xinzhou City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-LFN",
+      "description": "Linfen City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-SX-LLH",
+      "description": "Lüliang City,Shanxi Province,China"
+    },
+    {
+      "const": "CN-NM",
+      "description": "Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-HET",
+      "description": "Hohhot City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-BTS",
+      "description": "Baotou City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-WHM",
+      "description": "Wuhai City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-CFS",
+      "description": "Chifeng(Ulanhad)City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-TLO",
+      "description": "Tongliao City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-ODS",
+      "description": "Ordos City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-HBR",
+      "description": "Hulun Buir City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-BYR",
+      "description": "Bayannur City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-ULS",
+      "description": "Ulanqab City,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-HIN",
+      "description": "Hinggan Meng,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-XGO",
+      "description": "Xilin Gol Meng,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-NM-ALM",
+      "description": "Alxa Meng,Inner Mongolia Autonomous Region,China"
+    },
+    {
+      "const": "CN-LN",
+      "description": "Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-SHE",
+      "description": "Shenyang City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-DLC",
+      "description": "Dalian City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-ASN",
+      "description": "Anshan City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-FSN",
+      "description": "Fushun City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-BXS",
+      "description": "Benxi City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-DDG",
+      "description": "Dandong City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-JNZ",
+      "description": "Jinzhou City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-YIK",
+      "description": "Yingkou City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-FXS",
+      "description": "Fuxin City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-LYL",
+      "description": "Liaoyang City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-PJS",
+      "description": "Panjin City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-TLS",
+      "description": "Tieling City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-CYS",
+      "description": "Chaoyang City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-LN-HLD",
+      "description": "Huludao City,Liaoning Province,China"
+    },
+    {
+      "const": "CN-JL",
+      "description": "Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-CGQ",
+      "description": "Changchun City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-JLS",
+      "description": "Jilin City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-SPS",
+      "description": "Siping City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-LYH",
+      "description": "Liaoyuan City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-THS",
+      "description": "Tonghua City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-BSN",
+      "description": "Baishan City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-SYU",
+      "description": "Songyuan City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-BCS",
+      "description": "Baicheng City,Jilin Province,China"
+    },
+    {
+      "const": "CN-JL-YBZ",
+      "description": "Yanbian Korean Autonomous Prefecture,Jilin Province,China"
+    },
+    {
+      "const": "CN-HL",
+      "description": "Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-HRB",
+      "description": "Harbin City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-NDG",
+      "description": "Qiqihar City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-JXI",
+      "description": "Jixi City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-HEG",
+      "description": "Hegang City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-SYS",
+      "description": "Shuangyashan City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-DQG",
+      "description": "Daqing City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-YCH",
+      "description": "Yichun City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-JMU",
+      "description": "Jiamusi City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-QTH",
+      "description": "Qitaihe City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-MDG",
+      "description": "Mudanjiang City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-HEK",
+      "description": "Heihe City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-SUH",
+      "description": "Suihua City,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-HL-DHL",
+      "description": "Da Hinggan Ling Diqu,Heilongjiang Province,China"
+    },
+    {
+      "const": "CN-SH",
+      "description": "Shanghai City,China"
+    },
+    {
+      "const": "CN-JS",
+      "description": "Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-NKG",
+      "description": "Nanjing City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-WUX",
+      "description": "Wuxi City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-XUZ",
+      "description": "Xuzhou City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-CZX",
+      "description": "Changzhou City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-SZH",
+      "description": "Suzhou City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-NTG",
+      "description": "Nantong City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-LYG",
+      "description": "Lianyungang City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-HAS",
+      "description": "Huai'an City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-YCK",
+      "description": "Yancheng City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-YZH",
+      "description": "Yangzhou City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-ZHE",
+      "description": "Zhenjiang City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-TZS",
+      "description": "Taizhou City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-JS-SUQ",
+      "description": "Suqian City,Jiangsu Province,China"
+    },
+    {
+      "const": "CN-ZJ",
+      "description": "Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-HGH",
+      "description": "Hangzhou City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-NGB",
+      "description": "Ningbo City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-WNZ",
+      "description": "Wenzhou City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-JIX",
+      "description": "Jiaxing City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-HZH",
+      "description": "Huzhou City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-SXG",
+      "description": "Shaoxing City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-JHA",
+      "description": "Jinhua City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-QUZ",
+      "description": "Quzhou City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-ZOS",
+      "description": "Zhoushan City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-TZZ",
+      "description": "Taizhou City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-ZJ-LSS",
+      "description": "Lishui City,Zhejiang Province,China"
+    },
+    {
+      "const": "CN-AH",
+      "description": "Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-HFE",
+      "description": "Hefei City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-WHI",
+      "description": "Wuhu City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-BBU",
+      "description": "Bengbu City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-HNS",
+      "description": "Huainan City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-MAA",
+      "description": "Ma'anshan City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-HBE",
+      "description": "Huaibei City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-TOL",
+      "description": "Tongling City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-AQG",
+      "description": "Anqing City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-HSN",
+      "description": "Huangshan City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-CUZ",
+      "description": "Chuzhou City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-FYS",
+      "description": "Fuyang City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-SUZ",
+      "description": "Suzhou City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-CAH",
+      "description": "Chaohu City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-LAW",
+      "description": "Lu'an City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-BOZ",
+      "description": "Bozhou City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-CIZ",
+      "description": "Chizhou City,Anhui Province,China"
+    },
+    {
+      "const": "CN-AH-XCI",
+      "description": "Xuancheng City,Anhui Province,China"
+    },
+    {
+      "const": "CN-FJ",
+      "description": "Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-FOC",
+      "description": "Fuzhou City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-XMN",
+      "description": "Xiamen City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-PUT",
+      "description": "Putian City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-SMS",
+      "description": "Sanming City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-QZJ",
+      "description": "Quanzhou City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-ZZU",
+      "description": "Zhangzhou City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-NPS",
+      "description": "Nanping City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-LYF",
+      "description": "Longyan City,Fujian Province,China"
+    },
+    {
+      "const": "CN-FJ-NDS",
+      "description": "Ningde City,Fujian Province,China"
+    },
+    {
+      "const": "CN-JX",
+      "description": "Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-KHN",
+      "description": "Nanchang City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-JDZ",
+      "description": "Jingdezhen City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-PXS",
+      "description": "Pingxiang City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-JIU",
+      "description": "Jiujiang City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-XYU",
+      "description": "Xinyu City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-YTS",
+      "description": "Yingtan City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-GZH",
+      "description": "Ganzhou City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-JAS",
+      "description": "Ji'an City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-YCN",
+      "description": "Yichun City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-FUZ",
+      "description": "Fuzhou City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-JX-SRS",
+      "description": "Shangrao City,Jiangxi Province,China"
+    },
+    {
+      "const": "CN-SD",
+      "description": "Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-TNA",
+      "description": "Jinan City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-TAO",
+      "description": "Qingdao City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-ZBO",
+      "description": "Zibo City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-ZZG",
+      "description": "Zaozhuang City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-DYG",
+      "description": "Dongying City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-YNT",
+      "description": "Yantai City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-WEF",
+      "description": "Weifang City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-JNG",
+      "description": "Jining City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-TAI",
+      "description": "Tai'an City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-WEH",
+      "description": "Weihai City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-RZH",
+      "description": "Rizhao City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-LWS",
+      "description": "Laiwu City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-LYI",
+      "description": "Linyi City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-DZS",
+      "description": "Dezhou City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-LCH",
+      "description": "Liaocheng City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-BZH",
+      "description": "Binzhou City,Shandong Province,China"
+    },
+    {
+      "const": "CN-SD-HZS",
+      "description": "Heze City,Shandong Province,China"
+    },
+    {
+      "const": "CN-HA",
+      "description": "Henan Province,China"
+    },
+    {
+      "const": "CN-HA-CGO",
+      "description": "Zhengzhou City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-KFS",
+      "description": "Kaifeng City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-LYA",
+      "description": "Luoyang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-PDS",
+      "description": "Pingdingshan City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-AYS",
+      "description": "Anyang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-HBS",
+      "description": "Hebi City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-XXS",
+      "description": "Xinxiang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-JZY",
+      "description": "Jiaozuo City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-PYS",
+      "description": "Puyang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-XCS",
+      "description": "Xuchang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-LHS",
+      "description": "Luohe City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-SMX",
+      "description": "Sanmenxia City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-NYS",
+      "description": "Nanyang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-SQS",
+      "description": "Shangqiu City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-XYG",
+      "description": "Xinyang City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-ZKS",
+      "description": "Zhoukou City,Henan Province,China"
+    },
+    {
+      "const": "CN-HA-ZMD",
+      "description": "Zhumadian City,Henan Province,China"
+    },
+    {
+      "const": "CN-HB",
+      "description": "Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-WUH",
+      "description": "Wuhan City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-HSI",
+      "description": "Huangshi City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-SYE",
+      "description": "Shiyan City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-YCO",
+      "description": "Yichang City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-XFN",
+      "description": "Xiangfan City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-EZS",
+      "description": "Ezhou City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-JMS",
+      "description": "Jingmen City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-XGE",
+      "description": "Xiaogan City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-JGZ",
+      "description": "Jingzhou City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-HGE",
+      "description": "Huanggang City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-XNS",
+      "description": "Xianning City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-SZR",
+      "description": "Suizhou City,Hubei Province,China"
+    },
+    {
+      "const": "CN-HB-ESH",
+      "description": "Enshi Tujia&Miao Autonomous Prefecture,Hubei Province,China"
+    },
+    {
+      "const": "CN-HN",
+      "description": "Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-CSX",
+      "description": "Changsha City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-ZZS",
+      "description": "Zhuzhou City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-XGT",
+      "description": "Xiangtan City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-HNY",
+      "description": "Hengyang City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-SYR",
+      "description": "Shaoyang City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-YYG",
+      "description": "Yueyang City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-CDE",
+      "description": "Changde City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-ZJJ",
+      "description": "Zhangjiajie City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-YYS",
+      "description": "Yiyang City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-CNZ",
+      "description": "Chenzhou City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-YZS",
+      "description": "Yongzhou City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-HHS",
+      "description": "Huaihua City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-LDI",
+      "description": "Loudi City,Hunan Province,China"
+    },
+    {
+      "const": "CN-HN-XXZ",
+      "description": "​Xiangxi Tujia&Miao Autonomous Prefecture​,Hunan Province,China"
+    },
+    {
+      "const": "CN-GD",
+      "description": "Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-CAN",
+      "description": "Guangzhou City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-HSC",
+      "description": "Shaoguan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-SZX",
+      "description": "Shenzhen City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-ZUH",
+      "description": "Zhuhai City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-SWA",
+      "description": "Shantou City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-FOS",
+      "description": "Foshan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-JMN",
+      "description": "Jiangmen City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-ZHA",
+      "description": "Zhanjiang City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-MMI",
+      "description": "Maoming City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-ZQG",
+      "description": "Zhaoqing City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-HUI",
+      "description": "Huizhou City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-MXZ",
+      "description": "Meizhou City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-SWE",
+      "description": "Shanwei City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-HEY",
+      "description": "Heyuan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-YJI",
+      "description": "Yangjiang City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-QYN",
+      "description": "Qingyuan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-DGG",
+      "description": "Dongguan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-ZSN",
+      "description": "Zhongshan City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-CZY",
+      "description": "Chaozhou City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-JIY",
+      "description": "Jieyang City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GD-YFS",
+      "description": "Yunfu City,Guangdong Province,China"
+    },
+    {
+      "const": "CN-GX",
+      "description": "Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-NNG",
+      "description": "Nanning City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-LZH",
+      "description": "Liuzhou City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-KWL",
+      "description": "Guilin City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-WUZ",
+      "description": "Wuzhou City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-BHY",
+      "description": "Beihai City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-FAN",
+      "description": "Fangchenggang City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-QZH",
+      "description": "Qinzhou City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-GUG",
+      "description": "Guigang City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-YUL",
+      "description": "Yulin City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-BSS",
+      "description": "Bose City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-HZO",
+      "description": "Hezhou City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-HCS",
+      "description": "Hechi City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-LIB",
+      "description": "Laibin City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-GX-COZ",
+      "description": "Chongzuo City,Guangxi Zhuang Autonomous Region,China"
+    },
+    {
+      "const": "CN-HI",
+      "description": "Hainan Province,China"
+    },
+    {
+      "const": "CN-HI-HAK",
+      "description": "Haikou City,Hainan Province,China"
+    },
+    {
+      "const": "CN-HI-SYX",
+      "description": "Sanva City,Hainan Province,China"
+    },
+    {
+      "const": "CN-CQ",
+      "description": "Chongqing City,China"
+    },
+    {
+      "const": "CN-SC",
+      "description": "Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-CTU",
+      "description": "Chengdu City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-ZGS",
+      "description": "Zigong City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-PZH",
+      "description": "Panzhihua City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-LUZ",
+      "description": "Luzhou City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-DEY",
+      "description": "Deyang City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-MYG",
+      "description": "Mianyang City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-GYC",
+      "description": "Guangyuan City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-SNS",
+      "description": "Suining City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-NJS",
+      "description": "Neijiang City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-LES",
+      "description": "Leshan City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-NCO",
+      "description": "Nanchong City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-MSS",
+      "description": "Meishan City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-YBS",
+      "description": "Yibin City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-GAC",
+      "description": "Guang'an City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-DAZ",
+      "description": "Dazhou City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-YAS",
+      "description": "Ya'an City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-BZS",
+      "description": "Bazhong City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-ZYS",
+      "description": "Ziyang City,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-ABA",
+      "description": "Aba Tibetan&Qiang Autonomous Prefecture,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-GAZ",
+      "description": "Garzê Tibetan Autonomous Prefecture,Sichuan Province,China"
+    },
+    {
+      "const": "CN-SC-LSY",
+      "description": "Liangshan Yi Autonomous Prefecture​,Sichuan Province,China"
+    },
+    {
+      "const": "CN-GZ",
+      "description": "Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-KWE",
+      "description": "Guiyang City,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-LPS",
+      "description": "Lupanshui City,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-ZNY",
+      "description": "Zunyi City,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-ASS",
+      "description": "Anshun City,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-TRD",
+      "description": "Tongren Diqu,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-QXZ",
+      "description": "Qianxinan Buyei&Miao Autonomous Prefecture,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-BJD",
+      "description": "Bijie Diqu,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-QND",
+      "description": "Qiandongnan Miao&Dong Autonomous Prefecture,Guizhou Province,China"
+    },
+    {
+      "const": "CN-GZ-QNZ",
+      "description": "​Qiannan Buyei&Miao Autonomous Prefecture,Guizhou Province,China"
+    },
+    {
+      "const": "CN-YN",
+      "description": "Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-KMG",
+      "description": "Kunming City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-QJS",
+      "description": "Qujing City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-YXS",
+      "description": "Yuxi City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-BOS",
+      "description": "Baoshan City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-ZTS",
+      "description": "Zhaotong City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-LJH",
+      "description": "Lijiang City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-PRS",
+      "description": "Pu'er City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-LIH",
+      "description": "Lincang City,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-CXD",
+      "description": "​Chuxiong Yi Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-HHZ",
+      "description": "​Honghe Hani&Yi Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-WSZ",
+      "description": "​Wenshan Zhuang&Miao Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-XSB",
+      "description": "Xishuangbanna Dai Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-DLZ",
+      "description": "​Dali Bai Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-DHG",
+      "description": "Dehong Dai&Jingpo Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-NUJ",
+      "description": "Nujiang Lisu Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-YN-DEZ",
+      "description": "Deqên Tibetan Autonomous Prefecture,Yunnan Province,China"
+    },
+    {
+      "const": "CN-XZ",
+      "description": "Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-LXA",
+      "description": "Lhasa City,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-QAD",
+      "description": "Qamdo Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-SND",
+      "description": "Shannan Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-XID",
+      "description": "Xigaze Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-NAD",
+      "description": "Nagqu Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-NGD",
+      "description": "Ngari Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-XZ-NYD",
+      "description": "Nyingchi Diqu,Tibet Autonomous Region,China"
+    },
+    {
+      "const": "CN-SN",
+      "description": "Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-SIA",
+      "description": "Xi'an City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-TCN",
+      "description": "Tongchuan City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-BJI",
+      "description": "Baoji City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-XYS",
+      "description": "Xianyang City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-WNA",
+      "description": "Weinan City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-YNA",
+      "description": "Yan'an City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-HZJ",
+      "description": "Hanzhong City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-YLN",
+      "description": "Yulin City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-ANK",
+      "description": "Ankang City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-SN-SLH",
+      "description": "Shangluo City,Shaanxi Province,China"
+    },
+    {
+      "const": "CN-GS",
+      "description": "Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-LHW",
+      "description": "Lanzhou City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-JYG",
+      "description": "Jiayuguan City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-JCS",
+      "description": "Jinchang City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-BYS",
+      "description": "Baiyin City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-TSU",
+      "description": "Tianshui City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-WWS",
+      "description": "Wuwei City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-ZYE",
+      "description": "Zhangye City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-PLS",
+      "description": "Pingliang City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-JQG",
+      "description": "Jiuquan City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-QYI",
+      "description": "Qingyang City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-DNX",
+      "description": "Dingxi City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-LGN",
+      "description": "Longnan City,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-LXH",
+      "description": "​Linxia Hui Autonomous Prefecture,Gansu Province,China"
+    },
+    {
+      "const": "CN-GS-GNZ",
+      "description": "Gannan Tibetan Autonomous Prefecture,Gansu Province,China"
+    },
+    {
+      "const": "CN-QH",
+      "description": "Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-XNN",
+      "description": "Xining City,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-HDD",
+      "description": "Haidong Diqu,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-HBZ",
+      "description": "Haibei Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-HN7",
+      "description": "Huangnan Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-HNN",
+      "description": "Hainan Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-GOL",
+      "description": "Golog Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-YSZ",
+      "description": "Yushu Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-QH-HXZ",
+      "description": "Haixi Mongol&Tibetan Autonomous Prefecture,Qinghai Province,China"
+    },
+    {
+      "const": "CN-NX",
+      "description": "Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-NX-INC",
+      "description": "Yinchuan City,Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-NX-SZS",
+      "description": "Shizuishan City,Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-NX-WZS",
+      "description": "Wuzhong City,Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-NX-GYN",
+      "description": "Guyuan City,Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-NX-ZWS",
+      "description": "Zhongwei City,Ningxia Hui Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ",
+      "description": "Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-URC",
+      "description": "Urümqi City,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-KAR",
+      "description": "Karamay City,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-TUD",
+      "description": "Turpan Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-HMD",
+      "description": "Hami(Kumul)Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-CJZ",
+      "description": "Changji Hui Autonomous Prefecture,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-BOR",
+      "description": "Bortala Mongol Autonomous Prefecture,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-BAG",
+      "description": "Bayingolin Mongol Autonomous Prefecture,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-AKD",
+      "description": "Aksu Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-KIZ",
+      "description": "​Kizilsu Kirgiz Autonomous Prefecture,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-KSI",
+      "description": "Kashi(Kaxgar)Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-HOD",
+      "description": "Hotan Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-ILD",
+      "description": "​Ili Kazak Autonomous Prefecture,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-TCD",
+      "description": "Tacheng(Qoqek)Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-XJ-ALD",
+      "description": "Altay Diqu,Xinjiang Uygur Autonomous Region,China"
+    },
+    {
+      "const": "CN-TW",
+      "description": "Taiwan Province,China"
+    },
+    {
+      "const": "CN-HK",
+      "description": "Hong Kong Special Administrative Region of the People's Republic of China"
+    },
+    {
+      "const": "CN-MO",
+      "description": "Macao Special Administrative Region of the People's Republic of China"
+    }
+  ]
+}
