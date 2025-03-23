@@ -9,7 +9,7 @@ sidebar_position: 2
 ## 用户指南
 
 1. [TIDAS schema](docs/user-guide/TIDAS-Schema.md)
-2. TIDAS 和 eILCD 的无损映射关系 
+2. [TIDAS Tools](docs/user-guide/TIDAS-tool.md)
 3. [TianGong LCA 平台](https://docs.tiangong.earth/)
 4. [TianGong LCA 私有部署](https://docs.tiangong.earth/deploy/local-deploy)
 

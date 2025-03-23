@@ -6,6 +6,16 @@
 npm ci
 ```
 
+## Error check & fix
+
+```bash
+npm run lint
+
+npm run lint:fix
+```
+
+This command will check the code style and fix the code style automatically.
+
 ## Local Development
 
 ```bash
