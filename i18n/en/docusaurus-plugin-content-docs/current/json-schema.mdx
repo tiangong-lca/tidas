@@ -1,15 +1,83 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Schema from "@site/static/schemas/tidas_processes.json";
+import contactsSchema from "@site/static/schemas/tidas_contacts.json";
+import ProcessSchema from "@site/static/schemas/tidas_processes.json";
+import FlowpropertiesSchema from "@site/static/schemas/tidas_flowproperties.json";
+import FlowsSchema from "@site/static/schemas/tidas_flows.json";
+import LciamethodsSchema from "@site/static/schemas/tidas_lciamethods.json";
+import LifecyclemodelsSchema from "@site/static/schemas/tidas_lifecyclemodels.json";
+import SourcesSchema from "@site/static/schemas/tidas_sources.json";
+import UnitgroupsSchema from "@site/static/schemas/tidas_unitgroups.json";
+import ContactsCategorySchema from "@site/static/schemas/tidas_contacts_category.json";
+import DataTypesSchema from "@site/static/schemas/tidas_data_types.json";
+import ProcessesCategorySchema from "@site/static/schemas/tidas_processes_category.json";
+import FlowpropertiesCategorySchema from "@site/static/schemas/tidas_flowproperties_category.json";
+import FlowsElementaryCategorySchema from "@site/static/schemas/tidas_flows_elementary_category.json";
+import FlowsProductCategorySchema from "@site/static/schemas/tidas_flows_product_category.json";
+import LciamethodsCategorySchema from "@site/static/schemas/tidas_lciamethods_category.json";
+import LocationsCategorySchema from "@site/static/schemas/tidas_locations_category.json";
+import SourcesCategorySchema from "@site/static/schemas/tidas_sources_category.json";
+import UnitgroupsCategorySchema from "@site/static/schemas/tidas_unitgroups_category.json";
 import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 
 # TIDAS Schema
 
-<JSONSchemaViewer schema={ Schema } />
+# Dataset Schema
+## Model
+<JSONSchemaViewer schema={ LifecyclemodelsSchema } />
 
-# Source :
+## Process
+<JSONSchemaViewer schema={ ProcessSchema } />
 
-<CodeBlock language="json-schema">{JSON.stringify(Schema, null, 2)}</CodeBlock>
+## Flow
+<JSONSchemaViewer schema={ FlowsSchema } />
+
+## Flow Property
+<JSONSchemaViewer schema={ FlowpropertiesSchema } />
+
+## Unit Group
+<JSONSchemaViewer schema={ UnitgroupsSchema } />
+
+## LCIA Method
+<JSONSchemaViewer schema={ LciamethodsSchema } />
+
+## Source
+<JSONSchemaViewer schema={ SourcesSchema } />
+
+## Contact
+<JSONSchemaViewer schema={ contactsSchema } />
+
+
+# Category Schema
+## Processes category
+<JSONSchemaViewer schema={ ProcessesCategorySchema } />
+
+## Flow Property category
+<JSONSchemaViewer schema={ FlowpropertiesCategorySchema } />
+
+## Flow Elementary category
+<JSONSchemaViewer schema={ FlowsElementaryCategorySchema } />
+
+## Flow Product category
+<JSONSchemaViewer schema={ FlowsProductCategorySchema } />
+
+## LCIAMethod category
+<JSONSchemaViewer schema={ LciamethodsCategorySchema } />
+
+## Location category
+<JSONSchemaViewer schema={ LocationsCategorySchema } />
+
+## Source category
+<JSONSchemaViewer schema={ SourcesCategorySchema } />
+
+## Unit Group category
+<JSONSchemaViewer schema={ UnitgroupsCategorySchema } />
+
+## Contact category
+<JSONSchemaViewer schema={ ContactsCategorySchema } />
+
+## Data Type
+<JSONSchemaViewer schema={ DataTypesSchema } />
