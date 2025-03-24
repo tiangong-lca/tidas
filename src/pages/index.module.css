@@ -38,50 +38,10 @@
   margin: 0 2rem;
 }
 
-.customBackground {
-  background-color: #ffffff;
-}
-
-.customBackgroundSection1 {
-  background-color: #ffffff;
-}
-
-.customBackgroundSection2 {
-  background-color: #f8f9fa;
-}
-
-.customBackgroundSection3 {
-  background-color: #ffffff;
-}
-
-[data-theme='dark'] {
-  .customBackground {
-    background-color: var(--ifm-footer-background-color);
-  }
-
-  .customBackgroundSection1 {
-    background-color: #E6E6E6;
-    color: black;
-  }
-
-  .customBackgroundSection2 {
-    background-color: var(--ifm-footer-background-color);
-  }
-
-  .customBackgroundSection3 {
-    background-color: #ffffff;
-    color: black;
-  }
-
-  .ecosystemSection {
-    background-color: var(--ifm-footer-background-color);
-    color: var(--ifm-font-color-base);
-  }
-}
-
 .ecosystemSection {
-  padding: 4rem 0;
-  background-color: #f8f9fa;
+  padding: 4rem 0 6rem;
+  background-color: var(--ifm-footer-background-color);
+  color: var(--ifm-font-color-base);
 }
 
 .ecosystemContent {
@@ -107,6 +67,7 @@
 .partnersSection {
   padding: 4rem 0 6rem;
   text-align: center;
+  background-color: var(--ifm-background-surface-color);
 }
 
 .partnersGrid {
