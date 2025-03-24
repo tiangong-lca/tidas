@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -31,6 +32,57 @@ function HomepageHeader() {
         </div>
       </div>
     </header>
+  );
+}
+
+// Component for theme-aware image
+function ThemedImage({ lightSrc, darkSrc, alt, className }) {
+  const imgRef = useRef(null);
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    
+    const updateImage = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      img.src = isDark ? darkSrc : lightSrc;
+    };
+    
+    // Initial image update
+    updateImage();
+    
+    // Set up observer for theme changes
+    const observer = new MutationObserver(updateImage);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+    
+    // Store observer reference
+    observerRef.current = observer;
+    
+    // Cleanup on unmount
+    return () => {
+      observer.disconnect();
+    };
+  }, [lightSrc, darkSrc]);
+
+  return (
+    <img
+      ref={imgRef}
+      src={lightSrc}
+      alt={alt}
+      className={className}
+      onError={(e) => {
+        // Fallback to light image if dark image fails to load
+        const img = e.target as HTMLImageElement;
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark && img.src === darkSrc) {
+          img.src = lightSrc;
+        }
+      }}
+    />
   );
 }
 
@@ -67,38 +119,12 @@ export default function Home(): ReactNode {
             </h2>
             <div className={styles.partnersGrid}>
               {[1, 2, 3].map((num) => (
-                <img
+                <ThemedImage
                   key={num}
-                  src={`/img/partners/partner${num}.png`}
-                  data-src-dark={`/img/partners/partner${num}-dark.png`}
+                  lightSrc={`/img/partners/partner${num}.png`}
+                  darkSrc={`/img/partners/partner${num}-dark.png`}
                   alt={`Partner ${num}`}
                   className={styles.partnerLogo}
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement;
-                    const updateImage = () => {
-                      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                      img.src = isDark 
-                        ? img.dataset.srcDark || img.src
-                        : img.src.replace('-dark', '');
-                    };
-                    
-                    // Initial update
-                    updateImage();
-                    
-                    // Setup theme change listener
-                    const observer = new MutationObserver(updateImage);
-                    observer.observe(document.documentElement, {
-                      attributes: true,
-                      attributeFilter: ['data-theme']
-                    });
-                    
-                    // Cleanup observer when component unmounts
-                    const cleanup = () => {
-                      observer.disconnect();
-                      img.removeEventListener('unload', cleanup);
-                    };
-                    img.addEventListener('unload', cleanup);
-                  }}
                 />
               ))}
             </div>
