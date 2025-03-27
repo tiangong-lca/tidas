@@ -3,24 +3,60 @@
     "message": "未发布版本 🚧",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Quick Start": {
-    "message": "快速开始",
-    "description": "The label for category Quick Start in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.TIDAS Schema": {
+    "message": "TIDAS 架构",
+    "description": "The label for category TIDAS Schema in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Quick Start in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.TIDAS Schema.link.generated-index.description": {
+    "message": "TIDAS数据架构的技术规范和说明文档",
+    "description": "The generated-index page description for category TIDAS Schema in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.User Guide": {
-    "message": "用户指引",
-    "description": "The label for category User Guide in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.TIDAS Tool": {
+    "message": "TIDAS 工具",
+    "description": "The label for category TIDAS Tool in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS Tool.link.generated-index.description": {
+    "message": "TIDAS相关工具的使用指南和文档",
+    "description": "The generated-index page description for category TIDAS Tool in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS in Blockchain": {
+    "message": "TIDAS用于区块链",
+    "description": "The label for category TIDAS in Blockchain in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS in Blockchain.link.generated-index.description": {
+    "message": "TIDAS在区块链领域的应用和技术实现",
+    "description": "The generated-index page description for category TIDAS in Blockchain in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ": {
     "message": "常见问题",
     "description": "The label for category FAQ in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "message": "关于TIDAS的常见问题解答",
     "description": "The generated-index page description for category FAQ in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Use Case": {
+    "message": "使用案例",
+    "description": "The label for category Use Case in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Use Case.link.generated-index.description": {
+    "message": "不同工具使用TIDAS数据架构的实际案例",
+    "description": "The generated-index page description for category Use Case in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS ecosphere": {
+    "message": "TIDAS 生态",
+    "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.TianGong LCA Tutorial": {
+    "message": "天工LCA说明文档",
+    "description": "The label for link TianGong LCA Tutorial in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.Carbon Footprint Industry Alliance": {
+    "message": "碳足迹产业技术创新联盟",
+    "description": "The label for link Carbon Footprint Industry Alliance in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.TianGong Think Tank": {
+    "message": "天工智库",
+    "description": "The label for link TianGong Think Tank in sidebar tutorialSidebar"
   }
 }

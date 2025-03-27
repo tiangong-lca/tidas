@@ -3,9 +3,9 @@ sidebar_position: 2
 ---
 
 
-# TIDAS Tools 快速入门指南
+# TIDAS 工具快速入门指南
 
-TIDAS Tools 是一个基于Python的跨平台CLI工具集，用于处理TIDAS和eILCD数据格式。它通过pip包管理器安装，支持Linux、Windows和macOS系统，提供了一系列命令行工具，主要功能包括：
+TIDAS 工具箱（TIDAS Tool）是基于Python的跨平台CLI工具集，用于处理TIDAS和eILCD数据格式。它通过pip包管理器安装，支持Linux、Windows和macOS系统，提供了一系列命令行工具，主要功能包括：
 
 - 数据格式转换（TIDAS ↔ eILCD）
 - 数据格式验证
@@ -63,6 +63,6 @@ tidas-export -i 输入目录 -z 输出zip文件 --to-tidas
 tidas-export -i 输入目录 -z 输出zip文件 --to-eilcd
 ```
 
-## 更多信息
+## 源代码与贡献
 
-如需了解更多详细说明，请前往[TIDAS-tool](https://github.com/tiangong-lca/tidas-tools)
+TIDAS工具是开源项目，您可以直接访问[TIDAS-tool GitHub仓库](https://github.com/tiangong-lca/tidas-tools)查看源代码、提交问题或参与贡献。
