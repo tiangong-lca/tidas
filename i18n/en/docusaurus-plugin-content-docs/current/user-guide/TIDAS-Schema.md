@@ -25,7 +25,7 @@ TIDAS Schema is a JSON-based schema validation that ensures data structure stand
 - **`tidas_sources.json`**: Contains data sources for lifecycle data, including source names, descriptions, etc.
 - **`tidas_unitgroups.json`**: Contains unit groups for lifecycle data, including group names, descriptions, units, etc.
 
-For detailed content, please refer to [TIDAS Schema](/docs/json-schema)
+For detailed content, please refer to [TIDAS Schema](/docs/user-guide/json-schema)
 
 ## TIDAS Schema Use Cases
 

@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 8
 ---
 
 
-# 如何为TIDAS文档做贡献
+# 共建TIDAS
 
 欢迎为TIDAS文档做贡献！以下是贡献流程：
 
@@ -13,7 +13,7 @@ sidebar_position: 3
 - 点击右上角的"Fork"按钮
 - 选择你的GitHub账户作为目标
 
-![Fork位置](../../static/docs/user-guide/img/GIT_FORK.png)
+![Fork位置](../static/docs/user-guide/img/GIT_FORK.png)
 
 ## 2. 克隆仓库
 
@@ -23,7 +23,7 @@ git clone https://github.com/YOUR-USERNAME/tidas.git
 
 可以根据您的情况选择HTTPS或者SSH，如果您使用SSH，您需要在您的GitHub账户中添加SSH密钥。
 
-![链接位置](../../static/docs/user-guide/img/GIT_CLONE.png)
+![链接位置](../static/docs/user-guide/img//GIT_CLONE.png)
 
 ## 3. 进行修改
 
@@ -58,6 +58,6 @@ git push origin your-branch-name
 - 确保所有链接有效
 - 使用正确的Markdown语法
 
-推荐使用[VS Code](/docs/user-guide/how-to-contribut-tidas-doc.md) 开发环境
+推荐使用[VS Code](https://code.visualstudio.com/) 代码编辑器。
 
 感谢你的贡献！
