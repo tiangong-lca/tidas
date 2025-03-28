@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## TIDAS Schema 简介
 
-TIDAS Schema 是一个基于JSON Schema的生命周期评估（LCA）数据规范框架，旨在实现LCA数据的标准化和互操作性。它通过定义严格的数据结构和验证规则，确保不同系统间的数据交换质量，有效统一了LCA数据格式，消除了数据孤岛问题。通过自动化验证机制确保数据完整性，支持不同LCA工具间的无缝数据交换，同时采用模块化设计支持业务扩展需求。TIDAS Schema包含17个文件，具体内容可见[TIDAS Schema](/docs/json-schema)
+TIDAS Schema 是一个基于JSON Schema的生命周期评估（LCA）数据规范框架，旨在实现LCA数据的标准化和互操作性。它通过定义严格的数据结构和验证规则，确保不同系统间的数据交换质量，有效统一了LCA数据格式，消除了数据孤岛问题。通过自动化验证机制确保数据完整性，支持不同LCA工具间的无缝数据交换，同时采用模块化设计支持业务扩展需求。TIDAS Schema包含17个文件，具体内容可见[TIDAS Schema](/docs/schema/json-schema)
 
 ### 主要功能
 

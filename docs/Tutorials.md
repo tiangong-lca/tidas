@@ -79,6 +79,4 @@ TIDAS可以集成到各类LCA平台，其中天工LCA平台(TianGong LCA)是最�
 参考[开发者文档](/docs/how-to-contribut-tidas-doc.md)
 
 ## 资源与支持
-- [示例数据文件](static/schemas/)
-- [Schema参考文档](./schema/TIDAS-Schema.md)
 - [问题反馈渠道](/docs/resources-and-support.md)

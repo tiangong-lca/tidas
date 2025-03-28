@@ -2,41 +2,37 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# What is TIDAS
 
-TIDAS (TianGong LCA Data System) is an open-source JSON-based data structure system that provides standardized, extensible data management solutions.
+TIDAS (**TI**angong **DA**ta **S**ystem) is an open-source JSON-based data system that provides standardized, extensible data management solutions.
 
 TIDAS simplifies lifecycle data management processes:
 
-  **Methodology Layer**: Lifecycle data management follows the [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline), fully compatible with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and [ecoinvent](https://www.ecoinvent.org/) standards.
+  **Methodology Layer**: Lifecycle data management follows the [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.net/docs/category/lca-database-guideline), fully compatible with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and standards like [ecoinvent](https://www.ecoinvent.org/).
 
-  **Data Layer**: TIDAS adopts a unified data format based on JSON structure and JSON Schema validation, with high scalability and compatibility to support future domain-wide technical architectures (blockchain, data spaces, AI).
+  **Data Layer**: TIDAS adopts a unified data format based on JSON structure and JSON Schema validation, offering high extensibility and compatibility to support future technologies (blockchain, data spaces, AI).
 
-  **Conversion Layer**: TIDAS and eILCD have multi-language bidirectional lossless mapping services, enabling lossless data format conversion and interoperability with mainstream formats like eILCD, making data exchange between different systems simple and efficient.
+  **Conversion Layer**: TIDAS and eILCD provide multilingual bidirectional lossless mapping services, enabling seamless data format conversion and interoperability with mainstream formats like eILCD, simplifying data exchange between different systems.
 
-  **Platform Layer**: [TianGong LCA Platform](https://docs.tiangong.earth/) can meet LCA data development and publishing needs, supporting both open platform and private deployment modes to satisfy different organizations' application requirements.
+  **Platform Layer**: [TianGong LCA Platform](https://docs.tiangong.earth/) fulfills LCA data development and publishing needs, supporting both open platform and private deployment modes to meet different organizational requirements.
 
 import TidasImage from '@site/src/components/TidasImage';
 
 <TidasImage filename="TIDAS" />
 
-The TianGong LCA platform will provide comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research.
+The TianGong LCA Platform provides comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research.
 
 ## TIDAS Framework
 
-The TIDAS framework is an open-source JSON-based data structure system that provides standardized, extensible data management solutions. The TIDAS framework includes the following core components:
+The TIDAS framework is an open-source JSON-based data structure system that provides standardized, extensible data management solutions. The TIDAS framework includes these core components:
 
   - **`TIDAS-schemas`**: JSON-based schema validation ensuring data structure standardization.
 
-  - **`tiangong-tool`**: Integrated tools for data import, export, validation, and publishing, supporting data platform module development.
+  - **`TIDAS-tool`**: Integrated tools for data export, validation, publishing, supporting data platform module development.
 
-  - **`TIDAS-EF`**: Provides standardized lifecycle data initialization packages, including unit processes, elementary flows, flow properties, LCIA method files, etc., ensuring data consistency.
+  - **`tiangong-lca-next-doc`**: Complete data management solution for rapid platform development, supporting private deployment.
 
-  - **`TIDAS-convert`**: Multi-language bidirectional lossless mapping services with eILCD and other mainstream formats, enabling lossless data format conversion for efficient data exchange between different systems.
-
-  - **`tiangong-lca-next-docs`**: Provides complete data management solutions for rapid data platform construction, supporting private deployment.
-
-  - **[TianGong LCA Platform](https://docs.tiangong.earth/)**: Free and open LCA data management platform with data creation, editing, validation, and publishing features, ready to use upon registration.
+  - **[TianGong LCA Platform](https://docs.tiangong.earth/)**: Free open LCA data management platform with data creation, editing, validation, and publishing capabilities - ready to use upon registration.
 
 ## Guides
 
@@ -45,19 +41,21 @@ The TIDAS framework is an open-source JSON-based data structure system that prov
 If you're new to TIDAS, start here.
 
 - Build your own LCA database
-- [Deploy your own LCA platform on your system](https://docs.tiangong.earth/deploy/local-deploy)
-- Directly use [TianGong LCA Platform](https://lca.tiangong.earth)
+- [Deploy your own LCA platform locally](https://docs.tiangong.earth/deploy/local-deploy)
+- Use [TianGong LCA Platform](https://lca.tiangong.earth) directly
 
-### [User Guide](/docs/category/user-guide)
+### [TIDAS Architecture](/docs/category/TIDAS Schema)
 
-1. [TIDAS schema deployment](/docs/user-guide/TIDAS-Schema)
-2. [How to use TianGong LCA Platform](https://docs.tiangong.earth/)
-3. [How to privately deploy TianGong LCA Platform](https://docs.tiangong.earth/deploy/local-deploy)
+1. [What is TIDAS schema](/docs/schema/TIDAS-Schema)
+2. [TIDAS Tools Quick Start Guide](/docs/tool/TIDAS-tool)
+3. [How to use TianGong LCA Platform for your data](https://docs.tiangong.earth/)
+4. [How to privately deploy TianGong LCA Platform](https://docs.tiangong.earth/deploy/local-deploy)
+5. [How to develop your own LCA platform](https://github.com/linancn/tiangong-lca-next)
 
 ### [Concepts & Methodology](/docs/resources-and-support)
 
-### [TIDAS-schema](/docs/user-guide/json-schema)
+### [TIDAS-schema](/docs/schema/json-schema)
 
-## Contribution
+## Contributing
 
-Want to contribute to this documentation? Check out our contribution guide.
+Want to contribute to this documentation? See our [Contribution Guide](/docs/how-to-contribut-tidas-doc).
