@@ -4,10 +4,10 @@ sidebar_position: 2
 
 # TIDAS 快速教程
 
-## 基础概念
+## TIDAS 简介
+TIDAS（TianGong Integrated Data Analysis System）是一个开源的生命周期评估（LCA）数据标准化系统。详情可见[TIDAS 是什么](/docs/intro.mdx)。
 
-### TIDAS 简介
-TIDAS（TianGong Integrated Data Analysis System）是一个开源的生命周期评估（LCA）数据标准化和互操作性平台。详情可见[TIDAS 是什么](/docs/intro.mdx)。
+
 
 ### 核心特性
 - **标准化格式**：基于JSON Schema的数据结构

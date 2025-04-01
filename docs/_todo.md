@@ -1,6 +1,12 @@
 # 待添加文档计划 (隐藏文件)
 
-## API参考
+- Introduction
+- Tutorials
+ - 
+## AI 与 TIDAS
+- MCP searver 与 LCA 数据库 (GPT/LLama)
+
+## 
 - REST API 规范 (基于现有TIDAS-tool.md扩展)
 - GraphQL API 文档 (补充查询示例)
 - SDK 使用指南 (Python/JavaScript)
@@ -8,7 +14,7 @@
 
 ## 开发者指南
 - 开发环境搭建 (Docker/Kubernetes)
-- 贡献指南 (代码规范/PR流程)
+- 贡献指南 (代码规范/PR流程)[how-to-contribute-tidas-doc](how-to-contribute-tidas-doc)
 - 测试规范 (单元测试/集成测试)
 - 部署流程 (AWS/Azure/本地部署)
 
@@ -16,7 +22,6 @@
 - 数据集成案例 (ETL流程)
 - 数据分析案例 (SQL查询示例)
 - 可视化案例 (Dashboard构建)
-- 区块链应用案例 (智能合约集成)
 
 ## 进阶教程
 - 性能优化 (索引/缓存/查询优化)
@@ -29,6 +34,7 @@
 - 智能合约开发指南
 - 跨链交互文档
 - 节点运维手册
+- 区块链应用案例 (智能合约集成)
 
 ## 模式文档增强 (基于TIDAS-Schema.md)
 - 模式设计最佳实践 (数据结构和格式定义)
