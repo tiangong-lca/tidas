@@ -3,7 +3,7 @@ sidebar_position: 8
 ---
 
 
-# 共建TIDAS
+# 社区共建
 
 欢迎为TIDAS文档做贡献！以下是贡献流程：
 

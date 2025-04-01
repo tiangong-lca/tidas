@@ -54,13 +54,10 @@ TIDAS提供了一些开发工具，帮助用户更方便地进行数据验证和
 - **TIDAS数据导出工具**：用于将TIDAS数据导出，以便于与其他系统进行集成和共享。
 
 ## 数据库构建导则
-TIDAS遵循[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline),用户可以根据指南，结合TIDAS的JSON Schema，开发自己的LCA数据库。
+TIDAS遵循[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)，用户可以根据指南并结合TIDAS的JSON Schema，开发自己的LCA数据库。
 
 # 社区共建
-- TIDAS开发：
-    参考[开发者文档](/docs/how-to-contribut-tidas-doc.md)
-- 问题反馈：  
-  🐞 [Bug报告](https://github.com/tiangong-lca/tidas/issues)  
-- 企业伙伴计划
-    *（开发中）获取定制化技术支持的绿色通道*
+- TIDAS开发：参考[开发者文档](/docs/how-to-contribut-tidas-doc.md)
+- 问题反馈：🐞 [Bug报告](https://github.com/tiangong-lca/tidas/issues)  
+- 企业伙伴计划：*（开发中）获取定制化技术支持的绿色通道*
 - 商业支持：contact@tiangong.earth（获取SLA保障服务）
