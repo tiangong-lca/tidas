@@ -2,21 +2,20 @@
 
 本系列文档详细说明TIDAS数据结构在区块链技术中的各类应用场景和实现方案。
 
-## 区块链
-- 共识算法详解
-- 智能合约开发指南
-- 跨链交互文档
-- 节点运维手册
-- 区块链应用案例 (智能合约集成)
-
 ## 文档目录
 
-1. [TIDAS为区块链做了一个解决方案](TIDAS-to-blockchain.md)
+1. [TIDAS在区块链的解决方案](TIDAS-to-blockchain.md)
 2. [TIDAS在蚂蚁链的应用案例](TIDAS-to-ANTCHAIN.md)
-   - 数据结构映射
-   - 共识算法
-   - 智能合约
+   基于轻节点验证体系构建的合规化方案，特点：
+   ✅ 通过中国网信办区块链备案
+   ✅ 支持国密SM2/SM3算法
+
 （蚂蚁链的doc也可以做一个文档说明蚂蚁链如何用在TIDAS）
+3. [TIDAS在hyperledger的应用案例](TIDAS-to-hyperledger.md)
+   面向产业联盟的准入制实施方案，包含：
+   🔒 基于Fabric CA的成员准入控制
+   📦 支持私有数据收集(Private Data Collection)
+
 
 
 ## 阅读建议
