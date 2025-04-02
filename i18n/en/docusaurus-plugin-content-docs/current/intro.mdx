@@ -2,60 +2,59 @@
 sidebar_position: 1
 ---
 
-# What is TIDAS
+# Introduction
 
-TIDAS (**TI**angong **DA**ta **S**ystem) is an open-source JSON-based data system that provides standardized, extensible data management solutions.
-
-TIDAS simplifies lifecycle data management processes:
-
-  **Methodology Layer**: Lifecycle data management follows the [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.net/docs/category/lca-database-guideline), fully compatible with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and standards like [ecoinvent](https://www.ecoinvent.org/).
-
-  **Data Layer**: TIDAS adopts a unified data format based on JSON structure and JSON Schema validation, offering high extensibility and compatibility to support future technologies (blockchain, data spaces, AI).
-
-  **Conversion Layer**: TIDAS and eILCD provide multilingual bidirectional lossless mapping services, enabling seamless data format conversion and interoperability with mainstream formats like eILCD, simplifying data exchange between different systems.
-
-  **Platform Layer**: [TianGong LCA Platform](https://docs.tiangong.earth/) fulfills LCA data development and publishing needs, supporting both open platform and private deployment modes to meet different organizational requirements.
+TIDAS (**TI**angong **DA**ta **S**ystem) is an open-source JSON-based data system that provides standardized solutions for lifecycle data management.
 
 import TidasImage from '@site/src/components/TidasImage';
 
 <TidasImage filename="TIDAS" />
 
-The TianGong LCA Platform provides comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research.
+## Core Foundations
 
-## TIDAS Framework
+The fundamental bases of TIDAS:
 
-The TIDAS framework is an open-source JSON-based data structure system that provides standardized, extensible data management solutions. The TIDAS framework includes these core components:
+- **[LCA/Carbon Footprint Database Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)** - Fully compliant with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and standards like [ecoinvent](https://www.ecoinvent.org/).
+- **[JSON-based Data Structure](/docs/category/tidas-schema)** - Built on JSON structure with JSON Schema validation, offering high extensibility and compatibility to support future technical architectures (blockchain, data spaces, AI).
+- **[Multilingual Core Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)** - Provides standardized foundational databases ensuring data consistency and traceability.
 
-  - **`TIDAS-schemas`**: JSON-based schema validation ensuring data structure standardization.
+## Core Tools
 
-  - **`TIDAS-tool`**: Integrated tools for data export, validation, publishing, supporting data platform module development.
+Based on these foundations, we've developed the following tools (see [TIDAS Toolkit](/docs/category/tidas-tool)):
 
-  - **`tiangong-lca-next-doc`**: Complete data management solution for rapid platform development, supporting private deployment.
+- **`validate`** - **Data Validation Tool**: Ensures data quality and compliance with specifications
+- **`convert`** - **TIDAS-eILCD Bidirectional Converter**: Enables lossless conversion with formats like eILCD
+- **`export`** - **Data Export Tool**: Supports multiple format exports and data sharing
 
-  - **[TianGong LCA Platform](https://docs.tiangong.earth/)**: Free open LCA data management platform with data creation, editing, validation, and publishing capabilities - ready to use upon registration.
+## Integration Solutions
 
-## Guides
+We've built the following integrated application solutions:
 
-### [Quick Start](/docs/Tutorials)
+- **[Blockchain Solution](./integration/TIDAS-to-blockchain.md)** - Ensures data immutability and traceability
+- **[Trusted Data Space Solution](./integration/TIDAS-to-data-space.md)** - Enables secure data sharing with privacy protection
+- **[AI Integration Solution](./integration/TIDAS-to-AI.md)** - Supports intelligent data analysis and processing
 
-If you're new to TIDAS, start here.
+## **[TianGong LCA Platform](https://docs.tiangong.earth/)** - Industrial Implementation of TIDAS Architecture
 
-- Build your own LCA database
-- [Deploy your own LCA platform locally](https://docs.tiangong.earth/deploy/local-deploy)
-- Use [TianGong LCA Platform](https://lca.tiangong.earth) directly
+As the first open-source implementation of the TIDAS (TIangong DAta System) architecture, it provides a full-process LCA solution compliant with international standards.
 
-### [TIDAS Architecture](/docs/category/TIDAS Schema)
+## TIDAS Use Cases
 
-1. [What is TIDAS schema](/docs/schema/TIDAS-Schema)
-2. [TIDAS Tools Quick Start Guide](/docs/tool/TIDAS-tool)
-3. [How to use TianGong LCA Platform for your data](https://docs.tiangong.earth/)
-4. [How to privately deploy TianGong LCA Platform](https://docs.tiangong.earth/deploy/local-deploy)
-5. [How to develop your own LCA platform](https://github.com/linancn/tiangong-lca-next)
+### TIDAS with Blockchain
+- **[ANTCHAIN Integration Solution](./use_case/TIDAS-to-ANTCHAIN.md)**
+  Light node verification framework based on TIDAS JSON Schema, providing enterprise BaaS services
 
-### [Concepts & Methodology](/docs/resources-and-support)
+### TIDAS with LCA Analysis Tools
+Plug-and-play integration with LCA software:
+- **[Haike Data](./use_case/block_builder.md)**  
+  Supports one-click import of TIDAS datasets and model mapping configuration
+- *(In Development) openLCA Integration* 
+- *(In Development) SimaPro Integration*
+- *(In Development) Brightway Integration* 
 
-### [TIDAS-schema](/docs/schema/json-schema)
-
-## Contributing
-
-Want to contribute to this documentation? See our [Contribution Guide](/docs/how-to-contribut-tidas-doc).
+# Community Collaboration
+- Contributing to TIDAS Documentation: See [TIDAS Documentation Guide](/how-to-contribut-tidas-doc.md)
+- Issue Reporting: 🐞 [Bug Reports](https://github.com/tiangong-lca/tidas/issues)  
+- Enterprise Partner Program: *(In Development) Green channel for customized technical support*
+- Contributor List: *(In Development) Acknowledging all contributors*
+- Commercial Support: contact@tiangong.earth (for SLA-backed services)

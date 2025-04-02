@@ -15,7 +15,7 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          <Translate id="homepage.title">天工LCA数据系统</Translate>
+          <Translate id="homepage.title">天工LCA数据系统（TIDAS）</Translate>
         </Heading>
         <p className="hero__subtitle">
           <Translate id="homepage.tagline">

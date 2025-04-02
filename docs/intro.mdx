@@ -2,62 +2,59 @@
 sidebar_position: 1
 ---
 
-# TIDAS 简介
+# 简介
 
-TIDAS（**TI**angong **DA**ta **S**ystem）是一个基于JSON的开源数据系统，提供了标准化、可扩展的数据管理解决方案。
-
-TIDAS简化了生命周期数据管理流程：
-
-  **方法层**: 生命周期数据管理遵循[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline),完全兼容[ISO 14040/44](https://www.iso.org/home.html)，[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)以及[ecoinvent](https://www.ecoinvent.org/)等标准。
-
-  **数据层**: TIDAS采用统一的数据格式，基于JSON结构和JSON Schema验证，具有高度可扩展性和兼容性，可以支持未来全域技术架构（区块链、数据空间、AI）。
-
-  **转换层**: TIDAS和eILCD具有多语言双向无损映射服务，实现数据格式无损转换，支持与eILCD等主流格式互通，让不同系统间的数据交换变得简单高效。
-
-  **平台层**: [TianGong LCA平台](https://docs.tiangong.earth/)可以实现LCA数据的研制和发布需求，支持开放平台和私有部署两种模式，满足不同机构的应用需求。
+TIDAS（**TI**angong **DA**ta **S**ystem）是一个基于JSON的开源数据系统，为生命周期数据管理提供标准化解决方案。
 
 import TidasImage from '@site/src/components/TidasImage';
 
 <TidasImage filename="TIDAS" />
 
+## 底层基础
 
-TianGong LCA 平台将为您的 LCA 数据管理和环境影响评估提供全面的支持，帮助您在可持续发展研究中取得更加精准的成果。
+TIDAS的核心基础：
 
-## TIDAS 框架
+- **[LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)** - 完全兼容[ISO 14040/44](https://www.iso.org/home.html)，[ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)以及[ecoinvent](https://www.ecoinvent.org/)等标准。
+- **基于JSON的[数据结构](/docs/category/tidas-schema)** - 基于JSON结构和JSON Schema验证，具有高度可扩展性和兼容性，可以支持未来全域技术架构（区块链、数据空间、AI）。
+- **[多语言基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)** - 提供标准化的核心底层基础数据库，确保数据的一致性和可追溯性
 
-TIDAS 框架是一个基于 JSON 的开源数据结构体系，提供了标准化、可扩展的数据管理解决方案。TIDAS 框架包括以下核心组件：
+## 核心工具
 
-  - **`TIDAS-schemas`**: 基于JSON结构的schema验证，确保数据结构的规范性。
+基于上述基础，我们开发了以下工具，具体可见[TIDAS工具包](/docs/category/tidas-tool)：
 
-  - **`TIDAS-tool`**: 集成了数据的导出、验证、发布等工具，支持数据平台功能模块的开发。
+- **`validate`** - **数据验证工具**: 确保数据质量和符合规范要求
+- **`convert`** - **TIDAS-eILCD双向转换器**: 实现与eILCD等主流格式的无损转换
+- **`export`** - **数据导出工具**: 支持多种格式的数据导出和共享
 
-  - **`tiangong-lca-next-doc`**: 提供了完整的数据管理解决方案，用于快速构建数据管理平台，支持私有部署。
+## 集成解决方案
 
-  - **[TianGong LCA 平台](https://docs.tiangong.earth/)**: 免费开放的 LCA 数据管理平台，具有数据的创建、编辑、验证、发布等功能，注册即用。
+我们构建了以下集成应用方案：
 
+- **[区块链解决方案](./integration/TIDAS-to-blockchain.md)** - 实现数据不可篡改和可追溯
+- **[可信数据空间解决方案](./integration/TIDAS-to-data-space.md)** - 支持数据的安全共享和隐私保护
+- **[AI集成解决方案](./integration/TIDAS-to-AI.md)** - 支持智能数据分析和处理
 
-## 指南
+## **[天工LCA平台](https://docs.tiangong.earth/)**-IDAS架构的工业级实现
 
-### [快速开始](/docs/Tutorials)
+作为TIDAS（TIangong DAta System）架构的首个开源实现平台，提供符合国际标准的全流程LCA解决方案。
 
-如果你是第一次接触 TIDAS，可以从这里开始。
+## TIDAS 应用案例
 
-- 构建自己的LCA数据库
-- [在自己的系统上部署自己的LCA平台](https://docs.tiangong.earth/deploy/local-deploy)
-- 直接使用[TianGong LCA 平台](https://lca.tiangong.earth)
+### TIDAS与区块链
+- **[蚂蚁链集成方案](./use_case/TIDAS-to-ANTCHAIN.md)**
+  基于TIDAS JSON Schema构建轻节点验证框架，提供企业级BaaS服务
 
-### [TIDAS 架构](/docs/category/TIDAS Schema)
+### TIDAS与LCA分析工具
+实现与LCA软件的即插即用式集成：
+- **[海科数据](./use_case/block_builder.md)**  
+  支持TIDAS数据集一键导入与模型映射配置
+- *（开发中）openLCA集成方案* 
+- *（开发中）SimaPro集成方案*
+- *（开发中）Brightway集成方案* 
 
-1. [TIDAS schema 是什么](/docs/schema/TIDAS-Schema)
-2. [TIDAS Tools 快速入门指南](/docs/tool/TIDAS-tool)
-3. [如何使用TianGong LCA 平台做自己的数据](https://docs.tiangong.earth/)
-4. [如何私有部署TianGong LCA 平台](https://docs.tiangong.earth/deploy/local-deploy)
-5. [如何开发一个属于自己的LCA平台](https://github.com/linancn/tiangong-lca-next)
-
-### [概念与方法学](/docs/resources-and-support)
-
-### [TIDAS-schema](/docs/schema/json-schema)
-
-## 贡献
-
-希望为此文档做出贡献？请查看我们的[贡献指南](/docs/how-to-contribut-tidas-doc)。
+# 社区共建
+- TIDAS文档贡献：参考[TIDAS文档开发指南](/docs/how-to-contribut-tidas-doc.md)
+- 问题反馈：🐞 [Bug报告](https://github.com/tiangong-lca/tidas/issues)  
+- 企业伙伴计划：*（开发中）获取定制化技术支持的绿色通道*
+- 贡献者名单：*（开发中）感谢所有参与者的贡献*
+- 商业支持：contact@tiangong.earth（获取SLA保障服务）

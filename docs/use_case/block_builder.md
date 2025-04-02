@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: 易碳数科积木与TIDAS集成案例
+title: 易碳数科集成案例
 description: 易碳数科积木工具如何集成和使用TIDAS数据架构的详细案例
 ---
 
