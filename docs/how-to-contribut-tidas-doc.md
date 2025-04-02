@@ -1,9 +1,9 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 
-# 社区共建
+# TIDAS文档开发指南
 
 欢迎为TIDAS文档做贡献！以下是贡献流程：
 
