@@ -1,14 +1,14 @@
 ---
 sidebar_position: 2
-title: 易碳数科HiQ-Editor与TIDAS集成案例
-description: 易碳数科HiQ-Editor工具如何集成和使用TIDAS数据架构的详细案例
+title: 海科数据HiQ-Editor与TIDAS集成案例
+description: 海科数据HiQ-Editor工具如何集成和使用TIDAS数据架构的详细案例
 ---
 
-# 易碳数科HiQ-Editor与TIDAS集成案例
+# 海科数据HiQ-Editor与TIDAS集成案例
 
 ## 概述
 
-易碳数科HiQ-Editor与TIDAS集成,并实现无缝对接具有重要意义：
+海科数据HiQ-Editor与TIDAS集成,并实现无缝对接具有重要意义：
 - HiQ-Editor与TIDAS集成可以使工具的使用者，如企业、研究机构和政府能够更方便地交换LCA数据，并使用全球范围内的数据进行环境影响评估，确保数据的通用性和可比性。
 - HiQ-Editor与TIDAS集成也意味着LCA数据（如 ELCD、HiQLCD）可以在不同平台进行交互，避免数据孤岛，提高互操作性。
 - HiQ-Editor与TIDAS采用统一的数据结构和质量要求，使LCA数据更加规范、透明和可追溯，可确保数据的完整性和一致性，提高数据可靠性。
