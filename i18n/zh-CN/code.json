@@ -438,7 +438,7 @@
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "homepage.title": {
-    "message": "天工 LCA 数据系统"
+    "message": "天工 LCA 数据系统（TIDAS）"
   },
   "theme.blog.author.noPosts": {
     "message": "This author has not written any posts yet.",
