@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 9
 ---
 
-# How to Contribute to TIDAS Documentation
+# How to Contribute
 
 Welcome to contribute to TIDAS documentation! Here is the contribution process:
 
@@ -12,7 +12,7 @@ Welcome to contribute to TIDAS documentation! Here is the contribution process:
 - Click the "Fork" button in the top right corner
 - Select your GitHub account as the destination
 
-![Fork location](../../../../../static/docs/user-guide/img/GIT_FORK.png)
+![Fork location](../../../../static/docs/user-guide/img/GIT_FORK.png)
 
 ## 2. Clone the Repository
 
@@ -22,7 +22,7 @@ git clone https://github.com/YOUR-USERNAME/tidas.git
 
 You can choose between HTTPS or SSH depending on your situation. If using SSH, you need to add SSH keys to your GitHub account.
 
-![Link location](../../../../../static/docs/user-guide/img/GIT_CLONE.png)
+![Link location](../../../../static/docs/user-guide/img/GIT_CLONE.png)
 
 ## 3. Make Changes
 
@@ -57,6 +57,6 @@ git push origin your-branch-name
 - Ensure all links are valid
 - Use correct Markdown syntax
 
-Recommended to use [VS Code](../../current/faq/VSCode-guide.md) development environment
+Recommended to use [VS Code](../current/faq/VSCode-guide.md) development environment
 
 Thank you for your contribution!

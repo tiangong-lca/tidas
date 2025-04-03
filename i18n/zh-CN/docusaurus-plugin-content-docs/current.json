@@ -4,7 +4,7 @@
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.TIDAS Schema": {
-    "message": "TIDAS 架构",
+    "message": "数据结构",
     "description": "The label for category TIDAS Schema in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TIDAS Schema.link.generated-index.description": {
@@ -12,20 +12,20 @@
     "description": "The generated-index page description for category TIDAS Schema in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TIDAS Tool": {
-    "message": "TIDAS 工具",
+    "message": "工具包",
     "description": "The label for category TIDAS Tool in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TIDAS Tool.link.generated-index.description": {
     "message": "TIDAS相关工具的使用指南和文档",
     "description": "The generated-index page description for category TIDAS Tool in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.TIDAS in Blockchain": {
-    "message": "TIDAS用于区块链",
-    "description": "The label for category TIDAS in Blockchain in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Integration": {
+    "message": "技术集成与扩展",
+    "description": "The label for category Integration in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.TIDAS in Blockchain.link.generated-index.description": {
-    "message": "TIDAS在区块链领域的应用和技术实现",
-    "description": "The generated-index page description for category TIDAS in Blockchain in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Integration.link.generated-index.description": {
+    "message": "TIDAS在不同技术中的集成和扩展",
+    "description": "The generated-index page description for category Integration in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ": {
     "message": "常见问题",

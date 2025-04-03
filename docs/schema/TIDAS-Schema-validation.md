@@ -1,28 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# TIDAS Schema 用户指南
+# 数据结构验证
 
-本指南将帮助您了解TIDAS Schema的基本概念、验证规则和使用方法。如果您是第一次使用TIDAS Schema，请从这里开始。
-
-## TIDAS Schema 简介
-
-TIDAS Schema 是一个基于JSON Schema的生命周期评估（LCA）数据规范框架，旨在实现LCA数据的标准化和互操作性。它通过定义严格的数据结构和验证规则，确保不同系统间的数据交换质量，有效统一了LCA数据格式，消除了数据孤岛问题。通过自动化验证机制确保数据完整性，支持不同LCA工具间的无缝数据交换，同时采用模块化设计支持业务扩展需求。TIDAS Schema包含17个文件，具体内容可见[TIDAS Schema](/docs/json-schema)
-
-### 主要功能
-
-- **数据建模**：定义标准化的LCA数据结构
-- **数据验证**：实时验证数据完整性和合规性
-- **元数据管理**：维护数据来源、版本等元信息
-- **分类体系**：提供标准化的分类和编码体系
-
-### 技术特点
-
-- 基于JSON Schema规范
-- 模块化架构设计
-- 支持多语言验证
-- 提供详细的错误诊断信息
+TIDAS Schema基于JSON Schema规范，可以使用多种编程语言和工具进行验证。
 
 ## TIDAS Schema 验证规则
 
@@ -34,11 +16,16 @@ TIDAS Schema 包含以下验证规则：
 4. **引用完整性验证**：检查对象之间的引用关系是否正确
 5. **业务规则验证**：执行特定领域的业务逻辑验证
 
-## 如何使用TIDAS Schema文件
+## 常用验证工具
 
-### 验证数据
+- **JavaScript**: Ajv (Another JSON Schema Validator)
+- **Python**: jsonschema 库
+- **Java**: json-schema-validator 库
+- **命令行工具**: ajv-cli
 
-TIDAS Schema基于JSON Schema规范，可以使用多种编程语言和工具进行验证。以下是使用Python进行验证的示例：
+## 示例代码
+
+以下是使用Python进行验证的示例：
 
 ```python
 import json
@@ -82,14 +69,8 @@ if (!valid) {
 }
 ```
 
-### 常用验证工具
 
-- **JavaScript**: Ajv (Another JSON Schema Validator)
-- **Python**: jsonschema 库
-- **Java**: json-schema-validator 库
-- **命令行工具**: ajv-cli
-
-### 验证错误处理
+## 验证错误处理
 
 当数据验证失败时，验证器会返回详细的错误信息。这些信息对于调试和修复数据问题非常重要。以下是错误信息的详细说明：
 
@@ -149,7 +130,7 @@ if (!valid) {
 }
 ```
 
-### 验证结果解释
+## 验证结果解释
 
 验证结果可能包含以下情况：
 
@@ -160,26 +141,3 @@ if (!valid) {
 5. 引用关系不完整
 6. 违反业务规则
 
-## TIDAS Schema 使用场景
-
-TIDAS Schema 在以下业务场景中发挥关键作用：
-
-1. **数据交换**
-   - 不同LCA系统间的数据迁移
-   - 供应链上下游数据共享
-   - 跨组织数据协作
-
-2. **系统集成**
-   - LCA工具与ERP/MES系统对接
-   - 数据仓库建设
-   - 数据分析平台集成
-
-3. **质量管理**
-   - 数据完整性检查
-   - 数据一致性验证
-   - 数据版本控制
-
-4. **标准化建设**
-   - 行业数据标准制定
-   - 企业数据治理
-   - 合规性检查
