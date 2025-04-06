@@ -4,57 +4,78 @@ sidebar_position: 1
 
 # Introduction
 
-TIDAS (**TI**angong **DA**ta **S**ystem) is an open-source JSON-based data system that provides standardized solutions for lifecycle data management.
+**TIDAS (TIangong DAta System)** is an open-source data system built on JSON, providing unified, standardized, and extensible foundational support for Life Cycle Assessment (LCA) and carbon footprint management. It consists of three core modules: "Methodology, Format Specifications, and Data Resources," and through auxiliary tools and integration capabilities, enables intelligent, trustworthy, and automated data management.
 
 import TidasImage from '@site/src/components/TidasImage';
 
-<TidasImage filename="TIDAS" />
+<TidasImage filename="TIDAS.svg" />
 
-## Core Foundations
+---
 
-The fundamental bases of TIDAS:
+## 🧱 Core System Architecture Modules
 
-- **[LCA/Carbon Footprint Database Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)** - Fully compliant with [ISO 14040/44](https://www.iso.org/home.html), [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html) and standards like [ecoinvent](https://www.ecoinvent.org/).
-- **[JSON-based Data Structure](/docs/category/tidas-schema)** - Built on JSON structure with JSON Schema validation, offering high extensibility and compatibility to support future technical architectures (blockchain, data spaces, AI).
-- **[Multilingual Core Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)** - Provides standardized foundational databases ensuring data consistency and traceability.
+TIDAS architecture consists of three components:
 
-## Core Tools
+### 📖 Methodology
+- [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
+  Provides methods for data construction, validation and maintenance, compatible with ISO 14040/44, ILCD Handbook and ecoinvent standards.
 
-Based on these foundations, we've developed the following tools (see [TIDAS Toolkit](/docs/category/tidas-tool)):
+### 🧾 Data Format
+- [TIDAS Data Structure](/docs/category/tidas-schema)  
+  Implements data structure validation based on JSON and JSON Schema, adaptable to new architectures like AI, data spaces and blockchain.
 
-- **`validate`** - **Data Validation Tool**: Ensures data quality and compliance with specifications
-- **`convert`** - **TIDAS-eILCD Bidirectional Converter**: Enables lossless conversion with formats like eILCD
-- **`export`** - **Data Export Tool**: Supports multiple format exports and data sharing
+### 📦 Data Resources
+- [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)  
+  Provides open-source reference database supporting data traceability, consistency and reliability.
 
-## Integration Solutions
+---
 
-We've built the following integrated application solutions:
+## 🛠 Auxiliary Tools
 
-- **[Blockchain Solution](./integration/TIDAS-to-blockchain.md)** - Ensures data immutability and traceability
-- **[Trusted Data Space Solution](./integration/TIDAS-to-data-space.md)** - Enables secure data sharing with privacy protection
-- **[AI Integration Solution](./integration/TIDAS-to-AI.md)** - Supports intelligent data analysis and processing
+**The TIDAS Toolkit consists of auxiliary components developed around the three core modules**, facilitating data construction, format interoperability and export operations between developers and systems.
 
-## **[TianGong LCA Platform](https://docs.tiangong.earth/)** - Industrial Implementation of TIDAS Architecture
+- 🧪 `validate`: Data validation tool - checks data structure, standardization and completeness  
+- 🔄 `convert`: Format converter - enables lossless bidirectional conversion between TIDAS and eILCD  
+- 📤 `export`: Data package publishing tool - packages compliant data into standard ZIP format for platform delivery and archiving
 
-As the first open-source implementation of the TIDAS (TIangong DAta System) architecture, it provides a full-process LCA solution compliant with international standards.
+👉 See full tool documentation: [TIDAS Toolkit](/docs/category/tidas-tool)
 
-## TIDAS Use Cases
+---
 
-### TIDAS with Blockchain
-- **[ANTCHAIN Integration Solution](./use_case/TIDAS-to-ANTCHAIN.md)**
-  Light node verification framework based on TIDAS JSON Schema, providing enterprise BaaS services
+## 🔗 Technical Integration & Extension Capabilities
 
-### TIDAS with LCA Analysis Tools
-Plug-and-play integration with LCA software:
-- **[Haike Data](./use_case/block_builder.md)**  
-  Supports one-click import of TIDAS datasets and model mapping configuration
-- *(In Development) openLCA Integration* 
-- *(In Development) SimaPro Integration*
-- *(In Development) Brightway Integration* 
+TIDAS has built various integration solutions for practical scenarios, supporting trusted computing and data interoperability:
 
-# Community Collaboration
-- Contributing to TIDAS Documentation: See [TIDAS Documentation Guide](/how-to-contribut-tidas-doc.md)
-- Issue Reporting: 🐞 [Bug Reports](https://github.com/tiangong-lca/tidas/issues)  
-- Enterprise Partner Program: *(In Development) Green channel for customized technical support*
-- Contributor List: *(In Development) Acknowledging all contributors*
-- Commercial Support: contact@tiangong.earth (for SLA-backed services)
+- 🛡 [Data Space Integration](./integration/tidas-to-data-space.md): Supports secure data sharing and privacy protection  
+- 🔗 [Blockchain Integration](./integration/tidas-to-blockchain.md): Enables data immutability and distributed verification  
+- 🤖 [AI Integration (MCP Service)](./integration/tidas-to-ai.md): Integrates MCP AI Server for data semantic analysis, completion and intelligent validation
+
+---
+
+## 🌐 Industrial Implementation Platform: TianGong LCA Platform
+
+- [TianGong Platform](https://docs.tiangong.earth) is the first open-source platform based on TIDAS architecture, implementing complete LCA lifecycle management from data modeling to trusted delivery.
+
+---
+
+## 📂 Featured Use Cases
+
+- 🔗 [TIDAS + AntChain](./use_case/tidas-to-antchain.md): Builds enterprise-level blockchain light node verification framework  
+- 🔧 [TIDAS + Haike Data](./use_case/block_builder.md): Supports dual-channel integration via TIDAS and API for model interaction and data review
+
+---
+
+## 🤝 Community Participation
+
+- 📘 [Documentation Contribution Guide](/docs/how-to-contribute-tidas-doc.md)  
+- 🐞 [Bug Reports](https://github.com/tiangong-lca/tidas/issues)  
+- 💼 For commercial support contact: **contact@tiangong.earth**
+
+---
+
+> 📌 **Quick Reading Suggestions**  
+> Recommended order to understand TIDAS architecture:
+> 1. [Methodology Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
+> 2. [Data Structure Format](/docs/category/tidas-schema)  
+> 3. [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)  
+> 4. [Tool Module](/docs/category/tidas-tool) and [Integration Solutions](/docs/category/integration)
