@@ -1,14 +1,14 @@
 ---
 sidebar_position: 2
-title: 海科数据HiQ-Editor与TIDAS集成案例
 description: 海科数据HiQ-Editor工具如何集成和使用TIDAS数据架构的详细案例
 ---
 
-# 海科数据HiQ-Editor与TIDAS集成案例
+# 海科数据 HiQ-Editor 与 TIDAS 集成案例
 
 ## 概述
 
 海科数据HiQ-Editor与TIDAS集成,并实现无缝对接具有重要意义：
+
 - HiQ-Editor与TIDAS集成可以使工具的使用者，如企业、研究机构和政府能够更方便地交换LCA数据，并使用全球范围内的数据进行环境影响评估，确保数据的通用性和可比性。
 - HiQ-Editor与TIDAS集成也意味着LCA数据（如 ELCD、HiQLCD）可以在不同平台进行交互，避免数据孤岛，提高互操作性。
 - HiQ-Editor与TIDAS采用统一的数据结构和质量要求，使LCA数据更加规范、透明和可追溯，可确保数据的完整性和一致性，提高数据可靠性。
@@ -22,21 +22,23 @@ description: 海科数据HiQ-Editor工具如何集成和使用TIDAS数据架构�
 ## 数据接入
 
 HiQ-Editor与TIDAS集成主要有以下两种方式
+
 1. 基于ILCD格式的导入与导出，以支持数据在不同系统中的流转和使用
 2. 基于API接口进行数据审核与流转
 
 ## 具体集成步骤
 
 - 数据导入与导出
+
 1. 用户（编辑人员）在HiQ-Editor中编辑数据。
 ![image](https://github.com/user-attachments/assets/1652763e-0388-49f7-8edd-54e86a2f6aee)
-3. 用户（管理人员）在HiQ-Editor中对某一版本的数据进行LCIA计算，并发布。
-4. 用户选择需要导出的数据，系统解析HiQ-Editor的LCA数据schema，将其导出为符合ILCD格式的文档。
-5. 用户在TIDAS系统中将ILCD文档解析并导入。
+2. 用户（管理人员）在HiQ-Editor中对某一版本的数据进行LCIA计算，并发布。
+3. 用户选择需要导出的数据，系统解析HiQ-Editor的LCA数据schema，将其导出为符合ILCD格式的文档。
+4. 用户在TIDAS系统中将ILCD文档解析并导入。
 ![image](https://github.com/user-attachments/assets/146de387-f375-4019-8139-21c1cb534bab)
 
-
 - 数据审核与流转
+
 1. 用户（编辑人员）在HiQ-Editor中编辑数据，并提交审核。
 2. HiQ-Editor与TIDAS建立API连接，验证访问权限。
 3. 通过集成接口，提交审核的数据流转至TIDAS进行审核。

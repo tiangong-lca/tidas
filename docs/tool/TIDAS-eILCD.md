@@ -11,8 +11,6 @@ TIDAS和eILCD是两种不同的生命周期评估（LCA）数据格式。TIDAS�
 
 ## 1. TIDAS转eILCD
 
-
 ## 2. eILCD转TIDAS
-
 
 ## 3. eILCD格式验证

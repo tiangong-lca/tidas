@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-title: "Block Builder Tool Use Case"
 description: "Detailed case study of how Block Builder tool integrates with TIDAS data architecture"
 ---
 
