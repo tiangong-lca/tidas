@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Toolset Introduction
+# Introduction
 
 The TIDAS toolset is a collection of lightweight tools designed for the Tiangong LCA data system, supporting data validation, format conversion, and export operations to help developers efficiently build compliant lifecycle databases.
 
@@ -23,6 +23,7 @@ The TIDAS toolset includes three core functional modules:
 ## 🚀 Quick Start
 
 1. Install the toolset  
+
    ```bash
    pip install tidas-tools
    ```

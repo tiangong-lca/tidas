@@ -24,6 +24,7 @@ TIDAS 工具包包括以下三个核心功能模块：
 ## 🚀 快速开始
 
 1. 安装工具包  
+
    ```bash
    pip install tidas-tools
    ```

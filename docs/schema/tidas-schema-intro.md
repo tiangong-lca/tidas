@@ -4,8 +4,6 @@ sidebar_position: 1
 
 # 介绍
 
-## 简介
-
 TIDAS Schema 是一个基于 JSON Schema 构建的生命周期评估（LCA）数据标准框架，旨在提升 LCA 数据的标准化水平、互操作能力与智能应用潜力。TIDAS 数据结构在设计上与 ILCD（International Life Cycle Data system）标准完全对齐，在架构中完整保留 ILCD XML 格式中使用的前缀体系，实现了对 ILCD XML 文件的无损映射。
 
 与传统的 ILCD 所采用的 XML 格式相比，TIDAS 采用 JSON 结构，在简洁性、可读性、可扩展性及系统集成能力方面具备显著优势。这一设计使得 TIDAS 在保持与现有国际数据标准兼容的同时，更易于与现代数字基础设施（如区块链系统、数据空间、人工智能引擎等）进行对接，增强了数据的流通性、智能性和可信性。
@@ -32,4 +30,3 @@ TIDAS Schema 是一个基于 JSON Schema 构建的生命周期评估（LCA）数
 TIDAS Schema 由 17 个核心 JSON Schema 文件组成，每个文件描述了一个具体数据模块，具体内容详见 [数据结构（JSON Schema）](./json-schema.mdx)。
 
 如需了解如何使用 JSON Schema 进行数据验证和格式转换，请参考 [数据结构验证](./tidas-shcema-validation.md)。
-
