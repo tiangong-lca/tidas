@@ -7,6 +7,7 @@ sidebar_position: 3
 A blockchain solution for LCA data management built on TIDAS architecture, enabling trusted full lifecycle management from data collection to application:
 
 Blockchain solution for industry alliance-level LCA data collaboration:
+
 - **On-chain Data Structuring**  
   Uses Protobuf encoding to compress TIDAS JSON, reducing chain storage consumption by 50%
 - **Privacy Protection Mechanism**  
