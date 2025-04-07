@@ -59,9 +59,9 @@
     "message": "核心模块",
     "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.link.LCA / Carbon Footprint Guideline": {
+  "sidebar.tutorialSidebar.link.Guide for Life Cycle Database": {
     "message": "LCA/碳足迹数据库构建导则",
-    "description": "LCA / Carbon Footprint Guideline in sidebar tutorialSidebar"
+    "description": "Guide for Life Cycle Database in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.Reference Package": {
     "message": "基础数据包",

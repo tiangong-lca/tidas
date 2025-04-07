@@ -26,7 +26,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'link',
-          label: 'LCA / Carbon Footprint Guideline',
+          label: 'Guide for Life Cycle Database',
           description: 'Guideline for LCA and Carbon Footprint',
           href: 'https://www.carbonfootprint.network/docs/category/lca-database-guideline/',
         },
