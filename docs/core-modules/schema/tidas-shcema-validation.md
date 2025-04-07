@@ -90,4 +90,4 @@ TIDAS 的数据验证机制结合了两类校验能力：
 
 ---
 
-如需了解 JSON Schema 的结构定义方式、字段命名规范与模块说明，请前往 [数据结构（JSON Schema）](json-schema.mdx)。如需了解 TIDAS 验证工具更多细节，请参考 [TIDAS工具包介绍](../../docs/category/tidas-tool)。
+如需了解 JSON Schema 的结构定义方式、字段命名规范与模块说明，请前往 [数据结构（JSON Schema）](json-schema.mdx)。如需了解 TIDAS 验证工具更多细节，请参考 [TIDAS工具包介绍](/docs/category/tidas-tools)。

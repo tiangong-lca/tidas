@@ -12,7 +12,7 @@ Welcome to contribute to TIDAS documentation! Here's the contribution process:
 - Click the "Fork" button in the top right corner
 - Select your GitHub account as the destination
 
-![Fork location](../../../../static/img/en/git-fork.png)
+![Fork location](../../../../../static/img/en/git-fork.png)
 
 ## 2. Clone the Repository
 
@@ -22,7 +22,7 @@ git clone https://github.com/YOUR-USERNAME/tidas.git
 
 You can choose HTTPS or SSH depending on your setup. If using SSH, you'll need to add SSH keys to your GitHub account.
 
-![Clone location](../../../../static/img/en/git-clone.png)
+![Clone location](../../../../../static/img/en/git-clone.png)
 
 ## 3. Make Changes
 

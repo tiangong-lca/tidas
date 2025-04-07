@@ -20,7 +20,7 @@
     "description": "The generated-index page description for category TIDAS Tool in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Integration": {
-    "message": "技术集成与扩展",
+    "message": "集成能力",
     "description": "The label for category Integration in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Integration.link.generated-index.description": {
@@ -67,8 +67,12 @@
     "message": "基础数据包",
     "description": "The label for link Reference Package in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.link.TianGong LCA Platform": {
+    "message": "天工LCA平台",
+    "description": "The label for link TianGong LCA Platform in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.link.TianGong LCA Tutorial": {
-    "message": "天工LCA说明文档",
+    "message": "天工LCA平台说明文档",
     "description": "The label for link TianGong LCA Tutorial in sidebar tutorialSidebar"
   }
 }

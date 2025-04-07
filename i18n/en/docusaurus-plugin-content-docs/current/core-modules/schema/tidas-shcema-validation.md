@@ -42,7 +42,7 @@ python validation.py --input-dir ./test_data --verbose
 - `--input-dir`: Directory containing JSON files to validate (with subdirectories like flows, processes)
 - `--verbose`: Output detailed log information
 
-For more information see [TIDAS Tools Introduction](/docs/category/tidas-tool).
+For more information see [TIDAS Tools Introduction](/docs/category/tidas-tools).
 
 ---
 
@@ -90,4 +90,4 @@ For debugging, use `--verbose` to view detailed error information and quickly lo
 
 ---
 
-To learn about JSON Schema structure definition, field naming conventions and module descriptions, see [Data Structure (JSON Schema)](json-schema.mdx). For more details about TIDAS validation tools, refer to [TIDAS Tools Introduction](/docs/category/tidas-tool).
+To learn about JSON Schema structure definition, field naming conventions and module descriptions, see [Data Structure (JSON Schema)](json-schema.mdx). For more details about TIDAS validation tools, refer to [TIDAS Tools Introduction](/docs/category/tidas-tools).
