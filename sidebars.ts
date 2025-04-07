@@ -19,6 +19,11 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'link',
+          label: 'LCA / Carbon Footprint Guideline',
+          href: 'https://www.carbonfootprint.network/docs/category/lca-database-guideline/',
+        },
+        {
+          type: 'link',
           label: 'TianGong LCA Tutorial',
           href: 'https://docs.tiangong.earth/',
         },

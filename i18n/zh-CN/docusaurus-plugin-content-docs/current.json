@@ -44,7 +44,7 @@
     "description": "The generated-index page description for category FAQ in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Use Case": {
-    "message": "使用案例",
+    "message": "应用案例",
     "description": "The label for category Use Case in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Use Case.link.generated-index.description": {
@@ -54,6 +54,10 @@
   "sidebar.tutorialSidebar.category.TIDAS ecosphere": {
     "message": "TIDAS 生态",
     "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.LCA / Carbon Footprint Guideline": {
+    "message": "LCA/碳足迹数据库构建导则",
+    "description": "LCA / Carbon Footprint Guideline in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.TianGong LCA Tutorial": {
     "message": "天工LCA说明文档",

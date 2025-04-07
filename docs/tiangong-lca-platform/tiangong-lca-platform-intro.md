@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 天工LCA平台介绍
 
-**IDAS架构的工业级实现——[天工LCA平台](https://docs.tiangong.earth/)**
+**TIDAS架构的工业级实现——[天工LCA平台](https://docs.tiangong.earth/)**
 
 作为TIDAS（TIangong DAta System）架构的首个开源实现平台，[天工LCA平台](https://docs.tiangong.earth/)提供符合国际标准的全流程LCA解决方案。
 
