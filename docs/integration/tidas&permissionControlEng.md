@@ -1,0 +1,66 @@
+# TIDAS Carbon Footprint Data Circulation and Authorization Mechanism
+
+## System Overview
+
+This document describes a product carbon footprint data circulation and authorization mechanism based on TIDAS transformation, which connects carbon footprint databases, the Tiangong data platform, and data users to form a complete carbon data value circulation loop.
+
+## Architecture Components
+
+The system consists of the following key components:
+
+- **Carbon Footprint Database**: Source of original product carbon footprint data storage
+- **Tiangong Data Platform**: Carbon data management and metadata service center
+- **Data Users**: End users of carbon footprint data
+- **Contract System**: Manages carbon data authorization and circulation permissions
+
+## Data Circulation Process
+
+### 1. Metadata Distribution
+
+The carbon footprint database provides metadata to the Tiangong data platform:
+- Metadata contains basic information and structural descriptions of product carbon footprint data
+- The Tiangong platform standardizes the carbon data metadata
+- Metadata contains no sensitive content and can be safely shared
+
+### 2. Metadata Acquisition
+
+Data users obtain carbon footprint metadata from the Tiangong data platform:
+- Users can browse and search available carbon footprint datasets
+- Users evaluate the applicability of product carbon footprint data based on metadata
+
+### 3. Data Request and Authorization
+
+Data users initiate carbon footprint data requests to the contract system:
+- Users select the required product carbon footprint data
+- The contract system records request information and usage intentions
+
+### 4. Permission Confirmation
+
+The contract system requests transmission permission from the carbon footprint database:
+- Verifies the legitimacy of the request and user qualifications
+- Obtains authorization confirmation from the carbon data owner
+
+### 5. Data Provision
+
+The carbon footprint database provides data to users through TIDAS transformation:
+- TIDAS ensures the integrity and authenticity of carbon footprint data during transmission
+- Data is provided according to the permission scope specified in the contract
+
+## TIDAS Transformation Mechanism
+
+TIDAS plays a core role in the carbon footprint data circulation process:
+
+- **Carbon Data Authenticity Verification**: Ensures product carbon footprint data has not been tampered with
+- **Source Traceability**: Records the entire process of carbon footprint data circulation
+- **Authorization Condition Binding**: Binds usage conditions with carbon data
+- **Access Control**: Implements precise permission control based on contracts
+
+## Application Value
+
+This mechanism provides a technical foundation for the carbon data economy:
+- Enhances the credibility of product carbon footprint data
+- Protects the rights of carbon data owners
+- Promotes the safe release of carbon data value
+- Supports green supply chains and low-carbon decision-making
+
+Through this structured carbon footprint data circulation mechanism, the system achieves efficient circulation of product carbon footprint data while ensuring security and accuracy, providing data support for carbon management and emission reduction decisions.
