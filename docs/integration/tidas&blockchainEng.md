@@ -1,0 +1,52 @@
+# TIDAS: Blockchain-Based Trusted Solution for Carbon Footprint Data
+
+## Background and Challenges
+
+Carbon footprint data faces multiple authenticity challenges during application:
+
+- Data can be easily tampered with, leading to information distortion
+- Difficulty in tracing change history
+- High cost of traditional verification methods
+- Lack of common trust foundation in multi-party collaboration
+
+These challenges not only affect data value but may also lead to compliance risks and trust crises.
+
+## Blockchain-Based Data Tamper-Proof Mechanism
+
+Blockchain, with its core features, provides an ideal solution for data tamper-proofing:
+
+- **Immutability**: Chain structure combined with cryptography ensures data is difficult to alter once recorded
+- **Distributed Architecture**: Eliminates single-point tampering risks
+- **Timestamp Mechanism**: Provides indisputable chronological proof
+- **Consensus Mechanism**: Ensures consistent recognition of data status among network participants
+
+## TIDAS Working Mechanism
+
+TIDAS builds an efficient data trust mechanism based on the Tiangong data platform and blockchain technology:
+
+### Process Design
+
+1. **Data Submission and Review**
+   - Contributors submit original data to the Tiangong platform
+   - Platform review ensures data complies with TIDAS standards
+
+2. **Hash On-Chain**
+   - Calculate hash values of processed data
+   - Write hashes to blockchain and obtain transaction credentials
+   - Associate stored data content with transaction hashes
+
+3. **Verification Mechanism**
+   - Users obtain data and transaction hashes
+   - Recalculate hash values of obtained data
+   - Compare with blockchain records to verify integrity
+
+### Technical Features
+
+- **Lightweight Design**: Only hashes on-chain, balancing performance and cost
+- **Dual Protection**: Combines platform management with blockchain tamper-proofing
+- **Privacy Protection**: Original data not directly exposed
+- **Open Verification**: Supports independent third-party verification
+
+## Practical Application
+
+We have collaborated with Ant Chain to develop a blockchain-based trusted solution for carbon footprint data, providing strong guarantees for the authenticity of carbon footprint data.
