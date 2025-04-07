@@ -1,5 +1,5 @@
 ---
-title: LCA/Carbon Footprint Database Guidelines
+title: LCA/Carbon Footprint Database Construction Guidelines
 slug: /lca-carbon-footprint-guidance
 sidebar_position: 2
 ---

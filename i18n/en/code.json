@@ -456,5 +456,17 @@
   },
   "homepage.section1": {
     "message": "内容待补充"
+  },
+  "homepage.ecosystem": {
+    "message": "TIDAS Data Ecosystem",
+    "description": "Title for TIDAS ecosystem section"
+  },
+  "homepage.ecosystem.description": {
+    "message": "TIDAS Data Ecosystem promotes standardization and sharing of carbon footprint data through innovative data conversion technologies, enabling seamless integration between different LCA systems and facilitating global carbon footprint data interoperability.",
+    "description": "Description for TIDAS ecosystem section"
+  },
+  "homepage.partners": {
+    "message": "Partners",
+    "description": "Title for partners section"
   }
 }

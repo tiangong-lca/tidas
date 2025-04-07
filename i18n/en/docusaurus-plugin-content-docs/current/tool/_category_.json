@@ -1,8 +1,8 @@
 {
-  "label": "TIDAS Tool", 
+  "label": "TIDAS Tools",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "5 minutes to learn the most important TIDAS tool concepts."
+    "description": "Documentation for TIDAS command-line tools including validation, conversion and export utilities."
   }
 }

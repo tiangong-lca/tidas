@@ -13,7 +13,7 @@ sidebar_position: 9
 - 点击右上角的"Fork"按钮
 - 选择你的GitHub账户作为目标
 
-![Fork位置](../static/docs/user-guide/img/GIT_FORK.png)
+![Fork位置](../static/img/en/git-fork.png)
 
 ## 2. 克隆仓库
 
@@ -23,7 +23,7 @@ git clone https://github.com/YOUR-USERNAME/tidas.git
 
 可以根据您的情况选择HTTPS或者SSH，如果您使用SSH，您需要在您的GitHub账户中添加SSH密钥。
 
-![链接位置](../static/docs/user-guide/img//GIT_CLONE.png)
+![链接位置](../static/img/en/git-clone.png)
 
 ## 3. 进行修改
 

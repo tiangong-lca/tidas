@@ -1,5 +1,5 @@
 ---
-title: Reference Data Package
+title: Reference Package
 slug: /reference-package
 sidebar_position: 4
 ---

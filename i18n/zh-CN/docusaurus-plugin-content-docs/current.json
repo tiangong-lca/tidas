@@ -27,6 +27,14 @@
     "message": "TIDAS在不同技术中的集成和扩展",
     "description": "The generated-index page description for category Integration in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.TianGong LCA Platform": {
+    "message": "天工LCA平台",
+    "description": "The label for category TianGong LCA Platform in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TianGong LCA Platform.link.generated-index.description": {
+    "message": "天工LCA平台的介绍",
+    "description": "The generated-index page description for category TianGong LCA Platform in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.FAQ": {
     "message": "常见问题",
     "description": "The label for category FAQ in sidebar tutorialSidebar"

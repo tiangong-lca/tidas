@@ -1,0 +1,49 @@
+---
+sidebar_position: 3
+---
+
+# MCP AI Services
+
+MCP AI Services are the AI-powered intelligent engine components in the TIDAS system, designed to enhance lifecycle data understanding, completion, and validation capabilities, adapting to next-generation environmental data management and intelligent application scenarios.
+
+## ✨ Core Features
+
+MCP (Multi-channel Cognitive Processor) integrates AI capabilities into the TIDAS lifecycle database, providing the following core services:
+
+- **Semantic Search**: Query lifecycle inventory (LCA Flows) data using natural language
+- **Intelligent Completion**: Assist in filling missing fields or suggesting structural improvements
+- **Format Validation**: Automatically validate data compliance based on JSON Schema
+- **Human-Machine Interface**: Visual operation and debugging through MCP Inspector (see image below)
+
+> 📷 Image: Searching for "Cypermethrin" related flow information, successfully returning structured data
+
+import TidasImage from '@site/src/components/TidasImage';
+
+<TidasImage filename="MCP-inspector.png" />
+
+
+## 🧱 Technical Implementation
+
+MCP services are implemented through:
+
+- Transmission Protocols: Supports SSE, WebSocket, HTTP and other modes
+- Data Processing: Parsing based on TIDAS data format (JSON Schema)
+- Tool Scheduling: Integrates various intelligent tools like `Search_flows_Tool`
+- Local Deployment: Supports private local deployment to ensure data security
+
+## 🔗 Open Source Link
+
+MCP services are open source on GitHub:  
+👉 [https://github.com/linancn/tiangong-lca-mcp](https://github.com/linancn/tiangong-lca-mcp)
+
+The project provides complete server source code, Inspector frontend, tool registration and testing documentation for quickly building AI-driven LCA intelligent platforms.
+
+## 📦 Prerequisites
+
+- TIDAS database must be built with structure compliant to [TIDAS Schema](/docs/category/tidas-schema)
+- Configure MCP Bearer Token and transmission address
+- Register required tools as needed (e.g. Search_flows_Tool)
+
+---
+
+If you want to further integrate LCA intelligent services or build your own AI data platform, MCP will be an efficient starting point.
