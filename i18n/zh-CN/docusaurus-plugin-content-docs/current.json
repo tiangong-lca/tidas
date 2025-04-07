@@ -11,11 +11,11 @@
     "message": "TIDAS数据架构的技术规范和说明文档",
     "description": "The generated-index page description for category TIDAS Schema in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.TIDAS Tool": {
-    "message": "工具包",
+  "sidebar.tutorialSidebar.category.TIDAS Tools": {
+    "message": "辅助工具",
     "description": "The label for category TIDAS Tool in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.TIDAS Tool.link.generated-index.description": {
+  "sidebar.tutorialSidebar.category.TIDAS Tools.link.generated-index.description": {
     "message": "TIDAS相关工具的使用指南和文档",
     "description": "The generated-index page description for category TIDAS Tool in sidebar tutorialSidebar"
   },
@@ -55,20 +55,20 @@
     "message": "TIDAS 生态",
     "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.LCA / Carbon Footprint Guideline": {
+  "sidebar.tutorialSidebar.category.Core Modules": {
+    "message": "核心模块",
+    "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.LCA / Carbon Footprint Guideline": {
     "message": "LCA/碳足迹数据库构建导则",
     "description": "LCA / Carbon Footprint Guideline in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.Reference Package": {
+    "message": "基础数据包",
+    "description": "The label for link Reference Package in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.TianGong LCA Tutorial": {
     "message": "天工LCA说明文档",
     "description": "The label for link TianGong LCA Tutorial in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.link.Carbon Footprint Industry Alliance": {
-    "message": "碳足迹产业技术创新联盟",
-    "description": "The label for link Carbon Footprint Industry Alliance in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.link.TianGong Think Tank": {
-    "message": "天工智库",
-    "description": "The label for link TianGong Think Tank in sidebar tutorialSidebar"
   }
 }

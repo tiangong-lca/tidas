@@ -99,7 +99,7 @@ const config: Config = {
       style: 'light',
       links: [
         {
-          title: 'Docs',
+          title: 'Open Source',
           items: [
             {
               label: 'Tutorial',
@@ -125,15 +125,15 @@ const config: Config = {
           ],
         },
         {
-          title: 'More',
+          title: 'Technical Support',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Carbon Footprint Industry Alliance',
+              to: 'https://www.carbonfootprint.network/',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'TianGong Think Tank',
+              href: 'http://www.tsinghua-riet.com/page/aicenter2/index.php/',
             },
           ],
         },
