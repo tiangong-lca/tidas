@@ -46,8 +46,8 @@ const TidasImage = ({ filename, width, height, style }) => {
       alt={filename}
       style={{
         width: '1000px',  // default
-        height: '600px',  // default
-        position: 'relative',
+        height: 'auto',  // default
+        display:'block',
         margin: '0 auto',
         ...style,
       }}

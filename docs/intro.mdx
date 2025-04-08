@@ -20,7 +20,7 @@ TIDAS 架构由以下三部分组成：
 -  [LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
   提供数据构建、验证与维护方法，兼容 ISO 14040/44、ILCD Handbook 与 ecoinvent等标准。
 
-### 🧾 数据格式（Format）
+### 🧾 数据结构（Format）
 -  [TIDAS 数据结构](/docs/category/tidas-schema)  
   基于 JSON 与 JSON Schema 实现数据结构验证，适配 AI、数据空间与区块链等新型架构。
 
@@ -38,16 +38,17 @@ TIDAS 架构由以下三部分组成：
 - 🔄 `convert`：格式转换器 – 实现 TIDAS 与 eILCD 双向无损转换  
 - 📤 `export`：数据包发布工具 – 将合规数据打包为标准 ZIP 格式，用于平台交付与归档
 
-👉 全部工具说明详见：[TIDAS 工具包](/docs/category/tidas-tool)
+👉 全部工具说明详见：[TIDAS 工具包](/docs/category/tidas-tools)
 
 ---
 
-## 🔗 技术集成与扩展能力
+## 🔗 集成能力(Features)
 
 TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与数据互操作：
 
-- 🛡 [数据空间集成](./integration/tidas-to-data-space.md)：支持数据安全共享与隐私保护  
-- 🔗 [区块链集成](./integration/tidas-to-blockchain.md)：实现数据不可篡改与分布式验证  
+- 🔐 [权限控制（Permission Control）](./integration/tidas-permission-control.mdx)：实现多方协作下的数据访问控制与授权机制  
+- 🧠 [隐私计算（Privacy Computing）](./integration/tidas-privacy-computing.mdx)：基于多方安全计算与联邦学习实现数据可用不可见
+- 🔗 [区块链集成](./integration/tidas-blockchain.mdx)：实现数据不可篡改与分布式验证  
 - 🤖 [AI 集成（MCP 服务）](./integration/tidas-to-ai.mdx)：集成 MCP AI Server，支持数据语义分析、数据补全与智能验证
 
 ---
@@ -68,9 +69,9 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 
 ## 🤝 参与共建
 
-- 📘 [文档贡献指南](/docs/how-to-contribute-tidas-doc.md)  
+- 📘 [文档贡献指南](/docs/faq/how-to-contribute-tidas-doc.md)  
 - 🐞 [Bug 报告](https://github.com/tiangong-lca/tidas/issues)  
-- 💼 商业支持请联系：**contact@tiangong.earth**
+- 💼 联系方式：<a href="mailto:contact@tiangong.earth">📧 contact@tiangong.earth</a>
 
 ---
 
@@ -79,4 +80,4 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 > 1. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
 > 2. [数据结构格式](/docs/category/tidas-schema)  
 > 3. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)  
-> 4. [工具模块](/docs/category/tidas-tool) 和 [集成方案](/docs/category/integration)
+> 4. [工具模块](/docs/category/tidas-tools) 和 [集成方案](/docs/category/integration)

@@ -1,0 +1,70 @@
+# TIDAS Trusted Data Space
+
+## Background and Challenges
+
+Product carbon footprint data often contains sensitive business information about production, energy consumption, supply chains, etc. Direct sharing or analysis may lead to serious privacy and business risks.
+
+Energy usage data may reveal production scale, technology level, or even cost structures, while logistics data could expose supply chain networks and business layouts. This creates a dilemma for participants in carbon data analysis: they want to gain value through data analysis while worrying about sensitive information leakage.
+
+TIDAS Trusted Data Space emerges as an innovative solution that can safely unlock data value while protecting original sensitive data.
+
+## TIDAS Trusted Data Space Design
+
+The trusted data space is built on the core concept of "data usable but not visible," establishing a secure and trusted data processing environment that enables secure computation and value transformation of sensitive data. Its design features include:
+
+- **Clear Privacy Boundaries**: Distinct separation between sensitive data areas, trusted computing spaces, and result data areas
+- **Respect for Data Ownership**: Data providers maintain complete control over their original data
+- **Trusted Computing Environment**: Secure isolation technologies ensure computing processes do not leak sensitive information
+- **Safely Usable Results**: Outputs de-sensitized non-sensitive data that can be used for industry benchmark comparisons and other scenarios
+
+## System Architecture
+
+The TIDAS Trusted Data Space consists of the following key components:
+
+- **Data Providers**: Organizations that own original carbon footprint data
+- **Trusted Data Space**: Securely isolated computing environment containing multiple computation nodes
+- **Computation Rules**: Predefined data processing and de-sensitization algorithms
+- **Result Data**: Processed non-sensitive data that can be safely shared and used
+
+## Workflow
+
+import TidasImage from '@site/src/components/TidasImage';
+
+<TidasImage filename="TIDAS-dataspace.png" />
+
+### 1. Data Authorization and Access
+
+Data providers first determine the scope and purpose of participating in data analysis, then grant limited data access rights to the trusted data space. In this stage:
+
+- Data providers maintain ownership and control over their data
+- Authorization clearly limits data usage purposes and computation rules
+- Original data does not leave the provider's security boundary
+
+### 2. Trusted Computation Execution
+
+After authorization is complete, data space computation nodes access the original data and execute predefined computations in a secure environment:
+
+- The system processes original energy consumption data to calculate carbon emission indicators
+- Simultaneously removes data points that might identify identity or sensitive operational information
+- The entire computation process takes place in an isolated environment, ensuring original data is not leaked
+
+### 3. Result Generation and Application
+
+After computation is complete, the system outputs de-sensitized result data.
+
+The processed data only contains carbon emission indicators and classifications, without specific identity and production data, making it safe for various analyses without leaking business secrets.
+
+## Practical Applications
+
+We have already implemented and validated the trusted data space based on Ant Chain's trusted collaboration platform technology. In carbon data analysis projects, the system successfully produced industry carbon intensity benchmark data while protecting sensitive information from all participants.
+
+## Future Outlook
+
+TIDAS Trusted Data Space provides a feasible path for safely unlocking the value of carbon footprint data. Future applications will be expanded to include:
+
+- Cross-regional and cross-industry carbon efficiency comparisons
+- Supply chain carbon footprint assessment and optimization
+- Carbon asset evaluation and carbon credit generation
+- Low-carbon technology effectiveness verification
+
+Through the trusted data space, we aim to build a carbon data ecosystem that both protects data privacy and unlocks data value, helping various industries achieve scientific and efficient carbon reduction.

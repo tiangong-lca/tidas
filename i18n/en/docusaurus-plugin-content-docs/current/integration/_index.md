@@ -4,7 +4,7 @@ This series of documents details various application scenarios and implementatio
 
 ## Documentation Directory
 
-1. [TIDAS Blockchain Solutions](tidas-to-blockchain.md)
+1. [TIDAS Blockchain Solutions](tidas-blockchain.md)
 2. [TIDAS in AntChain Application Case](TIDAS-to-ANTCHAIN.md)
    Compliance solution based on light node verification system, features:
    ✅ Passed China's Cyberspace Administration blockchain filing
