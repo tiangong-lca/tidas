@@ -4,18 +4,18 @@ sidebar_position: 3
 
 # MCP AI 服务
 
-MCP AI 服务是 TIDAS 系统中基于 AI 的智能引擎组件，旨在提升生命周期数据的理解、补全与校验能力，适配新一代环境数据管理与智能应用场景。
+MCP（Model Context Protocol）AI 服务是 TIDAS 系统中基于 AI 的智能引擎组件，旨在提升生命周期数据的理解、补全与校验能力，适配新一代环境数据管理与智能应用场景。
 
 ## ✨ 核心功能
 
-MCP（Multi-channel Cognitive Processor）集成了 AI 能力至 TIDAS 生命周期数据库中，提供如下核心服务：
+MCP 服务集成了 AI 能力至 TIDAS 生命周期数据库中，提供如下核心功能：
 
 - **语义搜索**：通过自然语言查询生命周期清单（LCA Flows）数据
 - **智能补全**：辅助补充缺失字段或建议结构完善
 - **格式校验**：基于 JSON Schema 自动校验数据合规性
-- **人机交互界面**：通过 MCP Inspector 可视化操作和调试流程（见下图）
+- **调试与验证支持**：支持使用 MCP Inspector 工具对服务流程进行调试与验证（如下图所示）
 
-> 📷 图示：搜索“Cypermethrin”相关流信息，成功返回结构化数据  
+> 📷 图示：我们使用 MCP Inspector 工具调试查询“Cypermethrin”相关流信息，验证 MCP 服务已成功返回结构化数据。
 
 import TidasImage from '@site/src/components/TidasImage';
 
@@ -24,26 +24,26 @@ import TidasImage from '@site/src/components/TidasImage';
 
 ## 🧱 技术实现
 
-MCP 服务通过以下方式实现：
+MCP 服务基于以下方式实现：
 
-- 传输协议：支持 SSE、WebSocket、HTTP 等模式
-- 数据处理：基于 TIDAS 数据格式（JSON Schema）进行解析
-- 工具调度：集成 `Search_flows_Tool` 等多种智能工具
-- 本地化部署：支持本地私有部署，保障数据安全
+- **传输协议**：已写通 SSE 服务，支持 WebSocket、HTTP 等传输模式
+- **数据处理**：基于 TIDAS 数据格式（JSON Schema）进行解析与处理
+- **工具调度**：集成 `Search_flows_Tool` 等多种智能工具
+- **本地化部署**：支持私有化部署，保障数据安全与合规性
 
 ## 🔗 开源链接
 
-MCP 服务开源于 GitHub：  
+MCP 服务已开源至 GitHub：  
 👉 [https://github.com/linancn/tiangong-lca-mcp](https://github.com/linancn/tiangong-lca-mcp)
 
-该项目提供了完整的服务端源码、Inspector 前端、工具注册与测试文档，可用于快速构建 AI 驱动的 LCA 智能平台。
+项目提供完整的服务端代码、示例前端（含 Inspector 调试工具的接入示例）、工具注册与测试文档，可用于快速构建基于 TIDAS 架构的 AI 驱动生命周期数据平台。
 
 ## 📦 使用前提
 
-- 已构建 TIDAS 数据库，结构符合 [TIDAS Schema](/docs/category/tidas-schema)
-- 配置 MCP Bearer Token 与传输地址
-- 按需注册所需工具（如 Search_flows_Tool）
+- 已构建符合 [TIDAS Schema](/docs/category/tidas-schema) 的生命周期数据库
+- 已配置 MCP Bearer Token 与服务地址
+- 按需注册所需智能工具（如 Search_flows_Tool）
 
 ---
 
-如你希望进一步集成 LCA 智能服务，或构建你自己的 AI 数据中台，MCP 将是高效起点。
+如你希望进一步集成 LCA 智能服务，或构建你自己的 AI 数据中台，MCP 服务将是高效起点。
