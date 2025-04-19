@@ -10,6 +10,7 @@ description: TIDAS数据系统集成蚂蚁链的完整性验证实践
 TIDAS结合蚂蚁链，构建了一套数据防篡改与完整性验证解决方案。本文档介绍核心验证流程及实施细节。
 
 **核心流程**：
+
 1. 原始数据计算哈希
 2. 数据哈希上链存证
 3. 交易哈希本地存储
@@ -122,7 +123,7 @@ TIDAS系统首先计算原始业务数据的哈希值，生成唯一的数据指
 
 **验证结果**:
 
-```
+```bash
 [验证成功] ✅
 当前数据哈希: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 链上存储哈希: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
@@ -136,7 +137,8 @@ TIDAS系统首先计算原始业务数据的哈希值，生成唯一的数据指
 区块链浏览器提供交易记录的透明查询功能，可用于查看存证记录的确认状态。
 
 **查询信息**：
-```
+
+```bash
 交易ID: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
 区块高度: 1414787
 交易时间: 2023-04-16 21:08:02
@@ -147,18 +149,19 @@ import TidasImage from '@site/src/components/TidasImage';
 <TidasImage filename="Blockchain-explorer.png" />
 <TidasImage filename="Blockchain-transaction-structure.png" />
 
-
 ## ⚠️ 数据篡改检测案例
 
 当数据被篡改时，系统能够精确识别并预警。
 
 **篡改示例**：
+
 ```diff
 - "meanAmount": "13276.3428"
 + "meanAmount": "13276.3427"
 ```
 
 **篡改后的数据**:
+
 ```json
 {
   "processDataSet": {
@@ -199,7 +202,8 @@ import TidasImage from '@site/src/components/TidasImage';
 ```
 
 **验证结果**:
-```
+
+```bash
 [验证失败] ❌
 当前数据哈希: a6972e27120d3f77c11ca3719311c5e27aca3ab111906c42d7d56d1c4d12a9e
 链上存储哈希: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
@@ -212,15 +216,15 @@ import TidasImage from '@site/src/components/TidasImage';
 
 > **说明**：即使只修改一个小数点后的数值，系统也能通过哈希比对精确检测到数据变更。篡改后的数据哈希值与区块链上存储的原始哈希不匹配，系统立即检测到篡改行为。
 
-## 💼 应用场景与价值
+## 🔐 典型应用场景
 
-**典型应用场景**
 1. 生产过程数据认证
 2. 碳排放数据存证
 3. 供应链数据共享
 4. 合规数据存证
 
-**核心价值**
+## 💡 核心价值
+
 - 数据完整性保障：任何微小变动都会导致哈希值变化
 - 不可篡改性：区块链技术确保存证信息不可更改
 - 全程可追溯：完整记录数据验证的每个环节
