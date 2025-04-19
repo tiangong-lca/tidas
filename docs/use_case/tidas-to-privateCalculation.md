@@ -16,6 +16,14 @@ TIDAS结合隐私计算平台，构建了一套数据安全协同分析解决方
 3. 隐私计算任务创建与执行
 4. 安全获取计算结果
 
+## 💼 应用案例：钢铁企业排放数据协同分析
+
+> **示例场景**：多家钢铁企业（计算案例为2家）需要对自身生产环境排放数据进行共享，但由于其排放水平各自工艺水平和生产效率，企业不愿直接共享原始数据（2.197 t/h 与 1.767 t/h）。通过隐私计算平台，双方成功获得计算结果，用于行业基准比较，而无需暴露各自的原始数据。
+>
+> 数据来源：刘微. LCI数据质量体系中的分析方法研究. (北京工业大学, 2006)
+
+此案例展示了如何在保护企业敏感数据的前提下，实现多方数据的安全协同分析，为行业研究与环境评估提供了新思路。
+
 ## 🔄 隐私计算完整流程
 
 ### 步骤一：原始敏感数据准备
@@ -26,23 +34,22 @@ TIDAS系统中包含多方敏感数据，这些数据直接共享可能导致隐
 
 ```json
 {
-  "acudAmount": "1.707",
-  "acudUnit": "t/h",
+  "resultingAmount": "2.197",
   "exchangeDirection": "Output",
-  "entrySetInternalID": "2",
-  "referenceTagInDataSet": {
-    "href": "../flows/f097a1b3-17d6-4dc5-a2be-642dbff317e7.xml",
-    "type": "flow data set",
-    "version": "01.01.000",
-    "refObjectId": "f097a1b3-17d6-4dc5-a2be-642dbff317e7",
-    "commonShortDescription": [
+  "@dataSetInternalID": "2",
+  "referenceToFlowDataSet": {
+    "@uri": "../flows/f097a1b3-17d6-4dc5-a2be-642dbf1517e3.xml",
+    "@type": "flow data set",
+    "@version": "01.01.000",
+    "@refObjectId": "f097a1b3-17d6-4dc5-a2be-642dbf1517e3",
+    "common:shortDescription": [
       {
-        "text": "粉尘; 钢铁生产原料投料; 生产混合, 在工厂; 粒径范围0.5-5μm",
-        "lang": "zh"
+        "#text": "粉尘; 钢铁生产原料投料; 生产混合，在工厂; 粒径范围0.5~5μm",
+        "@xml:lang": "zh"
       },
       {
-        "text": "dust; Raw materials feeding for steel production; Production mixing, In the factory; The particle size range is 0.5 - 5 μm.",
-        "lang": "en"
+        "#text": "dust; Raw materials feeding for steel production; Production mixing, in the factory; The particle size range is 0.5 - 5 μm.",
+        "@xml:lang": "en"
       }
     ]
   },
@@ -54,21 +61,23 @@ TIDAS系统中包含多方敏感数据，这些数据直接共享可能导致隐
 
 ```json
 {
-  "resultingAmount": "1.197",
+  "meanAmount": "1.767",
+  "resultingAmount": "1.767",
   "exchangeDirection": "Output",
-  "referenceTagInDataSet": {
-    "href": "../flows/f097a1b3-17d6-4dc5-a2be-642dbff317e7.xml",
-    "type": "flow data set",
-    "version": "01.01.000",
-    "refObjectId": "f097a1b3-17d6-4dc5-a2be-642dbff317e7",
-    "commonShortDescription": [
+  "@dataSetInternalID": "2",
+  "referenceToFlowDataSet": {
+    "@uri": "../flows/f097a1b3-17d6-4dc5-a2be-642dbf1517e3.xml",
+    "@type": "flow data set",
+    "@version": "01.01.000",
+    "@refObjectId": "f097a1b3-17d6-4dc5-a2be-642dbf1517e3",
+    "common:shortDescription": [
       {
-        "text": "粉尘; 钢铁生产原料投料; 生产混合, 在工厂; 粒径范围0.5-5μm",
-        "lang": "zh"
+        "#text": "粉尘; 钢铁生产原料投料; 生产混合，在工厂; 粒径范围0.5~5μm",
+        "@xml:lang": "zh"
       },
       {
-        "text": "dust; Raw materials feeding for steel production; Production mixing, In the factory; The particle size range is 0.5 - 5 μm.",
-        "lang": "en"
+        "#text": "dust; Raw materials feeding for steel production; Production mixing, in the factory; The particle size range is 0.5 - 5 μm.",
+        "@xml:lang": "en"
       }
     ]
   },
@@ -170,7 +179,7 @@ TIDAS系统中包含多方敏感数据，这些数据直接共享可能导致隐
       "name": "average_value",
       "type": "DOUBLE",
       "valueList": [
-        1.981949
+        1.982
       ]
     }
   ]
@@ -181,11 +190,11 @@ TIDAS系统中包含多方敏感数据，这些数据直接共享可能导致隐
 
 ```bash
 [
-  1.981949
+  1.982
 ]
 ```
 
-> **结果说明**：通过隐私计算平台，成功计算出两个节点粉尘排放数据的平均值为1.981949，该结果可安全共享，不会泄露任何一方的原始敏感数据。
+> **结果说明**：通过隐私计算平台，成功计算出两个节点粉尘排放数据的平均值为1.982，该结果可安全共享，不会泄露任何一方的原始敏感数据。
 
 ## 🔍 隐私计算平台可视化界面
 
@@ -205,8 +214,6 @@ import TidasImage from '@site/src/components/TidasImage';
 3. 计算结果安全性验证 - 确保结果数据不包含敏感信息
 4. 全程计算审计日志 - 记录计算过程的每一步操作
 
-> **示例场景**：两家钢铁企业需要比较生产过程中的粉尘排放数据，但不愿直接共享原始数据（1.707 t/h 与 1.197 t/h）。通过隐私计算平台，双方成功获得平均值 1.981949，用于行业基准比较，而无需暴露各自的原始数据。
-
 ## 💼 典型应用场景
 
 1. 多企业间敏感环境数据协同分析
@@ -223,4 +230,4 @@ import TidasImage from '@site/src/components/TidasImage';
 
 ## 📝 总结
 
-TIDAS结合隐私计算平台的解决方案，通过"数据准备-创建任务-安全计算-获取结果"的流程，实现了敏感数据的安全协同分析。该方案在保护数据隐私的同时，充分挖掘了数据价值，为企业数据安全合规利用提供了有效途径。
+TIDAS结合隐私计算平台的解决方案，通过"数据准备-创建任务-安全计算-获取结果"的流程，实现了敏感数据的安全协同分析。该方案在保护数据隐私的同时，充分挖掘了数据价值，为企业数据安全合规利用提供了有效途径.
