@@ -12,7 +12,7 @@ AntChain provides a complete blockchain infrastructure through its [BaaS (Blockc
 TIDAS data structures can be seamlessly integrated with the AntChain platform, currently enabling the following functionalities:
 
 1. [**Trusted Data Certification**](#-trusted-data-certification): Calculates and stores hashes of unit process data or carbon footprint factor data uploaded by enterprises onto the blockchain, ensuring data immutability and full process traceability.
-2. [**Privacy-Preserving Computation**](#-privacy-preserving-computation): Enables multi-party collaborative modeling and statistical analysis without exposing underlying data, ensuring data privacy and computation trustworthiness.
+2. [**Privacy-Preserving Computation**](#️-privacy-preserving-computation): Enables multi-party collaborative modeling and statistical analysis without exposing underlying data, ensuring data privacy and computation trustworthiness.
 
 ## 🔗 Trusted Data Certification
 
