@@ -115,10 +115,10 @@ export default function Home(): ReactNode {
         <div className={styles.partnersSection}>
           <div className="container">
             <h2 className={styles.ecosystemTitle}>
-              <Translate id="homepage.partners">合作伙伴</Translate>
+              <Translate id="homepage.partners">发起组织</Translate>
             </h2>
             <div className={styles.partnersGrid}>
-              {[1, 2, 3].map((num) => (
+              {[3].map((num) => (
                 <ThemedImage
                   key={num}
                   lightSrc={`/img/partners/partner${num}.png`}
