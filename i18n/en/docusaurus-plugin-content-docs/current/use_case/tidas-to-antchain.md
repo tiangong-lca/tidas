@@ -422,5 +422,5 @@ The Trusted Data Sharing Platform employs multiple technologies to ensure data s
 
 <div style={{marginTop: '20px', fontSize: '0.9em', color: '#666'}}>
   <p>Technical Support: <strong>Ant Digital Technology</strong></p>
-  <TidasImage filename="antDigitalGroup.svg" width="100" style={{margin: '0'}} />
+  ![Ant Digital Group](/img/en/antDigitalGroup-en.svg)
 </div>

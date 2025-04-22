@@ -422,5 +422,5 @@ TIDAS结合蚂蚁链数据可信协作平台，构建了一套数据安全协同
 
 <div style={{marginTop: '20px', fontSize: '0.9em', color: '#666'}}>
   <p>技术支持：<strong>蚂蚁数字科技</strong></p>
-  <TidasImage filename="antDigitalGroup.svg" width="100" style={{margin: '0'}} />
+  ![蚂蚁数字科技](/img/zh-CN/antDigitalGroup-zh-CN.svg)
 </div>
