@@ -27,10 +27,6 @@
     "message": "Twitter",
     "description": "The label of footer link with label=Twitter linking to https://twitter.com/docusaurus"
   },
-  "link.item.label.Blog": {
-    "message": "Blog",
-    "description": "The label of footer link with label=Blog linking to /blog"
-  },
   "link.item.label.GitHub": {
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/facebook/docusaurus"
