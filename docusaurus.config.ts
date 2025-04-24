@@ -82,7 +82,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/linancn/tiangong-lca-next',
+          href: 'https://github.com/tiangong-lca/tidas',
           className: 'header-github-link',
           position: 'right',
         },
@@ -101,8 +101,16 @@ const config: Config = {
           title: 'Open Source',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'TianGong LCA GitHub',
+              href: 'https://github.com/tiangong-lca',
+            },
+            {
+              label: 'TianGong LCA Platform',
+              href: 'https://lca.tiangong.earth/',
+            },
+            {
+              label: 'TianGong LCA Platform Docs',
+              href: 'https://docs.tiangong.earth/',
             },
           ],
         },
@@ -114,12 +122,8 @@ const config: Config = {
               href: 'http://linkedin.com/company/tiangonglca',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'TianGong Initiative',
+              href: 'https://www.tiangong.earth/',
             },
           ],
         },
@@ -128,7 +132,7 @@ const config: Config = {
           items: [
             {
               label: 'Carbon Footprint Industry Alliance',
-              to: 'https://www.carbonfootprint.network/',
+              href: 'https://www.carbonfootprint.network/',
             },
             {
               label: 'TianGong Think Tank',

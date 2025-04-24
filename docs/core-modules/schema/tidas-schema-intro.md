@@ -27,6 +27,6 @@ TIDAS Schema 是一个基于 JSON Schema 构建的生命周期评估（LCA）数
 
 ## 文件结构与使用
 
-TIDAS Schema 由 17 个核心 JSON Schema 文件组成，每个文件描述了一个具体数据模块，具体内容详见 [数据结构（JSON Schema）](./json-schema.mdx)。
+TIDAS Schema 由 17 个核心 JSON Schema 文件组成，每个文件描述了一个具体数据模块，具体内容详见 [数据结构（JSON Schema）](/docs/category/tidas-json-schema)。
 
 如需了解如何使用 JSON Schema 进行数据验证和格式转换，请参考 [数据结构验证](./tidas-shcema-validation.md)。
