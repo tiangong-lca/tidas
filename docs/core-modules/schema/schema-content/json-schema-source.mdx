@@ -1,0 +1,24 @@
+---
+sidebar_position: 7
+sidebar_label: 来源
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import SourcesSchema from "@site/static/schemas/tidas_sources.json";
+import SourcesCategorySchema from "@site/static/schemas/tidas_sources_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+来源及来源分类的数据结构
+========================
+
+:::tip
+来源数据集用于记录在数据集文档中使用的文献参考信息，也可用于引用数据集格式、数据库、合规性系统等。​它提供了数据来源的详细信息，支持数据的透明性和可追溯性。
+
+:::
+
+
+# 来源（Sources）
+<JSONSchemaViewer schema={ SourcesSchema } />
+
+# 来源分类（Sources category）
+<JSONSchemaViewer schema={ SourcesCategorySchema } />

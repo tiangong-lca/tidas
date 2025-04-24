@@ -4,12 +4,20 @@
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.TIDAS Schema": {
-    "message": "数据结构",
+    "message": "数据结构（Json Schema）",
     "description": "The label for category TIDAS Schema in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TIDAS Schema.link.generated-index.description": {
     "message": "TIDAS数据架构的技术规范和说明文档",
     "description": "The generated-index page description for category TIDAS Schema in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS JSON Schema": {
+    "message": "Schema 内容浏览",
+    "description": "The label for category TIDAS JSON Schema in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TIDAS JSON Schema.link.generated-index.description": {
+    "message": "展示 TIDAS 数据架构各模块的文档页面",
+    "description": "The generated-index page description for category TIDAS JSON Schema in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TIDAS Tools": {
     "message": "辅助工具",
@@ -62,6 +70,14 @@
   "sidebar.tutorialSidebar.link.Guide for Life Cycle Database": {
     "message": "LCA/碳足迹数据库构建导则",
     "description": "Guide for Life Cycle Database in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.TIDAS JSON Schema Download": {
+    "message": "Schema 文件下载",
+    "description": "The label for link TIDAS JSON Schema in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.TIDAS Tools GitHub": {
+    "message": "工具包开发文档",
+    "description": "The label for link TIDAS JSON Schema in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.Reference Package": {
     "message": "基础数据包",

@@ -1,0 +1,23 @@
+---
+sidebar_position: 7
+sidebar_label: Sources
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import SourcesSchema from "@site/static/schemas/tidas_sources.json";
+import SourcesCategorySchema from "@site/static/schemas/tidas_sources_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+JSON Schema for Sources and Sources category
+========================
+
+:::tip
+The source dataset documents bibliographic references to literature, standards, database documentation, or conformity systems referenced in the dataset. It enhances transparency and traceability of data sources.
+
+:::
+
+# Sources
+<JSONSchemaViewer schema={ SourcesSchema } />
+
+# Sources category
+<JSONSchemaViewer schema={ SourcesCategorySchema } />

@@ -1,0 +1,24 @@
+---
+sidebar_position: 8
+sidebar_label: Contacts
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import contactsSchema from "@site/static/schemas/tidas_contacts.json";
+import ContactsCategorySchema from "@site/static/schemas/tidas_contacts_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+
+JSON Schema for Contacts and Contacts Category
+========================
+
+:::tip
+The contact dataset includes information about individuals, organizations, working groups, or database networks associated with a dataset. It typically includes names, addresses, phone numbers, and emails, facilitating communication and data governance.
+
+:::
+
+# Contacts
+<JSONSchemaViewer schema={ contactsSchema } />
+
+# Contacts category
+<JSONSchemaViewer schema={ ContactsCategorySchema } />

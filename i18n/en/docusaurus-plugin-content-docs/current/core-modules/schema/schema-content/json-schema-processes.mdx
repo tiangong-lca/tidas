@@ -1,0 +1,23 @@
+---
+sidebar_position: 2
+sidebar_label: Processes
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import ProcessSchema from "@site/static/schemas/tidas_processes.json";
+import ProcessesCategorySchema from "@site/static/schemas/tidas_processes_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+JSON Schema for Processes and Processes Category
+========================
+
+:::tip
+Data set for unit processes, partly terminated systems, and LCI results. May contain LCIA results as well.
+
+:::
+
+# Processes
+<JSONSchemaViewer schema={ ProcessSchema } />
+
+# Processes category
+<JSONSchemaViewer schema={ ProcessesCategorySchema } />

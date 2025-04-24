@@ -8,6 +8,8 @@ TIDAS Schema is a lifecycle assessment (LCA) data standard framework built on JS
 
 Compared to traditional XML format used by ILCD, TIDAS adopts JSON structure which offers significant advantages in simplicity, readability, extensibility, and system integration capabilities. This design maintains compatibility with existing international data standards while making it easier to interface with modern digital infrastructure (such as blockchain systems, data spaces, AI engines, etc.), enhancing data mobility, intelligence, and trustworthiness.
 
+> 👉 [Click here to download all **TIDAS** Json schema files from GitHub](https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools/tidas/schemas)
+
 ## Technical Features
 
 - **Based on JSON Schema Specification**  
@@ -29,4 +31,6 @@ Compared to traditional XML format used by ILCD, TIDAS adopts JSON structure whi
 
 TIDAS Schema consists of 17 core JSON Schema files, each describing a specific data module. For details, see [Data Structure (JSON Schema)](/docs/category/tidas-json-schema).
 
-To learn how to use JSON Schema for data validation and format conversion, please refer to [Schema Validation](./tidas-shcema-validation.md).
+To learn how to use JSON Schema for data validation and format conversion, please refer to [Schema Validation](./tidas-schema-validation.md).
+
+> 👉 [Click here to download all **eILCD** schema and stylesheet files from GitHub](https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools/eilcd)

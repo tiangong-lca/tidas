@@ -1,0 +1,23 @@
+---
+sidebar_position: 4
+sidebar_label: FLow Properties
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import FlowpropertiesSchema from "@site/static/schemas/tidas_flowproperties.json";
+import FlowpropertiesCategorySchema from "@site/static/schemas/tidas_flowproperties_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+JSON Schema for Flow Property and Flow Property Category
+========================
+
+:::tip
+Flow properties define the measurement basis for flows—such as mass, volume, or energy. They establish how quantities are expressed and linked to unit groups, enabling accurate quantification and comparison of flows across datasets.
+
+:::
+
+# Flow Properties
+<JSONSchemaViewer schema={ FlowpropertiesSchema } />
+
+# Flow Properties category
+<JSONSchemaViewer schema={ FlowpropertiesCategorySchema } />
