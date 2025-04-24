@@ -3,11 +3,11 @@ sidebar_position: 1
 ---
 
 
-# TIDAS文档开发指南
+# TIDAS 文档开发指南
 
 欢迎为TIDAS文档做贡献！以下是贡献流程：
 
-## 1. Fork项目
+## 1. Fork 项目
 
 - 访问[TIDAS GitHub页面](https://github.com/tiangong-lca/tidas)
 - 点击右上角的"Fork"按钮

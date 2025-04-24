@@ -3,7 +3,7 @@ sidebar_position: 1
 description: TIDAS与蚂蚁链集成的应用案例
 ---
 
-# TIDAS与蚂蚁链集成案例
+# TIDAS 与蚂蚁链集成案例
 
 ## 🏗️ TIDAS与蚂蚁链集成概述
 

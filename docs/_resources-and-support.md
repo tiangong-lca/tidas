@@ -6,7 +6,7 @@ sidebar_position: 10
 
 TIDAS 系统的开发遵循生命周期评价（LCA）的基本原则和框架，下述内容将帮助您了解生命周期评价的基本概念、数据集构建核心原则、数据集组成等基本信息。
 
-## [LCA/碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+## [LCA / 碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
 
 此导则包含生命周期评价/碳足迹基础数据（以下称 LCA 数据）的基本概念、数据集构建核心原则、数据集组成等基本信息，以及数据收集、文档记录、数据质量评价等规范要求。用于指导数据集开发者构建符合高质量、国际通行要求的 LCA 数据集。
 
