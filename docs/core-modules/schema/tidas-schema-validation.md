@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 数据结构验证
+# Schema 校验方法
 
 TIDAS 数据结构基于 JSON Schema 进行定义与实现，提供标准化、自动化的数据校验机制，以确保生命周期数据在编制、交换与共享过程中的准确性、一致性和可扩展性。
 
@@ -90,4 +90,4 @@ TIDAS 的数据验证机制结合了两类校验能力：
 
 ---
 
-如需了解 JSON Schema 的结构定义方式、字段命名规范与模块说明，请前往 [数据结构（JSON Schema）](json-schema.mdx)。如需了解 TIDAS 验证工具更多细节，请参考 [TIDAS工具包介绍](/docs/category/tidas-tools)。
+如需了解 JSON Schema 的结构定义方式、字段命名规范与模块说明，请前往 [数据结构（JSON Schema）](/docs/category/tidas-json-schema)。如需了解 TIDAS 验证工具更多细节，请参考 [TIDAS工具包介绍](/docs/category/tidas-tools)。

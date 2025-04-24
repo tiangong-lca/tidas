@@ -1,0 +1,23 @@
+---
+sidebar_position: 2
+sidebar_label: 过程
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import ProcessSchema from "@site/static/schemas/tidas_processes.json";
+import ProcessesCategorySchema from "@site/static/schemas/tidas_processes_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+过程及过程分类的数据结构
+========================
+
+:::tip
+过程数据集详细记录了单个生产或处理过程的输入输出流、时间、地理和技术代表性等信息。它支持生命周期评估中对单元过程（Unit Process）的深入分析。同时，过程数据集也用于记录和描述建模后生成的部分终止系统（Partly Terminated System）、生命周期清单结果（Life Cycle Inventory Result）及生命周期环境影响评估（LCIA）结果。
+
+:::
+
+# 过程（Processes）
+<JSONSchemaViewer schema={ ProcessSchema } />
+
+# 过程分类（Processes category）
+<JSONSchemaViewer schema={ ProcessesCategorySchema } />

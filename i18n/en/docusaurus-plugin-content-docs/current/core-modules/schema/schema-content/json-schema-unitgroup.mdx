@@ -1,0 +1,23 @@
+---
+sidebar_position: 5
+sidebar_label: Unit Groups
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import UnitgroupsSchema from "@site/static/schemas/tidas_unitgroups.json";
+import UnitgroupsCategorySchema from "@site/static/schemas/tidas_unitgroups_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+JSON Schema for Unit Groups and Unit Groups Category
+========================
+
+:::tip
+A unit group defines a set of related measurement units and their conversion factors. It supports the definition of flow properties and ensures consistency in unit conversions within and across datasets.
+
+:::
+
+# Unit Groups
+<JSONSchemaViewer schema={ UnitgroupsSchema } />
+
+# Unit Groups category
+<JSONSchemaViewer schema={ UnitgroupsCategorySchema } />

@@ -1,0 +1,23 @@
+---
+sidebar_position: 5
+sidebar_label: 单位组
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import UnitgroupsSchema from "@site/static/schemas/tidas_unitgroups.json";
+import UnitgroupsCategorySchema from "@site/static/schemas/tidas_unitgroups_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+单位组及其分类的数据结构
+========================
+
+:::tip
+单位组数据集定义了一组相关的计量单位及其之间的换算关系。​它用于支持流属性的单位定义，确保在数据集之间进行单位转换和比较时的一致性和准确性。
+
+:::
+
+# 单位组（Unit Groups）
+<JSONSchemaViewer schema={ UnitgroupsSchema } />
+
+# 单位组分类（Unit Groups category）
+<JSONSchemaViewer schema={ UnitgroupsCategorySchema } />

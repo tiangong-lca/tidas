@@ -1,0 +1,23 @@
+---
+sidebar_position: 8
+sidebar_label: 联系人
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import contactsSchema from "@site/static/schemas/tidas_contacts.json";
+import ContactsCategorySchema from "@site/static/schemas/tidas_contacts_category.json";
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+
+联系人及联系人分类的数据结构
+========================
+
+:::tip
+联系人数据集记录了与数据集相关的个人、工作组、组织或数据库网络的联系信息。​它包括名称、地址、电话、电子邮件等信息，支持在数据管理和交流中的联系和沟通。
+
+:::
+
+# 联系人（Contacts）
+<JSONSchemaViewer schema={ contactsSchema } />
+
+# 联系人分类（Contacts category）
+<JSONSchemaViewer schema={ ContactsCategorySchema } />

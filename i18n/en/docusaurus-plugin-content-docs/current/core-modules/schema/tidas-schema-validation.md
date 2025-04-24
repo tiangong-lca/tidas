@@ -90,4 +90,4 @@ For debugging, use `--verbose` to view detailed error information and quickly lo
 
 ---
 
-To learn about JSON Schema structure definition, field naming conventions and module descriptions, see [Data Structure (JSON Schema)](json-schema.mdx). For more details about TIDAS validation tools, refer to [TIDAS Tools Introduction](/docs/category/tidas-tools).
+To learn about JSON Schema structure definition, field naming conventions and module descriptions, see Data Structure (JSON Schema). For more details about TIDAS validation tools, refer to [TIDAS Tools Introduction](/docs/category/tidas-tools).
