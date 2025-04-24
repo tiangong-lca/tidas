@@ -417,3 +417,10 @@ The Trusted Data Sharing Platform employs multiple technologies to ensure data s
 1. Secure Multi-party Computation - Computation performed in a trusted execution environment
 2. Computation Result Security Verification - Ensuring result data does not contain sensitive information
 3. Full Process Traceability - Recording every step of the computation process
+
+---
+
+<div style={{marginTop: '20px', fontSize: '0.9em', color: '#666'}}>
+  <p>Technical Support: <strong>Ant Digital Technology</strong></p>
+  ![Ant Digital Group](/img/en/antDigitalGroup-en.svg)
+</div>
