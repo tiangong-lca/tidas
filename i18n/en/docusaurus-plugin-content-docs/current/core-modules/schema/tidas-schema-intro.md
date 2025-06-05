@@ -34,4 +34,3 @@ Compared to traditional XML format used by ILCD, TIDAS adopts JSON structure whi
 TIDAS Schema consists of 17 core JSON Schema files, each describing a specific data module. For details, see [Data Structure (JSON Schema)](/docs/category/tidas-json-schema).
 
 To learn how to use JSON Schema for data validation and format conversion, please refer to [Schema Validation](./tidas-schema-validation.md).
-
