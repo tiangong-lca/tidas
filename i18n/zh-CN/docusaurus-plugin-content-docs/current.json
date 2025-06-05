@@ -32,15 +32,15 @@
     "description": "The label for category Integration in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Integration.link.generated-index.description": {
-    "message": "TIDAS在不同技术中的集成和扩展",
+    "message": "TIDAS 在不同技术中的集成和扩展",
     "description": "The generated-index page description for category Integration in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TianGong LCA Platform": {
-    "message": "天工LCA平台",
+    "message": "天工 LCA 平台",
     "description": "The label for category TianGong LCA Platform in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.TianGong LCA Platform.link.generated-index.description": {
-    "message": "天工LCA平台的介绍",
+    "message": "天工 LCA 平台的介绍",
     "description": "The generated-index page description for category TianGong LCA Platform in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ": {
@@ -48,7 +48,7 @@
     "description": "The label for category FAQ in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.FAQ.link.generated-index.description": {
-    "message": "关于TIDAS的常见问题解答",
+    "message": "关于 TIDAS 的常见问题解答",
     "description": "The generated-index page description for category FAQ in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Use Case": {
@@ -68,7 +68,7 @@
     "description": "The label for category TIDAS ecosphere in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.Guide for Life Cycle Database": {
-    "message": "LCA/碳足迹数据库构建导则",
+    "message": "LCA / 碳足迹数据库构建导则",
     "description": "Guide for Life Cycle Database in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.TIDAS JSON Schema Download": {
@@ -84,11 +84,11 @@
     "description": "The label for link Reference Package in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.TianGong LCA Platform": {
-    "message": "天工LCA平台",
+    "message": "天工 LCA 平台",
     "description": "The label for link TianGong LCA Platform in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.link.TianGong LCA Tutorial": {
-    "message": "天工LCA平台说明文档",
+    "message": "天工 LCA 平台说明文档",
     "description": "The label for link TianGong LCA Tutorial in sidebar tutorialSidebar"
   }
 }
