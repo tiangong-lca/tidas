@@ -39,6 +39,10 @@
     "message": "天工智库",
     "description": "天工智库链接标签"
   },
+  "link.item.label.HiQLCD": {
+    "message": "HiQLCD 海科数据",
+    "description": "HiQLCD链接标签"
+  },
   "copyright": {
     "message": "版权所有 © 2025 天工 LCA",
     "description": "The footer copyright"

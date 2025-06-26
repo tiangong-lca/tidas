@@ -138,6 +138,10 @@ const config: Config = {
               label: 'TianGong Think Tank',
               href: 'http://www.tsinghua-riet.com/page/aicenter2/index.php/',
             },
+            {
+              label: 'HiQLCD',
+              href: 'https://www.hiqlcd.com/',
+            },
           ],
         },
       ],

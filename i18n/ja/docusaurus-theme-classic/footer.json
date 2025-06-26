@@ -31,6 +31,10 @@
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/facebook/docusaurus"
   },
+  "link.item.label.HiQLCD": {
+    "message": "HiQLCD",
+    "description": "The label of footer link with label=HiQLCD linking to https://www.hiqlcd.com"
+  },
   "copyright": {
     "message": "Copyright © 2025 TianGong LCA. Built with Docusaurus.",
     "description": "The footer copyright"
