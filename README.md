@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm ci
+npm update && npm ci
 ```
 
 ## Error check & fix
