@@ -55,7 +55,7 @@ Use `npm run start` or `npm run serve` when the task needs local page-render ver
 | `static/schemas/**` | `npm run build`; inspect the touched schema files directly | verify the linked explanatory pages still describe the published schema correctly | These files are not auto-synced from `tidas-tools`. |
 | `sidebars.ts`, `docusaurus.config.ts`, `i18n/**`, or `src/**` | `npm run lint`; `npm run typecheck`; `npm run build` | run `npm run start` if the task changes navigation or runtime rendering | Site structure and localization can break build or routing even when page content is unchanged. |
 | release workflow only | inspect `.github/workflows/build.yml`; run `npm run build` | record any Cloudflare-specific assumptions checked locally | Tag-driven deploy proof happens later in GitHub Actions. |
-| AI docs only | run the root warning-only `ai-doc-lint` against touched files | do one scenario-based routing check from root into this repo | Refresh review metadata even when prose-only docs change. |
+| AI docs only | run repo-local `ai-doc-lint` against touched files or the equivalent local PR check | do one scenario-based routing check from root into this repo | Refresh review metadata even when prose-only docs change. |
 
 ## Minimum PR Note Quality
 

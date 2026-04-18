@@ -127,7 +127,7 @@
       "notes": [
         "Use npm run start or npm run serve when the task needs local page rendering verification.",
         "Published schema files under static/schemas are not auto-synced from tidas-tools and should be reviewed explicitly when they change.",
-        "AI-doc changes should still run the root warning-only ai-doc-lint."
+        "AI-doc changes should still run the repo-local ai-doc-lint workflow or the equivalent local node command."
       ]
     }
   }
