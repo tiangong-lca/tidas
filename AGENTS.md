@@ -80,10 +80,11 @@ Route those tasks to:
 
 - Repo-local AI-doc maintenance is enforced by `.github/workflows/ai-doc-lint.yml` using the vendored `.github/scripts/ai-doc-lint.*` files.
 - Package manager: `npm`
-- Canonical local commands:
+- Required local validation baseline:
   - `npm run lint`
   - `npm run typecheck`
   - `npm run build`
+- Optional local render checks when the task needs page or routing verification:
   - `npm run start`
   - `npm run serve`
 - Release is tag-driven through `v<version>` and deploys the built site to Cloudflare Pages
