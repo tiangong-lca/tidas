@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm update && npm ci
+npm ci
 ```
 
 ## Error check & fix
@@ -16,13 +16,23 @@ npm run lint:fix
 
 This command will check the code style and fix the code style automatically.
 
-## Local Development
+## Validation Baseline
+
+Run this baseline before opening or updating a PR:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+## Local Development Preview
 
 ```bash
 npm run start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts the local Docusaurus development server for interactive page checks. Use it when the task needs local rendering confirmation; it is not a substitute for the validation baseline above.
 
 ## Build
 
@@ -32,7 +42,7 @@ npm run build
 npm run serve
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+`npm run build` is part of the required validation baseline. `npm run serve` is an optional post-build preview for checking the generated static output locally.
 
 ## Translation
 

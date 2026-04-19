@@ -4,7 +4,7 @@ slug: /reference-package
 sidebar_position: 4
 ---
 
-### 📦 数据资源（Data）
+## 📦 数据资源（Data）
 
 Click this link to open in new tab: <a href="https://github.com/linancn/EF-reference-package-3.1-Correction" target="_blank">EF Reference Package 3.1 Correction</a>
 
