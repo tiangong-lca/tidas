@@ -1,4 +1,46 @@
+---
+title: TIDAS Landing
+docType: overview
+scope: repo
+status: active
+authoritative: false
+owner: tidas
+language: en
+whenToUse:
+  - when you need the shortest high-level overview of the TIDAS docs-site repo
+  - when you need basic install, build, preview, or release commands
+whenToUpdate:
+  - when basic site commands or the AI entry surface change
+  - when the repo's high-level purpose shifts
+checkPaths:
+  - README.md
+  - AGENTS.md
+  - .docpact/config.yaml
+  - _docs/agents/**
+  - package.json
+  - .github/workflows/**
+lastReviewedAt: 2026-04-23
+lastReviewedCommit: 17895b187920ec7052ef7f47c26d25344ae5579f
+related:
+  - AGENTS.md
+  - .docpact/config.yaml
+  - _docs/agents/repo-validation.md
+  - _docs/agents/repo-architecture.md
+---
+
 # TIDAS
+
+## AI Docs Entry
+
+Use this order for AI bootstrap inside `tidas`:
+
+1. `AGENTS.md`
+2. `.docpact/config.yaml`
+3. `_docs/agents/repo-validation.md`
+4. `_docs/agents/repo-architecture.md`
+5. then load the touched public docs-site surface under `docs/**`, `static/schemas/**`, `i18n/**`, `src/**`, or the site config files
+
+These files form the low-entropy contract layer. The public docs site content remains the owned change surface; the retained internal AI docs stay under `_docs/agents/` so they are not published as site pages.
 
 ## Installation
 

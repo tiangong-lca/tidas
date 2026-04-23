@@ -15,22 +15,23 @@ whenToUpdate:
   - when the published-schema surface changes
   - when downstream handoffs make the current map misleading
 checkPaths:
-  - ai/architecture.md
-  - ai/repo.yaml
+  - _docs/agents/repo-architecture.md
+  - .docpact/config.yaml
   - docs/**
   - static/schemas/**
+  - package.json
   - sidebars.ts
   - docusaurus.config.ts
   - i18n/**
   - src/**
-lastReviewedAt: 2026-04-18
-lastReviewedCommit: 8cece2a553f0d292df61d247fd861d01b627852f
+  - .github/workflows/build.yml
+lastReviewedAt: 2026-04-23
+lastReviewedCommit: 17895b187920ec7052ef7f47c26d25344ae5579f
 related:
-  - ../AGENTS.md
-  - ./repo.yaml
-  - ./task-router.md
-  - ./validation.md
-  - ../README.md
+  - ../../AGENTS.md
+  - ../../.docpact/config.yaml
+  - ./repo-validation.md
+  - ../../README.md
 ---
 
 ## Repo Shape
@@ -43,6 +44,7 @@ This repo is a Docusaurus site that publishes public TIDAS specification content
 | --- | --- |
 | `docs/**` | public spec, integration, and tooling explanation pages |
 | `static/schemas/**` | published downloadable schema files |
+| `package.json` | site scripts and package-manager baseline |
 | `sidebars.ts` | site navigation structure |
 | `docusaurus.config.ts` | site config, locales, and plugin wiring |
 | `i18n/**` | localization assets |
@@ -59,7 +61,7 @@ The practical role split today is:
 
 Important consequence:
 
-`static/schemas/**` is a published docs-site surface, not an automatic mirror of `tidas-tools/src/tidas_tools/tidas/schemas/**`.
+`static/schemas/**` is a published docs-site surface, not an automatic mirror of packaged assets in `tidas-tools`.
 
 Treat both surfaces explicitly.
 
