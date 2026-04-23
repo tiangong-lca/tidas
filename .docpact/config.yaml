@@ -1,0 +1,234 @@
+version: 1
+layout: repo
+lastReviewedAt: 2026-04-23
+lastReviewedCommit: 17895b187920ec7052ef7f47c26d25344ae5579f
+
+# Keep deterministic governance facts here.
+# AGENTS.md remains the repo contract entrypoint.
+# Retained internal source docs live under _docs/agents so the public docs site does not publish them.
+catalog:
+  repos:
+    - id: tidas
+      path: .
+      canonicalRepo: tiangong-lca/tidas
+      entryDoc: AGENTS.md
+      workflowDocs:
+        - _docs/agents/repo-validation.md
+        - _docs/agents/repo-architecture.md
+      workspaceIntegrationRequired: true
+
+ownership:
+  domains:
+    - id: repo-governance-and-docs
+      paths:
+        include:
+          - AGENTS.md
+          - README.md
+          - .docpact/**
+          - _docs/agents/**
+          - .github/workflows/ai-doc-lint.yml
+      ownerRepo: tidas
+    - id: public-spec-and-schema-surface
+      paths:
+        include:
+          - docs/**
+          - static/schemas/**
+      ownerRepo: tidas
+    - id: site-runtime-and-release
+      paths:
+        include:
+          - package.json
+          - sidebars.ts
+          - docusaurus.config.ts
+          - i18n/**
+          - src/**
+          - versions.json
+          - .github/workflows/build.yml
+      ownerRepo: tidas
+
+coverage:
+  include:
+    - AGENTS.md
+    - README.md
+    - .docpact/**
+    - _docs/agents/**
+    - package.json
+    - docs/**
+    - static/schemas/**
+    - sidebars.ts
+    - docusaurus.config.ts
+    - i18n/**
+    - src/**
+    - versions.json
+    - .github/workflows/ai-doc-lint.yml
+    - .github/workflows/build.yml
+  exclude:
+    - .git/**
+    - .github/scripts/**
+    - node_modules/**
+    - build/**
+    - .docusaurus/**
+
+freshness:
+  warn_after_commits: 40
+  warn_after_days: 60
+  critical_after_days: 120
+
+routing:
+  intents:
+    docs-site:
+      paths:
+        - docs/**
+    schema-docs:
+      paths:
+        - docs/core-modules/schema/**
+    tooling-guidance:
+      paths:
+        - docs/tool/**
+        - docs/integration/**
+        - docs/use_case/**
+    published-schemas:
+      paths:
+        - static/schemas/**
+    site-runtime:
+      paths:
+        - package.json
+        - sidebars.ts
+        - docusaurus.config.ts
+        - i18n/**
+        - src/**
+        - versions.json
+        - .github/workflows/build.yml
+    proof:
+      paths:
+        - _docs/agents/repo-validation.md
+        - package.json
+        - docs/**
+        - static/schemas/**
+        - sidebars.ts
+        - docusaurus.config.ts
+        - i18n/**
+        - src/**
+        - versions.json
+        - .github/workflows/build.yml
+    repo-docs:
+      paths:
+        - AGENTS.md
+        - README.md
+        - .docpact/**
+        - _docs/agents/**
+    root-integration:
+      paths:
+        - AGENTS.md
+
+docInventory:
+  include:
+    - AGENTS.md
+    - README.md
+    - .docpact/config.yaml
+    - _docs/agents/repo-validation.md
+    - _docs/agents/repo-architecture.md
+
+repo:
+  id: tidas
+  owner: tidas
+
+rules:
+  - id: tidas-bootstrap-contract
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: AGENTS.md
+        kind: doc-contract
+      - path: .docpact/**
+        kind: doc-ai-layer
+      - path: _docs/agents/repo-validation.md
+        kind: deep-doc
+      - path: _docs/agents/repo-architecture.md
+        kind: deep-doc
+    requiredDocs:
+      - path: AGENTS.md
+        mode: review_or_update
+      - path: .docpact/config.yaml
+        mode: review_or_update
+      - path: _docs/agents/repo-validation.md
+        mode: review_or_update
+      - path: _docs/agents/repo-architecture.md
+        mode: review_or_update
+    reason: Repo entry guidance, machine-readable routing, and retained internal source docs must stay aligned.
+  - id: tidas-readme-contract
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: README.md
+        kind: repo-landing
+    requiredDocs:
+      - path: AGENTS.md
+        mode: review_or_update
+      - path: README.md
+        mode: review_or_update
+      - path: .docpact/config.yaml
+        mode: review_or_update
+    reason: Repo landing text should stay aligned with the current contract and AI entry surface.
+  - id: tidas-public-spec-contract
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: docs/**
+        kind: public-doc
+      - path: static/schemas/**
+        kind: published-schema
+    requiredDocs:
+      - path: AGENTS.md
+        mode: review_or_update
+      - path: .docpact/config.yaml
+        mode: review_or_update
+      - path: _docs/agents/repo-validation.md
+        mode: review_or_update
+      - path: _docs/agents/repo-architecture.md
+        mode: review_or_update
+    reason: Public spec pages and published schema files should keep the retained repo contract, proof guidance, and path map aligned.
+  - id: tidas-site-runtime-contract
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: package.json
+        kind: site-runtime
+      - path: sidebars.ts
+        kind: site-nav
+      - path: docusaurus.config.ts
+        kind: site-config
+      - path: i18n/**
+        kind: localization
+      - path: src/**
+        kind: site-runtime
+      - path: versions.json
+        kind: docs-versioning
+      - path: .github/workflows/build.yml
+        kind: automation
+    requiredDocs:
+      - path: AGENTS.md
+        mode: review_or_update
+      - path: README.md
+        mode: review_or_update
+      - path: .docpact/config.yaml
+        mode: review_or_update
+      - path: _docs/agents/repo-validation.md
+        mode: review_or_update
+      - path: _docs/agents/repo-architecture.md
+        mode: review_or_update
+    reason: Site runtime, localization, versioning, and release workflow changes alter preview expectations and docs-site ownership boundaries.
+  - id: tidas-doc-maintenance-contract
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: .github/workflows/ai-doc-lint.yml
+        kind: automation
+    requiredDocs:
+      - path: AGENTS.md
+        mode: review_or_update
+      - path: .docpact/config.yaml
+        mode: review_or_update
+      - path: _docs/agents/repo-validation.md
+        mode: review_or_update
+    reason: Repo-local documentation maintenance automation must stay aligned with the repo contract and governed-doc rules.
