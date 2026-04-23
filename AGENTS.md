@@ -70,6 +70,9 @@ The retained internal AI docs live under `_docs/agents/`, not `docs/agents/`, so
 - stable path groups and cross-repo handoffs live in `_docs/agents/repo-architecture.md`
 - repo-local documentation maintenance is enforced by `.github/workflows/ai-doc-lint.yml` with `docpact lint`
 - the main routing intents are `docs-site`, `published-schemas`, `site-runtime`, `proof`, `repo-docs`, and `root-integration`
+- high-value public-doc subdomains are:
+  - `docs/core-modules/schema/**` for schema explanation and validation pages
+  - `docs/tool/**`, `docs/integration/**`, and `docs/use_case/**` for public tooling, integration, and use-case guidance
 
 ## Minimal Execution Facts
 
@@ -109,6 +112,11 @@ Route those tasks to:
 - `tidas-tools` for standalone tooling logic and packaged upstream assets
 - `tidas-sdk` for generated package surfaces and package release automation
 - `lca-workspace` for root integration after merge
+
+Important handoff nuance:
+
+- public schema explanation work in `docs/core-modules/schema/**` still lives here, but changes that alter downstream package-facing expectations may need follow-up in `tidas-sdk`
+- public tooling or integration guidance under `docs/tool/**`, `docs/integration/**`, or `docs/use_case/**` still lives here, but executable tool behavior remains in `tidas-tools`
 
 ## Branch And Delivery Facts
 

@@ -79,6 +79,14 @@ routing:
     docs-site:
       paths:
         - docs/**
+    schema-docs:
+      paths:
+        - docs/core-modules/schema/**
+    tooling-guidance:
+      paths:
+        - docs/tool/**
+        - docs/integration/**
+        - docs/use_case/**
     published-schemas:
       paths:
         - static/schemas/**

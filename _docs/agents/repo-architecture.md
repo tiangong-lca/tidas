@@ -61,9 +61,15 @@ The practical role split today is:
 
 Important consequence:
 
-`static/schemas/**` is a published docs-site surface, not an automatic mirror of packaged assets in `tidas-tools`.
+`static/schemas/**` is a published docs-site surface, not an automatic mirror of `tidas-tools/src/tidas_tools/tidas/schemas/**`.
 
 Treat both surfaces explicitly.
+
+## Public Docs Subdomains And Handoffs
+
+- `docs/core-modules/schema/**` is the public schema explanation and validation surface owned here; if the meaning of those docs changes in a way that affects downstream package consumers, expect follow-up in `tidas-sdk`
+- `docs/tool/**`, `docs/integration/**`, and `docs/use_case/**` are public guidance surfaces owned here; if the underlying executable tool behavior changed, route that implementation work to `tidas-tools`
+- `static/schemas/**` is the published download surface served by the site; compare it explicitly against `tidas-tools/src/tidas_tools/tidas/schemas/**` when refreshing downloadable schemas
 
 ## Site Runtime
 
