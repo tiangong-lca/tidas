@@ -25,8 +25,8 @@ checkPaths:
   - i18n/**
   - src/**
   - .github/workflows/build.yml
-lastReviewedAt: 2026-04-23
-lastReviewedCommit: 17895b187920ec7052ef7f47c26d25344ae5579f
+lastReviewedAt: 2026-04-24
+lastReviewedCommit: 2fe49a50f2d9e5c7925c768e0e3f85eb930055d0
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
