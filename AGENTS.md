@@ -28,8 +28,8 @@ checkPaths:
   - src/**
   - versions.json
   - .github/workflows/**
-lastReviewedAt: 2026-04-24
-lastReviewedCommit: 2fe49a50f2d9e5c7925c768e0e3f85eb930055d0
+lastReviewedAt: 2026-05-06
+lastReviewedCommit: 0bad51bb00f78467240a2c16d1e4619e759b26e4
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
