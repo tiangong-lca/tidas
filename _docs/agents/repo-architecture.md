@@ -25,8 +25,11 @@ checkPaths:
   - i18n/**
   - src/**
   - .github/workflows/build.yml
-lastReviewedAt: 2026-05-06
-lastReviewedCommit: 0bad51bb00f78467240a2c16d1e4619e759b26e4
+  - .githooks/pre-push
+  - scripts/docpact-gate.sh
+  - scripts/install-git-hooks.sh
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: edbc10817b174ac1f38ff772ab571973b5b3bd0d
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -87,3 +90,7 @@ This release path is part of the repo architecture, not just a deployment checkl
 - standalone tooling behavior does not live here
 - generated SDK package output does not live here
 - a merged child PR does not finish workspace delivery
+
+## Local Docpact Push Gate
+
+This repository has a versioned local `pre-push` hook under `.githooks/pre-push` that delegates to `scripts/docpact-gate.sh`. The hook is a local developer guard for docpact config validation and enforced doc-governance linting; CI remains the authoritative PR enforcement path.
