@@ -1,7 +1,7 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-04-24"
-lastReviewedCommit: "2fe49a50f2d9e5c7925c768e0e3f85eb930055d0"
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: edbc10817b174ac1f38ff772ab571973b5b3bd0d
 
 # Keep deterministic governance facts here.
 # AGENTS.md remains the repo contract entrypoint.
@@ -46,8 +46,19 @@ ownership:
           - .github/workflows/build.yml
       ownerRepo: tidas
 
+    - id: local-docpact-push-gate
+      paths:
+        include:
+          - .githooks/**
+          - scripts/docpact-gate.sh
+          - scripts/install-git-hooks.sh
+      ownerRepo: tidas
+
 coverage:
   include:
+    - .githooks/**
+    - scripts/docpact-gate.sh
+    - scripts/install-git-hooks.sh
     - AGENTS.md
     - README.md
     - .docpact/**
@@ -76,6 +87,11 @@ freshness:
 
 routing:
   intents:
+    local-docpact-gate:
+      paths:
+        - .githooks/pre-push
+        - scripts/docpact-gate.sh
+        - scripts/install-git-hooks.sh
     docs-site:
       paths:
         - docs/**
@@ -230,3 +246,19 @@ rules:
       - path: _docs/agents/repo-validation.md
         mode: review_or_update
     reason: Repo-local documentation maintenance automation must stay aligned with the repo contract and governed-doc rules.
+  - id: tidas-local-docpact-push-gate
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: .githooks/pre-push
+        kind: local-git-hook
+      - path: scripts/docpact-gate.sh
+        kind: local-automation
+      - path: scripts/install-git-hooks.sh
+        kind: local-automation
+    requiredDocs:
+      - path: .docpact/config.yaml
+        mode: review_or_update
+      - path: _docs/agents/repo-validation.md
+        mode: review_or_update
+    reason: Local push documentation governance gates must stay aligned with repo validation guidance and docpact configuration.

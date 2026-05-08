@@ -28,8 +28,11 @@ checkPaths:
   - src/**
   - versions.json
   - .github/workflows/**
-lastReviewedAt: 2026-05-06
-lastReviewedCommit: 0bad51bb00f78467240a2c16d1e4619e759b26e4
+  - .githooks/**
+  - scripts/docpact-gate.sh
+  - scripts/install-git-hooks.sh
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: edbc10817b174ac1f38ff772ab571973b5b3bd0d
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -160,3 +163,13 @@ If the change must ship through the workspace:
 1. merge the child PR into `tidas`
 2. update the `lca-workspace` submodule pointer deliberately
 3. complete any later workspace-level validation that depends on the updated docs or schema snapshot
+
+## Local Docpact Push Gate
+
+Install the versioned local hook once per checkout:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
+The `pre-push` hook runs `scripts/docpact-gate.sh`, which performs strict config validation and `docpact lint --mode enforce` before the push leaves the machine. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.

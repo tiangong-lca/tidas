@@ -25,8 +25,11 @@ checkPaths:
   - i18n/**
   - src/**
   - .github/workflows/**
-lastReviewedAt: 2026-05-06
-lastReviewedCommit: 0bad51bb00f78467240a2c16d1e4619e759b26e4
+  - .githooks/pre-push
+  - scripts/docpact-gate.sh
+  - scripts/install-git-hooks.sh
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: edbc10817b174ac1f38ff772ab571973b5b3bd0d
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -73,3 +76,13 @@ That means:
 - governed-doc rules, routing intents, ownership boundaries, coverage, and freshness live in `.docpact/config.yaml`
 - `.github/workflows/ai-doc-lint.yml` should validate config and run `docpact lint`
 - retained explanatory docs stay in `AGENTS.md`, this file, `repo-architecture.md`, and `README.md`
+
+## Local Docpact Push Gate
+
+Install the versioned local hook once per checkout:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
+The `pre-push` hook runs `scripts/docpact-gate.sh`, which performs strict config validation and `docpact lint --mode enforce` before the push leaves the machine. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
