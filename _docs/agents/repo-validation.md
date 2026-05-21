@@ -26,6 +26,7 @@ checkPaths:
   - src/**
   - .github/workflows/**
   - .githooks/pre-push
+  - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
 lastReviewedAt: 2026-05-08
@@ -57,7 +58,7 @@ Use `npm run start` or `npm run serve` when the task needs local page-render ver
 | `static/schemas/**` | `npm run build`; inspect the touched schema files directly | verify the linked explanatory pages still describe the published schema correctly | These files are a published site surface, not an auto-sync from `tidas-tools`. |
 | `package.json`, `sidebars.ts`, `docusaurus.config.ts`, `i18n/**`, `src/**`, or `versions.json` | `npm run lint`; `npm run typecheck`; `npm run build` | run `npm run start` if the task changes navigation or runtime rendering | Site structure and localization can break build or routing even when page content is unchanged. |
 | release workflow only | inspect `.github/workflows/build.yml`; run `npm run build` | record any Cloudflare-specific or tag-specific assumptions checked locally | Tag-driven deploy proof happens later in GitHub Actions. |
-| repo docs or docpact config only | `docpact validate-config --root . --strict`; `docpact lint --root . --worktree --mode enforce` | perform route checks for affected intent surfaces such as `docs-site`, `published-schemas`, or `proof` | Refresh review metadata even when prose-only docs change. |
+| repo docs or docpact config only | `scripts/docpact validate-config --root . --strict`; `scripts/docpact lint --root . --worktree --mode enforce` | perform route checks for affected intent surfaces such as `docs-site`, `published-schemas`, or `proof` | Refresh review metadata even when prose-only docs change. |
 
 ## Minimum PR Note Quality
 
@@ -85,4 +86,4 @@ Install the versioned local hook once per checkout:
 ./scripts/install-git-hooks.sh
 ```
 
-The `pre-push` hook runs `scripts/docpact-gate.sh`, which performs strict config validation and `docpact lint --mode enforce` before the push leaves the machine. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
+The `pre-push` hook runs `scripts/docpact-gate.sh`, which delegates CLI lookup to `scripts/docpact` and performs strict config validation plus enforced lint before the push leaves the machine. The wrapper checks `DOCPACT_BIN`, Cargo install locations, Homebrew install locations, and then `PATH`, so local agent shells should not fail only because bare `docpact` is unavailable. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
