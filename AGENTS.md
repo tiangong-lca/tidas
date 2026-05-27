@@ -92,7 +92,7 @@ Keep these entry-level facts in `AGENTS.md`. Use `README.md` and `_docs/agents/r
 - optional render checks:
   - `npm run start`
   - `npm run serve`
-- release is tag-driven through `v<version>` and deploys the built site to Cloudflare Pages
+- release is tag-driven through `v<version>` and deploys the built site to Cloudflare Pages after the release gate runs `lint`, `typecheck`, and `build`
 
 ## Ownership Boundaries
 
@@ -137,7 +137,7 @@ Important handoff nuance:
 - `static/schemas/**` is a published docs-site surface, not an automatic mirror of packaged upstream assets in `tidas-tools`
 - this repo explains public spec and tooling usage; standalone executable tooling logic stays in `tidas-tools`
 - generated SDK package output stays in `tidas-sdk`
-- the tag-driven `build.yml` workflow deploys the built site to Cloudflare Pages
+- the tag-driven `build.yml` workflow runs the release gate before deploying the built site to Cloudflare Pages
 
 ## Documentation Update Rules
 

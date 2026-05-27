@@ -8,7 +8,33 @@ on:
       - 'v*'
 
 jobs:
+  release-gate:
+    name: Release Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint docs
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
   release:
+    needs: release-gate
     runs-on: ubuntu-latest
 
     steps:

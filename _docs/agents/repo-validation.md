@@ -57,7 +57,7 @@ Use `npm run start` or `npm run serve` when the task needs local page-render ver
 | `docs/**` content only | `npm run lint`; `npm run build` | run `npm run start` or `npm run serve` when the page has MDX, math, or layout-sensitive content | Public docs correctness is the primary concern here. |
 | `static/schemas/**` | `npm run build`; inspect the touched schema files directly | verify the linked explanatory pages still describe the published schema correctly | These files are a published site surface, not an auto-sync from `tidas-tools`. |
 | `package.json`, `sidebars.ts`, `docusaurus.config.ts`, `i18n/**`, `src/**`, or `versions.json` | `npm run lint`; `npm run typecheck`; `npm run build` | run `npm run start` if the task changes navigation or runtime rendering | Site structure and localization can break build or routing even when page content is unchanged. |
-| release workflow only | inspect `.github/workflows/build.yml`; run `npm run build` | record any Cloudflare-specific or tag-specific assumptions checked locally | Tag-driven deploy proof happens later in GitHub Actions. |
+| release workflow only | inspect `.github/workflows/build.yml`; run `npm run lint`; `npm run typecheck`; `npm run build` | record any Cloudflare-specific or tag-specific assumptions checked locally | Tag-driven deploy proof happens later in GitHub Actions after the release gate passes. |
 | repo docs or docpact config only | `scripts/docpact validate-config --root . --strict`; `scripts/docpact lint --root . --worktree --mode enforce` | perform route checks for affected intent surfaces such as `docs-site`, `published-schemas`, or `proof` | Refresh review metadata even when prose-only docs change. |
 
 ## Minimum PR Note Quality

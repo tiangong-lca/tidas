@@ -1,3 +1,25 @@
+---
+title: TIDAS README
+docType: guide
+scope: repo
+status: active
+authoritative: false
+owner: tidas
+language: en
+whenToUse:
+  - when onboarding to the TIDAS spec site repository
+  - when checking public setup and publish commands
+whenToUpdate:
+  - when public setup, versioning, or publish commands change
+  - when the README no longer reflects the current release workflow
+checkPaths:
+  - README.md
+  - package.json
+  - .github/workflows/build.yml
+lastReviewedAt: 2026-05-27
+lastReviewedCommit: 6a12da6fbb9f796e31bebcec05a3d3d0d7cd5ffd
+---
+
 # TIDAS
 
 ## AI Docs Entry
@@ -71,6 +93,8 @@ npm run docusaurus docs:version 0.0.1
 ```
 
 ## Publish
+
+Pushing a `v*` tag runs the release gate (`lint`, `typecheck`, and `build`) before the Cloudflare Pages deploy.
 
 ```bash
 git tag
