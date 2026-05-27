@@ -81,7 +81,7 @@ The repo uses Docusaurus with localized site assets and can build or serve stati
 
 ## Release Architecture
 
-Tag `v<version>` triggers the site build and a Cloudflare Pages deploy of the `build/` output.
+Tag `v<version>` triggers the release gate, which runs `npm run lint`, `npm run typecheck`, and `npm run build` before the Cloudflare Pages deploy of the `build/` output.
 
 This release path is part of the repo architecture, not just a deployment checklist.
 
