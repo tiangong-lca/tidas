@@ -75,7 +75,7 @@ The repo's machine-readable governance source is `.docpact/config.yaml`.
 That means:
 
 - governed-doc rules, routing intents, ownership boundaries, coverage, and freshness live in `.docpact/config.yaml`
-- `.github/workflows/ai-doc-lint.yml` should validate config and run `docpact lint`
+- `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback and should delegate to the same local docpact gate
 - retained explanatory docs stay in `AGENTS.md`, this file, `repo-architecture.md`, and `README.md`
 
 ## Local Docpact Push Gate

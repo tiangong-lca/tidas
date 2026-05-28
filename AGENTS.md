@@ -72,7 +72,7 @@ The retained internal AI docs live under `_docs/agents/`, not `docs/agents/`, so
 - path-level ownership, routing intents, governed-doc inventory, and lint rules live in `.docpact/config.yaml`
 - minimum proof and preview guidance live in `_docs/agents/repo-validation.md`
 - stable path groups and cross-repo handoffs live in `_docs/agents/repo-architecture.md`
-- repo-local documentation maintenance is enforced by `.github/workflows/ai-doc-lint.yml` with `docpact lint`
+- repo-local documentation maintenance is enforced locally by the pre-push docpact gate; `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback
 - the main routing intents are `docs-site`, `published-schemas`, `site-runtime`, `proof`, `repo-docs`, and `root-integration`
 - high-value public-doc subdomains are:
   - `docs/core-modules/schema/**` for schema explanation and validation pages
