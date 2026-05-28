@@ -17,7 +17,7 @@ checkPaths:
   - package.json
   - .github/workflows/build.yml
 lastReviewedAt: 2026-05-28
-lastReviewedCommit: c012afe6479cc90daf28f61152c9407f8a46c6b2
+lastReviewedCommit: bfe15eaa87ac9891bda76c1f1bacb22e5bbf7b57
 ---
 
 # TIDAS
