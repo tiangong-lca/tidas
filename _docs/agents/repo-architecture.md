@@ -29,8 +29,8 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-05-08
-lastReviewedCommit: edbc10817b174ac1f38ff772ab571973b5b3bd0d
+lastReviewedAt: 2026-05-28
+lastReviewedCommit: c012afe6479cc90daf28f61152c9407f8a46c6b2
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
