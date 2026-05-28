@@ -33,7 +33,11 @@ jobs:
           node-version: '20'
 
       - name: Run docpact release gate
-        run: scripts/docpact-gate.sh --base origin/main
+        run: |
+          set -euo pipefail
+          release_head="$(git rev-list -n 1 "$GITHUB_REF_NAME")"
+          release_base="$(git rev-parse "${release_head}^")"
+          scripts/docpact-gate.sh --base "$release_base" --head "$release_head"
 
       - name: Install dependencies
         run: npm install
