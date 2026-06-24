@@ -75,7 +75,7 @@
                           }
                         },
                         "common:other": {
-                          "type": "string"
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
                         }
                       },
                       "required": [
@@ -92,7 +92,7 @@
                   "description": "Free text for general information about the data set. E.g. coverage of different unit systems, information sources used, etc."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -105,10 +105,10 @@
               "type": "object",
               "properties": {
                 "referenceToReferenceUnit": {
-                   "$ref": "tidas_data_types.json#/$defs/Int5"
+                  "$ref": "tidas_data_types.json#/$defs/Int5"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -116,7 +116,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -131,30 +131,62 @@
               "type": "object",
               "properties": {
                 "compliance": {
-                  "type": "object",
-                  "properties": {
-                    "common:referenceToComplianceSystem": {
-                      "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType"
-                    },
-                    "common:approvalOfOverallCompliance": {
-                      "type": "string",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
+                  "description": "One compliance declaration. Multiple declarations may be provided.",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "common:referenceToComplianceSystem": {
+                          "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType"
+                        },
+                        "common:approvalOfOverallCompliance": {
+                          "type": "string",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:other": {
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                        }
+                      },
+                      "required": [
+                        "common:referenceToComplianceSystem",
+                        "common:approvalOfOverallCompliance"
                       ]
                     },
-                    "common:other": {
-                      "type": "string"
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "common:referenceToComplianceSystem": {
+                            "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType"
+                          },
+                          "common:approvalOfOverallCompliance": {
+                            "type": "string",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:other": {
+                            "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                          }
+                        },
+                        "required": [
+                          "common:referenceToComplianceSystem",
+                          "common:approvalOfOverallCompliance"
+                        ]
+                      },
+                      "minItems": 1
                     }
-                  },
-                  "required": [
-                    "common:referenceToComplianceSystem",
-                    "common:approvalOfOverallCompliance"
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -162,7 +194,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -174,7 +206,7 @@
           "properties": {
             "dataEntryBy": {
               "type": "object",
-               "properties": {
+              "properties": {
                 "common:timeStamp": {
                   "$ref": "tidas_data_types.json#/$defs/dateTime",
                   "description": "Date and time stamp of data set generation, typically an automated entry (\"last saved\")."
@@ -184,7 +216,7 @@
                   "description": "\"Source data set\" of the used version of the ILCD format. If additional data format fields have been integrated into the data set file, using the \"namespace\" option, the used format namespace(s) are to be given. This is the case if the data sets carries additional information as specified by other, particular LCA formats, e.g. of other database networks or LCA softwares."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -196,14 +228,18 @@
               "type": "object",
               "properties": {
                 "common:dataSetVersion": {
-                  "type": "string",
+                  "allOf": [
+                    {
+                      "$ref": "tidas_data_types.json#/$defs/Version"
+                    }
+                  ],
                   "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the \"Data set version\" uniquely identifies each data set."
                 },
                 "common:referenceToPrecedingDataSetVersion": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                  "description": "Last preceding data set, which was replaced by this version. Either a URI of that data set (i.e. an internet address) or its UUID plus version number is given (or both)."
+                  "description": "Last preceding data set, which was replaced by this version. In TIDAS, this reference includes the preceding data set URI, UUID, and version number."
                 },
-                "permanentDataSetURI": {
+                "common:permanentDataSetURI": {
                   "type": "string",
                   "format": "uri",
                   "description": "URI (i.e. an internet address) of the original of this data set. [Note: This equally globally unique identifier supports users and software tools to identify and retrieve the original version of a data set via the internet or to check for available updates. The URI must not represent an existing WWW address, but it should be unique and point to the data access point, e.g. by combining the data owner's www path with the data set's UUID, e.g. http://www.mycompany.com/lca/processes/50f12420-8855-12db-b606-0900210c9a66.]"
@@ -213,7 +249,7 @@
                   "description": "\"Contact data set\" of the person or entity who owns this data set. (Note: this is not necessarily the publisher of the data set.)"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -222,7 +258,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -252,7 +288,7 @@
                       "description": "General comment on each single unit, typically giving the long name and unit system from which this unit stems, and (if necessary) referring to specifc data sources used, or for workflow purposes about status of \"finalisation\" of an entry etc."
                     },
                     "common:other": {
-                      "type": "string"
+                      "$ref": "tidas_data_types.json#/$defs/CommonOther"
                     }
                   }
                 },
@@ -280,12 +316,12 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           }
         },
         "common:other": {
-          "type": "string"
+          "$ref": "tidas_data_types.json#/$defs/CommonOther"
         }
       },
       "required": [

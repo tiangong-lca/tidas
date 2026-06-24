@@ -132,46 +132,13 @@
                                 }
                               ],
                               "uniqueItems": true,
-                              "allOf": [
-                                {
-                                  "maxContains": 1,
-                                  "minContains": 0,
-                                  "contains": {
-                                    "properties": {
-                                      "@level": {
-                                        "const": "0"
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "maxContains": 1,
-                                  "minContains": 0,
-                                  "contains": {
-                                    "properties": {
-                                      "@level": {
-                                        "const": "1"
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "maxContains": 1,
-                                  "minContains": 0,
-                                  "contains": {
-                                    "properties": {
-                                      "@level": {
-                                        "const": "2"
-                                      }
-                                    }
-                                  }
-                                }
-                              ]
+                              "maxItems": 3,
+                              "additionalItems": false
                             }
                           ]
                         },
                         "common:other": {
-                          "type": "string"
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
                         }
                       },
                       "required": [
@@ -212,6 +179,7 @@
                     "Natural resources",
                     "Natural environment",
                     "Human health",
+                    "Man-made environment",
                     "Other"
                   ]
                 },
@@ -228,7 +196,7 @@
                   "description": "\"Source data set(s)\" of external documents / files with further documentative information on the data set including on underlying data sources (e.g. time, geographical coverage, impact models, characterisation factors, substance property databases employed, etc.). (Note: can indirectly reference to digital file.)"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -246,7 +214,7 @@
                   "description": "\"Flow property data set\" of the reference quantity (flow property), in which the impact indicator values are measured."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -269,7 +237,7 @@
                   "description": "Description of the valid time span of the data set including information on limited usability within sub-time spans, if any."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -346,7 +314,7 @@
                   "description": "Further explanation on additional aspects of the location, both regarding the intervention and the impact: whether certain areas are exempted from the location, whether data is only valid for certain sub-locations within the location indicated, or whether impact indicator values for certain elementary flows are extrapolated from another geographical area than indicated. Information on the use of generic intervention and/or impact locations, and other restrictions."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               }
             },
@@ -379,7 +347,7 @@
                   "description": "\"Source data set(s)\" of flowchart(s) and/or pictures depicting the LCIA method(ology)."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -388,7 +356,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -440,12 +408,8 @@
                   "description": "Short description of possible data set specific deviations from \"LCIA method principle(s)\". Refers especially to explanations on the combination of LCIA methods with different principles in a single LCIA methodology."
                 },
                 "normalisation": {
-                  "type": "string",
-                  "description": "Indication whether or not a normalisation step was included in the resulting impact factors.",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean",
+                  "description": "Indication whether or not a normalisation step was included in the resulting impact factors."
                 },
                 "referenceToUsableNormalisationDataSets": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
@@ -460,12 +424,8 @@
                   "description": "\"Normalisation data set(s)\" that was/were used to calculate the normalised impact factors of this data set, if any."
                 },
                 "weighting": {
-                  "type": "string",
-                  "description": "Indication whether or not a weighting-step was included in the resulting impact factors.",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean",
+                  "description": "Indication whether or not a weighting-step was included in the resulting impact factors."
                 },
                 "referenceToUsableWeightingDataSets": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
@@ -494,7 +454,7 @@
                   "description": "\"Source data set(s)\" of the data source(s) used for the data set e.g. paper, questionnaire, monography etc. The main data sources e.g. for underlying substance properties are named, too."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -533,7 +493,7 @@
                         "Not reviewed"
                       ]
                     },
-                    "scope": {
+                    "common:scope": {
                       "description": "Scope of review regarding which aspects and components of the data set was reviewed or verified. In case of aggregated e.g. LCI results also and on which level of detail (e.g. LCI results only, included unit processes, ...) the review / verification was performed.",
                       "anyOf": [
                         {
@@ -542,47 +502,67 @@
                             "@name": {
                               "type": "string",
                               "enum": [
-                                "Raw data",
-                                "Unit process(es), single operation",
-                                "Unit process(es), black box",
-                                "LCI results or Partly terminated system",
-                                "LCIA results",
-                                "Documentation",
-                                "Life cycle inventory methods",
-                                "LCIA results calculation",
-                                "Goal and scope definition"
+                                "Substance properties, physical and chemical",
+                                "Substance properties, biological",
+                                "Model for Transport and Fate",
+                                "Model for Exposure",
+                                "Model for Effect",
+                                "Model for Damage",
+                                "Characterisation factors",
+                                "Application of model",
+                                "Normalisation",
+                                "Weighting",
+                                "Documentation"
                               ]
                             },
-                            "method": {
-                              "type": "object",
-                              "properties": {
-                                "@name": {
-                                  "description": "Validation method(s) used in the respective \"Scope of review\".",
-                                  "type": "string",
-                                  "enum": [
-                                    "Validation of data sources",
-                                    "Sample tests on calculations",
-                                    "Energy balance",
-                                    "Element balance",
-                                    "Cross-check with other source",
-                                    "Cross-check with other data set",
-                                    "Expert judgement",
-                                    "Mass balance",
-                                    "Compliance with legal limitsRegulated Inputs and Outputs e.g. emission data are validated for compliance with legal limits, typically after relating and scaling the data to the regulated processes/sites etc.",
-                                    "Compliance with ISO 14040 to 14044",
-                                    "Documentation",
-                                    "Evidence collection by means of plant visits and/or interviews"
+                            "common:method": {
+                              "description": "Validation method(s) used in the respective \"Scope of review\".",
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "@name": {
+                                      "type": "string",
+                                      "enum": [
+                                        "Recollection / Validation of data",
+                                        "Recalculation",
+                                        "Cross-check with other source",
+                                        "Cross-check with other LCIA method(ology)",
+                                        "Expert judgement"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "@name"
                                   ]
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "@name": {
+                                        "type": "string",
+                                        "enum": [
+                                          "Recollection / Validation of data",
+                                          "Recalculation",
+                                          "Cross-check with other source",
+                                          "Cross-check with other LCIA method(ology)",
+                                          "Expert judgement"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "@name"
+                                    ]
+                                  }
                                 }
-                              },
-                              "required": [
-                                "@name"
                               ]
                             }
                           },
                           "required": [
                             "@name",
-                            "method"
+                            "common:method"
                           ]
                         },
                         {
@@ -593,47 +573,67 @@
                               "@name": {
                                 "type": "string",
                                 "enum": [
-                                  "Raw data",
-                                  "Unit process(es), single operation",
-                                  "Unit process(es), black box",
-                                  "LCI results or Partly terminated system",
-                                  "LCIA results",
-                                  "Documentation",
-                                  "Life cycle inventory methods",
-                                  "LCIA results calculation",
-                                  "Goal and scope definition"
+                                  "Substance properties, physical and chemical",
+                                  "Substance properties, biological",
+                                  "Model for Transport and Fate",
+                                  "Model for Exposure",
+                                  "Model for Effect",
+                                  "Model for Damage",
+                                  "Characterisation factors",
+                                  "Application of model",
+                                  "Normalisation",
+                                  "Weighting",
+                                  "Documentation"
                                 ]
                               },
-                              "method": {
-                                "type": "object",
-                                "properties": {
-                                  "@name": {
-                                    "description": "Validation method(s) used in the respective \"Scope of review\".",
-                                    "type": "string",
-                                    "enum": [
-                                      "Validation of data sources",
-                                      "Sample tests on calculations",
-                                      "Energy balance",
-                                      "Element balance",
-                                      "Cross-check with other source",
-                                      "Cross-check with other data set",
-                                      "Expert judgement",
-                                      "Mass balance",
-                                      "Compliance with legal limitsRegulated Inputs and Outputs e.g. emission data are validated for compliance with legal limits, typically after relating and scaling the data to the regulated processes/sites etc.",
-                                      "Compliance with ISO 14040 to 14044",
-                                      "Documentation",
-                                      "Evidence collection by means of plant visits and/or interviews"
+                              "common:method": {
+                                "description": "Validation method(s) used in the respective \"Scope of review\".",
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "@name": {
+                                        "type": "string",
+                                        "enum": [
+                                          "Recollection / Validation of data",
+                                          "Recalculation",
+                                          "Cross-check with other source",
+                                          "Cross-check with other LCIA method(ology)",
+                                          "Expert judgement"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "@name"
                                     ]
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "@name": {
+                                          "type": "string",
+                                          "enum": [
+                                            "Recollection / Validation of data",
+                                            "Recalculation",
+                                            "Cross-check with other source",
+                                            "Cross-check with other LCIA method(ology)",
+                                            "Expert judgement"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "@name"
+                                      ]
+                                    }
                                   }
-                                },
-                                "required": [
-                                  "@name"
                                 ]
                               }
                             },
                             "required": [
                               "@name",
-                              "method"
+                              "common:method"
                             ]
                           }
                         }
@@ -656,17 +656,35 @@
                       "description": "\"Source data set\" of the complete review report."
                     },
                     "common:other": {
-                      "type": "string"
+                      "$ref": "tidas_data_types.json#/$defs/CommonOther"
                     }
                   },
                   "required": [
-                    "@type",
-                    "scope",
-                    "common:referenceToNameOfReviewerAndInstitution"
+                    "@type"
+                  ],
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "@type": {
+                            "const": "Not reviewed"
+                          }
+                        }
+                      },
+                      "then": {},
+                      "else": {
+                        "required": [
+                          "common:scope",
+                          "common:reviewDetails",
+                          "common:referenceToNameOfReviewerAndInstitution",
+                          "common:referenceToCompleteReviewReport"
+                        ]
+                      }
+                    }
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -678,82 +696,166 @@
               "type": "object",
               "properties": {
                 "compliance": {
-                  "type": "object",
-                  "properties": {
-                    "common:referenceToComplianceSystem": {
-                      "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                      "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
-                    },
-                    "common:approvalOfOverallCompliance": {
-                      "type": "string",
-                      "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
+                  "description": "One compliance declaration. Multiple declarations may be provided.",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "common:referenceToComplianceSystem": {
+                          "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                          "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                        },
+                        "common:approvalOfOverallCompliance": {
+                          "type": "string",
+                          "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:nomenclatureCompliance": {
+                          "type": "string",
+                          "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:methodologicalCompliance": {
+                          "type": "string",
+                          "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:reviewCompliance": {
+                          "type": "string",
+                          "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:documentationCompliance": {
+                          "type": "string",
+                          "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:qualityCompliance": {
+                          "type": "string",
+                          "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:other": {
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                        }
+                      },
+                      "required": [
+                        "common:referenceToComplianceSystem",
+                        "common:approvalOfOverallCompliance",
+                        "common:nomenclatureCompliance",
+                        "common:methodologicalCompliance",
+                        "common:reviewCompliance",
+                        "common:documentationCompliance",
+                        "common:qualityCompliance"
                       ]
                     },
-                    "common:nomenclatureCompliance": {
-                      "type": "string",
-                      "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:methodologicalCompliance": {
-                      "type": "string",
-                      "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:reviewCompliance": {
-                      "type": "string",
-                      "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:documentationCompliance": {
-                      "type": "string",
-                      "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:qualityCompliance": {
-                      "type": "string",
-                      "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:other": {
-                      "type": "string"
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "common:referenceToComplianceSystem": {
+                            "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                            "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                          },
+                          "common:approvalOfOverallCompliance": {
+                            "type": "string",
+                            "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:nomenclatureCompliance": {
+                            "type": "string",
+                            "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:methodologicalCompliance": {
+                            "type": "string",
+                            "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:reviewCompliance": {
+                            "type": "string",
+                            "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:documentationCompliance": {
+                            "type": "string",
+                            "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:qualityCompliance": {
+                            "type": "string",
+                            "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:other": {
+                            "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                          }
+                        },
+                        "required": [
+                          "common:referenceToComplianceSystem",
+                          "common:approvalOfOverallCompliance",
+                          "common:nomenclatureCompliance",
+                          "common:methodologicalCompliance",
+                          "common:reviewCompliance",
+                          "common:documentationCompliance",
+                          "common:qualityCompliance"
+                        ]
+                      },
+                      "minItems": 1
                     }
-                  },
-                  "required": [
-                    "common:referenceToComplianceSystem",
-                    "common:approvalOfOverallCompliance",
-                    "common:nomenclatureCompliance",
-                    "common:methodologicalCompliance",
-                    "common:reviewCompliance",
-                    "common:documentationCompliance",
-                    "common:qualityCompliance"
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -761,7 +863,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -769,7 +871,7 @@
             "dataSources",
             "validation",
             "complianceDeclarations"
-          ] 
+          ]
         },
         "administrativeInformation": {
           "description": "Information required for data set management and administration.",
@@ -792,7 +894,7 @@
                   "description": "Documentation of the intended application(s) of data collection and data set modelling. This indicates / includes information on the level of detail, the specifidity, and the quality ambition in the effort."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               }
             },
@@ -805,7 +907,7 @@
                   "description": "\"Contact data set\" of the person(s), working group(s), organisation(s) or database network, that generated the data set, i.e. being responsible for its correctness regarding methods, inventory, and documentation."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -862,7 +964,7 @@
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -880,12 +982,16 @@
                   "description": "Date when the data set was revised for the last time, typically manually set."
                 },
                 "common:dataSetVersion": {
-                  "type": "string",
+                  "allOf": [
+                    {
+                      "$ref": "tidas_data_types.json#/$defs/Version"
+                    }
+                  ],
                   "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the \"Data set version\" uniquely identifies each data set."
                 },
                 "common:referenceToPrecedingDataSetVersion": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                  "description": "Last preceding data set, which was replaced by this version. Either a URI of that data set (i.e. an internet address) or its UUID plus version number is given (or both)."
+                  "description": "Last preceding data set, which was replaced by this version. In TIDAS, this reference includes the preceding data set URI, UUID, and version number."
                 },
                 "common:permanentDataSetURI": {
                   "type": "string",
@@ -901,10 +1007,10 @@
                     "Final draft for external review",
                     "Data set finalised; unpublished",
                     "Under revision",
-                    "Withdrawn", 
+                    "Withdrawn",
                     "Data set finalised; subsystems published",
                     "Data set finalised; entirely published"
-                  ] 
+                  ]
                 },
                 "common:referenceToUnchangedRepublication": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
@@ -927,7 +1033,7 @@
                   "description": "Access restrictions / use conditions for this data set as free text or referring to e.g. license conditions. In case of no restrictions \"None\" is entered."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -937,7 +1043,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -989,7 +1095,7 @@
                       "enum": [
                         "undefined",
                         "log-normal",
-                        "normalisation",
+                        "normal",
                         "triangular",
                         "uniform"
                       ]
@@ -1030,7 +1136,7 @@
                       "description": "General information about the data set, including e.g. general (internal, not reviewed) quality statements as well as information sources used. (Note: Please also check the more specific fields e.g. on \"Intended application\", \"Advice on data set use\" and the fields in the \"Modelling and validation\" section to avoid overlapping entries.)"
                     },
                     "common:other": {
-                      "type": "string"
+                      "$ref": "tidas_data_types.json#/$defs/CommonOther"
                     }
                   },
                   "required": [
@@ -1073,13 +1179,13 @@
                         "$ref": "tidas_data_types.json#/$defs/Real",
                         "description": "Maximum value of the characterisation factor for the exchange in case uncertainty distribution is uniform or triangular."
                       },
-                      "uncertaintyType": {
+                      "uncertaintyDistributionType": {
                         "type": "string",
                         "description": "Defines the kind of uncertainty distribution that is valid for this particular object or parameter.",
                         "enum": [
                           "undefined",
                           "log-normal",
-                          "normalisation",
+                          "normal",
                           "triangular",
                           "uniform"
                         ]
@@ -1135,7 +1241,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -1143,7 +1249,7 @@
           ]
         },
         "common:other": {
-          "type": "string"
+          "$ref": "tidas_data_types.json#/$defs/CommonOther"
         }
       },
       "required": [

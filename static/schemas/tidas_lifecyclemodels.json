@@ -66,7 +66,7 @@
                       "description": "Further, quantitative specifying information on the good, service or function in technical term(s): qualifying constituent(s)-content and / or energy-content per unit etc. as appropriate. Separated by commata. (Note: non-qualifying flow properties, CAS No, Synonyms, Chemical formulas etc. are to be documented exclusively in the \"Flow data set\" of the reference flow of this life cycle model.)"
                     },
                     "common:other": {
-                      "type": "string"
+                      "$ref": "tidas_data_types.json#/$defs/CommonOther"
                     }
                   },
                   "required": [
@@ -81,166 +81,182 @@
                   "properties": {
                     "common:classification": {
                       "description": "Optional statistical or other classification of the data set. Typically also used for structuring LCA databases.",
-                      "type": "object",
-                      "properties": {
-                        "common:class": {
-                          "type": "array",
-                          "items": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "@level": {
-                                  "$ref": "tidas_data_types.json#/$defs/LevelType",
-                                  "const": "0"
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "common:class": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "@level": {
+                                      "$ref": "tidas_data_types.json#/$defs/LevelType",
+                                      "const": "0"
+                                    },
+                                    "@classId": {
+                                      "type": "string"
+                                    },
+                                    "#text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "dependencies": {
+                                    "@level": {
+                                      "$ref": "./tidas_processes_category.json"
+                                    }
+                                  },
+                                  "required": [
+                                    "@level",
+                                    "@classId",
+                                    "#text"
+                                  ]
                                 },
-                                "@classId": {
-                                  "type": "string"
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "@level": {
+                                      "$ref": "tidas_data_types.json#/$defs/LevelType",
+                                      "const": "1"
+                                    },
+                                    "@classId": {
+                                      "type": "string"
+                                    },
+                                    "#text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "dependencies": {
+                                    "@level": {
+                                      "$ref": "./tidas_processes_category.json"
+                                    }
+                                  },
+                                  "required": [
+                                    "@level",
+                                    "@classId",
+                                    "#text"
+                                  ]
                                 },
-                                "#text": {
-                                  "type": "string"
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "@level": {
+                                      "$ref": "tidas_data_types.json#/$defs/LevelType",
+                                      "const": "2"
+                                    },
+                                    "@classId": {
+                                      "type": "string"
+                                    },
+                                    "#text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "dependencies": {
+                                    "@level": {
+                                      "$ref": "./tidas_processes_category.json"
+                                    }
+                                  },
+                                  "required": [
+                                    "@level",
+                                    "@classId",
+                                    "#text"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "@level": {
+                                      "$ref": "tidas_data_types.json#/$defs/LevelType",
+                                      "const": "3"
+                                    },
+                                    "@classId": {
+                                      "type": "string"
+                                    },
+                                    "#text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "dependencies": {
+                                    "@level": {
+                                      "$ref": "./tidas_processes_category.json"
+                                    }
+                                  },
+                                  "required": [
+                                    "@level",
+                                    "@classId",
+                                    "#text"
+                                  ]
                                 }
-                              },
-                              "dependencies": {
-                                "@level": {
-                                  "$ref": "./tidas_processes_category.json"
-                                }
-                              },
-                              "required": [
-                                "@level",
-                                "@classId",
-                                "#text"
-                              ]
+                              ],
+                              "uniqueItems": true,
+                              "maxItems": 4,
+                              "additionalItems": false
                             },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "@level": {
-                                  "$ref": "tidas_data_types.json#/$defs/LevelType",
-                                  "const": "1"
-                                },
-                                "@classId": {
-                                  "type": "string"
-                                },
-                                "#text": {
-                                  "type": "string"
-                                }
-                              },
-                              "dependencies": {
-                                "@level": {
-                                  "$ref": "./tidas_processes_category.json"
-                                }
-                              },
-                              "required": [
-                                "@level",
-                                "@classId",
-                                "#text"
-                              ]
+                            "common:other": {
+                              "$ref": "tidas_data_types.json#/$defs/CommonOther"
                             },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "@level": {
-                                  "$ref": "tidas_data_types.json#/$defs/LevelType",
-                                  "const": "2"
-                                },
-                                "@classId": {
-                                  "type": "string"
-                                },
-                                "#text": {
-                                  "type": "string"
-                                }
-                              },
-                              "dependencies": {
-                                "@level": {
-                                  "$ref": "./tidas_processes_category.json"
-                                }
-                              },
-                              "required": [
-                                "@level",
-                                "@classId",
-                                "#text"
-                              ]
+                            "@name": {
+                              "type": "string",
+                              "description": "Name of the classification system (e.g. CPC, ISIC, HS). Per ILCD this defaults to 'ILCD' when absent; set it explicitly for non-ILCD systems."
                             },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "@level": {
-                                  "$ref": "tidas_data_types.json#/$defs/LevelType",
-                                  "const": "3"
-                                },
-                                "@classId": {
-                                  "type": "string"
-                                },
-                                "#text": {
-                                  "type": "string"
-                                }
-                              },
-                              "dependencies": {
-                                "@level": {
-                                  "$ref": "./tidas_processes_category.json"
-                                }
-                              },
-                              "required": [
-                                "@level",
-                                "@classId",
-                                "#text"
-                              ]
+                            "@classes": {
+                              "type": "string",
+                              "description": "Optional URL or identifier of the classification file/system."
                             }
-                          ],
-                          "uniqueItems": true,
-                          "allOf": [
-                            {
-                              "maxContains": 1,
-                              "minContains": 0,
-                              "contains": {
-                                "properties": {
-                                  "@level": {
-                                    "const": "0"
-                                  }
-                                }
-                              }
-                            },
-                            {
-                              "maxContains": 1,
-                              "minContains": 0,
-                              "contains": {
-                                "properties": {
-                                  "@level": {
-                                    "const": "1"
-                                  }
-                                }
-                              }
-                            },
-                            {
-                              "maxContains": 1,
-                              "minContains": 0,
-                              "contains": {
-                                "properties": {
-                                  "@level": {
-                                    "const": "2"
-                                  }
-                                }
-                              }
-                            },
-                            {
-                              "maxContains": 1,
-                              "minContains": 0,
-                              "contains": {
-                                "properties": {
-                                  "@level": {
-                                    "const": "3"
-                                  }
-                                }
-                              }
-                            }      
+                          },
+                          "required": [
+                            "common:class"
                           ]
                         },
-                        "common:other": {
-                          "type": "string"
+                        {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "description": "One named classification system (e.g. CPC or HS). Used in the array form to let multiple systems coexist.",
+                            "properties": {
+                              "@name": {
+                                "type": "string",
+                                "description": "Name of the classification system (e.g. CPC, ISIC, HS). Per ILCD this defaults to 'ILCD' when absent; set it explicitly for non-ILCD systems."
+                              },
+                              "@classes": {
+                                "type": "string",
+                                "description": "Optional URL or identifier of the classification file/system."
+                              },
+                              "common:class": {
+                                "type": "array",
+                                "minItems": 1,
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "@level": {
+                                      "$ref": "tidas_data_types.json#/$defs/LevelType"
+                                    },
+                                    "@classId": {
+                                      "type": "string"
+                                    },
+                                    "#text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "@level",
+                                    "@classId",
+                                    "#text"
+                                  ]
+                                }
+                              },
+                              "common:other": {
+                                "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                              }
+                            },
+                            "required": [
+                              "@name",
+                              "common:class"
+                            ]
+                          }
                         }
-                      },
-                      "required": [
-                        "common:class"
                       ]
                     }
                   },
@@ -261,7 +277,7 @@
                   "description": "\"Source data set(s)\" of detailed LCI or LCA study or other study on the process or product represented by this data set, as well as documents / files with overarching documentative information on technology, geographical and / or time aspects etc. on the level of the life cycle model. (Note: can indirectly reference to electronic and online files.)"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -276,11 +292,10 @@
               "properties": {
                 "referenceToReferenceProcess": {
                   "description": "Process instance that scales the life cycle model and thereby all directly and indirectly connected process instances of the model; it is often a process instance at the \"end\" of the life cycle model chain, or the process that provides the delivered good, service or function of the model.",
-                  "type": "string",
-                  "pattern": "^-?\\d+$"
+                  "type": "integer"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -352,7 +367,7 @@
                               },
                               "referenceToProcess": {
                                 "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                                "description": "Reference to the process data set and (optional) identifying its version, that is included in the eILCD archive of the Life cycle model and/or accessible at a remote location, i.e. an URI or URL."
+                                "description": "Reference to the process data set, including its version, that is included in the eILCD archive of the Life cycle model and/or accessible at a remote location, i.e. a URI or URL."
                               },
                               "scalingFactors": {
                                 "$ref": "tidas_data_types.json#/$defs/Real",
@@ -472,11 +487,16 @@
                                                       "true",
                                                       "false"
                                                     ]
+                                                  },
+                                                  "@version": {
+                                                    "$ref": "tidas_data_types.json#/$defs/Version",
+                                                    "description": "Version number of the referenced data set."
                                                   }
                                                 },
                                                 "required": [
                                                   "@id",
-                                                  "@flowUUID"
+                                                  "@flowUUID",
+                                                  "@version"
                                                 ]
                                               },
                                               {
@@ -504,21 +524,30 @@
                                                         "true",
                                                         "false"
                                                       ]
+                                                    },
+                                                    "@version": {
+                                                      "$ref": "tidas_data_types.json#/$defs/Version",
+                                                      "description": "Version number of the referenced data set."
                                                     }
                                                   },
                                                   "required": [
                                                     "@id",
-                                                    "@flowUUID"
+                                                    "@flowUUID",
+                                                    "@version"
                                                   ]
                                                 }
                                               }
                                             ]
+                                          },
+                                          "@version": {
+                                            "$ref": "tidas_data_types.json#/$defs/Version",
+                                            "description": "Version number of the referenced data set."
                                           }
                                         },
                                         "required": [
-                                          "@dominant",
                                           "@flowUUID",
-                                          "downstreamProcess"
+                                          "downstreamProcess",
+                                          "@version"
                                         ]
                                       },
                                       {
@@ -564,11 +593,16 @@
                                                         "true",
                                                         "false"
                                                       ]
+                                                    },
+                                                    "@version": {
+                                                      "$ref": "tidas_data_types.json#/$defs/Version",
+                                                      "description": "Version number of the referenced data set."
                                                     }
                                                   },
                                                   "required": [
                                                     "@id",
-                                                    "@flowUUID"
+                                                    "@flowUUID",
+                                                    "@version"
                                                   ]
                                                 },
                                                 {
@@ -596,21 +630,30 @@
                                                           "true",
                                                           "false"
                                                         ]
+                                                      },
+                                                      "@version": {
+                                                        "$ref": "tidas_data_types.json#/$defs/Version",
+                                                        "description": "Version number of the referenced data set."
                                                       }
                                                     },
                                                     "required": [
                                                       "@id",
-                                                      "@flowUUID"
+                                                      "@flowUUID",
+                                                      "@version"
                                                     ]
                                                   }
                                                 }
                                               ]
+                                            },
+                                            "@version": {
+                                              "$ref": "tidas_data_types.json#/$defs/Version",
+                                              "description": "Version number of the referenced data set."
                                             }
                                           },
                                           "required": [
-                                            "@dominant",
                                             "@flowUUID",
-                                            "downstreamProcess"
+                                            "downstreamProcess",
+                                            "@version"
                                           ]
                                         }
                                       }
@@ -619,14 +662,13 @@
                                 }
                               },
                               "common:other": {
-                                "type": "string"
+                                "$ref": "tidas_data_types.json#/$defs/CommonOther"
                               }
                             },
                             "required": [
-                            "@dataSetInternalID",
-                            "@multiplicationFactor",
-                            "referenceToProcess",
-                            "connections"
+                              "@dataSetInternalID",
+                              "@multiplicationFactor",
+                              "referenceToProcess"
                             ]
                           }
                         },
@@ -644,7 +686,7 @@
                             },
                             "referenceToProcess": {
                               "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                              "description": "Reference to the process data set and (optional) identifying its version, that is included in the eILCD archive of the Life cycle model and/or accessible at a remote location, i.e. an URI or URL."
+                              "description": "Reference to the process data set, including its version, that is included in the eILCD archive of the Life cycle model and/or accessible at a remote location, i.e. a URI or URL."
                             },
                             "scalingFactors": {
                               "$ref": "tidas_data_types.json#/$defs/Real",
@@ -772,11 +814,16 @@
                                                     "true",
                                                     "false"
                                                   ]
+                                                },
+                                                "@version": {
+                                                  "$ref": "tidas_data_types.json#/$defs/Version",
+                                                  "description": "Version number of the referenced data set."
                                                 }
                                               },
                                               "required": [
                                                 "@id",
-                                                "@flowUUID"
+                                                "@flowUUID",
+                                                "@version"
                                               ]
                                             },
                                             {
@@ -804,21 +851,30 @@
                                                       "true",
                                                       "false"
                                                     ]
+                                                  },
+                                                  "@version": {
+                                                    "$ref": "tidas_data_types.json#/$defs/Version",
+                                                    "description": "Version number of the referenced data set."
                                                   }
                                                 },
                                                 "required": [
-                                                "@id",
-                                                "@flowUUID"
+                                                  "@id",
+                                                  "@flowUUID",
+                                                  "@version"
                                                 ]
                                               }
                                             }
                                           ]
+                                        },
+                                        "@version": {
+                                          "$ref": "tidas_data_types.json#/$defs/Version",
+                                          "description": "Version number of the referenced data set."
                                         }
                                       },
                                       "required": [
-                                        "@dominant",
                                         "@flowUUID",
-                                        "downstreamProcess"
+                                        "downstreamProcess",
+                                        "@version"
                                       ]
                                     },
                                     {
@@ -864,11 +920,16 @@
                                                       "true",
                                                       "false"
                                                     ]
+                                                  },
+                                                  "@version": {
+                                                    "$ref": "tidas_data_types.json#/$defs/Version",
+                                                    "description": "Version number of the referenced data set."
                                                   }
                                                 },
                                                 "required": [
-                                                "@id",
-                                                "@flowUUID"
+                                                  "@id",
+                                                  "@flowUUID",
+                                                  "@version"
                                                 ]
                                               },
                                               {
@@ -895,22 +956,31 @@
                                                       "enum": [
                                                         "true",
                                                         "false"
-                                                      ] 
+                                                      ]
+                                                    },
+                                                    "@version": {
+                                                      "$ref": "tidas_data_types.json#/$defs/Version",
+                                                      "description": "Version number of the referenced data set."
                                                     }
                                                   },
                                                   "required": [
                                                     "@id",
-                                                    "@flowUUID"
+                                                    "@flowUUID",
+                                                    "@version"
                                                   ]
                                                 }
                                               }
                                             ]
+                                          },
+                                          "@version": {
+                                            "$ref": "tidas_data_types.json#/$defs/Version",
+                                            "description": "Version number of the referenced data set."
                                           }
                                         },
                                         "required": [
-                                          "@dominant",
                                           "@flowUUID",
-                                          "downstreamProcess"
+                                          "downstreamProcess",
+                                          "@version"
                                         ]
                                       }
                                     }
@@ -922,14 +992,13 @@
                               ]
                             },
                             "common:other": {
-                              "type": "string"
+                              "$ref": "tidas_data_types.json#/$defs/CommonOther"
                             }
                           },
                           "required": [
-                          "@dataSetInternalID",
-                          "@multiplicationFactor",
-                          "referenceToProcess",
-                          "connections"
+                            "@dataSetInternalID",
+                            "@multiplicationFactor",
+                            "referenceToProcess"
                           ]
                         }
                       ]
@@ -941,7 +1010,7 @@
                   "description": "\"Source data set\" of the flow diagramm(s), and/or screenshot(s) of the life cycle model represented by this data set. For clearer illustration and documentation of the model. Note: The source data set references the actual picture as jpd or png file or as e.g. pdf file with several pictures."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -968,7 +1037,7 @@
                   "description": "Specific methodological advice for data set users that requires attention. E.g. on inclusion/exclusion of whole life cycle stages, specific use phase behavior to be modelled, and other methodological advices."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               }
             },
@@ -995,7 +1064,7 @@
                           "description": "\"Source data set\" of the complete review report."
                         },
                         "common:other": {
-                          "type": "string"
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
                         }
                       },
                       "required": [
@@ -1020,7 +1089,7 @@
                             "description": "\"Source data set\" of the complete review report."
                           },
                           "common:other": {
-                            "type": "string"
+                            "$ref": "tidas_data_types.json#/$defs/CommonOther"
                           }
                         },
                         "required": [
@@ -1031,7 +1100,7 @@
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -1043,81 +1112,166 @@
               "type": "object",
               "properties": {
                 "compliance": {
-                  "properties": {
-                    "common:referenceToComplianceSystem": {
-                      "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                      "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
-                    },
-                    "common:approvalOfOverallCompliance": {
-                      "type": "string",
-                      "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
+                  "description": "One compliance declaration. Multiple declarations may be provided.",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "common:referenceToComplianceSystem": {
+                          "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                          "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                        },
+                        "common:approvalOfOverallCompliance": {
+                          "type": "string",
+                          "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:nomenclatureCompliance": {
+                          "type": "string",
+                          "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:methodologicalCompliance": {
+                          "type": "string",
+                          "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:reviewCompliance": {
+                          "type": "string",
+                          "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:documentationCompliance": {
+                          "type": "string",
+                          "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:qualityCompliance": {
+                          "type": "string",
+                          "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        },
+                        "common:other": {
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                        }
+                      },
+                      "required": [
+                        "common:referenceToComplianceSystem",
+                        "common:approvalOfOverallCompliance",
+                        "common:nomenclatureCompliance",
+                        "common:methodologicalCompliance",
+                        "common:reviewCompliance",
+                        "common:documentationCompliance",
+                        "common:qualityCompliance"
                       ]
                     },
-                    "common:nomenclatureCompliance": {
-                      "type": "string",
-                      "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:methodologicalCompliance": {
-                      "type": "string",
-                      "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:reviewCompliance": {
-                      "type": "string",
-                      "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:documentationCompliance": {
-                      "type": "string",
-                      "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:qualityCompliance": {
-                      "type": "string",
-                      "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
-                      ]
-                    },
-                    "common:other": {
-                      "type": "string"
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "common:referenceToComplianceSystem": {
+                            "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                            "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                          },
+                          "common:approvalOfOverallCompliance": {
+                            "type": "string",
+                            "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:nomenclatureCompliance": {
+                            "type": "string",
+                            "description": "Nomenclature compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:methodologicalCompliance": {
+                            "type": "string",
+                            "description": "Methodological compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:reviewCompliance": {
+                            "type": "string",
+                            "description": "Review/Verification compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:documentationCompliance": {
+                            "type": "string",
+                            "description": "Documentation/Reporting compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:qualityCompliance": {
+                            "type": "string",
+                            "description": "Quality compliance of this data set with the respective requirements set by the \"compliance system\" refered to.",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          },
+                          "common:other": {
+                            "$ref": "tidas_data_types.json#/$defs/CommonOther"
+                          }
+                        },
+                        "required": [
+                          "common:referenceToComplianceSystem",
+                          "common:approvalOfOverallCompliance",
+                          "common:nomenclatureCompliance",
+                          "common:methodologicalCompliance",
+                          "common:reviewCompliance",
+                          "common:documentationCompliance",
+                          "common:qualityCompliance"
+                        ]
+                      },
+                      "minItems": 1
                     }
-                  },
-                  "required": [
-                    "common:referenceToComplianceSystem",
-                    "common:approvalOfOverallCompliance",
-                    "common:nomenclatureCompliance",
-                    "common:methodologicalCompliance",
-                    "common:reviewCompliance",
-                    "common:documentationCompliance",
-                    "common:qualityCompliance"
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -1125,7 +1279,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -1154,11 +1308,12 @@
                   "description": "Documentation of the intended application(s) of data collection and data set modelling. This indicates / includes information on the level of detail, the specifidity, and the quality ambition in the effort."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
-                "common:referenceToCommissioner"
+                "common:referenceToCommissioner",
+                "common:intendedApplications"
               ]
             },
             "dataGenerator": {
@@ -1170,7 +1325,7 @@
                   "description": "\"Contact data set\" of the person(s), working group(s), organisation(s) or database network, that generated the data set, i.e. being responsible for its correctness regarding methods, inventory, and documentative information."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               }
             },
@@ -1191,13 +1346,13 @@
                   "description": "\"Contact data set\" of the responsible person or entity that has documented this data set, i.e. entered the data and the descriptive information."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
                 "common:timeStamp",
                 "common:referenceToDataSetFormat",
-                "common:referenceToPersonOrEntityEnteringTheDataSet"
+                "common:referenceToPersonOrEntityEnteringTheData"
               ]
             },
             "publicationAndOwnership": {
@@ -1205,12 +1360,16 @@
               "type": "object",
               "properties": {
                 "common:dataSetVersion": {
-                  "type": "string",
-                  "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the \"Data set version\" uniquely identifies each data set." 
+                  "allOf": [
+                    {
+                      "$ref": "tidas_data_types.json#/$defs/Version"
+                    }
+                  ],
+                  "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the \"Data set version\" uniquely identifies each data set."
                 },
                 "common:referenceToPrecedingDataSetVersion": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                  "description": "Last preceding data set, which was replaced by this version. Either a URI of that data set (i.e. an internet address) or its UUID plus version number is given (or both)."
+                  "description": "Last preceding data set, which was replaced by this version. In TIDAS, this reference includes the preceding data set URI, UUID, and version number."
                 },
                 "common:permanentDataSetURI": {
                   "type": "string",
@@ -1227,9 +1386,9 @@
                   "enum": [
                     "true",
                     "false"
-                  ] 
+                  ]
                 },
-                "referenceToEntitiesWithExclusiveAccess": {
+                "common:referenceToEntitiesWithExclusiveAccess": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
                   "description": "\"Contact data set\" of those entities or persons (or groups of these), to which an exclusive access to this data set is granted. Mainly intended to be used in confidentiality management in projects. [Note: See also field \"Access and use restrictions\".]"
                 },
@@ -1249,7 +1408,7 @@
                   "description": "Access restrictions / use conditions for this data set as free text or referring to e.g. license conditions. In case of no restrictions \"None\" is entered."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -1261,7 +1420,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -1271,7 +1430,7 @@
           ]
         },
         "common:other": {
-          "type": "string"
+          "$ref": "tidas_data_types.json#/$defs/CommonOther"
         }
       },
       "required": [

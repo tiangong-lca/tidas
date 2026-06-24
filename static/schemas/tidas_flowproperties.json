@@ -44,7 +44,7 @@
                   "description": "Synonyms are alternative names for the \"Name\" of the Flow property."
                 },
                 "classificationInformation": {
-                  "description": "Hierachical classification of the Flow property foreseen to be used to structure the Flow property content of the database. (Note: This entry is NOT required for the identification of the Flow property data set. It should nevertheless be avoided to use identical names for Flow properties in the same class.",
+                  "description": "Hierarchical classification of the Flow property foreseen to be used to structure the Flow property content of the database. (Note: This entry is NOT required for the identification of the Flow property data set. It should nevertheless be avoided to use identical names for Flow properties in the same class.",
                   "type": "object",
                   "properties": {
                     "common:classification": {
@@ -76,7 +76,7 @@
                           ]
                         },
                         "common:other": {
-                          "type": "string"
+                          "$ref": "tidas_data_types.json#/$defs/CommonOther"
                         }
                       },
                       "required": [
@@ -93,7 +93,7 @@
                   "description": "Free text for general information about the data set. It may contain comments on e.g. information sources used as well as general (internal, not reviewed) quality statements."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -111,7 +111,7 @@
                   "description": "\"Unit group data set\" and its reference unit, in which the Flow property is measured."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -119,7 +119,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -139,7 +139,7 @@
                   "description": "\"Source data set\" of data source(s) used for the data set e.g. a paper, a questionnaire, a monography etc. The main raw data sources should be named, too. [Note: relevant especially for market price data.]"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               }
             },
@@ -148,30 +148,60 @@
               "description": "Statements on compliance of several data set aspects with compliance requirements as defined by the referenced compliance system (e.g. an EPD scheme, handbook of a national or international data network such as the ILCD, etc.).",
               "properties": {
                 "compliance": {
-                  "type": "object",
-                  "description": "one compliance declaration",
-                  "properties": {
-                    "common:referenceToComplianceSystem": {
-                      "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                      "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
-                    },
-                    "common:approvalOfOverallCompliance": {
-                      "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
-                      "type": "string",
-                      "enum": [
-                        "Fully compliant",
-                        "Not compliant",
-                        "Not defined"
+                  "description": "One compliance declaration. Multiple declarations may be provided.",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "common:referenceToComplianceSystem": {
+                          "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                          "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                        },
+                        "common:approvalOfOverallCompliance": {
+                          "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                          "type": "string",
+                          "enum": [
+                            "Fully compliant",
+                            "Not compliant",
+                            "Not defined"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "common:referenceToComplianceSystem",
+                        "common:approvalOfOverallCompliance"
                       ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "common:referenceToComplianceSystem": {
+                            "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
+                            "description": "\"Source data set\" of the \"Compliance system\" that is declared to be met by the data set."
+                          },
+                          "common:approvalOfOverallCompliance": {
+                            "description": "Official approval whether or not and in how far the data set meets all the requirements of the \"Compliance system\" refered to. This approval should be issued/confirmed by the owner of that compliance system, who is identified via the respective \"Contact data set\".",
+                            "type": "string",
+                            "enum": [
+                              "Fully compliant",
+                              "Not compliant",
+                              "Not defined"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "common:referenceToComplianceSystem",
+                          "common:approvalOfOverallCompliance"
+                        ]
+                      },
+                      "minItems": 1
                     }
-                  },
-                  "required": [
-                    "common:referenceToComplianceSystem",
-                    "common:approvalOfOverallCompliance"
                   ]
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -179,7 +209,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -205,7 +235,7 @@
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -218,12 +248,16 @@
               "description": "Information related to publication and version management of the data set including copyright and access restrictions.",
               "properties": {
                 "common:dataSetVersion": {
-                  "type": "string",
+                  "allOf": [
+                    {
+                      "$ref": "tidas_data_types.json#/$defs/Version"
+                    }
+                  ],
                   "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the \"Data set version\" uniquely identifies each data set."
                 },
                 "common:referenceToPrecedingDataSetVersion": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                  "description": "Last preceding data set, which was replaced by this version. Either a URI of that data set (i.e. an internet address) or its UUID plus version number is given (or both)."
+                  "description": "Last preceding data set, which was replaced by this version. In TIDAS, this reference includes the preceding data set URI, UUID, and version number."
                 },
                 "common:permanentDataSetURI": {
                   "type": "string",
@@ -235,7 +269,7 @@
                   "description": "\"Contact data set\" of the person or entity who owns this data set. (Note: this is not necessarily the publisher of the data set.)"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -244,7 +278,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -253,7 +287,7 @@
           ]
         },
         "common:other": {
-          "type": "string"
+          "$ref": "tidas_data_types.json#/$defs/CommonOther"
         }
       },
       "required": [

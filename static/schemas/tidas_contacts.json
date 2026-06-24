@@ -46,7 +46,7 @@
                 },
                 "classificationInformation": {
                   "type": "object",
-                  "description": "Hierachical classification of the contact foreseen to be used to structure the contact content of the database. (Note: This entry is NOT required for the identification of the contact data set. It should nevertheless be avoided to use identical names for contacts in the same class.",
+                  "description": "Hierarchical classification of the contact foreseen to be used to structure the contact content of the database. (Note: This entry is NOT required for the identification of the contact data set. It should nevertheless be avoided to use identical names for contacts in the same class.",
                   "properties": {
                     "common:classification": {
                       "type": "object",
@@ -109,30 +109,8 @@
                                 }
                               ],
                               "uniqueItems": true,
-                              "allOf": [
-                                {
-                                  "maxContains": 1,
-                                  "minContains": 0,
-                                  "contains": {
-                                    "properties": {
-                                      "@level": {
-                                        "const": "0"
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "maxContains": 1,
-                                  "minContains": 0,
-                                  "contains": {
-                                    "properties": {
-                                      "@level": {
-                                        "const": "1"
-                                      }
-                                    }
-                                  }
-                                }
-                              ]
+                              "maxItems": 2,
+                              "additionalItems": false
                             },
                             {
                               "type": "object",
@@ -167,7 +145,7 @@
                       ]
                     },
                     "common:other": {
-                      "type": "string"
+                      "$ref": "tidas_data_types.json#/$defs/CommonOther"
                     }
                   },
                   "required": [
@@ -209,18 +187,18 @@
                   "description": "\"Source data set\" of the logo of the organisation or source to be used in reports etc."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
-                "common:UUID", 
-                "common:shortName", 
+                "common:UUID",
+                "common:shortName",
                 "common:name",
                 "classificationInformation"
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -242,11 +220,11 @@
                   "description": "\"Source data set\" of the used version of the ILCD format. If additional data format fields have been integrated into the data set file, using the \"namespace\" option, the used format namespace(s) are to be given. This is the case if the data sets carries additional information as specified by other, particular LCA formats, e.g. of other database networks or LCA softwares."
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
-                "common:timeStamp", 
+                "common:timeStamp",
                 "common:referenceToDataSetFormat"
               ]
             },
@@ -254,12 +232,16 @@
               "type": "object",
               "properties": {
                 "common:dataSetVersion": {
-                  "type": "string",
+                  "allOf": [
+                    {
+                      "$ref": "tidas_data_types.json#/$defs/Version"
+                    }
+                  ],
                   "description": "Version number of data set. First two digits refer to major updates, the second two digits to minor revisions and error corrections etc. The third three digits are intended for automatic and internal counting of versions during data set development. Together with the data set's UUID, the 'Data set version' uniquely identifies each data set."
                 },
-                "referenceToPrecedingDataSetVersion": {
+                "common:referenceToPrecedingDataSetVersion": {
                   "$ref": "tidas_data_types.json#/$defs/GlobalReferenceType",
-                  "description": "Last preceding data set, which was replaced by this version. Either a URI of that data set (i.e. an internet address) or its UUID plus version number is given (or both)."
+                  "description": "Last preceding data set, which was replaced by this version. In TIDAS, this reference includes the preceding data set URI, UUID, and version number."
                 },
                 "common:permanentDataSetURI": {
                   "type": "string",
@@ -271,7 +253,7 @@
                   "description": "\"Contact data set\" of the person or entity who owns this data set. (Note: this is not necessarily the publisher of the data set.)"
                 },
                 "common:other": {
-                  "type": "string"
+                  "$ref": "tidas_data_types.json#/$defs/CommonOther"
                 }
               },
               "required": [
@@ -280,7 +262,7 @@
               ]
             },
             "common:other": {
-              "type": "string"
+              "$ref": "tidas_data_types.json#/$defs/CommonOther"
             }
           },
           "required": [
@@ -289,7 +271,7 @@
           ]
         },
         "common:other": {
-          "type": "string"
+          "$ref": "tidas_data_types.json#/$defs/CommonOther"
         }
       },
       "required": [
@@ -303,7 +285,7 @@
       ]
     },
     "common:other": {
-      "type": "string"
+      "$ref": "tidas_data_types.json#/$defs/CommonOther"
     }
   },
   "required": [
