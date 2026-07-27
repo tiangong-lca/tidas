@@ -8,7 +8,7 @@ TIDAS Schema 是一个基于 JSON Schema 构建的生命周期评估（LCA）数
 
 与传统的 ILCD 所采用的 XML 格式相比，TIDAS 采用 JSON 结构，在简洁性、可读性、可扩展性及系统集成能力方面具备显著优势。这一设计使得 TIDAS 在保持与现有国际数据标准兼容的同时，更易于与现代数字基础设施（如区块链系统、数据空间、人工智能引擎等）进行对接，增强了数据的流通性、智能性和可信性。
 
-> 👉 [点击这里下载使用 **TIDAS** 的 JSON Schema文件](https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools/tidas/schemas)
+> 👉 [在本站仓库查看和下载公开的 **TIDAS** JSON Schema 文件](https://github.com/tiangong-lca/tidas/tree/main/static/schemas)
 
 ## 技术特点
 
@@ -27,7 +27,11 @@ TIDAS Schema 是一个基于 JSON Schema 构建的生命周期评估（LCA）数
 - **增强的数据要求**  
   在对 ILCD 格式进行无损映射的基础上，TIDAS Schema 进一步引入了对 EF（Environmental Footprint）、GLAD（Global LCA Data Access）等标准的内容要求。例如对某些字段设定为必填项，增强了数据的完整性与可交换性。满足 TIDAS JSON Schema 的数据，必然也满足 ILCD 的基本规范，进一步保障数据的国际互认与流通。
 
-> 👉 [点击这里查看和下载 **ILCD** 的 Schema 文件和样式表](https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools/eilcd)
+`tidas` CLI v0.1.1 内嵌并校验转换与验证所需的 JSON Schema、ILCD XSD 和
+XSLT。使用 `tidas convert` 时会在输出包中物化目标格式需要的锁定资源，因此
+无需从旧的 Python 源码目录下载文件。可通过
+[`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)
+查看资源和运行时指纹。
 
 ## 文件结构与使用
 

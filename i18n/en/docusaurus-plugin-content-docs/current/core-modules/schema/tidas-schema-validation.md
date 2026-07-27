@@ -4,45 +4,59 @@ sidebar_position: 3
 
 # Schema Validation
 
-TIDAS data structure is defined and implemented based on JSON Schema, providing standardized, automated data validation mechanisms to ensure accuracy, consistency, and extensibility of lifecycle data during compilation, exchange and sharing.
-
-JSON Schema is a universal, open structure definition standard that is platform and language independent, with flexible validation methods. Users can validate data structure using various languages and tools like JavaScript's `ajv`, Python's `jsonschema`, Java's `everit`, etc. Validation can be completed with just a few lines of code, making it ideal for rapid integration and debugging.
-
-The TIDAS project has developed an enhanced tool [`tidas-tools`](https://github.com/tiangong-lca/tidas-tools) based on this capability. The `validation.py` script adds classification hierarchy logic validation and inter-module reference resolution for TIDAS data structures on top of standard JSON Schema validation, suitable for batch, multi-module, high-complexity data validation needs.
+TIDAS data structures are defined with JSON Schema. The supported batch
+validation entry point is `tidas validate` in the unified Rust CLI. It uses the
+integrity-locked JSON Schema, ILCD XSD, and rules assets packaged with v0.1.1
+offline, without an external source tree or Python environment.
 
 ---
 
-## Validation Methods
-
-### Method 1: Simple JSON Schema Validation (Python Example)
-
-```python
-from jsonschema import validate, ValidationError
-
-with open("schema.json") as s:
-    schema = json.load(s)
-with open("data.json") as d:
-    data = json.load(d)
-
-try:
-    validate(instance=data, schema=schema)
-    print("Validation passed")
-except ValidationError as e:
-    print("Validation failed:", e.message)
-```
-
-Suitable for quick single-file validation during development and debugging.
-
-### Method 2: Batch Validation Using TIDAS Tools
+## Validate a TIDAS JSON package
 
 ```bash
-python validation.py --input-dir ./test_data --verbose
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --issues ./issues.jsonl \
+  --format json
 ```
 
-- `--input-dir`: Directory containing JSON files to validate (with subdirectories like flows, processes)
-- `--verbose`: Output detailed log information
+- The positional input directory contains the canonical TIDAS category subdirectories.
+- `--issues` atomically writes the complete deterministic JSONL issue stream.
+- `--format json` keeps stdout to a stable machine-readable report; diagnostics and progress use stderr.
+- `--report <path>` atomically persists the complete report.
 
-For more information see [TIDAS Tools Introduction](/docs/category/tidas-tools).
+## Validate an ILCD XML package
+
+```bash
+tidas validate ./ilcd-package \
+  --input-format ilcd-xml \
+  --issues ./issues.jsonl \
+  --format json
+```
+
+The validator uses only the integrity-locked XSD assets embedded in the binary
+and reuses offline validation contexts.
+
+## Inspect validator fingerprints
+
+Record the validation protocol, engine, and Schema-lock fingerprints before a
+reproducible CI or batch run:
+
+```bash
+tidas validate --describe --format json
+tidas version --format json
+```
+
+The `document-validation-batch.v1` protocol validates exactly the manifest
+documents and produces deterministic issue events plus a final evidence hash:
+
+```bash
+tidas validate ./batch-root \
+  --protocol document-validation-batch.v1 \
+  --input-manifest ./document-validation-batch.v1.jsonl \
+  --events ./validation-events.jsonl \
+  --format json
+```
 
 ---
 
@@ -57,37 +71,28 @@ TIDAS validation combines two types of checks:
 - Check field values against definitions (format, enum, etc.)
 - Support inter-module reference resolution ($ref)
 
-### 2. Classification Structure Logic Validation (TIDAS Specific)
+### 2. Package and classification logic
 
 For classification structures like flows, processes, sources:
 
 - **Hierarchy Check**: Verify `@level` sequence is correct
 - **Code Rules**: Verify child items use parent item codes as prefix
 - **Process Classification Industry Matching**: Verify industry codes comply with national standard mapping logic
+- **Reference and Package Checks**: Apply cross-module and package constraints from locked assets
 
 ---
 
 ## Validation Result Output
 
-Example of typical error output:
-
-```bash
-{
-  "message": "'name' is a required property",
-  "path": ["flowDataSet", "flowInformation", "dataSetInformation"],
-  "schemaPath": "#/required"
-}
-```
-
-This error indicates the name field is missing, with path information helping locate the exact error position.
-
-After validation completes, each file's status is output:
-
-- ✅ `PASSED.`: Validation succeeded
-- ❌ `ERROR:`: Indicates problematic files and error locations
-
-For debugging, use `--verbose` to view detailed error information and quickly locate issues.
+The normal report contains bounded issue counts and the issue-stream hash;
+`--issues` preserves every issue. Document issues represent a completed scan,
+while the report and exit status distinguish data issues from protocol or
+runtime failures. Automation should parse the stable `--format json` report
+instead of matching human-readable text.
 
 ---
 
-To learn about JSON Schema structure definition, field naming conventions and module descriptions, see Data Structure (JSON Schema). For more details about TIDAS validation tools, refer to [TIDAS Tools Introduction](/docs/category/tidas-tools).
+For JSON Schema fields and modules, see
+[Data Structure (JSON Schema)](/docs/category/tidas-json-schema). For
+installation, platform support, and legacy-command migration, see the
+[unified TIDAS CLI](/docs/category/tidas-tools).

@@ -3,34 +3,91 @@ sidebar_position: 1
 ---
 
 
-# 工具包介绍
+# 统一 TIDAS CLI
 
-TIDAS 工具包是围绕天工 LCA 数据系统设计的一组轻量工具，支持数据的验证、格式互转与交付导出操作，帮助开发者高效构建合规的生命周期数据库。
-
----
-
-## 🔍 工具能力一览
-
-TIDAS 工具包包括以下三个核心功能模块：
-
-- ✅ `validate`：检查 TIDAS 数据的结构、完整性与一致性，确保数据符合标准格式。
-- 🔄 `convert`：实现 TIDAS 与 eILCD 数据格式的双向转换，保持数据语义和信息的完整。
-- 📦 `export`：将合规数据打包为标准 ZIP 格式，支持交付、归档与平台上传。
-
-> 所有功能均支持批量处理，适配 GitHub Actions 和 CI/CD 工作流。
+TIDAS 命令行工具现在以单个跨平台 Rust 可执行文件 `tidas` 发布。当前稳定版本为
+[`v0.1.1`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)，
+运行时不需要 Python、Java、Node.js、Homebrew 或 vcpkg。
 
 ---
 
-## 🚀 快速开始
+## 🔍 命令一览
 
-1. 安装工具包  
+- `tidas validate`：离线校验 TIDAS JSON 或 ILCD XML，并可生成确定性的 JSONL 问题清单。
+- `tidas convert`：在 TIDAS JSON 与 eILCD XML 之间双向转换。
+- `tidas import`：导入 EcoSpold 1/2、SimaPro CSV、openLCA JSON-LD、openLCA process XLSX 或 ILCD。
+- `tidas export`：从数据库和可选对象存储生成确定性 TIDAS/ILCD ZIP。
+- `tidas release`：验证、转换并构建可复现的发布包。
+- `tidas ruleset`：检查随二进制发布的规则集。
+- `tidas version`：输出二进制、契约、资源和运行时指纹。
 
-   ```bash
-   pip install tidas-tools
-   ```
+所有产品命令都由 Rust 实现，支持面向自动化的 `--format json`、`--report`
+以及有界内存/队列选项。
 
-2. 查看完整文档与示例  
-   👉 [📚 tidas-tools 开发文档（持续更新）](https://github.com/tiangong-lca/tidas-tools)
+---
+
+## 🚀 安装 v0.1.1
+
+GitHub Release 预编译包是推荐的终端用户安装渠道。支持：
+
+- Linux x86_64、Linux ARM64
+- macOS Intel、macOS Apple Silicon
+- Windows x86_64（暂不支持 Windows ARM64）
+
+macOS/Linux：
+
+```bash
+curl --proto '=https' --tlsv1.2 -fsSLO \
+  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.sh
+sh install.sh --version 0.1.1 --prefix "$HOME/.local"
+```
+
+Windows PowerShell：
+
+```powershell
+Invoke-WebRequest `
+  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.ps1 `
+  -OutFile install.ps1
+.\install.ps1 -Version 0.1.1
+```
+
+安装脚本会按平台选择归档并验证 SHA-256。也可从
+[v0.1.1 Release](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)
+手动下载归档及 `SHA256SUMS`。Release 中的 Homebrew formula 和 Winget manifests
+绑定同一组归档哈希，但它们不表示外部 tap 或 Winget Community 已完成发布。
+
+已安装 Rust 1.88+ 和平台 libxml2/libxslt 开发依赖的开发者也可以从 crates.io 安装：
+
+```bash
+cargo install tidas --version 0.1.1 --locked
+```
+
+## ⚡ 快速示例
+
+```bash
+tidas version --format json
+tidas validate ./tidas-package --issues ./issues.jsonl --format json
+tidas convert ./tidas-package --output ./eilcd-package --to ilcd --format json
+tidas convert ./eilcd-data --output ./tidas-package --to tidas --format json
+tidas import ./database.zip --output ./imported --target both --format json
+```
+
+CLI 内嵌并校验所需的 JSON Schema、XSD、XSLT 和方法学资源；正常使用无需从旧源码目录复制资源。
+转换命令会在输出包中物化目标格式需要的锁定资源。
+
+## 从旧命令迁移
+
+旧的独立可执行文件和 Python 包参数不再是本站的活动使用路径：
+
+| 旧入口 | v0.1.1 入口 |
+| --- | --- |
+| `tidas-validate` / `validation.py` | `tidas validate` |
+| `tidas-convert` | `tidas convert` |
+| `tidas-import` | `tidas import` |
+| `tidas-export` | `tidas export` |
+
+参数也改为统一子命令语法。例如输入目录通常是位置参数，输出使用 `--output`，
+转换方向使用 `--to ilcd|tidas`。迁移前请运行 `tidas <command> --help`，不要直接沿用旧参数。
 
 ---
 
@@ -38,8 +95,9 @@ TIDAS 工具包包括以下三个核心功能模块：
 
 我们欢迎开发者和数据使用者共同完善工具：
 
-- 📌 提出问题或功能建议：[提交 Issue](https://github.com/tiangong-lca/tidas-tools/issues)
-- 🤝 参与开发：[加入我们](https://github.com/tiangong-lca/tidas-tools#contributing)
+- 📚 源码与完整 CLI 文档：[tidas-tools 仓库](https://github.com/tiangong-lca/tidas-tools)
+- 📌 问题或功能建议：[提交 Issue](https://github.com/tiangong-lca/tidas-tools/issues)
+- 📦 已发布版本：[GitHub Releases](https://github.com/tiangong-lca/tidas-tools/releases)
 
 ---
 

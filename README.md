@@ -16,11 +16,12 @@ checkPaths:
   - README.md
   - package.json
   - .github/workflows/build.yml
-lastReviewedAt: 2026-05-28
-lastReviewedCommit: 5becb48dec6045d881621f15d86f82bb3cfd3e0a
+lastReviewedAt: 2026-07-27
+lastReviewedCommit: f135ec28be48a5e9e6fc6831a1ba732f0e713550
+lastReviewedNote: "Reviewed for Issue #37 unified Rust tidas CLI documentation cutover; site setup and release commands are unchanged."
 ---
 
-# TIDAS
+## TIDAS
 
 ## AI Docs Entry
 

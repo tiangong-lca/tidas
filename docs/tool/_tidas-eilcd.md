@@ -3,14 +3,36 @@ sidebar_position: 3
 ---
 
 
-# TIDAS和eILCD数据格式转换
+# TIDAS 和 eILCD 数据格式转换
 
-TIDAS和eILCD是两种不同的生命周期评估（LCA）数据格式。TIDAS是基于JSON Schema的开放标准，而eILCD是基于XML的标准。为了实现这两种格式之间的数据互操作性，我们提供了一个转换工具，可以将TIDAS格式的数据转换为eILCD格式，反之亦然。
+统一 Rust CLI 的 `tidas convert` 在 TIDAS JSON 与 eILCD XML 之间双向转换。
+转换器使用内嵌的完整性锁定 Schema、XSD 和 XSLT，递归遍历输入包且不跟随符号链接，
+最后原子发布完整输出目录。
 
-<!-- 提供一些案例？比如运行工具后可以怎么样 -->
+## TIDAS 转 eILCD
 
-## 1. TIDAS转eILCD
+```bash
+tidas convert ./tidas-package \
+  --output ./eilcd-package \
+  --to ilcd \
+  --format json
+```
 
-## 2. eILCD转TIDAS
+## eILCD 转 TIDAS
 
-## 3. eILCD格式验证
+```bash
+tidas convert ./eilcd-data \
+  --output ./tidas-package \
+  --to tidas \
+  --format json
+```
+
+转换后应校验生成的 `OUTPUT/data`：
+
+```bash
+tidas validate ./eilcd-package/data --input-format ilcd-xml --format json
+tidas validate ./tidas-package/data --input-format tidas-json --format json
+```
+
+旧 `tidas-convert` 的 `--input-dir`、`--output-dir`、`--to-eilcd` 和
+`--to-tidas` 参数不适用于 v0.1.1。请以 `tidas convert --help` 为准。

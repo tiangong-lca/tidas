@@ -1,8 +1,8 @@
 {
-  "label": "TIDAS Tool",
+  "label": "TIDAS CLI",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "5 minutes to learn the most important Docusaurus concepts."
+    "description": "安装并使用统一的 Rust tidas 命令行工具。"
   }
 }

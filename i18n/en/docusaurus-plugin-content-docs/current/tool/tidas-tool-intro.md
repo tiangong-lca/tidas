@@ -2,34 +2,97 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# Unified TIDAS CLI
 
-The TIDAS toolset is a collection of lightweight tools designed for the Tiangong LCA data system, supporting data validation, format conversion, and export operations to help developers efficiently build compliant lifecycle databases.
-
----
-
-## 🔍 Tool Capabilities Overview
-
-The TIDAS toolset includes three core functional modules:
-
-- ✅ **Data Validation (tidas-validate)**: Checks TIDAS data structure, completeness and consistency to ensure compliance with standard formats.
-- 🔄 **Format Conversion (tidas-convert)**: Enables bidirectional conversion between TIDAS and eILCD data formats while preserving data semantics and information integrity.
-- 📦 **Data Export (tidas-export)**: Packages compliant data into standard ZIP format for delivery, archiving and platform upload.
-
-> All features support batch processing and are compatible with GitHub Actions and CI/CD workflows.
+The TIDAS command-line tools are now distributed as one cross-platform Rust
+executable named `tidas`. The current stable version is
+[`v0.1.1`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1).
+It does not require Python, Java, Node.js, Homebrew, or vcpkg at runtime.
 
 ---
 
-## 🚀 Quick Start
+## 🔍 Command overview
 
-1. Install the toolset  
+- `tidas validate` validates TIDAS JSON or ILCD XML offline and can write a deterministic JSONL issue stream.
+- `tidas convert` converts bidirectionally between TIDAS JSON and eILCD XML.
+- `tidas import` imports EcoSpold 1/2, SimaPro CSV, openLCA JSON-LD, openLCA process XLSX, or ILCD.
+- `tidas export` creates a deterministic TIDAS/ILCD ZIP from database records and optional object storage.
+- `tidas release` validates, converts, and builds reproducible release packages.
+- `tidas ruleset` inspects the rulesets packaged with the executable.
+- `tidas version` reports binary, contract, asset, and runtime fingerprints.
 
-   ```bash
-   pip install tidas-tools
-   ```
+Every product command is implemented in Rust and supports automation-oriented
+options such as `--format json`, `--report`, and bounded memory/queue controls.
 
-2. View complete documentation and examples  
-   👉 [📚 tidas-tools Developer Documentation (continuously updated)](https://github.com/tiangong-lca/tidas-tools)
+---
+
+## 🚀 Install v0.1.1
+
+Prebuilt GitHub Release archives are the recommended end-user channel. Supported
+targets are Linux x86_64/ARM64, macOS Intel/Apple Silicon, and Windows x86_64.
+Windows ARM64 is not supported.
+
+macOS/Linux:
+
+```bash
+curl --proto '=https' --tlsv1.2 -fsSLO \
+  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.sh
+sh install.sh --version 0.1.1 --prefix "$HOME/.local"
+```
+
+Windows PowerShell:
+
+```powershell
+Invoke-WebRequest `
+  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.ps1 `
+  -OutFile install.ps1
+.\install.ps1 -Version 0.1.1
+```
+
+The installers select the platform archive and verify its SHA-256 digest. You
+can also download an archive and `SHA256SUMS` directly from the
+[v0.1.1 release](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1).
+The attached Homebrew formula and Winget manifests bind the same archive hashes,
+but do not imply that an external tap or Winget Community submission is live.
+
+Developers with Rust 1.88+ and the platform libxml2/libxslt development
+dependencies can install from crates.io:
+
+```bash
+cargo install tidas --version 0.1.1 --locked
+```
+
+## ⚡ Quick examples
+
+```bash
+tidas version --format json
+tidas validate ./tidas-package --issues ./issues.jsonl --format json
+tidas convert ./tidas-package --output ./eilcd-package --to ilcd --format json
+tidas convert ./eilcd-data --output ./tidas-package --to tidas --format json
+tidas import ./database.zip --output ./imported --target both --format json
+```
+
+The CLI embeds and integrity-checks the JSON Schema, XSD, XSLT, and methodology
+assets it needs. Normal use does not require copying assets from old source
+directories. Conversion materializes the locked target assets in its output
+package.
+
+## Migrate from legacy commands
+
+The former standalone executables and Python-package argument layout are no
+longer the active path documented by this site:
+
+| Legacy entry point | v0.1.1 entry point |
+| --- | --- |
+| `tidas-validate` / `validation.py` | `tidas validate` |
+| `tidas-convert` | `tidas convert` |
+| `tidas-import` | `tidas import` |
+| `tidas-export` | `tidas export` |
+
+The argument layout changed too. Inputs are usually positional, outputs use
+`--output`, and conversion direction uses `--to ilcd|tidas`. Run
+`tidas <command> --help` before migrating automation instead of carrying old
+flags forward.
 
 ---
 
@@ -37,8 +100,9 @@ The TIDAS toolset includes three core functional modules:
 
 We welcome developers and data users to improve the tools together:
 
-- 📌 Submit questions or feature suggestions: [Create an Issue](https://github.com/tiangong-lca/tidas-tools/issues)
-- 🤝 Join development: [Contribute](https://github.com/tiangong-lca/tidas-tools#contributing)
+- 📚 Source and complete CLI documentation: [tidas-tools repository](https://github.com/tiangong-lca/tidas-tools)
+- 📌 Questions and feature requests: [Create an Issue](https://github.com/tiangong-lca/tidas-tools/issues)
+- 📦 Published versions: [GitHub Releases](https://github.com/tiangong-lca/tidas-tools/releases)
 
 ---
 

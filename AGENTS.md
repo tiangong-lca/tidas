@@ -32,8 +32,9 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-06-25
-lastReviewedCommit: 594b63cf8f3c2eab183318fa52ca361769e2ddd9
+lastReviewedAt: 2026-07-27
+lastReviewedCommit: f135ec28be48a5e9e6fc6831a1ba732f0e713550
+lastReviewedNote: "Reviewed for Issue #37 unified Rust tidas CLI documentation cutover; ownership, branch, release, and workspace-integration boundaries are unchanged."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

@@ -46,7 +46,7 @@ const sidebars: SidebarsConfig = {
               type: 'link',
               label: 'TIDAS JSON Schema Download',
               description: 'Download the complete JSON schema file',
-              href: 'https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools/tidas/schemas',
+              href: 'https://github.com/tiangong-lca/tidas/tree/main/static/schemas',
             },
             {
               type: 'category',
@@ -90,9 +90,9 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'link',
-          label: 'TIDAS Tools GitHub',
-          description: 'TIDAS Tools GitHub Repository',
-          href: 'https://github.com/tiangong-lca/tidas-tools/tree/main/src/tidas_tools',
+          label: 'TIDAS CLI GitHub',
+          description: 'Unified Rust TIDAS CLI source and releases',
+          href: 'https://github.com/tiangong-lca/tidas-tools',
         },
       ],  
     },
