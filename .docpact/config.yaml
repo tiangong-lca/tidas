@@ -1,10 +1,10 @@
 version: 1
 layout: repo
 lastReviewedAt: "2026-07-27"
-lastReviewedCommit: "f135ec28be48a5e9e6fc6831a1ba732f0e713550"
-# Review note, 2026-07-27: Issue #37 migrates public and developer guidance
-# to the released Rust tidas CLI without changing routing, ownership, coverage,
-# validation categories, or workspace-integration semantics.
+lastReviewedCommit: "dc11f7a7f9d68e03cdb296eb84dc4b10e0d84163"
+# Review note, 2026-07-27: Issue #39 corrects the active Rust asset-source
+# guidance without changing routing, ownership, coverage, validation categories,
+# or workspace-integration semantics.
 
 # Keep deterministic governance facts here.
 # AGENTS.md remains the repo contract entrypoint.
