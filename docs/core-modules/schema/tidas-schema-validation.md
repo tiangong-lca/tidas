@@ -4,45 +4,57 @@ sidebar_position: 3
 
 # Schema 校验方法
 
-TIDAS 数据结构基于 JSON Schema 进行定义与实现，提供标准化、自动化的数据校验机制，以确保生命周期数据在编制、交换与共享过程中的准确性、一致性和可扩展性。
-
-JSON Schema 是一种通用、开放的结构定义标准，不依赖特定平台或语言，验证方式灵活多样。用户可以使用 JavaScript 的 `ajv`、Python 的 `jsonschema`、Java 的 `everit` 等多种语言和工具进行数据结构校验，只需几行代码即可完成验证，非常适合快速集成与调试使用。
-
-TIDAS 项目基于此能力开发了一个增强型工具 [`tidas-tools`](https://github.com/tiangong-lca/tidas-tools)，其中的 `validation.py` 脚本在标准 JSON Schema 校验的基础上，增加了针对 TIDAS 数据结构的分类层级逻辑校验与模块间引用解析，适合批量、多模块、高复杂度的数据验证需求。
+TIDAS 数据结构基于 JSON Schema 定义。正式的批量校验入口是统一 Rust
+CLI 的 `tidas validate`，它离线使用随 v0.1.1 二进制发布且经过完整性校验的
+JSON Schema、ILCD XSD 和规则资源，不依赖外部源码目录或 Python 环境。
 
 ---
 
-## 验证方式
-
-### 方式一：简单使用 JSON Schema 校验（以 Python 为例）
-
-```python
-from jsonschema import validate, ValidationError
-
-with open("schema.json") as s:
-    schema = json.load(s)
-with open("data.json") as d:
-    data = json.load(d)
-
-try:
-    validate(instance=data, schema=schema)
-    print("验证通过")
-except ValidationError as e:
-    print("验证失败：", e.message)
-```
-
-适合开发调试阶段的单文件快速验证。
-
-### 方式二：使用 TIDAS 工具批量验证
+## 验证 TIDAS JSON 包
 
 ```bash
-python validation.py --input-dir ./test_data --verbose
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --issues ./issues.jsonl \
+  --format json
 ```
 
-- `--input-dir`：待验证的 JSON 文件目录（包含 flows、processes 等子目录）
-- `--verbose`：输出详细日志信息
+- 输入目录是位置参数，应包含规范的 TIDAS 分类子目录。
+- `--issues` 原子写入完整、确定性的 JSONL 问题流。
+- `--format json` 只在 stdout 输出稳定的机器可读报告；诊断和进度使用 stderr。
+- `--report <path>` 可把完整报告原子写入文件。
 
-更多信息参考 [TIDAS 工具介绍](/docs/category/tidas-tools)。
+## 验证 ILCD XML 包
+
+```bash
+tidas validate ./ilcd-package \
+  --input-format ilcd-xml \
+  --issues ./issues.jsonl \
+  --format json
+```
+
+验证器只使用二进制内嵌的完整性锁定 XSD，并复用离线校验上下文。
+
+## 检查验证器指纹
+
+在需要可复现证据的 CI 或批处理工作流中，先记录验证协议、引擎和 Schema
+锁指纹：
+
+```bash
+tidas validate --describe --format json
+tidas version --format json
+```
+
+`document-validation-batch.v1` 协议还可对清单中精确列出的文档生成确定性的
+问题事件和最终证据哈希：
+
+```bash
+tidas validate ./batch-root \
+  --protocol document-validation-batch.v1 \
+  --input-manifest ./document-validation-batch.v1.jsonl \
+  --events ./validation-events.jsonl \
+  --format json
+```
 
 ---
 
@@ -57,37 +69,25 @@ TIDAS 的数据验证机制结合了两类校验能力：
 - 校验字段值是否符合定义（format, enum 等）
 - 支持模块间引用解析（$ref）
 
-### 2. 分类结构逻辑校验（TIDAS 特有）
+### 2. 包级和分类逻辑校验
 
 适用于 flows、processes、sources 等分类结构：
 
 - **层级检查**：字段 `@level` 顺序是否正确
 - **代码规则**：子项是否以父项代码为前缀
 - **流程分类行业匹配规则**：行业编码是否满足国家标准映射逻辑
+- **引用与包结构检查**：按锁定资源检查跨模块引用和包级约束
 
 ---
 
 ## 验证结果输出
 
-以下是典型错误输出信息示例：
-
-```bash
-{
-  "message": "'name' is a required property",
-  "path": ["flowDataSet", "flowInformation", "dataSetInformation"],
-  "schemaPath": "#/required"
-}
-```
-
-此错误表示 name 字段缺失，路径信息帮助定位具体出错位置。
-
-验证完成后，输出每个文件的验证状态：
-
-- ✅ `PASSED.`：验证成功
-- ❌ `ERROR:`：指出出错文件及详细错误位置
-
-建议调试阶段使用 `--verbose` 查看详细错误信息，快速定位问题。
+普通校验报告提供有界的问题计数和问题流哈希；`--issues` 文件保留完整问题。
+文档问题表示扫描已完成，可通过报告与退出状态区分数据问题和协议/运行失败。
+自动化应解析 `--format json` 的稳定报告，而不是匹配人类可读文本。
 
 ---
 
-如需了解 JSON Schema 的结构定义方式、字段命名规范与模块说明，请前往 [数据结构（JSON Schema）](/docs/category/tidas-json-schema)。如需了解 TIDAS 验证工具更多细节，请参考 [TIDAS工具包介绍](/docs/category/tidas-tools)。
+如需了解 JSON Schema 的字段与模块，请前往
+[数据结构（JSON Schema）](/docs/category/tidas-json-schema)。安装、平台支持与旧命令迁移见
+[统一 TIDAS CLI](/docs/category/tidas-tools)。
