@@ -30,8 +30,8 @@ checkPaths:
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
 lastReviewedAt: 2026-07-27
-lastReviewedCommit: f135ec28be48a5e9e6fc6831a1ba732f0e713550
-lastReviewedNote: "Reviewed for Issue #37; the docs-site, executable tooling, packaged assets, and workspace handoff boundaries are unchanged."
+lastReviewedCommit: dc11f7a7f9d68e03cdb296eb84dc4b10e0d84163
+lastReviewedNote: "Reviewed for Issue #39; published-schema comparisons now point at the Rust-owned tidas-tools asset tree."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -66,7 +66,7 @@ The practical role split today is:
 
 Important consequence:
 
-`static/schemas/**` is a published docs-site surface, not an automatic mirror of `tidas-tools/src/tidas_tools/tidas/schemas/**`.
+`static/schemas/**` is a published docs-site surface, not an automatic mirror of `tidas-tools/assets/tidas/schemas/**`.
 
 Treat both surfaces explicitly.
 
@@ -74,7 +74,7 @@ Treat both surfaces explicitly.
 
 - `docs/core-modules/schema/**` is the public schema explanation and validation surface owned here; if the meaning of those docs changes in a way that affects downstream package consumers, expect follow-up in `tidas-sdk`
 - `docs/tool/**`, `docs/integration/**`, and `docs/use_case/**` are public guidance surfaces owned here; if the underlying executable tool behavior changed, route that implementation work to `tidas-tools`
-- `static/schemas/**` is the published download surface served by the site; compare it explicitly against `tidas-tools/src/tidas_tools/tidas/schemas/**` when refreshing downloadable schemas
+- `static/schemas/**` is the published download surface served by the site; compare it explicitly against `tidas-tools/assets/tidas/schemas/**` when refreshing downloadable schemas
 
 ## Site Runtime
 

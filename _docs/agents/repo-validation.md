@@ -30,8 +30,8 @@ checkPaths:
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
 lastReviewedAt: 2026-07-27
-lastReviewedCommit: f135ec28be48a5e9e6fc6831a1ba732f0e713550
-lastReviewedNote: "Reviewed for Issue #37; the existing docs/site validation matrix remains sufficient for the Rust CLI documentation cutover."
+lastReviewedCommit: dc11f7a7f9d68e03cdb296eb84dc4b10e0d84163
+lastReviewedNote: "Reviewed for Issue #39; the existing docs/site validation matrix remains sufficient for the Rust asset-source guidance correction."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
