@@ -1,7 +1,7 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-07-27"
-lastReviewedCommit: "dc11f7a7f9d68e03cdb296eb84dc4b10e0d84163"
+lastReviewedAt: "2026-08-17"
+lastReviewedCommit: "9004873b0abdc0f9288b63a0668c1ebf64823e78"
 # Review note, 2026-07-27: Issue #39 corrects the active Rust asset-source
 # guidance without changing routing, ownership, coverage, validation categories,
 # or workspace-integration semantics.
