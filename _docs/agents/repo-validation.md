@@ -29,8 +29,8 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-07-27
-lastReviewedCommit: dc11f7a7f9d68e03cdb296eb84dc4b10e0d84163
+lastReviewedAt: 2026-08-17
+lastReviewedCommit: 9004873b0abdc0f9288b63a0668c1ebf64823e78
 lastReviewedNote: "Reviewed for Issue #39; the existing docs/site validation matrix remains sufficient for the Rust asset-source guidance correction."
 related:
   - ../../AGENTS.md
