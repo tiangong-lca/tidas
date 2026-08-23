@@ -95,7 +95,7 @@ Le système TIDAS calcule d'abord la valeur de hachage des données métier orig
 **Processus opérationnel** :
 
 1. Connexion au système et autorisation par jeton
-   Jeton : wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (partiellement affiché)
+   Jeton : `example-access-token` (espace réservé expurgé)
 
 2. Envoi du hachage de données à la blockchain
    Envoi de la requête d'écriture blockchain...
@@ -132,7 +132,7 @@ Lorsqu'il est nécessaire de vérifier si les données ont été falsifiées, le
 
 2. Requête du hachage de certification original depuis la blockchain via le hachage de transaction
    Requête des données de transaction depuis la blockchain...
-   Jeton de vérification du serveur : J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==
+   Jeton de vérification du serveur : `example-verification-token`
    Hachage de données original stocké sur chaîne : b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
 3. Calcul du hachage de données actuel et comparaison avec le hachage sur chaîne
@@ -140,10 +140,10 @@ Lorsqu'il est nécessaire de vérifier si les données ont été falsifiées, le
 **Résultat de la vérification** :
 
 ```bash
-[Verification Successful] ✅
-Current data hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
-On-chain stored hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
-Hash values match, data integrity is confirmed.
+[Vérification réussie] ✅
+Hachage actuel des données : b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+Hachage stocké sur la blockchain : b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+Les hachages correspondent ; l'intégrité des données est confirmée.
 ```
 
 > **Principe de vérification** : Si les données n'ont pas été falsifiées, la valeur de hachage actuellement calculée doit être identique à la valeur de hachage originale stockée sur chaîne.

@@ -93,7 +93,7 @@ Der berechnete **Datenhash** wird in das AntChain-Netzwerk geschrieben. Der dabe
 **Ablauf**:
 
 1. Systemanmeldung und Token-Autorisierung
-   Token: wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (gekürzt)
+   Token: `example-access-token` (redigierter Platzhalter)
 
 2. Datenhash an die Blockchain senden
    Blockchain-Schreibanfrage wird gesendet ...
@@ -130,7 +130,7 @@ Zur Prüfung auf Manipulation führt das System folgenden Ablauf aus:
 
 2. Ursprünglichen Zertifizierungshash über den Transaktionshash abfragen
    Transaktionsdaten werden von der Blockchain abgefragt ...
-   Server-Prüftoken: J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==
+   Server-Prüftoken: `example-verification-token`
    Auf der Blockchain gespeicherter Originalhash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
 3. Aktuellen Datenhash berechnen und mit dem Blockchain-Hash vergleichen
@@ -138,10 +138,10 @@ Zur Prüfung auf Manipulation führt das System folgenden Ablauf aus:
 **Prüfergebnis**:
 
 ```bash
-[Verification Successful] ✅
-Current data hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
-On-chain stored hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
-Hash values match, data integrity is confirmed.
+[Prüfung erfolgreich] ✅
+Aktueller Datenhash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+Auf der Blockchain gespeicherter Hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+Die Hashwerte stimmen überein; die Datenintegrität ist bestätigt.
 ```
 
 > **Prüfprinzip**: Wurden die Daten nicht verändert, stimmt der aktuell berechnete Hash mit dem auf der Blockchain gespeicherten Originalhash überein.
