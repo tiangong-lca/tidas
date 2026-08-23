@@ -118,7 +118,7 @@ function sourceLine(source, offset) {
 function extractMdxDestinations(source) {
   const links = [];
   const masked = maskMdxCode(source);
-  const pattern = /(?<!!)\[[^\]\n]+\]\(\s*/g;
+  const pattern = /(?<!!)\[[^\]]+\]\(\s*/g;
   let match;
   while ((match = pattern.exec(masked)) !== null) {
     let cursor = pattern.lastIndex;
@@ -174,11 +174,11 @@ if (!fs.existsSync(outRoot)) {
 
 const parserFixture = [
   '```md', '[ignored](inside/fence/)', '```',
-  '[bare](integration/foo/)', '[angle](<./angle/>)', '[reference]: ../reference/',
+  '[bare](integration/foo/)', '[angle](<./angle/>)', '[multi\nline](multiline/)', '[reference]: ../reference/',
   '<Link href="nested/jsx/" />',
 ].join('\n');
 const fixtureRelative = extractMdxDestinations(parserFixture).filter((item) => isPathRelative(item.value)).map((item) => item.value);
-if (JSON.stringify(fixtureRelative) !== JSON.stringify(['integration/foo/', './angle/', '../reference/', 'nested/jsx/'])) {
+if (JSON.stringify(fixtureRelative) !== JSON.stringify(['integration/foo/', './angle/', 'multiline/', '../reference/', 'nested/jsx/'])) {
   errors.push(`internal source-link parser regression: ${JSON.stringify(fixtureRelative)}`);
 }
 const anchorFixture = collectAnchors('<meta name="viewport"><div id="real"></div><a name="legacy"></a>');
