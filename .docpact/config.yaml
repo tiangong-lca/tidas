@@ -35,7 +35,6 @@ ownership:
       paths:
         include:
           - package.json
-          - package-lock.json
           - .nvmrc
           - .markdownlint.json
           - pnpm-lock.yaml
@@ -57,8 +56,6 @@ ownership:
           - scripts/check-env.mjs
           - scripts/verify-out.mjs
           - scripts/verify-site.mjs
-          - scripts/migrate.mjs
-          - manifests/migration-report.json
           - .github/workflows/publish-docs.yml
       ownerRepo: tidas
     - id: local-docpact-push-gate
@@ -79,7 +76,6 @@ coverage:
     - .github/workflows/**
     - .githooks/**
     - package.json
-    - package-lock.json
     - .nvmrc
     - .markdownlint.json
     - pnpm-lock.yaml
@@ -96,7 +92,6 @@ coverage:
     - content/docs/**
     - public/**
     - scripts/**
-    - manifests/migration-report.json
   exclude:
     - .git/**
     - node_modules/**
@@ -138,7 +133,6 @@ routing:
     site-runtime:
       paths:
         - package.json
-        - package-lock.json
         - pnpm-lock.yaml
         - next.config.ts
         - edgeone.json
@@ -149,8 +143,6 @@ routing:
         - scripts/check-env.mjs
         - scripts/verify-out.mjs
         - scripts/verify-site.mjs
-        - scripts/migrate.mjs
-        - manifests/migration-report.json
         - .github/workflows/publish-docs.yml
     proof:
       paths:
@@ -241,10 +233,8 @@ rules:
     scope: repo
     repo: tidas
     triggers:
-      - path: package.json
+      - path: package*.json
         kind: site-runtime
-      - path: package-lock.json
-        kind: retired-package-manager-lock
       - path: .nvmrc
         kind: site-runtime-config
       - path: .markdownlint.json
@@ -279,18 +269,10 @@ rules:
         kind: site-media
       - path: public/logo-*.svg
         kind: site-media
-      - path: scripts/build.mjs
-        kind: site-build
-      - path: scripts/check-env.mjs
-        kind: site-build
-      - path: scripts/verify-out.mjs
-        kind: site-proof
-      - path: scripts/verify-site.mjs
-        kind: site-proof
-      - path: scripts/migrate.mjs
-        kind: retired-migration-tool
-      - path: manifests/migration-report.json
-        kind: retired-migration-artifact
+      - path: scripts/*.mjs
+        kind: site-build-and-proof
+      - path: manifests/**
+        kind: retired-artifact-removal
       - path: .github/workflows/publish-docs.yml
         kind: site-validation
     requiredDocs:
