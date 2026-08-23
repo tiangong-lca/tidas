@@ -84,6 +84,18 @@ coverage:
     - node_modules/**
     - build/**
     - .docusaurus/**
+    # legacy-docusaurus-paths: 迁移删除面，仅出现在一次性迁移 diff 中
+    - docs/**
+    - i18n/**
+    - static/schemas/**
+    - static/img/**
+    - sidebars.ts
+    - docusaurus.config.ts
+    - versions.json
+    - src/**
+    - babel.config.js
+    - package-lock.json
+    - .github/workflows/build.yml
 
 freshness:
   warn_after_commits: 40
