@@ -1,13 +1,12 @@
----
+- --
 title: "单位组（Unit Groups）"
----
+- --
 
 import UnitgroupsSchema from '@/public/schemas/tidas_unitgroups.json';
 import UnitgroupsCategorySchema from '@/public/schemas/tidas_unitgroups_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-单位组及其分类的数据结构
-========================
+## 单位组及其分类的数据结构
 
 <Callout type="idea">
 单位组数据集定义了一组相关的计量单位及其之间的换算关系。​它用于支持流属性的单位定义，确保在数据集之间进行单位转换和比较时的一致性和准确性。
@@ -15,5 +14,6 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 <JsonSchemaViewer schema={ UnitgroupsSchema } />
 
-# 单位组分类（Unit Groups category）
+## 单位组分类（Unit Groups category）
+
 <JsonSchemaViewer schema={ UnitgroupsCategorySchema } />

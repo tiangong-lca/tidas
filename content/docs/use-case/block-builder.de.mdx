@@ -1,20 +1,24 @@
----
+- --
 title: "HiQ-Editor and TIDAS Integration Case Study"
 description: "Detailed case study on how HiQ-Editor tool from Haike Data integrates with and uses TIDAS data architecture"
----
+- --
 
 ## Overview
 
 The integration between HiQ-Editor and TIDAS is significant because:
 
 - It enables easier LCA data exchange for users like enterprises, research institutions and governments, allowing environmental impact assessments using global data while ensuring data universality and comparability.
+
 - It facilitates LCA data (like ELCD, HiQLCD) interaction across different platforms, preventing data silos and improving interoperability.
+
 - Using unified data structure and quality requirements makes LCA data more standardized, transparent and traceable, ensuring data integrity and consistency while improving reliability.
 
 ## Prerequisites
 
 - TIDAS account permissions
+
 - Basic TIDAS schema knowledge
+
 - HiQ-Editor account permissions
 
 ## Data Integration Methods
@@ -22,6 +26,7 @@ The integration between HiQ-Editor and TIDAS is significant because:
 HiQ-Editor integrates with TIDAS primarily through:
 
 1. ILCD format import/export to support data flow between systems
+
 2. API interfaces for data review and transfer
 
 ## Integration Steps
@@ -30,16 +35,22 @@ HiQ-Editor integrates with TIDAS primarily through:
 
 1. Users (editors) edit data in HiQ-Editor.
 ![image](https://github.com/user-attachments/assets/1652763e-0388-49f7-8edd-54e86a2f6aee)
+
 2. Users (managers) perform LCIA calculations on a data version in HiQ-Editor and publish it.
+
 3. Users select data to export - system parses HiQ-Editor's LCA data schema and exports as ILCD-compliant document.
+
 4. Users import and parse the ILCD document in TIDAS system.
 ![image](https://github.com/user-attachments/assets/146de387-f375-4019-8139-21c1cb534bab)
 
 ### Data Review and Transfer
 
 1. Users (editors) edit data in HiQ-Editor and submit for review.
+
 2. HiQ-Editor establishes API connection with TIDAS to verify access permissions.
+
 3. Submitted data flows to TIDAS for review via integration interface.
+
 4. Users (reviewers) review and validate data in TIDAS system, with support for returning review content/results to HiQ-Editor.
 
 ## Example Scenario

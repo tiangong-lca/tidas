@@ -1,13 +1,12 @@
----
+- --
 title: "过程（Processes）"
----
+- --
 
 import ProcessSchema from '@/public/schemas/tidas_processes.json';
 import ProcessesCategorySchema from '@/public/schemas/tidas_processes_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-过程及过程分类的数据结构
-========================
+## 过程及过程分类的数据结构
 
 <Callout type="idea">
 过程数据集详细记录了单个生产或处理过程的输入输出流、时间、地理和技术代表性等信息。它支持生命周期评估中对单元过程（Unit Process）的深入分析。同时，过程数据集也用于记录和描述建模后生成的部分终止系统（Partly Terminated System）、生命周期清单结果（Life Cycle Inventory Result）及生命周期环境影响评估（LCIA）结果。
@@ -15,5 +14,6 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 <JsonSchemaViewer schema={ ProcessSchema } />
 
-# 过程分类（Processes category）
+## 过程分类（Processes category）
+
 <JsonSchemaViewer schema={ ProcessesCategorySchema } />

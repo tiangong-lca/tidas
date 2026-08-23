@@ -1,13 +1,13 @@
----
+- --
 title: "Schema Validation"
----
+- --
 
 TIDAS data structures are defined with JSON Schema. The supported batch
 validation entry point is `tidas validate` in the unified Rust CLI. It uses the
 integrity-locked JSON Schema, ILCD XSD, and rules assets packaged with v0.1.1
 offline, without an external source tree or Python environment.
 
----
+- --
 
 ## Validate a TIDAS JSON package
 
@@ -19,8 +19,11 @@ tidas validate ./tidas-package \
 ```
 
 - The positional input directory contains the canonical TIDAS category subdirectories.
+
 - `--issues` atomically writes the complete deterministic JSONL issue stream.
+
 - `--format json` keeps stdout to a stable machine-readable report; diagnostics and progress use stderr.
+
 - `--report <path>` atomically persists the complete report.
 
 ## Validate an ILCD XML package
@@ -56,7 +59,7 @@ tidas validate ./batch-root \
   --format json
 ```
 
----
+- --
 
 ## Validation Content Overview
 
@@ -65,8 +68,11 @@ TIDAS validation combines two types of checks:
 ### 1. Structure Validation (JSON Schema Standard)
 
 - Check for missing fields (required)
+
 - Check field type matching (string, number, etc.)
+
 - Check field values against definitions (format, enum, etc.)
+
 - Support inter-module reference resolution ($ref)
 
 ### 2. Package and classification logic
@@ -74,11 +80,14 @@ TIDAS validation combines two types of checks:
 For classification structures like flows, processes, sources:
 
 - **Hierarchy Check**: Verify `@level` sequence is correct
+
 - **Code Rules**: Verify child items use parent item codes as prefix
+
 - **Process Classification Industry Matching**: Verify industry codes comply with national standard mapping logic
+
 - **Reference and Package Checks**: Apply cross-module and package constraints from locked assets
 
----
+- --
 
 ## Validation Result Output
 
@@ -88,7 +97,7 @@ while the report and exit status distinguish data issues from protocol or
 runtime failures. Automation should parse the stable `--format json` report
 instead of matching human-readable text.
 
----
+- --
 
 For JSON Schema fields and modules, see
 [Data Structure (JSON Schema)](/en/docs/category/tidas-json-schema/). For

@@ -1,13 +1,12 @@
----
+- --
 title: "流属性（Flow Properties）"
----
+- --
 
 import FlowpropertiesSchema from '@/public/schemas/tidas_flowproperties.json';
 import FlowpropertiesCategorySchema from '@/public/schemas/tidas_flowproperties_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-流属性及流属性分类的数据结构
-========================
+## 流属性及流属性分类的数据结构
 
 <Callout type="idea">
 流属性数据集定义了流的计量方式，例如质量、能量、体积、经济价值等。​它指定了流的计量单位和相关的单位组，确保在生命周期评估中对流的准确量化和比较。
@@ -15,5 +14,6 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 <JsonSchemaViewer schema={ FlowpropertiesSchema } />
 
-# 流属性分类（Flow Properties category）
+## 流属性分类（Flow Properties category）
+
 <JsonSchemaViewer schema={ FlowpropertiesCategorySchema } />

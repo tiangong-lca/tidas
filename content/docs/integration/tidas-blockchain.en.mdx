@@ -1,14 +1,17 @@
----
+- --
 title: "TIDAS Data Security Mechanism"
----
+- --
 
 ## Background and Challenges
 
 Carbon footprint data faces multiple authenticity challenges during application:
 
 - Data can be easily tampered with, leading to information distortion
+
 - Difficulty in tracing change history
+
 - High cost of traditional verification methods
+
 - Lack of common trust foundation in multi-party collaboration
 
 These challenges not only affect data value but may also lead to compliance risks and trust crises.
@@ -18,8 +21,11 @@ These challenges not only affect data value but may also lead to compliance risk
 Blockchain, with its core features, provides an ideal solution for data tamper-proofing:
 
 - **Immutability**: Chain structure combined with cryptography ensures data is difficult to alter once recorded
+
 - **Distributed Architecture**: Eliminates single-point tampering risks
+
 - **Timestamp Mechanism**: Provides indisputable chronological proof
+
 - **Consensus Mechanism**: Ensures consistent recognition of data status among network participants
 
 ## TIDAS Working Mechanism
@@ -52,8 +58,11 @@ import { TidasImage } from '@/components/tidas-image';
 ### Technical Features
 
 - **Lightweight Design**: Only hashes on-chain, balancing performance and cost
+
 - **Dual Protection**: Combines platform management with blockchain tamper-proofing
+
 - **Privacy Protection**: Original data not directly exposed
+
 - **Open Verification**: Supports independent third-party verification
 
 ## Practical Application

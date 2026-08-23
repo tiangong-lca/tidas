@@ -1,7 +1,7 @@
----
+- --
 title: "TIDAS Application Case on AntChain"
 description: "Detailed case study on how TIDAS data system integrates with and uses AntChain"
----
+- --
 
 ## 🏗️ Overview of TIDAS and AntChain Integration
 
@@ -10,17 +10,21 @@ AntChain provides a complete blockchain infrastructure through its [BaaS (Blockc
 TIDAS data structures can be seamlessly integrated with the AntChain platform, currently enabling the following functionalities:
 
 1. [**Trusted Data Certification**](#-trusted-data-certification): Calculates and stores hashes of unit process data or carbon footprint factor data uploaded by enterprises onto the blockchain, ensuring data immutability and full process traceability.
+
 2. [**Privacy-Preserving Computation**](#️-privacy-preserving-computation): Enables multi-party collaborative modeling and statistical analysis without exposing underlying data, ensuring data privacy and computation trustworthiness.
 
 ## 🔗 Trusted Data Certification
 
 TIDAS, in combination with AntChain, has built a data tampering prevention and integrity verification solution. This document introduces the core verification process and implementation details, demonstrating how blockchain technology can be used to ensure the trustworthiness of key production data, providing technical support for enterprise data management, environmental monitoring, and carbon emission accounting.
 
-**Core Process**:
+* *Core Process**:
 
 1. Original data hash calculation
+
 2. Data hash on-chain certification
+
 3. Local storage of transaction credentials
+
 4. Data tampering verification
 
 > **Example Scenario**:<br />Unit process data from a steel production facility is uploaded to the TIDAS platform (coke input of 13276.3428 tons), the data hash is calculated and certified through AntChain. When users subsequently access this data, they can verify whether the data has been tampered with by comparing the on-chain stored hash with the locally calculated hash. If the data is tampered with (coke input data changed to 13276.3427 tons), it can be immediately detected through verification.<br />**Data Source**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. (Beijing University of Technology, 2006)(Chinese)
@@ -31,7 +35,7 @@ TIDAS, in combination with AntChain, has built a data tampering prevention and i
 
 The TIDAS system first calculates the hash value of the original business data, generating a unique data fingerprint.
 
-**Original Data Example**:
+* *Original Data Example**:
 
 ```json
 {
@@ -72,11 +76,12 @@ The TIDAS system first calculates the hash value of the original business data, 
 }
 ```
 
-**Example Explanation**: The above data shows production process data in the TIDAS system, including indicator values, data sources, and other key information. This data will go through hash calculation to generate a data fingerprint for subsequent integrity verification.
+* *Example Explanation**: The above data shows production process data in the TIDAS system, including indicator values, data sources, and other key information. This data will go through hash calculation to generate a data fingerprint for subsequent integrity verification.
 
-**Operation Process**:
+* *Operation Process**:
 
 1. TIDAS data hash value calculation
+
 2. SHA256 hash value: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
 > **Technical Note**: The system uses the SHA256 hash algorithm, which generates the same hash value for identical data, different hash values for different data, and cannot be reverse-engineered to derive the original data.
@@ -85,7 +90,7 @@ The TIDAS system first calculates the hash value of the original business data, 
 
 Write the calculated **data hash** to the AntChain network and obtain a blockchain transaction hash as certification credentials.
 
-**Operation Process**:
+* *Operation Process**:
 
 1. System login and token authorization  
    Token: wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (partially displayed)
@@ -103,7 +108,7 @@ Write the calculated **data hash** to the AntChain network and obtain a blockcha
 
 The system securely stores the transaction hash returned by the blockchain for subsequent data verification.
 
-**Stored Information Example**:
+* *Stored Information Example**:
 
 ```json
 {
@@ -117,7 +122,7 @@ The system securely stores the transaction hash returned by the blockchain for s
 
 When needing to verify whether data has been tampered with, the system executes the following verification process:
 
-**Verification Process**:
+* *Verification Process**:
 
 1. Read locally stored transaction hash  
    Transaction hash: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487  
@@ -130,7 +135,7 @@ When needing to verify whether data has been tampered with, the system executes 
 
 3. Calculate current data hash and compare with on-chain hash
 
-**Verification Result**:
+* *Verification Result**:
 
 ```bash
 [Verification Successful] ✅
@@ -145,7 +150,7 @@ Hash values match, data integrity is confirmed.
 
 The blockchain explorer provides transparent query functionality for transaction records, which can be used to view the confirmation status of certification records.
 
-**Query Information**:
+* *Query Information**:
 
 ```bash
 Transaction ID: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
@@ -168,14 +173,15 @@ import { TidasImage } from '@/components/tidas-image';
 
 When data is tampered with, the system can precisely identify and alert.
 
-**Tampering Example**:
+* *Tampering Example**:
 
 ```diff
+
 - "meanAmount": "13276.3428"
 + "meanAmount": "13276.3427"
 ```
 
-**Tampered Data**:
+* *Tampered Data**:
 
 ```json
 {
@@ -216,7 +222,7 @@ When data is tampered with, the system can precisely identify and alert.
 }
 ```
 
-**Verification Result**:
+* *Verification Result**:
 
 ```bash
 [Verification Failed] ❌
@@ -232,11 +238,14 @@ Hash values do not match, data tampering detected!
 
 TIDAS, in combination with AntChain's Trusted Data Sharing Platform, has built a secure collaborative data analysis solution. This section provides detailed information on the core computation process and implementation details, demonstrating how secure collaborative analysis of multi-party data can be achieved while protecting sensitive enterprise data.
 
-**Core Process**:
+* *Core Process**:
 
 1. Original data encryption and access
+
 2. Task creation and configuration
+
 3. Privacy-preserving computation execution
+
 4. Obtaining computation results
 
 > **Example Scenario**:<br />When developing industry data, statistical analysis of data from multiple steel enterprises (2 companies in this case example) is required. Through AntChain's Trusted Collaboration Platform, a privacy-preserving computation process is established to obtain calculation results without exposing the enterprises' original data.<br />**Data Source**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. (Beijing University of Technology, 2006)(Chinese)
@@ -247,7 +256,7 @@ TIDAS, in combination with AntChain's Trusted Data Sharing Platform, has built a
 
 Enterprise production process emission data is accessed through API to trusted collaboration nodes. This process takes place in a trusted execution environment, ensuring that data will not be leaked.
 
-**Original Sensitive Data Example (Node 1)**:
+* *Original Sensitive Data Example (Node 1)**:
 
 ```json
 {
@@ -274,7 +283,7 @@ Enterprise production process emission data is accessed through API to trusted c
 }
 ```
 
-**Original Sensitive Data Example (Node 2)**:
+* *Original Sensitive Data Example (Node 2)**:
 
 ```json
 {
@@ -306,7 +315,7 @@ Enterprise production process emission data is accessed through API to trusted c
 
 Create a privacy-preserving computation task on the trusted collaboration platform, configuring data sources and computation logic.
 
-**Operation Process**:
+* *Operation Process**:
 
 1. System identifies sensitive datasets to be processed
 
@@ -342,7 +351,7 @@ Create a privacy-preserving computation task on the trusted collaboration platfo
 
 The trusted collaboration platform executes the computation task according to the set logic.
 
-**Execution Process**:
+* *Execution Process**:
 
 1. Computation task status polling
 
@@ -380,7 +389,7 @@ The trusted collaboration platform executes the computation task according to th
 
 After computation is completed, the system securely obtains the computation results, which do not contain sensitive information.
 
-**Final Computation Results**:
+* *Final Computation Results**:
 
 ```json
 {
@@ -397,7 +406,7 @@ After computation is completed, the system securely obtains the computation resu
 }
 ```
 
-**Simplified Result**:
+* *Simplified Result**:
 
 ```bash
 [ 1.982 ]
@@ -425,10 +434,12 @@ The trusted collaboration platform provides an intuitive task management and mon
 The Trusted Data Sharing Platform employs multiple technologies to ensure data security:
 
 1. Secure Multi-party Computation - Computation performed in a trusted execution environment
+
 2. Computation Result Security Verification - Ensuring result data does not contain sensitive information
+
 3. Full Process Traceability - Recording every step of the computation process
 
----
+- --
 
 <div style={{marginTop: '20px', fontSize: '0.9em', color: '#666'}}>
   <p>Technical Support: <strong>Ant Digital Technology</strong></p>

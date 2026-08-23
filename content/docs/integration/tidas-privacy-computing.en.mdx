@@ -1,6 +1,6 @@
----
+- --
 title: "TIDAS Trusted Data Space"
----
+- --
 
 ## Background and Challenges
 
@@ -15,8 +15,11 @@ TIDAS Trusted Data Space emerges as an innovative solution that can safely unloc
 The trusted data space is built on the core concept of "data usable but not visible," establishing a secure and trusted data processing environment that enables secure computation and value transformation of sensitive data. Its design features include:
 
 - **Data Isolation Technology**: Separates sensitive data from computational logic to prevent unauthorized access
+
 - **Secure Multi-Party Computation (SMPC)**: Enables federated analytics without exposing original data to any participating party
+
 - **Differential Privacy**: SProtects individual data privacy by introducing calibrated noise to statistical outputs
+
 - **Trusted Execution Environment (TEE)**: Utilizes isolated hardware enclaves to ensure the security and integrity of computations
 
 ## System Architecture
@@ -24,8 +27,11 @@ The trusted data space is built on the core concept of "data usable but not visi
 The TIDAS Trusted Data Space consists of the following key components:
 
 - **Data Providers**: Organizations that own original carbon footprint data
+
 - **Trusted Data Space**: Securely isolated computing environment containing multiple computation nodes
+
 - **Computation Rules**: Predefined data processing and de-sensitization algorithms
+
 - **Result Data**: Processed non-sensitive data that can be safely shared and used
 
 ## Workflow
@@ -42,7 +48,9 @@ import { TidasImage } from '@/components/tidas-image';
 Data providers first determine the scope and purpose of participating in data analysis, then grant limited data access rights to the trusted data space. In this stage:
 
 - Data providers maintain ownership and control over their data
+
 - Authorization clearly limits data usage purposes and computation rules
+
 - Original data does not leave the provider's security boundary
 
 ### 2. Trusted Computation Execution
@@ -50,7 +58,9 @@ Data providers first determine the scope and purpose of participating in data an
 After authorization is complete, data space computation nodes access the original data and execute predefined computations in a secure environment:
 
 - The system processes original energy consumption data to calculate carbon emission indicators
+
 - Simultaneously removes data points that might identify identity or sensitive operational information
+
 - The entire computation process takes place in an isolated environment, ensuring original data is not leaked
 
 ### 3. Result Generation and Application
@@ -68,8 +78,11 @@ We have already implemented and validated the trusted data space based on Ant Ch
 TIDAS Trusted Data Space provides a feasible path for safely unlocking the value of carbon footprint data. Future applications will be expanded to include:
 
 - Cross-regional and cross-industry carbon efficiency comparisons
+
 - Supply chain carbon footprint assessment and optimization
+
 - Carbon asset evaluation and carbon credit generation
+
 - Low-carbon technology effectiveness verification
 
 Through the trusted data space, we aim to build a carbon data ecosystem that both protects data privacy and unlocks data value, helping various industries achieve scientific and efficient carbon reduction.
