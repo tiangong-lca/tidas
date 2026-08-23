@@ -30,8 +30,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
-lastReviewedNote: "Reviewed for Issue #48: TianGong Data System identity, neutral Fumadocs landing UI, flat tabular Schema explorers, visual-test markers, and current static quality gates."
+lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
+lastReviewedNote: "Reviewed for Issue #54 after the four-locale docs root became a TIDAS system hub with a definition-to-operation matrix and representative Schema entry points."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

@@ -22,8 +22,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
-lastReviewedNote: "Reviewed for Issue #48 TianGong Data System identity, neutral landing UI, tabular Schema explorer, complete localization, static quality gates, and EdgeOne publication."
+lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
+lastReviewedNote: "Reviewed for Issue #54 after contributor orientation documented the localized TIDAS system-navigation hubs and their static quality gate."
 ---
 
 Public documentation and downloadable data contracts for
