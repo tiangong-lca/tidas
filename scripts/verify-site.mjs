@@ -77,10 +77,90 @@ function resolveOutputFile(pathname) {
 
 function collectAnchors(html) {
   const anchors = new Set();
-  const attribute = /(?<![\w:-])\b(?:id|name)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+  const attribute = /(?<![\w:-])\bid\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
   let match;
   while ((match = attribute.exec(html)) !== null) anchors.add(decodeHtml(match[1] ?? match[2]));
+  for (const anchor of html.matchAll(/<a\b[^>]*>/gi)) {
+    const name = anchor[0].match(/(?<![\w:-])\bname\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+    if (name) anchors.add(decodeHtml(name[1] ?? name[2]));
+  }
   return anchors;
+}
+
+function blankNonNewlines(value) {
+  return value.replace(/[^\r\n]/g, ' ');
+}
+
+function maskMdxCode(source) {
+  let masked = source.replace(/<!--[\s\S]*?-->/g, (value) => blankNonNewlines(value));
+  const lines = masked.match(/.*(?:\r?\n|$)/g) ?? [];
+  let fence = null;
+  masked = lines.map((line) => {
+    const marker = line.match(/^[ \t]{0,3}(`{3,}|~{3,})/);
+    if (!fence && marker) {
+      fence = { character: marker[1][0], length: marker[1].length };
+      return blankNonNewlines(line);
+    }
+    if (fence) {
+      const closing = new RegExp(`^[ \\t]{0,3}${fence.character}{${fence.length},}[ \\t]*(?:\\r?\\n)?$`);
+      if (closing.test(line)) fence = null;
+      return blankNonNewlines(line);
+    }
+    return line;
+  }).join('');
+  return masked.replace(/(`+)([^`\n]*?)\1/g, (value) => blankNonNewlines(value));
+}
+
+function sourceLine(source, offset) {
+  return source.slice(0, offset).split('\n').length;
+}
+
+function extractMdxDestinations(source) {
+  const links = [];
+  const masked = maskMdxCode(source);
+  const pattern = /(?<!!)\[[^\]\n]+\]\(\s*/g;
+  let match;
+  while ((match = pattern.exec(masked)) !== null) {
+    let cursor = pattern.lastIndex;
+    let value = '';
+    if (masked[cursor] === '<') {
+      const end = masked.indexOf('>', cursor + 1);
+      if (end === -1) continue;
+      value = masked.slice(cursor + 1, end);
+      pattern.lastIndex = end + 1;
+    } else {
+      let nested = 0;
+      const start = cursor;
+      for (; cursor < masked.length; cursor += 1) {
+        const character = masked[cursor];
+        if (/\s/.test(character) && nested === 0) break;
+        if (character === '(' && masked[cursor - 1] !== '\\') nested += 1;
+        if (character === ')' && masked[cursor - 1] !== '\\') {
+          if (nested === 0) break;
+          nested -= 1;
+        }
+      }
+      value = masked.slice(start, cursor);
+      pattern.lastIndex = cursor;
+    }
+    if (value) links.push({ value, line: sourceLine(source, match.index) });
+  }
+
+  const reference = /^[ \t]{0,3}\[[^\]\n]+\]:[ \t]*(?:<([^>\n]+)>|([^\s]+))/gm;
+  while ((match = reference.exec(masked)) !== null) {
+    links.push({ value: match[1] ?? match[2], line: sourceLine(source, match.index) });
+  }
+
+  const jsxHref = /(?<![\w:-])\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+  while ((match = jsxHref.exec(masked)) !== null) {
+    links.push({ value: match[1] ?? match[2], line: sourceLine(source, match.index) });
+  }
+  return links;
+}
+
+function isPathRelative(value) {
+  return value !== ''
+    && !/^(?:[a-z][a-z\d+.-]*:|\/|#|\?|\{|\\)/i.test(value);
 }
 
 function extract(html, pattern) {
@@ -91,6 +171,21 @@ if (!fs.existsSync(outRoot)) {
   console.error('[verify-site] FAIL out/ does not exist');
   process.exit(1);
 }
+
+const parserFixture = [
+  '```md', '[ignored](inside/fence/)', '```',
+  '[bare](integration/foo/)', '[angle](<./angle/>)', '[reference]: ../reference/',
+  '<Link href="nested/jsx/" />',
+].join('\n');
+const fixtureRelative = extractMdxDestinations(parserFixture).filter((item) => isPathRelative(item.value)).map((item) => item.value);
+if (JSON.stringify(fixtureRelative) !== JSON.stringify(['integration/foo/', './angle/', '../reference/', 'nested/jsx/'])) {
+  errors.push(`internal source-link parser regression: ${JSON.stringify(fixtureRelative)}`);
+}
+const anchorFixture = collectAnchors('<meta name="viewport"><div id="real"></div><a name="legacy"></a>');
+if (anchorFixture.has('viewport') || !anchorFixture.has('real') || !anchorFixture.has('legacy')) {
+  errors.push('internal fragment-anchor parser regression');
+}
+passed.push('link verifier adversarial fixtures');
 
 const htmlFiles = walk(outRoot, (file) => file.endsWith('.html'));
 if (fs.existsSync(path.join(outRoot, 'static'))) {
@@ -229,8 +324,10 @@ for (const file of mdxFiles) {
   if (/https:\/\/github\.com\/user-attachments\//i.test(source)) {
     errors.push(`GitHub user-attachment media must be vendored for deterministic builds: ${relative}`);
   }
-  for (const match of source.matchAll(/(?<!!)\[[^\]]+\]\((\.{1,2}\/[^)\s]+)(?:\s+"[^"]*")?\)/g)) {
-    errors.push(`relative internal Markdown link is forbidden; use a locale-absolute route: ${relative} -> ${match[1]}`);
+  for (const link of extractMdxDestinations(source)) {
+    if (isPathRelative(link.value)) {
+      errors.push(`relative internal Markdown link is forbidden; use a locale-absolute route: ${relative}:${link.line} -> ${link.value}`);
+    }
   }
   if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
