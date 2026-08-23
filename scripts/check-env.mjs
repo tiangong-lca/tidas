@@ -46,19 +46,18 @@ if (!['ci', 'preview', 'production'].includes(deployEnv)) {
 const origin = process.env.CANONICAL_ORIGIN;
 if (!origin || !/^https?:\/\/[^/]+$/.test(origin)) {
   errors.push(`CANONICAL_ORIGIN invalid: ${JSON.stringify(origin ?? null)} (need origin without trailing path)`);
-} else if (deployEnv === 'production' && origin !== 'https://docs.tiangong.earth') {
-  errors.push(`CANONICAL_ORIGIN must be https://docs.tiangong.earth in production, got ${origin}`);
+} else if (deployEnv === 'production' && origin !== 'https://tidas.tiangong.earth') {
+  errors.push(`CANONICAL_ORIGIN must be https://tidas.tiangong.earth in production, got ${origin}`);
 }
 
 // --- SEARCH_MODE ---
 const searchMode = process.env.NEXT_PUBLIC_SEARCH_MODE;
 if (!['static', 'algolia'].includes(searchMode)) {
   errors.push(`NEXT_PUBLIC_SEARCH_MODE invalid: ${JSON.stringify(searchMode ?? null)} (need static|algolia)`);
-} else if (deployEnv) {
-  const expected = deployEnv === 'production' ? 'algolia' : 'static';
-  if (searchMode !== expected) {
-    errors.push(`SEARCH_MODE/DEPLOY_ENV mismatch: ${searchMode} with ${deployEnv} (expected ${expected})`);
-  }
+}
+// tidas 无 Algolia 应用：static 搜索在全环境可用；algolia 模式仅在显式配置后启用
+if (searchMode === 'algolia' && deployEnv !== 'production') {
+  errors.push(`SEARCH_MODE/DEPLOY_ENV mismatch: algolia with ${deployEnv} (algolia only for production)`);
 }
 
 // --- Algolia 公共变量 ---
