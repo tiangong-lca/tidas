@@ -35,6 +35,7 @@ Next.js App Router static export using Fumadocs and TypeScript.
 - `/` renders the complete default Chinese homepage and serves as `x-default`.
 - `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
 - Documentation uses `/{lang}/docs/...`.
+- Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
 - Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
 
 Sources use the dot-locale convention: `page.mdx`, `page.en.mdx`, `page.de.mdx`,

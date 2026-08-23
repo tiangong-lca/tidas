@@ -359,6 +359,7 @@ if (schemaViewerSource.includes('function TaxonomyNode')) {
 passed.push('Schema Viewer retains flat-table and visual-test contracts');
 
 const homeSource = fs.readFileSync(path.join(root, 'components', 'docs-home.tsx'), 'utf8');
+const portalSource = fs.readFileSync(path.join(root, 'components', 'docs-portal.tsx'), 'utf8');
 const brandSource = fs.readFileSync(path.join(root, 'components', 'site-brand.tsx'), 'utf8');
 const metadataSource = fs.readFileSync(path.join(root, 'lib', 'metadata.ts'), 'utf8');
 const identitySource = `${homeSource}\n${brandSource}\n${metadataSource}`;
@@ -379,6 +380,27 @@ for (const retiredLabel of ['TIDAS Data Specification', 'TianGong Data Atlas', '
 }
 if (!identitySource.includes('TianGong Data System')) errors.push('TianGong Data System identity is missing');
 passed.push('TIDAS system identity, homepage signature, Fumadocs cards, and landmark composition are governed');
+
+if (!portalSource.includes('data-docs-portal="tidas-system-hub"')) {
+  errors.push('TIDAS documentation root omits the governed system-hub source marker');
+}
+if (!portalSource.includes('data-docs-portal-map="tidas-system-matrix"')) {
+  errors.push('TIDAS documentation root omits the governed system-matrix source marker');
+}
+let docsPortalCount = 0;
+for (const lang of ['zh', 'en', 'de', 'fr']) {
+  const html = fs.readFileSync(path.join(outRoot, lang, 'docs', 'index.html'), 'utf8');
+  if (!html.includes('data-docs-portal="tidas-system-hub"')) {
+    errors.push(`${lang} docs root omits the TIDAS system-hub marker`);
+    continue;
+  }
+  if (!html.includes('data-docs-portal-map="tidas-system-matrix"')) {
+    errors.push(`${lang} docs root omits the TIDAS system-matrix marker`);
+    continue;
+  }
+  docsPortalCount += 1;
+}
+if (docsPortalCount === 4) passed.push('four-locale TIDAS docs system hubs');
 
 const globalCssSource = fs.readFileSync(path.join(root, 'app', 'global.css'), 'utf8');
 if (/\b(?:linear|radial|conic|repeating-linear|repeating-radial)-gradient\s*\(/i.test(globalCssSource)) {

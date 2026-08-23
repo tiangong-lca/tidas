@@ -77,6 +77,7 @@ pnpm build
 - Schema HTML is at most 300,000 bytes;
 - a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
 - the TIDAS identity, system-map signature, flat taxonomy-table markers, and gradient- and shadow-free custom CSS contract remain present.
+- all four documentation roots retain the TIDAS system-hub and system-matrix markers.
 
 For the loaded taxonomy page, browser proof must also show:
 
@@ -101,6 +102,8 @@ Use Playwright or the in-app browser against the current static build or develop
 5. keyboard access to navigation, language, search, Schema load, taxonomy expand, and search results.
 
 The browser smoke should traverse every sitemap page when content structure changes. Any console error, failed first-party asset, invalid nesting warning, or horizontal overflow is a failure.
+
+For documentation-root changes, inspect every locale at 390px and 1440px, then the shared layout at 1633px, 2048px, and 2560px in light and dark themes. Every `[data-docs-portal]` link must stay within the current locale, resolve successfully, remain visible on mobile, and the page must have no horizontal overflow.
 
 ## PR evidence
 

@@ -75,6 +75,7 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect.
 - Locale homepages use `/{lang}/` for `zh`, `en`, `de`, and `fr`.
 - Documentation uses `/{lang}/docs/...`.
+- `/{lang}/docs/` is a system-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. Its governed markers are `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"`.
 - First-party document links use locale-absolute `/{lang}/docs/**/` targets. Path-relative document links are forbidden because trailing-slash pages resolve them below the current page directory.
 - All four locales are independent content sources with no fallback language.
 - `content/docs/**` uses dot-locale files: `page.mdx`, `page.en.mdx`, `page.de.mdx`, and `page.fr.mdx`.
