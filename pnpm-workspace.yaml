@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - fumadocs-core@16.15.0
+  - fumadocs-mdx@15.3.1
+  - fumadocs-ui@16.15.0
