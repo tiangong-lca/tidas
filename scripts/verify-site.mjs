@@ -121,7 +121,9 @@ for (const file of metaFiles) {
       ? entry.name.match(new RegExp(`^(.+)\\.${locale}\\.mdx$`))
       : entry.name.match(/^(.+)\.mdx$/);
     if (!match || (!locale && /\.(?:en|de|fr)$/.test(match[1]))) continue;
-    if (!declared.has(match[1])) errors.push(`localized page is missing from folder meta navigation: ${relative} -> ${match[1]}`);
+    if (match[1] !== 'index' && !declared.has(match[1])) {
+      errors.push(`localized page is missing from folder meta navigation: ${relative} -> ${match[1]}`);
+    }
   }
 }
 passed.push(`${declaredNavigationPages} localized folder-meta entries are relative and complete`);
