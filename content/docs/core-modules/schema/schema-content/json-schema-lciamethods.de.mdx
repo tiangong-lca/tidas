@@ -1,0 +1,19 @@
+---
+title: "LCIA Method"
+---
+
+import LciamethodsSchema from '@/public/schemas/tidas_lciamethods.json';
+import LciamethodsCategorySchema from '@/public/schemas/tidas_lciamethods_category.json';
+import { JsonSchemaViewer } from '@/components/json-schema-viewer';
+
+JSON Schema for Life Cycle Impact Assessment (LCIA) Methods and Categories
+========================
+
+<Callout type="idea">
+The Life Cycle Impact Assessment (LCIA) Method dataset includes characterization factors and impact categories used for assessing environmental impacts. It provides the methodological background and documentation necessary for applying LCIA in LCA studies.
+</Callout>
+
+<JsonSchemaViewer schema={ LciamethodsSchema } />
+
+# LCIA Method category
+<JsonSchemaViewer schema={ LciamethodsCategorySchema } />
