@@ -24,7 +24,7 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
+lastReviewedCommit: 45ea507c597395ebbe34213115cb301bb0f2fb68
 lastReviewedNote: "Reviewed for Issue #48 system identity, neutral UI, tabular Schema alignment, accessibility, localization, metadata, and visual gates."
 related:
   - ../../AGENTS.md
@@ -54,7 +54,7 @@ pnpm build
 | --- | --- |
 | prose or navigation | lint, full build, generated-link gate, spot-check affected locale pages |
 | German or French translation | lint, full build, compare source meaning, verify no English body copy remains, inspect navigation and search in that locale |
-| site UI or responsive layout | baseline plus browser screenshots at 1440×900 and 390×844, light and dark themes, keyboard focus, no horizontal overflow |
+| site UI or responsive layout | baseline plus browser screenshots at 390, 1440, 1633, 2048, and 2560 widths, light and dark themes, keyboard focus, no horizontal overflow |
 | root or language behavior | visit `/` and all locale homes; switch from `/` to another language; verify there is no redirect and URLs remain within the current route model |
 | Schema explorer | baseline plus generic structure and taxonomy interaction checks, raw download, error state, search cap, lazy expansion, and the budgets below |
 | media | full build image gate plus light/dark browser inspection |
@@ -69,6 +69,8 @@ pnpm build
 `scripts/verify-site.mjs` checks:
 
 - every generated first-party page and media link resolves;
+- relative, root-absolute, and same-origin absolute links resolve from the public URL of their source page, and every internal fragment names a real target element;
+- public MDX contains no path-relative document link, and retired `/docs/intro/integration/**` or `/docs/intro/use-case/**` targets fail the build;
 - public MDX does not contain raw `<a>` or `<p>` hydration hazards;
 - public MDX does not depend on GitHub user-attachment URLs whose build-time image probing can make exports nondeterministic;
 - Schema pages do not contain anonymous `oneOf N` labels;
@@ -86,6 +88,7 @@ For the loaded taxonomy page, browser proof must also show:
 - every taxonomy ID column has one stable horizontal position regardless of hierarchy depth;
 - hierarchy indentation affects the name cell only, leaf rows are not buttons, and search results retain ID, label, and parent breadcrumb;
 - `const`, `$ref`, tuple items, and semantic union labels are visible in the generic explorer.
+- required structure rows keep the disclosure SVG and field-name text vertically aligned within 2px, with a disclosure hit target of at least 24×24px.
 
 ## Browser smoke
 

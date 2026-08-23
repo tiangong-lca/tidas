@@ -22,7 +22,7 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
+lastReviewedCommit: 45ea507c597395ebbe34213115cb301bb0f2fb68
 lastReviewedNote: "Reviewed for Issue #48 TianGong Data System identity, neutral landing UI, tabular Schema explorer, complete localization, static quality gates, and EdgeOne publication."
 ---
 
@@ -72,7 +72,9 @@ origin, and search mode inputs.
 
 `pnpm build` produces `out/` and runs both output-contract and site-quality
 verification. The gates cover generated endpoints, locale/search evidence,
-links, images, MDX hydration hazards, and Schema page budgets.
+browser-resolved internal links and fragments, images, MDX hydration hazards,
+and Schema page budgets. Public MDX uses locale-absolute document routes rather
+than `./` or `../` links.
 
 ## Schema explorer
 

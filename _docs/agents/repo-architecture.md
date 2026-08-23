@@ -22,7 +22,7 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
+lastReviewedCommit: 45ea507c597395ebbe34213115cb301bb0f2fb68
 lastReviewedNote: "Reviewed for Issue #48 and the current neutral Fumadocs, TianGong Data System landing, tabular Schema explorer, four-locale, and EdgeOne architecture."
 related:
   - ../../AGENTS.md
@@ -84,6 +84,7 @@ The landing page uses Fumadocs neutral primitives and a TIDAS-specific system st
 - `/` is a real Chinese homepage and `x-default`; no redirect occurs.
 - `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
 - `/{lang}/docs/...` is the only documentation route family.
+- First-party links are locale-absolute. Static verification resolves every emitted href from the public URL of its source HTML, so a relative link cannot silently become a nested retired route.
 - Dot-locale sources are independent; `fallbackLanguage` is disabled.
 - Canonical metadata, hreflang links, sitemap alternates, search tags, and HTML language attributes must describe the same locale graph.
 - Removed URL families receive 404. There is no compatibility or redirect layer.
