@@ -1,19 +1,17 @@
 ---
-title: "Contacts"
+title: "Kontakte"
 ---
 
-import contactsSchema from '@/public/schemas/tidas_contacts.json';
-import ContactsCategorySchema from '@/public/schemas/tidas_contacts_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-## JSON Schema for Contacts and Contacts Category
+## JSON Schema für Kontakte und Kontaktkategorien
 
 <Callout type="idea">
-The contact dataset includes information about individuals, organizations, working groups, or database networks associated with a dataset. It typically includes names, addresses, phone numbers, and emails, facilitating communication and data governance.
+Der Kontaktdatensatz enthält Angaben zu Personen, Organisationen, Arbeitsgruppen oder Datenbanknetzwerken, die mit einem Datensatz verbunden sind. Dazu gehören in der Regel Namen, Anschriften, Telefonnummern und E-Mail-Adressen. Diese Informationen unterstützen die Kommunikation und Data Governance.
 </Callout>
 
-<JsonSchemaViewer schema={ contactsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts.json" />
 
-## Contacts category
+## Kontaktkategorien
 
-<JsonSchemaViewer schema={ ContactsCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts_category.json" />

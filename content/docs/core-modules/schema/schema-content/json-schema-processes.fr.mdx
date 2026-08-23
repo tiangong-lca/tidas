@@ -1,19 +1,17 @@
 ---
-title: "Processes"
+title: "Processus"
 ---
 
-import ProcessSchema from '@/public/schemas/tidas_processes.json';
-import ProcessesCategorySchema from '@/public/schemas/tidas_processes_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-## JSON Schema for Processes and Processes Category
+## JSON Schema pour les Processus et la catégorie Processus
 
 <Callout type="idea">
-Data set for unit processes, partly terminated systems, and LCI results. May contain LCIA results as well.
+Jeu de données pour les processus unitaires, les systèmes partiellement terminés et les résultats d'ICV. Peut également contenir des résultats de LCIA.
 </Callout>
 
-<JsonSchemaViewer schema={ ProcessSchema } />
+<JsonSchemaViewer src="/schemas/tidas_processes.json" />
 
-## Processes category
+## Catégorie Processus
 
-<JsonSchemaViewer schema={ ProcessesCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_processes_category.json" />

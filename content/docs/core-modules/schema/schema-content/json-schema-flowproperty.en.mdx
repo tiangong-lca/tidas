@@ -2,8 +2,6 @@
 title: "Flow Properties"
 ---
 
-import FlowpropertiesSchema from '@/public/schemas/tidas_flowproperties.json';
-import FlowpropertiesCategorySchema from '@/public/schemas/tidas_flowproperties_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## JSON Schema for Flow Property and Flow Property Category
@@ -12,8 +10,8 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 Flow properties define the measurement basis for flows—such as mass, volume, or energy. They establish how quantities are expressed and linked to unit groups, enabling accurate quantification and comparison of flows across datasets.
 </Callout>
 
-<JsonSchemaViewer schema={ FlowpropertiesSchema } />
+<JsonSchemaViewer src="/schemas/tidas_flowproperties.json" />
 
 ## Flow Properties category
 
-<JsonSchemaViewer schema={ FlowpropertiesCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_flowproperties_category.json" />

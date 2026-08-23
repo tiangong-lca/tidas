@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { source } from '@/lib/source';
 import { i18n } from '@/lib/i18n';
+import { languageAlternates } from '@/lib/metadata';
 
 export const dynamic = 'force-static';
 
@@ -10,9 +11,18 @@ export const dynamic = 'force-static';
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = process.env.CANONICAL_ORIGIN ?? 'https://tidas.tiangong.earth';
   const lastModified = new Date(Number(process.env.SOURCE_DATE_EPOCH ?? 0) * 1000);
+  const sitemapAlternates = (path = '') => Object.fromEntries(
+    Object.entries(languageAlternates(path)).map(([language, href]) => [language, new URL(href, `${origin}/`).href]),
+  );
 
   const entries: MetadataRoute.Sitemap = [
-    { url: `${origin}/`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
+    {
+      url: `${origin}/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 1,
+      alternates: { languages: sitemapAlternates() },
+    },
   ];
 
   for (const lang of i18n.languages) {
@@ -21,11 +31,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'weekly',
       priority: 1,
+      alternates: { languages: sitemapAlternates() },
     });
 
     for (const page of source.getPages(lang)) {
       const url = page.url.endsWith('/') ? page.url : `${page.url}/`;
-      entries.push({ url: `${origin}${url}`, lastModified, priority: 0.8 });
+      entries.push({
+        url: `${origin}${url}`,
+        lastModified,
+        priority: 0.8,
+        alternates: { languages: sitemapAlternates(['docs', ...page.slugs].join('/')) },
+      });
     }
   }
 

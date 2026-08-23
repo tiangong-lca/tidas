@@ -7,34 +7,31 @@ authoritative: true
 owner: tidas
 language: en
 whenToUse:
-  - when a task may change public TIDAS specification pages, published schema downloads, or docs-site navigation and localization
-  - when routing work from the workspace root into tidas
-  - when deciding whether a change belongs here, in tidas-tools, in tidas-sdk, or in lca-workspace
+  - when changing the public TIDAS specification, schemas, navigation, localization, site runtime, or publication path
+  - when routing work from lca-workspace into tidas
+  - when deciding whether work belongs in tidas, tidas-tools, tidas-sdk, or lca-workspace
 whenToUpdate:
-  - when spec/docs ownership boundaries change
-  - when docs-site runtime or release automation changes
-  - when repo-local documentation governance changes
+  - when repository ownership or public URL boundaries change
+  - when the docs runtime, localization model, validation contract, or publication path changes
+  - when repository documentation governance changes
 checkPaths:
   - AGENTS.md
   - README.md
   - .docpact/**/*.yaml
   - _docs/agents/**
   - package.json
-  - docs/**
-  - static/schemas/**
-  - sidebars.ts
-  - docusaurus.config.ts
-  - i18n/**
-  - src/**
-  - versions.json
+  - next.config.ts
+  - edgeone.json
+  - app/**
+  - components/**
+  - lib/**
+  - content/docs/**
+  - public/schemas/**
+  - scripts/**
   - .github/workflows/**
-  - .githooks/**
-  - scripts/docpact
-  - scripts/docpact-gate.sh
-  - scripts/install-git-hooks.sh
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 9004873b0abdc0f9288b63a0668c1ebf64823e78
-lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
+lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
+lastReviewedNote: "Reviewed for Issue #46: Data Atlas UI, lazy semantic Schema explorer, complete four-locale content, static-site quality gates, and current EdgeOne publication boundaries."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -42,136 +39,105 @@ related:
   - README.md
 ---
 
-## Repo Contract
+## Repository contract
 
-`tidas` owns the public TIDAS specification and docs-site surface: Docusaurus pages, published schema downloads, navigation, localization assets, and the tag-driven site release workflow. Start here when the task may change how the spec is explained or published on the site.
+`tidas` owns the public TIDAS specification and its static documentation site. That includes explanatory content, downloadable JSON Schema files, navigation, localization, search artifacts, and the site runtime that publishes them.
 
-## Documentation Roles
+## Documentation roles
 
-| Document | Owns | Does not own |
-| --- | --- | --- |
-| `AGENTS.md` | repo contract, branch and delivery rules, hard boundaries, minimal execution facts | full site path map, proof matrix, or long setup prose |
-| `.docpact/config.yaml` | machine-readable repo facts, routing intents, governed-doc rules, ownership, coverage, and freshness | explanatory prose or long-form walkthroughs |
-| `_docs/agents/repo-validation.md` | minimum proof by change type, preview guidance, PR validation note shape | repo contract, branch policy truth, or site-shape explanations |
-| `_docs/agents/repo-architecture.md` | compact docs-site mental model, stable path map, release/runtime split, and common misreads | checklist-style proof guidance or operator setup commands |
-| `README.md` | repo landing context and basic site commands | machine-readable routing or lint semantics |
+| Document | Owns |
+| --- | --- |
+| `AGENTS.md` | repository contract, ownership boundaries, branch and delivery facts, hard invariants |
+| `.docpact/config.yaml` | machine-readable ownership, coverage, routing, rules, and freshness |
+| `_docs/agents/repo-architecture.md` | current site layers, path map, runtime/publication split, cross-repository handoffs |
+| `_docs/agents/repo-validation.md` | proof required by change type and visual/static-site quality budgets |
+| `README.md` | contributor setup, build contract, repository orientation, publication overview |
 
-## Load Order
+Read this file first, then `.docpact/config.yaml` and the routed workflow documents. Public content under `content/docs/**` is a product surface, not agent guidance.
 
-Read in this order:
+## Minimal execution facts
 
-1. `AGENTS.md`
-2. `.docpact/config.yaml`
-3. `_docs/agents/repo-validation.md` or `_docs/agents/repo-architecture.md`
-4. the touched public site surface under `docs/**`, `static/schemas/**`, `i18n/**`, `src/**`, or the site config files
-5. `README.md` only when you need basic setup or preview commands
-
-The retained internal AI docs live under `_docs/agents/`, not `docs/agents/`, so Docusaurus does not publish them as public content.
-
-## Operational Pointers
-
-- path-level ownership, routing intents, governed-doc inventory, and lint rules live in `.docpact/config.yaml`
-- minimum proof and preview guidance live in `_docs/agents/repo-validation.md`
-- stable path groups and cross-repo handoffs live in `_docs/agents/repo-architecture.md`
-- repo-local documentation maintenance is enforced locally by the pre-push docpact gate; `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback
-- the main routing intents are `docs-site`, `published-schemas`, `site-runtime`, `proof`, `repo-docs`, and `root-integration`
-- high-value public-doc subdomains are:
-  - `docs/core-modules/schema/**` for schema explanation and validation pages
-  - `docs/tool/**`, `docs/integration/**`, and `docs/use_case/**` for public tooling, integration, and use-case guidance
-
-## Minimal Execution Facts
-
-Keep these entry-level facts in `AGENTS.md`. Use `README.md` and `_docs/agents/repo-validation.md` for the fuller setup and proof guidance.
-
-- package manager: `npm`
-- routine branch base: `main`
-- routine PR base: `main`
-- canonical validation baseline:
-  - `npm run lint`
-  - `npm run typecheck`
-  - `npm run build`
-- optional render checks:
-  - `npm run start`
-  - `npm run serve`
-- release is tag-driven through `v<version>` and deploys the built site to Cloudflare Pages after the release gate runs `lint`, `typecheck`, and `build`
-
-## Ownership Boundaries
-
-The authoritative path-level ownership map lives in `.docpact/config.yaml`.
-
-At a human-readable level, this repo owns:
-
-- `docs/**` for public spec, integration, and tooling explanation pages
-- `static/schemas/**` for published downloadable schema files served by the site
-- `package.json`, `sidebars.ts`, `docusaurus.config.ts`, `i18n/**`, `src/**`, `versions.json`, and `.github/workflows/build.yml` for the docs-site runtime, navigation, localization, and release path
-- `README.md`, `_docs/agents/**`, `.docpact/**`, and repo-local governed docs
-
-This repo does not own:
-
-- standalone conversion, validation, or export tooling logic
-- generated SDK package surfaces
-- workspace integration state after merge
-
-Route those tasks to:
-
-- `tidas-tools` for standalone tooling logic and packaged upstream assets
-- `tidas-sdk` for generated package surfaces and package release automation
-- `lca-workspace` for root integration after merge
-
-Important handoff nuance:
-
-- public schema explanation work in `docs/core-modules/schema/**` still lives here, but changes that alter downstream package-facing expectations may need follow-up in `tidas-sdk`
-- public tooling or integration guidance under `docs/tool/**`, `docs/integration/**`, or `docs/use_case/**` still lives here, but executable tool behavior remains in `tidas-tools`
-
-## Branch And Delivery Facts
-
-- GitHub default branch: `main`
-- true daily trunk: `main`
-- routine branch base: `main`
-- routine PR base: `main`
+- package manager: `pnpm` as pinned by `packageManager`
+- routine branch and PR base: `main`
 - branch model: `M1`
+- canonical local baseline:
+  - `pnpm lint`
+  - `pnpm typecheck`
+  - `DEPLOY_ENV=ci CANONICAL_ORIGIN=http://localhost:3000 NEXT_PUBLIC_SEARCH_MODE=static pnpm build`
+- visual changes additionally require browser checks at desktop and mobile widths
+- EdgeOne Pages Git integration owns production build and deployment from `main`
+- GitHub Actions validates pull requests; it does not publish the site
 
-`tidas` does not use a separate promote line. Normal implementation merges to `main`, and later workspace delivery still requires a root submodule bump when the updated docs or schema snapshot should ship through `lca-workspace`.
+Use exact versions and additional commands from `package.json`, `edgeone.json`, and `_docs/agents/repo-validation.md`; do not reconstruct them from this contract.
 
-## Operational Invariants
+## Current public surface
 
-- `static/schemas/**` is a published docs-site surface, not an automatic mirror of packaged upstream assets in `tidas-tools`
-- this repo explains public spec and tooling usage; standalone executable tooling logic stays in `tidas-tools`
-- generated SDK package output stays in `tidas-sdk`
-- the tag-driven `build.yml` workflow runs the release gate before deploying the built site to Cloudflare Pages
+- `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect.
+- Locale homepages use `/{lang}/` for `zh`, `en`, `de`, and `fr`.
+- Documentation uses `/{lang}/docs/...`.
+- All four locales are independent content sources with no fallback language.
+- `content/docs/**` uses dot-locale files: `page.mdx`, `page.en.mdx`, `page.de.mdx`, and `page.fr.mdx`.
+- `public/schemas/**` is the downloadable Schema surface. Large schemas are fetched by the client only when a reader opens the explorer; they must not be serialized into page HTML.
+- `out/**` is generated static output and never an authority source.
 
-## Documentation Update Rules
+This is a greenfield URL model. Do not add redirects, aliases, or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
 
-- if a machine-readable repo fact, routing intent, or governed-doc rule changes, update `.docpact/config.yaml`
-- if a human-readable repo contract, branch rule, or hard boundary changes, update `AGENTS.md`
-- if proof expectations or preview guidance change, update `_docs/agents/repo-validation.md`
-- if repo shape, path groups, or cross-repo handoff explanation changes, update `_docs/agents/repo-architecture.md`
-- if landing context or basic setup commands change, update `README.md`
-- do not copy the same rule into multiple docs just to make it easier to find
+## Ownership boundaries
 
-## Hard Boundaries
+This repository owns:
 
-- do not treat the docs-site schema download surface as the standalone tooling upstream
-- do not move standalone tooling logic into this repo
-- do not treat generated SDK surfaces as a docs-site concern
-- do not treat a merged repo PR here as workspace-delivery complete if the root repo still needs a submodule bump
+- `content/docs/**` for the public specification, integrations, tools, examples, and FAQ;
+- `public/schemas/**` for published downloadable schemas;
+- `app/**`, `components/**`, `lib/**`, `next.config.ts`, and site styles for routing and rendering;
+- `public/img/**`, `public/assets/**`, and brand files for site media;
+- `edgeone.json` and build verification for the EdgeOne publication contract;
+- repository docs, Docpact configuration, and local/remote documentation gates.
 
-## Workspace Integration
+It does not own:
 
-A merged PR in `tidas` is repo-complete, not delivery-complete.
+- conversion, validation, import, export, or release implementation logic: route to `tidas-tools`;
+- generated SDK packages: route to `tidas-sdk`;
+- workspace integration after repository delivery: route to `lca-workspace`.
 
-If the change must ship through the workspace:
+Public guidance about tools remains here, but executable behavior remains in `tidas-tools`. Changes to schema meaning may require a tracked follow-up in `tidas-sdk`.
 
-1. merge the child PR into `tidas`
-2. update the `lca-workspace` submodule pointer deliberately
-3. complete any later workspace-level validation that depends on the updated docs or schema snapshot
+## Runtime and content invariants
 
-## Local Docpact Push Gate
+- The site is a Next.js App Router static export using Fumadocs.
+- Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
+- Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
+- Search results must stay locale-scoped and bounded in the UI.
+- Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
+- Do not render more than 50 taxonomy search results or eagerly materialize an unbounded taxonomy tree.
+- Light and dark media variants must reference files that exist; use one asset in both themes when no dark variant exists.
+- Raw `<a>` and `<p>` elements are not allowed in public MDX because they bypass component mappings and can create invalid nested HTML.
+- German and French pages must contain genuine translations, not English body copies labeled as localized content.
 
-Install the versioned local hook once per checkout:
+## Documentation update rules
+
+- machine-readable path, ownership, routing, or rule changes update `.docpact/config.yaml`;
+- ownership, branch, URL, or publication invariants update `AGENTS.md`;
+- site shape and cross-repository explanation update `_docs/agents/repo-architecture.md`;
+- proof requirements and budgets update `_docs/agents/repo-validation.md`;
+- contributor setup and build commands update `README.md`.
+
+Do not copy the same detailed procedure into several documents.
+
+## Delivery and workspace integration
+
+A merged repository PR is repository-complete, not workspace-delivery complete. If the updated specification must ship through the workspace:
+
+1. merge the child PR into `tidas/main`;
+2. select the exact eligible child commit;
+3. update the `lca-workspace` submodule pointer deliberately;
+4. run the required workspace validation and complete the tracked integration record.
+
+## Local Docpact gate
+
+Install the versioned hook once per checkout:
 
 ```bash
 ./scripts/install-git-hooks.sh
 ```
 
-The `pre-push` hook runs `scripts/docpact-gate.sh`, which delegates CLI lookup to `scripts/docpact` and performs strict config validation plus enforced lint before the push leaves the machine. The wrapper checks `DOCPACT_BIN`, Cargo install locations, Homebrew install locations, and then `PATH`, so local agent shells should not fail only because bare `docpact` is unavailable. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
+The pre-push hook delegates to `scripts/docpact-gate.sh`, which resolves the CLI through `scripts/docpact`, validates config strictly, and enforces governed-document review against `origin/main` by default. Use `DOCPACT_BASE_REF` or `--base` only for an intentional nonstandard stack.

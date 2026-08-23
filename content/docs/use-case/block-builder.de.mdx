@@ -1,59 +1,59 @@
 ---
-title: "HiQ-Editor and TIDAS Integration Case Study"
-description: "Detailed case study on how HiQ-Editor tool from Haike Data integrates with and uses TIDAS data architecture"
+title: "Fallstudie zur Integration von HiQ-Editor und TIDAS"
+description: "Praxisbericht zur Anbindung des HiQ-Editors von Haike Data an die TIDAS-Datenarchitektur."
 ---
 
-## Overview
+## Überblick
 
-The integration between HiQ-Editor and TIDAS is significant because:
+Die Integration von HiQ-Editor und TIDAS bietet folgende Vorteile:
 
-- It enables easier LCA data exchange for users like enterprises, research institutions and governments, allowing environmental impact assessments using global data while ensuring data universality and comparability.
+- Unternehmen, Forschungseinrichtungen und Behörden können LCA-Daten einfacher austauschen, globale Daten für Umweltwirkungsbewertungen nutzen und dabei Vergleichbarkeit sowie allgemeine Verwendbarkeit wahren.
 
-- It facilitates LCA data (like ELCD, HiQLCD) interaction across different platforms, preventing data silos and improving interoperability.
+- LCA-Daten wie ELCD und HiQLCD lassen sich plattformübergreifend verwenden. Das vermeidet Datensilos und verbessert die Interoperabilität.
 
-- Using unified data structure and quality requirements makes LCA data more standardized, transparent and traceable, ensuring data integrity and consistency while improving reliability.
+- Einheitliche Datenstrukturen und Qualitätsanforderungen machen LCA-Daten standardisierter, transparenter und rückverfolgbar. Sie sichern Integrität und Konsistenz und erhöhen damit die Zuverlässigkeit.
 
-## Prerequisites
+## Voraussetzungen
 
-- TIDAS account permissions
+- Berechtigtes TIDAS-Konto
 
-- Basic TIDAS schema knowledge
+- Grundkenntnisse des TIDAS-Schemas
 
-- HiQ-Editor account permissions
+- Berechtigtes HiQ-Editor-Konto
 
-## Data Integration Methods
+## Integrationswege
 
-HiQ-Editor integrates with TIDAS primarily through:
+HiQ-Editor wird hauptsächlich auf zwei Wegen mit TIDAS verbunden:
 
-1. ILCD format import/export to support data flow between systems
+1. Import und Export im ILCD-Format für den Datenaustausch zwischen den Systemen
 
-2. API interfaces for data review and transfer
+2. API-Schnittstellen für Datenprüfung und -übertragung
 
-## Integration Steps
+## Integrationsschritte
 
-### Data Import/Export
+### Datenimport und -export
 
-1. Users (editors) edit data in HiQ-Editor.
-![image](https://github.com/user-attachments/assets/1652763e-0388-49f7-8edd-54e86a2f6aee)
+1. Nutzende mit Editorrolle bearbeiten Daten im HiQ-Editor.
+![Bearbeitung im HiQ-Editor](https://github.com/user-attachments/assets/1652763e-0388-49f7-8edd-54e86a2f6aee)
 
-2. Users (managers) perform LCIA calculations on a data version in HiQ-Editor and publish it.
+2. Nutzende mit Managerrolle führen für eine Datenversion eine LCIA-Berechnung durch und veröffentlichen sie.
 
-3. Users select data to export - system parses HiQ-Editor's LCA data schema and exports as ILCD-compliant document.
+3. Nach Auswahl der zu exportierenden Daten liest das System das LCA-Datenschema des HiQ-Editors und erzeugt ein ILCD-konformes Dokument.
 
-4. Users import and parse the ILCD document in TIDAS system.
-![image](https://github.com/user-attachments/assets/146de387-f375-4019-8139-21c1cb534bab)
+4. Das ILCD-Dokument wird in TIDAS importiert und eingelesen.
+![Import in TIDAS](https://github.com/user-attachments/assets/146de387-f375-4019-8139-21c1cb534bab)
 
-### Data Review and Transfer
+### Datenprüfung und -übertragung
 
-1. Users (editors) edit data in HiQ-Editor and submit for review.
+1. Nutzende mit Editorrolle bearbeiten Daten im HiQ-Editor und reichen sie zur Prüfung ein.
 
-2. HiQ-Editor establishes API connection with TIDAS to verify access permissions.
+2. Der HiQ-Editor baut eine API-Verbindung zu TIDAS auf und prüft die Zugriffsberechtigung.
 
-3. Submitted data flows to TIDAS for review via integration interface.
+3. Die eingereichten Daten werden über die Integrationsschnittstelle zur Prüfung an TIDAS übertragen.
 
-4. Users (reviewers) review and validate data in TIDAS system, with support for returning review content/results to HiQ-Editor.
+4. Nutzende mit Reviewerrolle prüfen und validieren die Daten in TIDAS. Inhalte und Ergebnisse der Prüfung können an den HiQ-Editor zurückgegeben werden.
 
-## Example Scenario
+## Beispielszenario
 
 ```json
 {
@@ -180,12 +180,12 @@ HiQ-Editor integrates with TIDAS primarily through:
 }
 ```
 
-## FAQs
+## Häufige Fragen
 
-### Q1: What if data submitted from HiQ-Editor cannot be transferred to TIDAS?
+### F1: Was ist zu tun, wenn im HiQ-Editor eingereichte Daten nicht an TIDAS übertragen werden?
 
-A: Check if the data in HiQ-Editor has passed completeness validation and its calculation status - only calculated data can be transferred to TIDAS for review.
+**Antwort:** Prüfen Sie, ob die Daten im HiQ-Editor die Vollständigkeitsprüfung bestanden haben und berechnet wurden. Nur berechnete Daten können zur Prüfung an TIDAS übertragen werden.
 
-### Q2: What if some field information is missing after export?
+### F2: Was ist zu tun, wenn nach dem Export Feldinformationen fehlen?
 
-A: HiQ-Editor export follows ILCD format standards - fields specific to custom business requirements that aren't part of ILCD specifications won't be included in the export.
+**Antwort:** Der Export des HiQ-Editors folgt der ILCD-Formatspezifikation. Geschäftsspezifische Felder, die nicht Bestandteil von ILCD sind, werden deshalb nicht exportiert.

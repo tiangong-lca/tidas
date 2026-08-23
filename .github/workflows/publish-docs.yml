@@ -1,17 +1,14 @@
-name: Publish docs
+name: Validate docs
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
 
 concurrency:
-  group: publish-docs-main
-  cancel-in-progress: false
+  group: validate-docs-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 env:
   DOCS_SITE_URL: https://tidas.tiangong.earth
@@ -19,7 +16,6 @@ env:
 jobs:
   validate:
     name: Validate (required check)
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read

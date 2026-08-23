@@ -1,22 +1,22 @@
 ---
-title: "MCP AI Services"
+title: "MCP-KI-Dienste"
 ---
 
-MCP (Model Context Protocol) AI Services are intelligent engine components in the TIDAS system that enhance lifecycle data understanding, completion, and validation capabilities, designed for next-generation environmental data management and intelligent application scenarios.
+Die KI-Dienste auf Basis des Model Context Protocol (MCP) sind intelligente Komponenten des TIDAS-Systems. Sie verbessern das Verstehen, Ergänzen und Validieren von Lebenszyklusdaten und unterstützen moderne Umweltdatenverwaltung sowie KI-gestützte Anwendungen.
 
-## ✨ Core Features
+## ✨ Kernfunktionen
 
-MCP services integrate AI capabilities into TIDAS lifecycle databases, providing the following core features:
+MCP-Dienste binden KI-Funktionen in TIDAS-Lebenszyklusdatenbanken ein:
 
-- **Semantic Search**: Query lifecycle inventory (LCA Flows) data using natural language
+- **Semantische Suche**: Sachbilanz- und Flussdaten in natürlicher Sprache abfragen.
 
-- **Intelligent Completion**: Assist in completing missing fields or suggesting structural improvements
+- **Intelligente Ergänzung**: Fehlende Felder vervollständigen und strukturelle Verbesserungen vorschlagen.
 
-- **Format Validation**: Automatically validate data compliance based on JSON Schema
+- **Formatvalidierung**: Konformität automatisch anhand von JSON Schema prüfen.
 
-- **Debugging & Validation Support**: Supports debugging and validating service processes using the MCP Inspector tool (as shown below)
+- **Unterstützung für Debugging und Prüfung**: Dienstabläufe mit dem MCP Inspector untersuchen und validieren.
 
-> 📷 Illustration: We use the MCP Inspector tool to debug queries for "Cypermethrin" related flow information, verifying that the MCP service successfully returns structured data.
+> 📷 Beispiel: Mit dem MCP Inspector wird eine Abfrage nach Flussinformationen zu „Cypermethrin“ untersucht. Das Ergebnis bestätigt, dass der MCP-Dienst strukturierte Daten zurückgibt.
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -25,33 +25,33 @@ import { TidasImage } from '@/components/tidas-image';
   title="MCP-inspector"
 />
 
-## 🧱 Technical Implementation
+## 🧱 Technische Umsetzung
 
-MCP services are implemented based on:
+Die MCP-Dienste verwenden folgende Bausteine:
 
-- **Transport Protocol**: Supports SSE service with WebSocket, HTTP and other transmission modes
+- **Transportprotokoll**: SSE-Dienst mit WebSocket, HTTP und weiteren Übertragungsarten.
 
-- **Data Processing**: Parses and processes data based on TIDAS format (JSON Schema)
+- **Datenverarbeitung**: Einlesen und Verarbeiten von Daten im TIDAS-Format auf Basis von JSON Schema.
 
-- **Tool Scheduling**: Integrates various intelligent tools like `Search_flows_Tool`
+- **Werkzeugaufruf**: Einbindung intelligenter Werkzeuge wie `Search_flows_Tool`.
 
-- **Local Deployment**: Supports private deployment to ensure data security and compliance
+- **Lokale Bereitstellung**: Private Installation zur Wahrung von Datensicherheit und Compliance.
 
-## 🔗 Open Source Link
+## 🔗 Open-Source-Projekt
 
-MCP services are open-sourced on GitHub:  
+Die MCP-Dienste sind auf GitHub verfügbar:
 👉 [https://github.com/linancn/tiangong-lca-mcp](https://github.com/linancn/tiangong-lca-mcp)
 
-The project provides complete server code, sample frontend (including integration examples for the Inspector debugging tool), tool registration and testing documentation, enabling rapid development of AI-driven lifecycle data platforms based on TIDAS architecture.
+Das Projekt enthält den vollständigen Servercode, eine Beispieloberfläche mit Integration des Inspector-Werkzeugs sowie Dokumentation zur Werkzeugregistrierung und zum Testen. Damit lassen sich KI-gestützte Lebenszyklusdatenplattformen auf Basis der TIDAS-Architektur zügig entwickeln.
 
-## 📦 Prerequisites
+## 📦 Voraussetzungen
 
-- A lifecycle database compliant with [TIDAS Schema](/de/docs/category/tidas-schema/) has been built
+- Eine Lebenszyklusdatenbank gemäß dem [TIDAS-Schema](/de/docs/core-modules/schema/tidas-schema-intro/) ist vorhanden.
 
-- MCP Bearer Token and service address have been configured
+- MCP-Bearer-Token und Dienstadresse sind konfiguriert.
 
-- Required intelligent tools (e.g. Search_flows_Tool) have been registered as needed
+- Die benötigten intelligenten Werkzeuge, etwa `Search_flows_Tool`, sind registriert.
 
 ---
 
-If you wish to further integrate LCA intelligent services or build your own AI data platform, MCP services provide an efficient starting point.
+Für die Integration intelligenter LCA-Dienste oder den Aufbau einer eigenen KI-Datenplattform bieten die MCP-Dienste einen effizienten Ausgangspunkt.

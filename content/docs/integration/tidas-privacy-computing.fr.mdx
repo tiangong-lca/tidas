@@ -1,40 +1,40 @@
 ---
-title: "TIDAS Trusted Data Space"
+title: "Espace de données de confiance TIDAS"
 ---
 
-## Background and Challenges
+## Contexte et défis
 
-Product carbon footprint data often contains sensitive business information about production, energy consumption, supply chains, etc. Direct sharing or analysis may lead to serious privacy and business risks.
+Les données d'empreinte carbone de produit contiennent souvent des informations commerciales sensibles sur la production, la consommation d'énergie, les chaînes d'approvisionnement, etc. Le partage direct ou l'analyse peut entraîner des risques sérieux en matière de confidentialité et commerciaux.
 
-Energy usage data may reveal production scale, technology level, or even cost structures, while logistics data could expose supply chain networks and business layouts. This creates a dilemma for participants in carbon data analysis: they want to gain value through data analysis while worrying about sensitive information leakage.
+Les données d'utilisation de l'énergie peuvent révéler l'échelle de production, le niveau technologique, voire les structures de coûts, tandis que les données logistiques pourraient exposer les réseaux de chaîne d'approvisionnement et les implantations commerciales. Cela crée un dilemme pour les participants à l'analyse des données carbone : ils souhaitent obtenir de la valeur par l'analyse des données tout en s'inquiétant de la fuite d'informations sensibles.
 
-TIDAS Trusted Data Space emerges as an innovative solution that can safely unlock data value while protecting original sensitive data.
+L'espace de données de confiance TIDAS émerge comme une solution innovante capable de libérer la valeur des données en toute sécurité tout en protégeant les données sensibles originales.
 
-## TIDAS Trusted Data Space Design
+## Conception de l'espace de données de confiance TIDAS
 
-The trusted data space is built on the core concept of "data usable but not visible," establishing a secure and trusted data processing environment that enables secure computation and value transformation of sensitive data. Its design features include:
+L'espace de données de confiance est construit sur le concept central de « données utilisables mais non visibles », établissant un environnement de traitement des données sécurisé et de confiance qui permet le calcul sécurisé et la transformation de valeur des données sensibles. Ses caractéristiques de conception incluent :
 
-- **Data Isolation Technology**: Separates sensitive data from computational logic to prevent unauthorized access
+- **Technologie d'isolation des données** : Sépare les données sensibles de la logique de calcul pour empêcher l'accès non autorisé
 
-- **Secure Multi-Party Computation (SMPC)**: Enables federated analytics without exposing original data to any participating party
+- **Calcul multipartite sécurisé (SMPC)** : Permet l'analyse fédérée sans exposer les données originales à aucune partie participante
 
-- **Differential Privacy**: SProtects individual data privacy by introducing calibrated noise to statistical outputs
+- **Confidentialité différentielle** : Protège la confidentialité des données individuelles en introduisant un bruit calibré dans les résultats statistiques
 
-- **Trusted Execution Environment (TEE)**: Utilizes isolated hardware enclaves to ensure the security and integrity of computations
+- **Environnement d'exécution de confiance (TEE)** : Utilise des enclaves matérielles isolées pour garantir la sécurité et l'intégrité des calculs
 
-## System Architecture
+## Architecture du système
 
-The TIDAS Trusted Data Space consists of the following key components:
+L'espace de données de confiance TIDAS se compose des composants clés suivants :
 
-- **Data Providers**: Organizations that own original carbon footprint data
+- **Fournisseurs de données** : Organisations qui possèdent les données originales d'empreinte carbone
 
-- **Trusted Data Space**: Securely isolated computing environment containing multiple computation nodes
+- **Espace de données de confiance** : Environnement de calcul isolé de manière sécurisée contenant plusieurs nœuds de calcul
 
-- **Computation Rules**: Predefined data processing and de-sensitization algorithms
+- **Règles de calcul** : Algorithmes de traitement et de désensibilisation des données prédéfinis
 
-- **Result Data**: Processed non-sensitive data that can be safely shared and used
+- **Données de résultat** : Données traitées non sensibles qui peuvent être partagées et utilisées en toute sécurité
 
-## Workflow
+## Flux de travail
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -43,46 +43,46 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS-dataspace"
 />
 
-### 1. Data Authorization and Access
+### 1. Autorisation et accès aux données
 
-Data providers first determine the scope and purpose of participating in data analysis, then grant limited data access rights to the trusted data space. In this stage:
+Les fournisseurs de données déterminent d'abord la portée et l'objectif de leur participation à l'analyse des données, puis accordent des droits d'accès limités aux données à l'espace de données de confiance. À cette étape :
 
-- Data providers maintain ownership and control over their data
+- Les fournisseurs de données maintiennent la propriété et le contrôle sur leurs données
 
-- Authorization clearly limits data usage purposes and computation rules
+- L'autorisation limite clairement les objectifs d'utilisation des données et les règles de calcul
 
-- Original data does not leave the provider's security boundary
+- Les données originales ne quittent pas la limite de sécurité du fournisseur
 
-### 2. Trusted Computation Execution
+### 2. Exécution du calcul de confiance
 
-After authorization is complete, data space computation nodes access the original data and execute predefined computations in a secure environment:
+Une fois l'autorisation terminée, les nœuds de calcul de l'espace de données accèdent aux données originales et exécutent les calculs prédéfinis dans un environnement sécurisé :
 
-- The system processes original energy consumption data to calculate carbon emission indicators
+- Le système traite les données originales de consommation d'énergie pour calculer les indicateurs d'émissions de carbone
 
-- Simultaneously removes data points that might identify identity or sensitive operational information
+- Supprime simultanément les points de données qui pourraient identifier l'identité ou des informations opérationnelles sensibles
 
-- The entire computation process takes place in an isolated environment, ensuring original data is not leaked
+- L'ensemble du processus de calcul a lieu dans un environnement isolé, garantissant que les données originales ne sont pas divulguées
 
-### 3. Result Generation and Application
+### 3. Génération et application des résultats
 
-After computation is complete, the system outputs de-sensitized result data.
+Une fois le calcul terminé, le système génère des données de résultat désensibilisées.
 
-The processed data only contains carbon emission indicators and classifications, without specific identity and production data, making it safe for various analyses without leaking business secrets.
+Les données traitées ne contiennent que les indicateurs et classifications d'émissions de carbone, sans données spécifiques d'identité et de production, ce qui les rend sûres pour diverses analyses sans divulgation de secrets commerciaux.
 
-## Practical Applications
+## Applications pratiques
 
-We have already implemented and validated the trusted data space based on Ant Chain's trusted collaboration platform technology. In carbon data analysis projects, the system successfully produced industry carbon intensity benchmark data while protecting sensitive information from all participants.
+Nous avons déjà mis en œuvre et validé l'espace de données de confiance basé sur la technologie de plateforme de collaboration de confiance d'Ant Chain. Dans les projets d'analyse de données carbone, le système a produit avec succès des données de référence d'intensité carbone sectorielle tout en protégeant les informations sensibles de tous les participants.
 
-## Future Outlook
+## Perspectives d'avenir
 
-TIDAS Trusted Data Space provides a feasible path for safely unlocking the value of carbon footprint data. Future applications will be expanded to include:
+L'espace de données de confiance TIDAS fournit une voie faisable pour libérer en toute sécurité la valeur des données d'empreinte carbone. Les applications futures seront étendues pour inclure :
 
-- Cross-regional and cross-industry carbon efficiency comparisons
+- Les comparaisons d'efficacité carbone interrégionales et intersectorielles
 
-- Supply chain carbon footprint assessment and optimization
+- L'évaluation et l'optimisation de l'empreinte carbone de la chaîne d'approvisionnement
 
-- Carbon asset evaluation and carbon credit generation
+- L'évaluation des actifs carbone et la génération de crédits carbone
 
-- Low-carbon technology effectiveness verification
+- La vérification de l'efficacité des technologies à faible teneur en carbone
 
-Through the trusted data space, we aim to build a carbon data ecosystem that both protects data privacy and unlocks data value, helping various industries achieve scientific and efficient carbon reduction.
+Grâce à l'espace de données de confiance, nous visons à construire un écosystème de données carbone qui protège la confidentialité tout en libérant la valeur des données, afin d'aider les différents secteurs à réduire leurs émissions de manière scientifiquement fondée et efficace.

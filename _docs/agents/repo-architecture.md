@@ -7,31 +7,23 @@ authoritative: false
 owner: tidas
 language: en
 whenToUse:
-  - when you need a compact mental model of the repo before editing spec pages, schema downloads, or site runtime files
-  - when deciding which site layer owns a behavior change
-  - when spec docs, downloadable schemas, or downstream handoffs are mentioned without exact paths
+  - when selecting the layer that owns a public page, Schema download, locale, runtime, or publication change
+  - when a TIDAS docs task names a capability without an exact path
 whenToUpdate:
-  - when major site layers or localization paths change
-  - when the published-schema surface changes
-  - when downstream handoffs make the current map misleading
+  - when site layers, path groups, localization, Schema delivery, or publication ownership changes
 checkPaths:
   - _docs/agents/repo-architecture.md
   - .docpact/config.yaml
-  - docs/**
-  - static/schemas/**
-  - package.json
-  - sidebars.ts
-  - docusaurus.config.ts
-  - i18n/**
-  - src/**
-  - .github/workflows/build.yml
-  - .githooks/pre-push
-  - scripts/docpact
-  - scripts/docpact-gate.sh
-  - scripts/install-git-hooks.sh
+  - app/**
+  - components/**
+  - lib/**
+  - content/docs/**
+  - public/schemas/**
+  - edgeone.json
+  - .github/workflows/publish-docs.yml
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 9004873b0abdc0f9288b63a0668c1ebf64823e78
-lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
+lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
+lastReviewedNote: "Reviewed for Issue #46 and the current static Fumadocs, Schema explorer, four-locale, and EdgeOne architecture."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -39,60 +31,73 @@ related:
   - ../../README.md
 ---
 
-## Repo Shape
+## Site shape
 
-This repo is a Docusaurus site that publishes public TIDAS specification content plus downloadable schema files.
+The repository publishes a Next.js App Router static export using Fumadocs. EdgeOne Pages checks out the selected Git commit, runs the repository build command, and deploys `out/`. GitHub Actions provides pull-request validation only.
 
-## Stable Path Map
+## Stable path map
 
 | Path group | Role |
 | --- | --- |
-| `docs/**` | public spec, integration, and tooling explanation pages |
-| `static/schemas/**` | published downloadable schema files |
-| `package.json` | site scripts and package-manager baseline |
-| `sidebars.ts` | site navigation structure |
-| `docusaurus.config.ts` | site config, locales, and plugin wiring |
-| `i18n/**` | localization assets |
-| `src/**` | site runtime components and custom pages |
-| `.github/workflows/build.yml` | tag-driven Cloudflare Pages deployment |
+| `app/(entry)/**` | root `x-default` homepage and document shell |
+| `app/(locale)/[lang]/**` | locale homepages and documentation routes |
+| `app/api`, `app/llms.txt`, `app/search-records.json`, `app/sitemap.ts`, `app/robots.ts`, `app/og` | generated discovery, search, crawler, and sharing surfaces |
+| `components/docs-home.tsx`, `components/site-brand.tsx`, `app/global.css` | shared TianGong Data Atlas visual contract and TIDAS identity |
+| `components/json-schema-viewer.tsx` | lazy semantic Schema structure and taxonomy explorer |
+| `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
+| `content/docs/**` | four-language public specification and guidance |
+| `public/schemas/**` | directly downloadable JSON Schema files |
+| `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
+| `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts` | content loading, navigation, localization, and metadata policy |
+| `scripts/build.mjs`, `scripts/verify-*.mjs` | deterministic build pipeline and static-site gates |
+| `edgeone.json` | EdgeOne install, build, output, and Node contract |
+| `.github/workflows/publish-docs.yml` | pull-request validation |
 
-## Practical Cross-Repo Chain
+## Request and build flow
 
-The practical role split today is:
+```text
+content/docs + public/schemas + UI components
+                    │
+                    ▼
+            Next.js static build
+                    │
+          ┌─────────┴──────────┐
+          ▼                    ▼
+     out/**/*.html      search / llms / sitemap / OG
+          │                    │
+          └─────────┬──────────┘
+                    ▼
+            static quality gates
+                    │
+                    ▼
+              EdgeOne deploy
+```
 
-- `tidas`: public spec/docs surface
-- `tidas-tools`: executable tooling and packaged upstream assets
-- `tidas-sdk`: generated package surfaces
+Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
-Important consequence:
+Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a semantic hierarchy with bounded search. Other schemas render as a lazy tree whose branch labels prefer title, constants, enums, and references over ordinal names.
 
-`static/schemas/**` is a published docs-site surface, not an automatic mirror of `tidas-tools/assets/tidas/schemas/**`.
+## Locale and URL model
 
-Treat both surfaces explicitly.
+- `/` is a real Chinese homepage and `x-default`; no redirect occurs.
+- `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
+- `/{lang}/docs/...` is the only documentation route family.
+- Dot-locale sources are independent; `fallbackLanguage` is disabled.
+- Canonical metadata, hreflang links, sitemap alternates, search tags, and HTML language attributes must describe the same locale graph.
+- Removed URL families receive 404. There is no compatibility or redirect layer.
 
-## Public Docs Subdomains And Handoffs
+## Cross-repository handoffs
 
-- `docs/core-modules/schema/**` is the public schema explanation and validation surface owned here; if the meaning of those docs changes in a way that affects downstream package consumers, expect follow-up in `tidas-sdk`
-- `docs/tool/**`, `docs/integration/**`, and `docs/use_case/**` are public guidance surfaces owned here; if the underlying executable tool behavior changed, route that implementation work to `tidas-tools`
-- `static/schemas/**` is the published download surface served by the site; compare it explicitly against `tidas-tools/assets/tidas/schemas/**` when refreshing downloadable schemas
+- `tidas` explains the specification and publishes Schema downloads.
+- `tidas-tools` implements conversion, validation, import, export, and reproducible release behavior.
+- `tidas-sdk` owns generated package surfaces.
+- `lca-workspace` owns the final submodule pointer and cross-repository integration.
 
-## Site Runtime
+`public/schemas/**` is a deliberate published site surface, not an automatic mirror. Compare it explicitly with the maintained tool assets when refreshing schemas.
 
-The repo uses Docusaurus with localized site assets and can build or serve static output locally through the npm scripts in `package.json`.
+## Common misreads
 
-## Release Architecture
-
-Tag `v<version>` triggers the release gate, which runs `npm run lint`, `npm run typecheck`, and `npm run build` before the Cloudflare Pages deploy of the `build/` output.
-
-This release path is part of the repo architecture, not just a deployment checklist.
-
-## Common Misreads
-
-- downloadable schema files on the site are not the only executable upstream
-- standalone tooling behavior does not live here
-- generated SDK package output does not live here
-- a merged child PR does not finish workspace delivery
-
-## Local Docpact Push Gate
-
-This repository has a versioned local `pre-push` hook under `.githooks/pre-push` that delegates to `scripts/docpact-gate.sh`. The gate resolves the CLI through `scripts/docpact`, so local agent shells do not need bare `docpact` on `PATH`. The hook is a local developer guard for docpact config validation and enforced doc-governance linting; ordinary PRs and pushes rely on the local gate; `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback for remote reproduction.
+- A green Next.js build does not prove links, images, hydration, localization, or page-size budgets; the repository gates do.
+- Importing a large JSON Schema from MDX serializes it into HTML and RSC payloads even if the visible tree is collapsed.
+- Locale-labelled English copies are not translations.
+- A merged child PR does not complete workspace delivery.

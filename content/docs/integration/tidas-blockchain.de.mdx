@@ -1,36 +1,36 @@
 ---
-title: "TIDAS Data Security Mechanism"
+title: "Mechanismus zur Datensicherheit in TIDAS"
 ---
 
-## Background and Challenges
+## Ausgangslage und Herausforderungen
 
-Carbon footprint data faces multiple authenticity challenges during application:
+Daten zum CO₂-Fußabdruck stehen in der praktischen Nutzung vor mehreren Herausforderungen hinsichtlich ihrer Authentizität:
 
-- Data can be easily tampered with, leading to information distortion
+- Daten lassen sich verändern, wodurch Informationen verfälscht werden können.
 
-- Difficulty in tracing change history
+- Änderungen sind häufig nur schwer lückenlos nachzuvollziehen.
 
-- High cost of traditional verification methods
+- Herkömmliche Prüfverfahren verursachen einen hohen Aufwand.
 
-- Lack of common trust foundation in multi-party collaboration
+- Bei der Zusammenarbeit mehrerer Parteien fehlt oft eine gemeinsame Vertrauensgrundlage.
 
-These challenges not only affect data value but may also lead to compliance risks and trust crises.
+Diese Probleme mindern nicht nur den Wert der Daten, sondern können auch Compliance-Risiken und Vertrauensverluste verursachen.
 
-## Blockchain-Based Data Tamper-Proof Mechanism
+## Blockchain-basierter Schutz vor Manipulation
 
-Blockchain, with its core features, provides an ideal solution for data tamper-proofing:
+Die Kerneigenschaften einer Blockchain bieten eine geeignete Grundlage, um Daten gegen unbemerkte Manipulation zu schützen:
 
-- **Immutability**: Chain structure combined with cryptography ensures data is difficult to alter once recorded
+- **Unveränderlichkeit**: Kettenstruktur und Kryptografie erschweren Änderungen an bereits aufgezeichneten Daten.
 
-- **Distributed Architecture**: Eliminates single-point tampering risks
+- **Verteilte Architektur**: Sie reduziert das Risiko einer Manipulation an einem einzelnen Kontrollpunkt.
 
-- **Timestamp Mechanism**: Provides indisputable chronological proof
+- **Zeitstempel**: Sie liefern einen belastbaren chronologischen Nachweis.
 
-- **Consensus Mechanism**: Ensures consistent recognition of data status among network participants
+- **Konsensmechanismus**: Er sorgt dafür, dass die Netzwerkteilnehmer denselben Datenstand anerkennen.
 
-## TIDAS Working Mechanism
+## Funktionsweise in TIDAS
 
-TIDAS builds an efficient data trust mechanism based on the Tiangong data platform and blockchain technology:
+TIDAS verbindet die TianGong-Datenplattform mit Blockchain-Technologie zu einem effizienten Vertrauensmechanismus:
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -39,32 +39,32 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS-blockchain"
 />
 
-### Process Design
+### Prozessablauf
 
-1. **Data Submission and Review**
-   - Contributors submit original data to the Tiangong platform
-   - Platform review ensures data complies with TIDAS standards
+1. **Datenübermittlung und Prüfung**
+   - Mitwirkende übermitteln die Originaldaten an die TianGong-Plattform.
+   - Die Plattformprüfung stellt die Konformität mit der TIDAS-Spezifikation sicher.
 
-2. **Hash On-Chain**
-   - Calculate hash values of processed data
-   - Write hashes to blockchain and obtain transaction credentials
-   - Associate stored data content with transaction hashes
+2. **Hash auf der Blockchain verankern**
+   - Für die verarbeiteten Daten wird ein Hashwert berechnet.
+   - Der Hash wird auf die Blockchain geschrieben; dabei entsteht ein Transaktionsnachweis.
+   - Gespeicherter Dateninhalt und Transaktionshash werden miteinander verknüpft.
 
-3. **Verification Mechanism**
-   - Users obtain data and transaction hashes
-   - Recalculate hash values of obtained data
-   - Compare with blockchain records to verify integrity
+3. **Prüfmechanismus**
+   - Nutzende erhalten Daten und Transaktionshash.
+   - Sie berechnen den Hashwert der erhaltenen Daten erneut.
+   - Der Vergleich mit dem Blockchain-Eintrag bestätigt oder widerlegt die Integrität.
 
-### Technical Features
+### Technische Merkmale
 
-- **Lightweight Design**: Only hashes on-chain, balancing performance and cost
+- **Schlankes Verfahren**: Nur Hashwerte werden auf der Blockchain gespeichert; das wahrt das Verhältnis von Leistung und Kosten.
 
-- **Dual Protection**: Combines platform management with blockchain tamper-proofing
+- **Doppelter Schutz**: Plattformverwaltung und Blockchain-Nachweis ergänzen einander.
 
-- **Privacy Protection**: Original data not directly exposed
+- **Datenschutz**: Originaldaten werden nicht unmittelbar offengelegt.
 
-- **Open Verification**: Supports independent third-party verification
+- **Offene Prüfung**: Unabhängige Dritte können die Integrität selbst verifizieren.
 
-## Practical Application
+## Praktische Anwendung
 
-We have collaborated with Ant Chain to develop a blockchain-based trusted solution for carbon footprint data, providing strong guarantees for the authenticity of carbon footprint data.
+Gemeinsam mit AntChain wurde eine blockchainbasierte Vertrauenslösung für Daten zum CO₂-Fußabdruck entwickelt. Sie schafft einen belastbaren Nachweis für die Authentizität dieser Daten.

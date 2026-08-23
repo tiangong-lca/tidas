@@ -1,14 +1,13 @@
 ---
-title: "Life Cycle Models"
+title: "Modèles de cycle de vie"
 ---
 
-import LifecyclemodelsSchema from '@/public/schemas/tidas_lifecyclemodels.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
-## JSON Schema for Life Cycle Model
+## JSON Schema pour le Modèle de cycle de vie
 
 <Callout type="idea">
-System of interconnected processes that jointly represent the full or partial life cycle of a product system, with the final process step ('Reference process instance') being referenced from this life cycle model data set, which connects and stepwise scales all other process instances via the connecting product and waste exchanges.
+Système de processus interconnectés représentant conjointement le cycle de vie complet ou partiel d'un système de produits, l'étape de processus finale (« Instance de processus de référence ») étant référencée à partir de ce jeu de données de modèle de cycle de vie, qui connecte et met à l'échelle de manière progressive toutes les autres instances de processus via les échanges de produits et de déchets de connexion.
 </Callout>
 
-<JsonSchemaViewer schema={ LifecyclemodelsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_lifecyclemodels.json" />

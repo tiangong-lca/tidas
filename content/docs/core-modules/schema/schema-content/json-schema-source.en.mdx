@@ -2,8 +2,6 @@
 title: "Sources"
 ---
 
-import SourcesSchema from '@/public/schemas/tidas_sources.json';
-import SourcesCategorySchema from '@/public/schemas/tidas_sources_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## JSON Schema for Sources and Sources category
@@ -12,8 +10,8 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 The source dataset documents bibliographic references to literature, standards, database documentation, or conformity systems referenced in the dataset. It enhances transparency and traceability of data sources.
 </Callout>
 
-<JsonSchemaViewer schema={ SourcesSchema } />
+<JsonSchemaViewer src="/schemas/tidas_sources.json" />
 
 ## Sources category
 
-<JsonSchemaViewer schema={ SourcesCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_sources_category.json" />

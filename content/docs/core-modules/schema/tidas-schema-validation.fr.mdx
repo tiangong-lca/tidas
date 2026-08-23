@@ -1,15 +1,12 @@
 ---
-title: "Schema Validation"
+title: "Validation de schéma"
 ---
 
-TIDAS data structures are defined with JSON Schema. The supported batch
-validation entry point is `tidas validate` in the unified Rust CLI. It uses the
-integrity-locked JSON Schema, ILCD XSD, and rules assets packaged with v0.1.1
-offline, without an external source tree or Python environment.
+Les structures de données TIDAS sont définies avec JSON Schema. Le point d'entrée de validation par lot supporté est `tidas validate` dans la CLI Rust unifiée. Il utilise les ressources de schéma JSON, XSD ILCD et de règles intégrées et vérifiées pour l'intégrité de la version 0.1.1 hors ligne, sans arborescence source externe ou environnement Python.
 
 ---
 
-## Validate a TIDAS JSON package
+## Valider un paquet JSON TIDAS
 
 ```bash
 tidas validate ./tidas-package \
@@ -18,15 +15,15 @@ tidas validate ./tidas-package \
   --format json
 ```
 
-- The positional input directory contains the canonical TIDAS category subdirectories.
+- Le répertoire d'entrée positionnel contient les sous-répertoires de catégories TIDAS canoniques.
 
-- `--issues` atomically writes the complete deterministic JSONL issue stream.
+- `--issues` écrit de manière atomique le flux complet déterministe de problèmes JSONL.
 
-- `--format json` keeps stdout to a stable machine-readable report; diagnostics and progress use stderr.
+- `--format json` maintient stdout vers un rapport stable lisible par machine; les diagnostics et la progression utilisent stderr.
 
-- `--report <path>` atomically persists the complete report.
+- `--report <path>` persiste de manière atomique le rapport complet.
 
-## Validate an ILCD XML package
+## Valider un paquet XML ILCD
 
 ```bash
 tidas validate ./ilcd-package \
@@ -35,21 +32,18 @@ tidas validate ./ilcd-package \
   --format json
 ```
 
-The validator uses only the integrity-locked XSD assets embedded in the binary
-and reuses offline validation contexts.
+Le validateur utilise uniquement les ressources XSD intégrées et vérifiées pour l'intégrité dans le binaire et réutilise les contextes de validation hors ligne.
 
-## Inspect validator fingerprints
+## Inspecter les empreintes du validateur
 
-Record the validation protocol, engine, and Schema-lock fingerprints before a
-reproducible CI or batch run:
+Enregistrez le protocole de validation, le moteur et les empreintes de verrouillage de schéma avant une exécution CI reproductible ou par lot :
 
 ```bash
 tidas validate --describe --format json
 tidas version --format json
 ```
 
-The `document-validation-batch.v1` protocol validates exactly the manifest
-documents and produces deterministic issue events plus a final evidence hash:
+Le protocole `document-validation-batch.v1` valide exactement les documents manifestes et produit des événements de problèmes déterministes plus un hachage de preuve final :
 
 ```bash
 tidas validate ./batch-root \
@@ -61,45 +55,38 @@ tidas validate ./batch-root \
 
 ---
 
-## Validation Content Overview
+## Vue d'ensemble du contenu de validation
 
-TIDAS validation combines two types of checks:
+La validation TIDAS combine deux types de vérifications :
 
-### 1. Structure Validation (JSON Schema Standard)
+### 1. Validation de structure (Standard JSON Schema)
 
-- Check for missing fields (required)
+- Vérification des champs manquants (requis)
 
-- Check field type matching (string, number, etc.)
+- Vérification de la correspondance des types de champs (chaîne, nombre, etc.)
 
-- Check field values against definitions (format, enum, etc.)
+- Vérification des valeurs de champs par rapport aux définitions (format, enum, etc.)
 
-- Support inter-module reference resolution ($ref)
+- Support de la résolution de références inter-modules ($ref)
 
-### 2. Package and classification logic
+### 2. Logique de paquet et de classification
 
-For classification structures like flows, processes, sources:
+Pour les structures de classification comme les flux, processus, sources :
 
-- **Hierarchy Check**: Verify `@level` sequence is correct
+- **Vérification de hiérarchie** : Vérifier que la séquence `@level` est correcte
 
-- **Code Rules**: Verify child items use parent item codes as prefix
+- **Règles de code** : Vérifier que les éléments enfants utilisent les codes des éléments parents comme préfixe
 
-- **Process Classification Industry Matching**: Verify industry codes comply with national standard mapping logic
+- **Correspondance d'industrie de classification de processus** : Vérifier que les codes d'industrie respectent la logique de mappage des normes nationales
 
-- **Reference and Package Checks**: Apply cross-module and package constraints from locked assets
-
----
-
-## Validation Result Output
-
-The normal report contains bounded issue counts and the issue-stream hash;
-`--issues` preserves every issue. Document issues represent a completed scan,
-while the report and exit status distinguish data issues from protocol or
-runtime failures. Automation should parse the stable `--format json` report
-instead of matching human-readable text.
+- **Vérifications de référence et de paquet** : Appliquer les contraintes inter-modules et de paquet à partir des ressources verrouillées
 
 ---
 
-For JSON Schema fields and modules, see
-[Data Structure (JSON Schema)](/fr/docs/category/tidas-json-schema/). For
-installation, platform support, and legacy-command migration, see the
-[unified TIDAS CLI](/fr/docs/category/tidas-tools/).
+## Sortie des résultats de validation
+
+Le rapport normal contient des comptes de problèmes bornés et le hachage du flux de problèmes; `--issues` conserve chaque problème. Les problèmes de document représentent un scan complet, tandis que le rapport et le statut de sortie distinguent les problèmes de données des échecs de protocole ou d'exécution. L'automatisation devrait analyser le rapport stable `--format json` au lieu de faire correspondre du texte lisible par l'homme.
+
+---
+
+Pour les champs et modules JSON Schema, voir [Structure de données (JSON Schema)](/fr/docs/core-modules/schema/schema-content/json-schema-contact/). Pour l'installation, le support de plateforme et la migration des commandes héritées, voir la [CLI TIDAS unifiée](/fr/docs/tool/tidas-tool-intro/).

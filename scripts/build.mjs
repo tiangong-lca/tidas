@@ -49,6 +49,7 @@ const steps = [
   ['check-env', ['node', 'scripts/check-env.mjs']],
   ['build', ['next', 'build']],
   ['verify-out', ['node', 'scripts/verify-out.mjs']],
+  ['verify-site', ['node', 'scripts/verify-site.mjs']],
 ];
 
 for (const [label, command] of steps) {

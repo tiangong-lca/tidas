@@ -1,7 +1,6 @@
 {
   "title": "Schéma TIDAS",
   "pages": [
-    "index",
     "tidas-schema-intro",
     "schema-content",
     "tidas-schema-validation"

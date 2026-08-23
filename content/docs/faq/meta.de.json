@@ -2,7 +2,7 @@
   "title": "Häufige Fragen",
   "pages": [
     "index",
-    "faq/how-to-contribute-tidas-doc",
-    "faq/vscode-guide"
+    "how-to-contribute-tidas-doc",
+    "vscode-guide"
   ]
 }

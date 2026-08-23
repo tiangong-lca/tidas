@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/docs/page';
 import { getMDXComponents } from '@/components/mdx';
 import { source } from '@/lib/source';
+import { languageAlternates, localeMetadata, pageImagePath } from '@/lib/metadata';
 
 export const dynamicParams = false;
 
@@ -34,9 +35,34 @@ export async function generateMetadata(
   const params = await props.params;
   const page = source.getPage(params.slug, params.lang);
   if (!page) notFound();
+  const locale = localeMetadata[params.lang] ?? localeMetadata.en;
+  const description = page.data.description || locale.description;
+  const alternateLocale = Object.entries(localeMetadata)
+    .filter(([language]) => language !== params.lang)
+    .map(([, metadata]) => metadata.openGraphLocale);
 
   return {
     title: page.data.title,
-    description: page.data.description,
+    description,
+    alternates: {
+      canonical: page.url.endsWith('/') ? page.url : `${page.url}/`,
+      languages: languageAlternates(['docs', ...(params.slug ?? [])].join('/')),
+    },
+    openGraph: {
+      type: 'article',
+      siteName: 'TIDAS Data Specification',
+      url: page.url.endsWith('/') ? page.url : `${page.url}/`,
+      title: page.data.title,
+      description,
+      locale: locale.openGraphLocale,
+      alternateLocale,
+      images: [{ url: pageImagePath(params.lang, params.slug ?? []) }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.data.title,
+      description,
+      images: [pageImagePath(params.lang, params.slug ?? [])],
+    },
   };
 }

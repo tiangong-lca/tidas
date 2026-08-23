@@ -2,38 +2,33 @@
 title: "Introduction"
 ---
 
-TIDAS Schema is a lifecycle assessment (LCA) data standard framework built on JSON Schema, designed to enhance LCA data standardization, interoperability, and intelligent application potential. The TIDAS data structure is fully aligned with ILCD (International Life Cycle Data system) standards, preserving the complete prefix system used in ILCD XML format to enable lossless mapping of ILCD XML files.
+Le schéma TIDAS est un cadre de standardisation des données d'analyse du cycle de vie (ACV) basé sur JSON Schema, conçu pour améliorer la normalisation, l'interopérabilité et le potentiel d'application intelligente des données ACV. La structure de données TIDAS est entièrement alignée avec les normes ILCD (International Life Cycle Data system), préservant le système complet de préfixes utilisé dans le format XML ILCD pour permettre un mappage sans perte des fichiers XML ILCD.
 
-Compared to traditional XML format used by ILCD, TIDAS adopts JSON structure which offers significant advantages in simplicity, readability, extensibility, and system integration capabilities. This design maintains compatibility with existing international data standards while making it easier to interface with modern digital infrastructure (such as blockchain systems, data spaces, AI engines, etc.), enhancing data mobility, intelligence, and trustworthiness.
+Par rapport au format XML traditionnel utilisé par ILCD, TIDAS adopte une structure JSON qui offre des avantages significatifs en termes de simplicité, lisibilité, extensibilité et capacités d'intégration système. Ce design maintient la compatibilité avec les normes de données internationales existantes tout en facilitant l'interface avec l'infrastructure numérique moderne (tels que les systèmes blockchain, les espaces de données, les moteurs IA, etc.), améliorant ainsi la mobilité, l'intelligence et la fiabilité des données.
 
-> 👉 [Browse and download the published **TIDAS** JSON Schema files from this site's repository](https://github.com/tiangong-lca/tidas/tree/main/static/schemas)
+> 👉 [Parcourir et télécharger les fichiers **TIDAS** JSON Schema publiés depuis le dépôt de ce site](https://github.com/tiangong-lca/tidas/tree/main/public/schemas)
 
-## Technical Features
+## Caractéristiques techniques
 
-- **Based on JSON Schema Specification**  
-  Uses JSON Schema to define field types, structural hierarchy and constraints, enabling structured validation and automated parsing for easier development and system integration.
+- **Basé sur la spécification JSON Schema**
+  Utilise JSON Schema pour définir les types de champs, la hiérarchie structurelle et les contraintes, permettant une validation structurée et une analyse automatisée afin de faciliter le développement et l'intégration des systèmes.
 
-- **Modular Architecture Design**  
-  Schema is divided into multiple logical modules (17 total), supporting flexible invocation and rapid expansion to meet reuse requirements across various application scenarios.
+- **Architecture modulaire**
+  Le schéma est divisé en plusieurs modules logiques (17 au total), permettant une utilisation flexible et une extension rapide afin de répondre aux besoins de réutilisation dans divers scénarios d'application.
 
-- **Multi-language Validation Support**  
-  Through universal JSON Schema validation mechanisms, it can be directly supported by multiple programming languages and validation engines, facilitating integration and application across different systems.
+- **Support de validation multilingue**
+  À travers les mécanismes de validation JSON Schema universels, il peut être directement supporté par plusieurs langages de programmation et moteurs de validation, facilitant l'intégration et l'application à travers différents systèmes.
 
-- **Detailed Error Diagnostics**  
-  JSON Schema-based validation returns structured error information, improving debugging efficiency and ensuring data quality.
+- **Diagnostics d'erreur détaillés**
+  La validation basée sur JSON Schema renvoie des informations d'erreur structurées, améliorant l'efficacité du débogage et assurant la qualité des données.
 
-- **Enhanced Data Requirements**  
-  Beyond lossless mapping of ILCD format, TIDAS Schema introduces additional content requirements from standards like EF (Environmental Footprint) and GLAD (Global LCA Data Access). For example, making certain fields mandatory enhances data completeness and exchangeability. Data satisfying TIDAS JSON Schema will inherently meet basic ILCD specifications, further ensuring international recognition and circulation of data.
+- **Exigences de données renforcées**
+  Au-delà du mappage sans perte du format ILCD, le schéma TIDAS introduit des exigences de contenu supplémentaires provenant de normes comme EF (Environmental Footprint) et GLAD (Global LCA Data Access). Par exemple, rendre certains champs obligatoires améliore la complétude et l'échangeabilité des données. Les données satisfaisant le schéma JSON TIDAS respecteront intrinsèquement les spécifications ILCD de base, assurant davantage la reconnaissance internationale et la circulation des données.
 
-The `tidas` CLI v0.1.1 embeds and integrity-checks the JSON Schema, ILCD XSD,
-and XSLT assets required for conversion and validation. `tidas convert`
-materializes the locked target assets in its output package, so users do not
-need to download files from old Python source directories. Run
-[`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)
-to inspect asset and runtime fingerprints.
+La CLI `tidas` v0.1.1 intègre et vérifie l'intégrité des ressources JSON Schema, XSD ILCD et XSLT requises pour la conversion et la validation. `tidas convert` matérialise les ressources cibles verrouillées dans son paquet de sortie, les utilisateurs n'ont donc pas besoin de télécharger des fichiers depuis les anciens répertoires source Python. Exécutez [`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1) pour inspecter les empreintes d'actifs et d'exécution.
 
-## File Structure and Usage
+## Structure et utilisation des fichiers
 
-TIDAS Schema consists of 17 core JSON Schema files, each describing a specific data module. For details, see [Data Structure (JSON Schema)](/fr/docs/category/tidas-json-schema/).
+Le schéma TIDAS se compose de 17 fichiers de schéma JSON principaux, chacun décrivant un module de données spécifique. Pour plus de détails, voir [Structure de données (JSON Schema)](/fr/docs/core-modules/schema/schema-content/json-schema-contact/).
 
-To learn how to use JSON Schema for data validation and format conversion, please refer to [Schema Validation](./tidas-schema-validation/).
+Pour apprendre à utiliser JSON Schema pour la validation des données et la conversion de formats, consultez [Validation du schéma](/fr/docs/core-modules/schema/tidas-schema-validation/).

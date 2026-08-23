@@ -1,7 +1,6 @@
 {
   "title": "数据结构（JSON Schema）",
   "pages": [
-    "index",
     "tidas-schema-intro",
     "schema-content",
     "tidas-schema-validation"

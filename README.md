@@ -7,95 +7,102 @@ authoritative: false
 owner: tidas
 language: en
 whenToUse:
-  - when onboarding to the TIDAS spec site repository
-  - when checking public setup and publish commands
+  - when onboarding to the TIDAS specification site
+  - when checking setup, validation, locale, or publication commands
 whenToUpdate:
-  - when public setup, versioning, or publish commands change
-  - when the README no longer reflects the current release workflow
+  - when contributor setup, build inputs, validation, localization, or publication changes
 checkPaths:
   - README.md
   - package.json
-  - .github/workflows/publish-docs.yml
   - next.config.ts
   - edgeone.json
-  - crowdin.yml
+  - app/**
+  - components/**
   - content/docs/**
+  - scripts/**
+  - .github/workflows/publish-docs.yml
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 296ecc7
-lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
+lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
+lastReviewedNote: "Reviewed for Issue #46 Data Atlas UI, semantic Schema explorer, complete localization, static quality gates, and EdgeOne publication."
 ---
 
-Public documentation for the [TIDAS](https://tidas.tiangong.earth) (TianGong LCA Data System), built with
-[Next.js 16](https://nextjs.org) + [Fumadocs 16](https://fumadocs.dev) + TypeScript 7 (native),
-exported as a fully static site and published by [EdgeOne Makers](https://pages.edgeone.ai)
-(Git integration).
+Public documentation and downloadable data contracts for
+[TIDAS](https://tidas.tiangong.earth), the TianGong LCA Data System. The site is a
+Next.js App Router static export using Fumadocs and TypeScript.
 
-## Locales
+## Public URLs and locales
 
-- `zh`（默认，内容源）— `/zh/docs/...`
-- `en` — `/en/docs/...`
-- `de` / `fr` — scaffolded from en, frontmatter translated, body pending Crowdin full pass
+- `/` renders the complete default Chinese homepage and serves as `x-default`.
+- `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
+- Documentation uses `/{lang}/docs/...`.
+- Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
 
-Source files follow the dot-locale convention: `page.mdx`（中文）、`page.en.mdx`、`page.de.mdx`、`page.fr.mdx`.
-The former `ja` locale was dropped during migration; all four current locales generate independently
-(`fallbackLanguage: null`).
+Sources use the dot-locale convention: `page.mdx`, `page.en.mdx`, `page.de.mdx`,
+and `page.fr.mdx`. Metadata files use the equivalent `meta*.json` convention.
 
 ## Development
 
-Requires Node.js ≥ 24.18.0 and pnpm 11.22.0 (`packageManager` enforced). `.nvmrc` pins Node 24.
+Use the Node.js and pnpm versions declared by `.nvmrc`, `package.json`, and
+`edgeone.json`.
 
 ```bash
-pnpm install
-
-# 本地开发（next dev）
+pnpm install --frozen-lockfile
 pnpm dev
 
-# 契约构建（环境契约校验 → next build → out/ 结构断言）
+pnpm lint
+pnpm typecheck
+
 DEPLOY_ENV=ci \
 CANONICAL_ORIGIN=http://localhost:3000 \
 NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
-
-pnpm typecheck   # next typegen && tsc --noEmit（TypeScript 7 原生）
-pnpm lint        # markdownlint（md + mdx）
 ```
 
-## Build contract
+The build wrapper derives `SOURCE_COMMIT` and `SOURCE_DATE_EPOCH` from Git when
+they are not supplied. It requires explicit deployment environment, canonical
+origin, and search mode inputs.
 
-The build is environment-contract driven (`scripts/build.mjs`):
-
-| 变量 | 约束 |
+| Variable | Contract |
 | --- | --- |
-| `SOURCE_COMMIT` | 40 位 SHA；缺省时由 `git rev-parse HEAD` 推导 |
-| `SOURCE_DATE_EPOCH` | commit 时间戳（unix 秒）；缺省由 git 推导 |
-| `DEPLOY_ENV` | `ci` / `preview` / `production`（决定 noindex、robots、搜索后端） |
-| `CANONICAL_ORIGIN` | 生产固定 `https://tidas.tiangong.earth` |
-| `NEXT_PUBLIC_SEARCH_MODE` | `static`（ci/preview）或 `algolia`（production） |
+| `SOURCE_COMMIT` | 40-character Git SHA; derived from `HEAD` when omitted |
+| `SOURCE_DATE_EPOCH` | Unix commit timestamp; derived from Git when omitted |
+| `DEPLOY_ENV` | `ci`, `preview`, or `production` |
+| `CANONICAL_ORIGIN` | origin without a trailing path; production is `https://tidas.tiangong.earth` |
+| `NEXT_PUBLIC_SEARCH_MODE` | `static`, or explicitly configured `algolia` in production |
 
-`pnpm build` 产出 `out/`（静态导出）并通过 `scripts/verify-out.mjs` 的 13 项契约断言
-（search-records/llms 的 commit 戳与 digest、sitemap 数量、无 ja 泄漏、内部路径零泄漏、
-OG 图数量、html lang 映射、robots 按 DEPLOY_ENV 分形）。
+`pnpm build` produces `out/` and runs both output-contract and site-quality
+verification. The gates cover generated endpoints, locale/search evidence,
+links, images, MDX hydration hazards, and Schema page budgets.
+
+## Schema explorer
+
+Public Schema files live under `public/schemas/**` and are downloadable directly.
+Documentation pages pass a public URL to `JsonSchemaViewer`; the browser fetches
+the file only after the reader opens the explorer. Large classification schemas
+therefore do not inflate static HTML.
+
+The explorer presents root classification `oneOf` data as searchable semantic
+taxonomies and presents ordinary schemas as lazy trees with constants,
+references, tuple items, and meaningful union labels.
 
 ## Publishing
 
-EdgeOne Makers Git integration owns build + deploy (GitHub Actions runs validation only).
-See `.github/workflows/publish-docs.yml` for the PR validate gate.
+EdgeOne Pages Git integration owns build and deployment from `main` using
+`edgeone.json`. GitHub Actions runs the pull-request validation gate; it does not
+upload or deploy the built site.
 
 ## Repository layout
 
 ```text
-app/            Next.js App Router（[lang] 四语言路由 + 系统端点）
-components/     UI components（search dialog、TidasImage、JsonSchemaViewer、MDX components）
-content/docs/   文档源（dot-locale 契约）
-lib/            i18n / source loader / 分类常量
-public/         静态资产（img locale 目录、schemas、logo 双色）
-scripts/        build.mjs / check-env.mjs / verify-out.mjs / migrate.mjs（一次性迁移工具）
+app/             locale routes and generated search/crawler/sharing endpoints
+components/      Data Atlas UI, search, media, MDX, and Schema explorer
+content/docs/    four-language public documentation
+lib/             content loader, i18n, navigation, and metadata policy
+public/          downloadable schemas, images, assets, and brand files
+scripts/         build, output/site verification, and Docpact wrappers
+_docs/agents/    retained architecture and validation guidance
 ```
 
-## Migration notes
-
-This site was migrated from Docusaurus 3.8.1 in August 2026 following the
-[workspace migration guide](https://github.com/tiangong-lca/workspace/blob/main/_docs/reference/docusaurus-to-fumadocs-migration-guide.md).
-The legacy `docs/` + `i18n/` trees were removed after content-check verification.
-Internal underscore-prefixed documents (`_todo`, `_reference-package`, `_tidas-eilcd` etc.)
-were excluded from the public tree during migration.
+Read `AGENTS.md` before changing repository-owned behavior. Use Docpact routing
+with this repository as the explicit root before implementation, and run the
+governed diff workflow afterward.

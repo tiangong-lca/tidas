@@ -2,6 +2,7 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { zhCN } from '@fumadocs/language/zh-cn';
 import { uiTranslations } from 'fumadocs-ui/i18n';
 import { i18n } from '@/lib/i18n';
+import { SiteBrand } from '@/components/site-brand';
 
 export const translations = i18n
   .translations()
@@ -36,27 +37,25 @@ export const translations = i18n
     },
   });
 
-/** 品牌区：浅色主题紫色 logo，深色主题白色 logo */
-function brandTitle() {
-  return (
-    <span className="flex items-center gap-2">
-      <img src="/logo-light.svg" alt="TIDAS" width={28} height={28} className="dark:hidden" />
-      <img src="/logo-dark.svg" alt="TIDAS" width={28} height={28} className="hidden dark:block" />
-    </span>
-  );
-}
+const docsLabel: Record<string, string> = {
+  zh: '文档',
+  en: 'Documentation',
+  de: 'Dokumentation',
+  fr: 'Documentation',
+};
 
-export function baseOptions(locale: string): BaseLayoutProps {
+export function baseOptions(locale: string, homeUrl?: string): BaseLayoutProps {
   return {
     nav: {
-      title: brandTitle(),
-      url: `/${locale}`,
+      title: <SiteBrand />,
+      url: homeUrl ?? `/${locale}`,
+      transparentMode: 'top',
     },
     githubUrl: 'https://github.com/tiangong-lca/tidas',
     links: [
       {
         type: 'main',
-        text: locale === 'zh' ? '文档' : 'Documentation',
+        text: docsLabel[locale] ?? docsLabel.en,
         url: `/${locale}/docs`,
       },
     ],
