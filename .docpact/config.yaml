@@ -1,14 +1,8 @@
 version: 1
 layout: repo
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: "9004873b0abdc0f9288b63a0668c1ebf64823e78"
-# Review note, 2026-07-27: Issue #39 corrects the active Rust asset-source
-# guidance without changing routing, ownership, coverage, validation categories,
-# or workspace-integration semantics.
+lastReviewedCommit: "0c0b5b57c3b499ffeb827c8f5911519acb6f4050"
 
-# Keep deterministic governance facts here.
-# AGENTS.md remains the repo contract entrypoint.
-# Retained internal source docs live under _docs/agents so the public docs site does not publish them.
 catalog:
   repos:
     - id: tidas
@@ -34,21 +28,36 @@ ownership:
     - id: public-spec-and-schema-surface
       paths:
         include:
-          - docs/**
-          - static/schemas/**
+          - content/docs/**
+          - public/schemas/**
       ownerRepo: tidas
-    - id: site-runtime-and-release
+    - id: site-runtime-and-publication
       paths:
         include:
           - package.json
-          - sidebars.ts
-          - docusaurus.config.ts
-          - i18n/**
-          - src/**
-          - versions.json
-          - .github/workflows/build.yml
+          - .nvmrc
+          - .markdownlint.json
+          - pnpm-lock.yaml
+          - pnpm-workspace.yaml
+          - next.config.ts
+          - postcss.config.mjs
+          - tsconfig.json
+          - edgeone.json
+          - crowdin.yml
+          - context7.json
+          - app/**
+          - components/**
+          - lib/**
+          - public/assets/**
+          - public/img/**
+          - public/favicon.ico
+          - public/logo-*.svg
+          - scripts/build.mjs
+          - scripts/check-env.mjs
+          - scripts/verify-out.mjs
+          - scripts/verify-site.mjs
+          - .github/workflows/publish-docs.yml
       ownerRepo: tidas
-
     - id: local-docpact-push-gate
       paths:
         include:
@@ -60,42 +69,37 @@ ownership:
 
 coverage:
   include:
-    - .githooks/**
-    - scripts/docpact
-    - scripts/docpact-gate.sh
-    - scripts/install-git-hooks.sh
     - AGENTS.md
     - README.md
     - .docpact/**
     - _docs/agents/**
+    - .github/workflows/**
+    - .githooks/**
     - package.json
+    - .nvmrc
+    - .markdownlint.json
+    - pnpm-lock.yaml
+    - pnpm-workspace.yaml
+    - next.config.ts
+    - postcss.config.mjs
+    - tsconfig.json
+    - edgeone.json
+    - crowdin.yml
+    - context7.json
+    - app/**
+    - components/**
+    - lib/**
     - content/docs/**
-    - public/schemas/**
-    - sidebars.ts
-    - docusaurus.config.ts
-    - i18n/**
-    - src/**
-    - versions.json
-    - .github/workflows/ai-doc-lint.yml
-    - .github/workflows/build.yml
+    - public/**
+    - scripts/**
   exclude:
     - .git/**
-    - .github/scripts/**
     - node_modules/**
-    - build/**
-    - .docusaurus/**
-    # legacy-docusaurus-paths: 迁移删除面，仅出现在一次性迁移 diff 中
-    - docs/**
-    - i18n/**
-    - static/schemas/**
-    - static/img/**
-    - sidebars.ts
-    - docusaurus.config.ts
-    - versions.json
-    - src/**
-    - babel.config.js
-    - package-lock.json
-    - .github/workflows/build.yml
+    - .next/**
+    - out/**
+    - .source/**
+    - next-env.d.ts
+    - "*.tsbuildinfo"
 
 freshness:
   warn_after_commits: 40
@@ -112,39 +116,44 @@ routing:
         - scripts/install-git-hooks.sh
     docs-site:
       paths:
-        - docs/**
+        - content/docs/**
     schema-docs:
       paths:
-        - docs/core-modules/schema/**
+        - content/docs/core-modules/schema/**
+        - components/json-schema-viewer.tsx
+        - public/schemas/**
     tooling-guidance:
       paths:
-        - docs/tool/**
-        - docs/integration/**
-        - docs/use_case/**
+        - content/docs/tool/**
+        - content/docs/integration/**
+        - content/docs/use-case/**
     published-schemas:
       paths:
-        - static/schemas/**
+        - public/schemas/**
     site-runtime:
       paths:
         - package.json
-        - sidebars.ts
-        - docusaurus.config.ts
-        - i18n/**
-        - src/**
-        - versions.json
-        - .github/workflows/build.yml
+        - pnpm-lock.yaml
+        - next.config.ts
+        - edgeone.json
+        - app/**
+        - components/**
+        - lib/**
+        - scripts/build.mjs
+        - scripts/check-env.mjs
+        - scripts/verify-out.mjs
+        - scripts/verify-site.mjs
+        - .github/workflows/publish-docs.yml
     proof:
       paths:
         - _docs/agents/repo-validation.md
         - package.json
-        - docs/**
-        - static/schemas/**
-        - sidebars.ts
-        - docusaurus.config.ts
-        - i18n/**
-        - src/**
-        - versions.json
-        - .github/workflows/build.yml
+        - app/**
+        - components/**
+        - content/docs/**
+        - public/schemas/**
+        - scripts/verify-*.mjs
+        - .github/workflows/publish-docs.yml
     repo-docs:
       paths:
         - AGENTS.md
@@ -189,7 +198,7 @@ rules:
         mode: review_or_update
       - path: _docs/agents/repo-architecture.md
         mode: review_or_update
-    reason: Repo entry guidance, machine-readable routing, and retained internal source docs must stay aligned.
+    reason: Repository policy, machine-readable governance, architecture, and proof guidance must remain aligned.
   - id: tidas-readme-contract
     scope: repo
     repo: tidas
@@ -201,7 +210,7 @@ rules:
         mode: must_exist
       - path: .docpact/config.yaml
         mode: must_exist
-    reason: Repo landing text should stay aligned with the current contract and AI entry surface.
+    reason: Contributor-facing setup must retain the repository contract and governed entrypoint.
   - id: tidas-public-spec-contract
     scope: repo
     repo: tidas
@@ -219,29 +228,57 @@ rules:
         mode: review_or_update
       - path: _docs/agents/repo-architecture.md
         mode: review_or_update
-    reason: Public spec pages and published schema files should keep the retained repo contract, proof guidance, and path map aligned.
+    reason: Public specification and Schema changes must retain ownership, path, architecture, and proof alignment.
   - id: tidas-site-runtime-contract
     scope: repo
     repo: tidas
     triggers:
       - path: package.json
         kind: site-runtime
+      - path: .nvmrc
+        kind: site-runtime-config
+      - path: .markdownlint.json
+        kind: site-proof-config
+      - path: pnpm-lock.yaml
+        kind: site-runtime-config
+      - path: pnpm-workspace.yaml
+        kind: site-runtime-config
+      - path: postcss.config.mjs
+        kind: site-runtime-config
+      - path: tsconfig.json
+        kind: site-runtime-config
+      - path: context7.json
+        kind: documentation-index-config
       - path: next.config.ts
         kind: site-config
       - path: edgeone.json
-        kind: site-deploy-config
+        kind: site-publication-config
+      - path: crowdin.yml
+        kind: translation-config
       - path: app/**
-        kind: site-runtime
-      - path: lib/**
         kind: site-runtime
       - path: components/**
         kind: site-runtime
-      - path: postcss.config.mjs
-        kind: site-runtime-config
-      - path: pnpm-lock.yaml
-        kind: site-runtime-config
-      - path: crowdin.yml
-        kind: translation-config
+      - path: lib/**
+        kind: site-runtime
+      - path: public/assets/**
+        kind: site-media
+      - path: public/img/**
+        kind: site-media
+      - path: public/favicon.ico
+        kind: site-media
+      - path: public/logo-*.svg
+        kind: site-media
+      - path: scripts/build.mjs
+        kind: site-build
+      - path: scripts/check-env.mjs
+        kind: site-build
+      - path: scripts/verify-out.mjs
+        kind: site-proof
+      - path: scripts/verify-site.mjs
+        kind: site-proof
+      - path: .github/workflows/publish-docs.yml
+        kind: site-validation
     requiredDocs:
       - path: AGENTS.md
         mode: review_or_update
@@ -253,7 +290,7 @@ rules:
         mode: review_or_update
       - path: _docs/agents/repo-architecture.md
         mode: review_or_update
-    reason: Site runtime, localization, versioning, and release workflow changes alter preview expectations and docs-site ownership boundaries.
+    reason: Runtime, localization, build, quality, and publication changes alter public behavior and required proof.
   - id: tidas-doc-maintenance-contract
     scope: repo
     repo: tidas
@@ -267,7 +304,7 @@ rules:
         mode: review_or_update
       - path: _docs/agents/repo-validation.md
         mode: review_or_update
-    reason: Repo-local documentation maintenance automation must stay aligned with the repo contract and governed-doc rules.
+    reason: Remote governance reproduction must stay aligned with repository policy and proof guidance.
   - id: tidas-local-docpact-push-gate
     scope: repo
     repo: tidas
@@ -285,4 +322,4 @@ rules:
         mode: review_or_update
       - path: _docs/agents/repo-validation.md
         mode: review_or_update
-    reason: Local push documentation governance gates must stay aligned with repo validation guidance and docpact configuration.
+    reason: Local governance enforcement must stay aligned with its machine-readable contract and validation guidance.

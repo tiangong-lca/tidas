@@ -21,11 +21,7 @@ const darkVariantNames = new Set([
   'TIDAS-permission-control',
 ]);
 
-/**
- * Docusaurus TidasImage 的静态替代：locale 图片 + 深/浅主题双变体。
- * 旧实现运行时 useDocusaurusContext + MutationObserver；
- * 静态导出下 locale 从 fumadocs i18n 上下文读取、主题用 CSS dark: 变体。
- */
+/** Locale-aware static image with an optional light/dark asset pair. */
 export function TidasImage({ filename, title }: TidasImageProps) {
   const { locale } = useI18n();
   const m = filename.match(/^(.+?)(\.(svg|png|webp))?$/i);

@@ -13,9 +13,6 @@
     "public/assets",
     "public/img",
     "public/schemas",
-    "manifests",
-    "scripts",
-    "build",
-    ".docusaurus"
+    "scripts"
   ]
 }

@@ -7,31 +7,25 @@ authoritative: false
 owner: tidas
 language: en
 whenToUse:
-  - when a tidas change is ready for local validation
-  - when deciding the minimum proof required for docs-site, schema-publish, or release-workflow changes
-  - when writing PR validation notes for tidas work
+  - when a TIDAS site change is ready for proof
+  - when deciding the minimum checks for content, Schema, UI, localization, metadata, or publication changes
+  - when writing PR validation evidence
 whenToUpdate:
-  - when the repo gains new canonical site-check commands
-  - when change categories require different proof
-  - when site deploy or localization behavior changes
+  - when canonical commands, page budgets, browser coverage, or publication checks change
 checkPaths:
   - _docs/agents/repo-validation.md
-  - .docpact/config.yaml
   - package.json
-  - docs/**
-  - static/schemas/**
-  - sidebars.ts
-  - docusaurus.config.ts
-  - i18n/**
-  - src/**
+  - scripts/build.mjs
+  - scripts/verify-out.mjs
+  - scripts/verify-site.mjs
+  - content/docs/**
+  - public/schemas/**
+  - app/**
+  - components/**
   - .github/workflows/**
-  - .githooks/pre-push
-  - scripts/docpact
-  - scripts/docpact-gate.sh
-  - scripts/install-git-hooks.sh
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 9004873b0abdc0f9288b63a0668c1ebf64823e78
-lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
+lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
+lastReviewedNote: "Reviewed for Issue #46 static quality, Schema, localization, metadata, and visual gates."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -39,52 +33,80 @@ related:
   - ../../README.md
 ---
 
-## Default Baseline
+## Default baseline
 
-Unless the change is doc-only repo-maintenance work, the default local baseline is:
-
-```bash
-npm run lint
-npm run typecheck
-npm run build
-```
-
-Use `npm run start` or `npm run serve` when the task needs local page-render verification.
-
-## Validation Matrix
-
-| Change type | Minimum local proof | Additional proof when risk is higher | Notes |
-| --- | --- | --- | --- |
-| `docs/**` content only | `npm run lint`; `npm run build` | run `npm run start` or `npm run serve` when the page has MDX, math, or layout-sensitive content | Public docs correctness is the primary concern here. |
-| `static/schemas/**` | `npm run build`; inspect the touched schema files directly | verify the linked explanatory pages still describe the published schema correctly | These files are a published site surface, not an auto-sync from `tidas-tools`. |
-| `package.json`, `sidebars.ts`, `docusaurus.config.ts`, `i18n/**`, `src/**`, or `versions.json` | `npm run lint`; `npm run typecheck`; `npm run build` | run `npm run start` if the task changes navigation or runtime rendering | Site structure and localization can break build or routing even when page content is unchanged. |
-| release workflow only | inspect `.github/workflows/build.yml`; run `npm run lint`; `npm run typecheck`; `npm run build` | record any Cloudflare-specific or tag-specific assumptions checked locally | Tag-driven deploy proof happens later in GitHub Actions after the release gate passes. |
-| repo docs or docpact config only | `scripts/docpact validate-config --root . --strict`; `scripts/docpact lint --root . --worktree --mode enforce` | perform route checks for affected intent surfaces such as `docs-site`, `published-schemas`, or `proof` | Refresh review metadata even when prose-only docs change. |
-
-## Minimum PR Note Quality
-
-A good PR note for this repo should say:
-
-1. which site commands ran
-2. whether any local render check was performed
-3. whether published schema files changed independently of tooling assets elsewhere
-
-## Docpact Governance Notes
-
-The repo's machine-readable governance source is `.docpact/config.yaml`.
-
-That means:
-
-- governed-doc rules, routing intents, ownership boundaries, coverage, and freshness live in `.docpact/config.yaml`
-- `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback and should delegate to the same local docpact gate
-- retained explanatory docs stay in `AGENTS.md`, this file, `repo-architecture.md`, and `README.md`
-
-## Local Docpact Push Gate
-
-Install the versioned local hook once per checkout:
+Run from the repository root:
 
 ```bash
-./scripts/install-git-hooks.sh
+pnpm lint
+pnpm typecheck
+DEPLOY_ENV=ci \
+CANONICAL_ORIGIN=http://localhost:3000 \
+NEXT_PUBLIC_SEARCH_MODE=static \
+pnpm build
 ```
 
-The `pre-push` hook runs `scripts/docpact-gate.sh`, which delegates CLI lookup to `scripts/docpact` and performs strict config validation plus enforced lint before the push leaves the machine. The wrapper checks `DOCPACT_BIN`, Cargo install locations, Homebrew install locations, and then `PATH`, so local agent shells should not fail only because bare `docpact` is unavailable. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
+`pnpm build` runs the environment contract, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
+
+## Change matrix
+
+| Change | Required proof |
+| --- | --- |
+| prose or navigation | lint, full build, generated-link gate, spot-check affected locale pages |
+| German or French translation | lint, full build, compare source meaning, verify no English body copy remains, inspect navigation and search in that locale |
+| site UI or responsive layout | baseline plus browser screenshots at 1440×900 and 390×844, light and dark themes, keyboard focus, no horizontal overflow |
+| root or language behavior | visit `/` and all locale homes; switch from `/` to another language; verify there is no redirect and URLs remain within the current route model |
+| Schema explorer | baseline plus generic structure and taxonomy interaction checks, raw download, error state, search cap, lazy expansion, and the budgets below |
+| media | full build image gate plus light/dark browser inspection |
+| metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
+| publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
+| repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
+
+## Static site gates
+
+`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion.
+
+`scripts/verify-site.mjs` checks:
+
+- every generated first-party page and media link resolves;
+- public MDX does not contain raw `<a>` or `<p>` hydration hazards;
+- Schema pages do not contain anonymous `oneOf N` labels;
+- Schema HTML is at most 300,000 bytes;
+- a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
+
+For the loaded taxonomy page, browser proof must also show:
+
+- at least the elementary and product taxonomies expose `[data-schema-taxonomy]`;
+- fewer than 6,000 live DOM nodes and 500 buttons;
+- document height below 30,000px;
+- search renders no more than 50 results;
+- collapsed branches do not materialize their descendants;
+- `const`, `$ref`, tuple items, and semantic union labels are visible in the generic explorer.
+
+## Browser smoke
+
+Use Playwright or the in-app browser against the current static build or development server. Record:
+
+1. root homepage, one normal document, and the flows Schema page;
+2. desktop and mobile viewport screenshots;
+3. dark-theme media and contrast;
+4. console errors, failed network requests, and hydration warnings;
+5. keyboard access to navigation, language, search, Schema load, taxonomy expand, and search results.
+
+The browser smoke should traverse every sitemap page when content structure changes. Any console error, failed first-party asset, invalid nesting warning, or horizontal overflow is a failure.
+
+## PR evidence
+
+Record the commands that ran, the browser viewports/themes checked, relevant page budgets, locale coverage, and whether published schemas changed independently of executable assets in `tidas-tools`.
+
+## Docpact proof
+
+Use the workspace wrapper with an absolute repository root:
+
+```bash
+/Users/davidli/projects/workspace/scripts/docpact validate-config --root "$PWD" --strict
+/Users/davidli/projects/workspace/scripts/docpact coverage --root "$PWD" --format json
+/Users/davidli/projects/workspace/scripts/docpact list-rules --root "$PWD" --format json
+```
+
+After coding, run governed diff lint against the task base and inspect individual diagnostics before recording review evidence.
