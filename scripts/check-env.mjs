@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * v4 §6.2 构建环境契约校验（P0A spike）。
+ * Fail-closed build environment contract for the static documentation site.
  * 缺失/非法输入直接失败；SOURCE_COMMIT/SOURCE_DATE_EPOCH 允许从 git 推导。
  */
 import { execSync } from 'node:child_process';
@@ -86,7 +86,7 @@ if (searchMode === 'static') {
   }
 }
 
-// --- P0A 版本打印（v4 §6.2：EdgeOne 构建日志断言项）---
+// Tool versions are emitted as durable EdgeOne build evidence.
 info.push(`node: ${process.version}`);
 try {
   info.push(`pnpm: ${execSync('pnpm --version').toString().trim()}`);
