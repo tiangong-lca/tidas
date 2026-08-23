@@ -2,7 +2,7 @@
   "title": "应用案例",
   "pages": [
     "index",
-    "use-case/block-builder",
-    "use-case/tidas-to-antchain"
+    "block-builder",
+    "tidas-to-antchain"
   ]
 }
