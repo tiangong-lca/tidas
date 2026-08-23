@@ -6,6 +6,7 @@ import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..');
 const outRoot = path.join(root, 'out');
 const docsRoot = path.join(root, 'content', 'docs');
+const canonicalOrigin = process.env.CANONICAL_ORIGIN;
 const errors = [];
 const passed = [];
 
@@ -40,6 +41,31 @@ if (!fs.existsSync(outRoot)) {
 }
 
 const htmlFiles = walk(outRoot, (file) => file.endsWith('.html'));
+if (fs.existsSync(path.join(outRoot, 'static'))) {
+  errors.push('retired /static compatibility tree leaked into the export');
+}
+for (const file of walk(outRoot, (candidate) => candidate.endsWith('.md') || candidate.endsWith('.mdx'))) {
+  errors.push(`source Markdown leaked into the export: ${path.relative(outRoot, file)}`);
+}
+passed.push('no retired /static tree or source Markdown leak');
+
+const sitemapPath = path.join(outRoot, 'sitemap.xml');
+if (!canonicalOrigin || !fs.existsSync(sitemapPath)) {
+  errors.push('canonical origin or sitemap.xml is unavailable for alternate-link validation');
+} else {
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  const alternateUrls = extract(sitemap, /<xhtml:link\b[^>]*\bhref=["']([^"']+)["'][^>]*\/>/gi);
+  if (alternateUrls.length === 0) errors.push('sitemap.xml has no hreflang alternate URLs');
+  for (const href of alternateUrls) {
+    try {
+      if (new URL(href).origin !== canonicalOrigin) errors.push(`sitemap alternate has wrong origin: ${href}`);
+    } catch {
+      errors.push(`sitemap alternate is not absolute: ${href}`);
+    }
+  }
+  passed.push(`${alternateUrls.length} sitemap alternate URLs are absolute and canonical`);
+}
+
 let linkCount = 0;
 let imageCount = 0;
 for (const file of htmlFiles) {
@@ -71,13 +97,54 @@ passed.push(`${imageCount} rendered image references resolve`);
 passed.push('schema HTML, element, button, and semantic-label budgets');
 
 const mdxFiles = walk(docsRoot, (file) => file.endsWith('.mdx'));
+const metaFiles = walk(docsRoot, (file) => /\/meta(?:\.(?:en|de|fr))?\.json$/.test(file));
+let declaredNavigationPages = 0;
+for (const file of metaFiles) {
+  const relative = path.relative(root, file);
+  const directory = path.dirname(file);
+  const locale = path.basename(file).match(/^meta\.(en|de|fr)\.json$/)?.[1] ?? null;
+  const meta = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const pages = Array.isArray(meta.pages) ? meta.pages.filter((entry) => typeof entry === 'string') : [];
+  const declared = new Set(pages.filter((entry) => !/^(?:---|\.\.\.)/.test(entry)));
+  for (const entry of declared) {
+    declaredNavigationPages += 1;
+    if (entry.includes('/')) errors.push(`folder meta entries must be relative child slugs: ${relative} -> ${entry}`);
+    const pageFile = path.join(directory, `${entry}${locale ? `.${locale}` : ''}.mdx`);
+    const childDirectory = path.join(directory, entry);
+    if (!fs.existsSync(pageFile) && !fs.existsSync(childDirectory)) {
+      errors.push(`folder meta entry has no matching localized page or directory: ${relative} -> ${entry}`);
+    }
+  }
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    if (!entry.isFile()) continue;
+    const match = locale
+      ? entry.name.match(new RegExp(`^(.+)\\.${locale}\\.mdx$`))
+      : entry.name.match(/^(.+)\.mdx$/);
+    if (!match || (!locale && /\.(?:en|de|fr)$/.test(match[1]))) continue;
+    if (!declared.has(match[1])) errors.push(`localized page is missing from folder meta navigation: ${relative} -> ${match[1]}`);
+  }
+}
+passed.push(`${declaredNavigationPages} localized folder-meta entries are relative and complete`);
+
+const credentialSample = /(?:token|令牌|jeton|prüftoken|verification token)[^\n`]{0,32}[A-Za-z0-9+/=]{48,}/iu;
 for (const file of mdxFiles) {
   const source = fs.readFileSync(file, 'utf8');
   const relative = path.relative(root, file);
   if (/<a(?:\s|>)/i.test(source)) errors.push(`raw <a> is forbidden in MDX (use Markdown links): ${relative}`);
   if (/<p(?:\s|>)/i.test(source)) errors.push(`raw <p> is forbidden in MDX (prevents nested paragraph hydration): ${relative}`);
+  if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
-passed.push(`${mdxFiles.length} MDX files pass hydration-source guards`);
+passed.push(`${mdxFiles.length} MDX files pass hydration and credential-sample guards`);
+
+const schemaViewerPath = path.join(root, 'components', 'json-schema-viewer.tsx');
+const schemaViewerSource = fs.readFileSync(schemaViewerPath, 'utf8');
+for (const keyword of [
+  'minLength', 'maxLength', 'uniqueItems', 'additionalProperties',
+  "'if'", "'then'", "'else'", "'not'", "'propertyNames'",
+]) {
+  if (!schemaViewerSource.includes(keyword)) errors.push(`Schema Viewer omits governed keyword ${keyword}`);
+}
+passed.push('Schema Viewer source covers governed scalar and conditional keywords');
 
 if (errors.length > 0) {
   console.error(`\n[verify-site] ${errors.length} FAILURES:`);
