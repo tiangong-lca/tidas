@@ -1,6 +1,6 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-08-17"
+lastReviewedAt: "2026-08-23"
 lastReviewedCommit: "9004873b0abdc0f9288b63a0668c1ebf64823e78"
 # Review note, 2026-07-27: Issue #39 corrects the active Rust asset-source
 # guidance without changing routing, ownership, coverage, validation categories,
@@ -69,8 +69,8 @@ coverage:
     - .docpact/**
     - _docs/agents/**
     - package.json
-    - docs/**
-    - static/schemas/**
+    - content/docs/**
+    - public/schemas/**
     - sidebars.ts
     - docusaurus.config.ts
     - i18n/**
@@ -194,9 +194,9 @@ rules:
     scope: repo
     repo: tidas
     triggers:
-      - path: docs/**
+      - path: content/docs/**
         kind: public-doc
-      - path: static/schemas/**
+      - path: public/schemas/**
         kind: published-schema
     requiredDocs:
       - path: AGENTS.md
@@ -214,18 +214,22 @@ rules:
     triggers:
       - path: package.json
         kind: site-runtime
-      - path: sidebars.ts
-        kind: site-nav
-      - path: docusaurus.config.ts
+      - path: next.config.ts
         kind: site-config
-      - path: i18n/**
-        kind: localization
-      - path: src/**
+      - path: edgeone.json
+        kind: site-deploy-config
+      - path: app/**
         kind: site-runtime
-      - path: versions.json
-        kind: docs-versioning
-      - path: .github/workflows/build.yml
-        kind: automation
+      - path: lib/**
+        kind: site-runtime
+      - path: components/**
+        kind: site-runtime
+      - path: postcss.config.mjs
+        kind: site-runtime-config
+      - path: pnpm-lock.yaml
+        kind: site-runtime-config
+      - path: crowdin.yml
+        kind: translation-config
     requiredDocs:
       - path: AGENTS.md
         mode: review_or_update

@@ -20,9 +20,9 @@ checkPaths:
   - edgeone.json
   - crowdin.yml
   - content/docs/**
-lastReviewedAt: 2026-08-23
+lastReviewedAt: "2026-08-23"
 lastReviewedCommit: 296ecc7
-lastReviewedNote: "Fumadocs migration: rewritten for the Next.js 16 + TS7 static stack."
+lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
 ---
 
 # TIDAS Documentation
