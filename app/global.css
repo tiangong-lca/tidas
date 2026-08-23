@@ -132,6 +132,11 @@ html {
   text-wrap: balance;
 }
 
+.atlas-hero h1.tidas-controlled-title {
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
 .atlas-lede {
   max-width: 42rem;
   margin: 1.65rem 0 0;
