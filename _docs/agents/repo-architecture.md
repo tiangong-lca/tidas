@@ -22,8 +22,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
-lastReviewedNote: "Reviewed for Issue #48 and the current neutral Fumadocs, TianGong Data System landing, tabular Schema explorer, four-locale, and EdgeOne architecture."
+lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
+lastReviewedNote: "Reviewed for Issue #54 after the ordinary docs layout gained a four-locale TIDAS system portal distinct from the marketing landing."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -42,7 +42,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `app/(entry)/**` | root `x-default` homepage and document shell |
 | `app/(locale)/[lang]/**` | locale homepages and documentation routes |
 | `app/api`, `app/llms.txt`, `app/search-records.json`, `app/sitemap.ts`, `app/robots.ts`, `app/og` | generated discovery, search, crawler, and sharing surfaces |
-| `components/docs-home.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs visual foundation and TianGong Data System identity |
+| `components/docs-home.tsx`, `components/docs-portal.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs foundation, landing identity, and documentation-root navigation |
 | `components/json-schema-viewer.tsx` | lazy semantic Schema structure table and taxonomy table |
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
 | `content/docs/**` | four-language public specification and guidance |
@@ -78,6 +78,8 @@ Large Schema JSON files remain separate public assets. MDX passes a public `src`
 Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a bounded flat native table: only the name cell is indented, identifier and child-count columns remain aligned, branches are interactive, and leaves remain non-button rows. Search uses the same columns and adds the parent breadcrumb. Other schemas render as a lazy flat structure table whose branch labels prefer title, constants, enums, and references over ordinal names.
 
 The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents methodology, data structure, and data resources. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces.
+
+The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` inside the ordinary Fumadocs document layout. The portal preserves the document title and sidebar, then adds recommended entry points, a definition-to-operation system matrix, and representative Schema links. It shares the same three-part information hierarchy as the TianGong LCA documentation hub but exposes a distinct `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"` product signature instead of the LCA task route.
 
 ## Locale and URL model
 

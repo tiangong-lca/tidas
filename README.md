@@ -22,8 +22,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
-lastReviewedNote: "Reviewed for Issue #48 TianGong Data System identity, neutral landing UI, tabular Schema explorer, complete localization, static quality gates, and EdgeOne publication."
+lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
+lastReviewedNote: "Reviewed for Issue #54 after contributor orientation documented the localized TIDAS system-navigation hubs and their static quality gate."
 ---
 
 Public documentation and downloadable data contracts for
@@ -35,6 +35,7 @@ Next.js App Router static export using Fumadocs and TypeScript.
 - `/` renders the complete default Chinese homepage and serves as `x-default`.
 - `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
 - Documentation uses `/{lang}/docs/...`.
+- Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
 - Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
 
 Sources use the dot-locale convention: `page.mdx`, `page.en.mdx`, `page.de.mdx`,
