@@ -1,8 +1,0 @@
-{
-  "label": "TIDAS CLI",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Install and use the unified Rust tidas command-line interface."
-  }
-}
