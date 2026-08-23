@@ -22,7 +22,7 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: d3120b1a4b043631fa8eed9c53f33a9030a79c96
+lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
 lastReviewedNote: "Reviewed for Issue #48 TianGong Data System identity, neutral landing UI, tabular Schema explorer, complete localization, static quality gates, and EdgeOne publication."
 ---
 

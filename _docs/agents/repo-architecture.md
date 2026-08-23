@@ -22,7 +22,7 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: d3120b1a4b043631fa8eed9c53f33a9030a79c96
+lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
 lastReviewedNote: "Reviewed for Issue #48 and the current neutral Fumadocs, TianGong Data System landing, tabular Schema explorer, four-locale, and EdgeOne architecture."
 related:
   - ../../AGENTS.md
