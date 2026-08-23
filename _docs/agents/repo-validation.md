@@ -70,6 +70,7 @@ pnpm build
 
 - every generated first-party page and media link resolves;
 - public MDX does not contain raw `<a>` or `<p>` hydration hazards;
+- public MDX does not depend on GitHub user-attachment URLs whose build-time image probing can make exports nondeterministic;
 - Schema pages do not contain anonymous `oneOf N` labels;
 - Schema HTML is at most 300,000 bytes;
 - a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
