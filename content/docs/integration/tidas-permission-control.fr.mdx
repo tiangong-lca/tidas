@@ -1,24 +1,24 @@
 ---
-title: "TIDAS Data Circulation and Authorization Mechanism"
+title: "Mécanisme de circulation et d'autorisation des données TIDAS"
 ---
 
-## System Overview
+## Vue d'ensemble du système
 
-This document describes a product carbon footprint data circulation and authorization mechanism based on TIDAS transformation, which connects carbon footprint databases, the Tiangong data platform, and data users to form a complete carbon data value circulation loop.
+Ce document décrit un mécanisme de circulation et d'autorisation des données d'empreinte carbone de produit basé sur la transformation TIDAS, qui relie les bases de données d'empreinte carbone, la plateforme de données Tiangong et les utilisateurs de données pour former une boucle de circulation complète de la valeur des données carbone.
 
-## Architecture Components
+## Composants de l'architecture
 
-The system consists of the following key components:
+Le système se compose des composants clés suivants :
 
-- **Carbon Footprint Database**: Source of original product carbon footprint data storage
+- **Base de données d'empreinte carbone** : Source de stockage des données originales d'empreinte carbone de produit
 
-- **Tiangong Data Platform**: Carbon data management and metadata service center
+- **Plateforme de données Tiangong** : Centre de gestion des données carbone et de métadonnées
 
-- **Data Users**: End users of carbon footprint data
+- **Utilisateurs de données** : Utilisateurs finaux des données d'empreinte carbone
 
-- **Contract System**: Manages carbon data authorization and circulation permissions
+- **Système de contrat** : Gère les autorisations et les permissions de circulation des données carbone
 
-## Data Circulation Process
+## Processus de circulation des données
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -27,70 +27,70 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS-permission-control"
 />
 
-### 1. Metadata Distribution
+### 1. Distribution des métadonnées
 
-The carbon footprint database provides metadata to the Tiangong data platform:
+La base de données d'empreinte carbone fournit des métadonnées à la plateforme de données Tiangong :
 
-- Metadata contains basic information and structural descriptions of product carbon footprint data
+- Les métadonnées contiennent des informations de base et des descriptions structurelles des données d'empreinte carbone de produit
 
-- The Tiangong platform standardizes the carbon data metadata
+- La plateforme Tiangong standardise les métadonnées des données carbone
 
-- Metadata contains no sensitive content and can be safely shared
+- Les métadonnées ne contiennent aucun contenu sensible et peuvent être partagées en toute sécurité
 
-### 2. Metadata Acquisition
+### 2. Acquisition des métadonnées
 
-Data users obtain carbon footprint metadata from the Tiangong data platform:
+Les utilisateurs de données obtiennent les métadonnées d'empreinte carbone à partir de la plateforme de données Tiangong :
 
-- Users can browse and search available carbon footprint datasets
+- Les utilisateurs peuvent parcourir et rechercher les ensembles de données d'empreinte carbone disponibles
 
-- Users evaluate the applicability of product carbon footprint data based on metadata
+- Les utilisateurs évaluent l'applicabilité des données d'empreinte carbone de produit sur la base des métadonnées
 
-### 3. Data Request and Authorization
+### 3. Demande et autorisation des données
 
-Data users initiate carbon footprint data requests to the contract system:
+Les utilisateurs de données initient des demandes de données d'empreinte carbone auprès du système de contrat :
 
-- Users select the required product carbon footprint data
+- Les utilisateurs sélectionnent les données d'empreinte carbone de produit requises
 
-- The contract system records request information and usage intentions
+- Le système de contrat enregistre les informations de demande et les intentions d'utilisation
 
-### 4. Permission Confirmation
+### 4. Confirmation des autorisations
 
-The contract system requests transmission permission from the carbon footprint database:
+Le système de contrat demande la permission de transmission à la base de données d'empreinte carbone :
 
-- Verifies the legitimacy of the request and user qualifications
+- Vérifie la légitimité de la demande et les qualifications de l'utilisateur
 
-- Obtains authorization confirmation from the carbon data owner
+- Obtient la confirmation d'autorisation du propriétaire des données carbone
 
-### 5. Data Provision
+### 5. Fourniture des données
 
-The carbon footprint database provides data to users through TIDAS transformation:
+La base de données d'empreinte carbone fournit les données aux utilisateurs par le biais de la transformation TIDAS :
 
-- TIDAS ensures the integrity and authenticity of carbon footprint data during transmission
+- TIDAS assure l'intégrité et l'authenticité des données d'empreinte carbone lors de la transmission
 
-- Data is provided according to the permission scope specified in the contract
+- Les données sont fournies conformément à la portée des autorisations spécifiées dans le contrat
 
-## TIDAS Transformation Mechanism
+## Mécanisme de transformation TIDAS
 
-TIDAS plays a core role in the carbon footprint data circulation process:
+TIDAS joue un rôle central dans le processus de circulation des données d'empreinte carbone :
 
-- **Carbon Data Authenticity Verification**: Ensures product carbon footprint data has not been tampered with
+- **Vérification de l'authenticité des données carbone** : Garantit que les données d'empreinte carbone de produit n'ont pas été falsifiées
 
-- **Source Traceability**: Records the entire process of carbon footprint data circulation
+- **Traçabilité de la source** : Enregistre l'ensemble du processus de circulation des données d'empreinte carbone
 
-- **Authorization Condition Binding**: Binds usage conditions with carbon data
+- **Liaison des conditions d'autorisation** : Lie les conditions d'utilisation aux données carbone
 
-- **Access Control**: Implements precise permission control based on contracts
+- **Contrôle d'accès** : Met en œuvre un contrôle précis des autorisations basé sur les contrats
 
-## Application Value
+## Valeur de l'application
 
-This mechanism provides a technical foundation for the carbon data economy:
+Ce mécanisme fournit une base technique pour l'économie des données carbone :
 
-- Enhances the credibility of product carbon footprint data
+- Renforce la crédibilité des données d'empreinte carbone de produit
 
-- Protects the rights of carbon data owners
+- Protège les droits des propriétaires de données carbone
 
-- Promotes the safe release of carbon data value
+- Favorise la libération sécurisée de la valeur des données carbone
 
-- Supports green supply chains and low-carbon decision-making
+- Prend en charge les chaînes d'approvisionnement vertes et la décision à faible teneur en carbone
 
-Through this structured carbon footprint data circulation mechanism, the system achieves efficient circulation of product carbon footprint data while ensuring security and accuracy, providing data support for carbon management and emission reduction decisions.
+Grâce à ce mécanisme structuré, le système permet une circulation efficace des données d'empreinte carbone des produits tout en garantissant leur sécurité et leur exactitude. Il fournit ainsi les données nécessaires à la gestion du carbone et aux décisions de réduction des émissions.

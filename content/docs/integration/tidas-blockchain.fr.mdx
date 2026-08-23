@@ -1,36 +1,36 @@
 ---
-title: "TIDAS Data Security Mechanism"
+title: "Mécanisme de sécurité des données TIDAS"
 ---
 
-## Background and Challenges
+## Contexte et défis
 
-Carbon footprint data faces multiple authenticity challenges during application:
+Les données d'empreinte carbone sont confrontées à plusieurs défis d'authenticité lors de leur application :
 
-- Data can be easily tampered with, leading to information distortion
+- Les données peuvent être facilement falsifiées, entraînant une distorsion de l'information
 
-- Difficulty in tracing change history
+- Difficulté à retracer l'historique des modifications
 
-- High cost of traditional verification methods
+- Coût élevé des méthodes de vérification traditionnelles
 
-- Lack of common trust foundation in multi-party collaboration
+- Manque de base de confiance commune dans la collaboration multipartite
 
-These challenges not only affect data value but may also lead to compliance risks and trust crises.
+Ces défis affectent non seulement la valeur des données, mais peuvent également entraîner des risques de conformité et des crises de confiance.
 
-## Blockchain-Based Data Tamper-Proof Mechanism
+## Mécanisme de protection contre la falsification des données basé sur la blockchain
 
-Blockchain, with its core features, provides an ideal solution for data tamper-proofing:
+Grâce à ses caractéristiques fondamentales, la blockchain offre une solution idéale pour la protection contre la falsification des données :
 
-- **Immutability**: Chain structure combined with cryptography ensures data is difficult to alter once recorded
+- **Immutabilité** : La structure en chaîne combinée à la cryptographie garantit que les données sont difficiles à modifier une fois enregistrées
 
-- **Distributed Architecture**: Eliminates single-point tampering risks
+- **Architecture distribuée** : Élimine les risques de falsification en un point unique
 
-- **Timestamp Mechanism**: Provides indisputable chronological proof
+- **Mécanisme d'horodatage** : Fournit une preuve chronologique indiscutable
 
-- **Consensus Mechanism**: Ensures consistent recognition of data status among network participants
+- **Mécanisme de consensus** : Assure une reconnaissance cohérente de l'état des données parmi les participants du réseau
 
-## TIDAS Working Mechanism
+## Mécanisme de fonctionnement de TIDAS
 
-TIDAS builds an efficient data trust mechanism based on the Tiangong data platform and blockchain technology:
+TIDAS construit un mécanisme de confiance des données efficace basé sur la plateforme de données Tiangong et la technologie blockchain :
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -39,32 +39,32 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS-blockchain"
 />
 
-### Process Design
+### Conception du processus
 
-1. **Data Submission and Review**
-   - Contributors submit original data to the Tiangong platform
-   - Platform review ensures data complies with TIDAS standards
+1. **Soumission et examen des données**
+   - Les contributeurs soumettent les données originales à la plateforme Tiangong
+   - L'examen de la plateforme garantit que les données sont conformes aux normes TIDAS
 
-2. **Hash On-Chain**
-   - Calculate hash values of processed data
-   - Write hashes to blockchain and obtain transaction credentials
-   - Associate stored data content with transaction hashes
+2. **Hachage sur la chaîne**
+   - Calculer les valeurs de hachage des données traitées
+   - Écrire les hachages sur la blockchain et obtenir les justificatifs de transaction
+   - Associer le contenu des données stockées aux hachages de transaction
 
-3. **Verification Mechanism**
-   - Users obtain data and transaction hashes
-   - Recalculate hash values of obtained data
-   - Compare with blockchain records to verify integrity
+3. **Mécanisme de vérification**
+   - Les utilisateurs obtiennent les données et les hachages de transaction
+   - Recalculer les valeurs de hachage des données obtenues
+   - Comparer avec les enregistrements de la blockchain pour vérifier l'intégrité
 
-### Technical Features
+### Caractéristiques techniques
 
-- **Lightweight Design**: Only hashes on-chain, balancing performance and cost
+- **Conception légère** : Seuls les hachages sont sur la chaîne, équilibrant performance et coût
 
-- **Dual Protection**: Combines platform management with blockchain tamper-proofing
+- **Double protection** : Combine la gestion de la plateforme avec la protection contre la falsification par la blockchain
 
-- **Privacy Protection**: Original data not directly exposed
+- **Protection de la confidentialité** : Les données originales ne sont pas directement exposées
 
-- **Open Verification**: Supports independent third-party verification
+- **Vérification ouverte** : Prend en charge la vérification indépendante par des tiers
 
-## Practical Application
+## Application pratique
 
-We have collaborated with Ant Chain to develop a blockchain-based trusted solution for carbon footprint data, providing strong guarantees for the authenticity of carbon footprint data.
+Nous avons collaboré avec Ant Chain pour développer une solution de confiance basée sur la blockchain pour les données d'empreinte carbone, fournissant de solides garanties pour l'authenticité des données d'empreinte carbone.

@@ -1,22 +1,22 @@
 ---
-title: "MCP AI Services"
+title: "Services IA MCP"
 ---
 
-MCP (Model Context Protocol) AI Services are intelligent engine components in the TIDAS system that enhance lifecycle data understanding, completion, and validation capabilities, designed for next-generation environmental data management and intelligent application scenarios.
+Les services IA MCP (Model Context Protocol) sont des composants de moteur intelligent dans le système TIDAS qui améliorent les capacités de compréhension, de complétion et de validation des données de cycle de vie, conçus pour les scénarios de gestion et d'application intelligente des données environnementales de prochaine génération.
 
-## ✨ Core Features
+## ✨ Fonctionnalités principales
 
-MCP services integrate AI capabilities into TIDAS lifecycle databases, providing the following core features:
+Les services MCP intègrent les capacités d'IA dans les bases de données de cycle de vie TIDAS, fournissant les fonctionnalités principales suivantes :
 
-- **Semantic Search**: Query lifecycle inventory (LCA Flows) data using natural language
+- **Recherche sémantique** : Interroger en langage naturel les flux d'inventaire du cycle de vie (« LCA Flows »)
 
-- **Intelligent Completion**: Assist in completing missing fields or suggesting structural improvements
+- **Complétion intelligente** : Aider à compléter les champs manquants ou suggérer des améliorations structurelles
 
-- **Format Validation**: Automatically validate data compliance based on JSON Schema
+- **Validation de format** : Valider automatiquement la conformité des données sur la base du JSON Schema
 
-- **Debugging & Validation Support**: Supports debugging and validating service processes using the MCP Inspector tool (as shown below)
+- **Support de débogage et de validation** : Prend en charge le débogage et la validation des processus de service à l'aide de l'outil MCP Inspector (comme illustré ci-dessous)
 
-> 📷 Illustration: We use the MCP Inspector tool to debug queries for "Cypermethrin" related flow information, verifying that the MCP service successfully returns structured data.
+> 📷 Illustration : Nous utilisons l'outil MCP Inspector pour déboguer les requêtes d'informations de flux liées à « Cypermethrin », vérifiant que le service MCP renvoie avec succès des données structurées.
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -25,33 +25,33 @@ import { TidasImage } from '@/components/tidas-image';
   title="MCP-inspector"
 />
 
-## 🧱 Technical Implementation
+## 🧱 Mise en œuvre technique
 
-MCP services are implemented based on:
+Les services MCP sont implémentés sur la base de :
 
-- **Transport Protocol**: Supports SSE service with WebSocket, HTTP and other transmission modes
+- **Protocole de transport** : Prend en charge le service SSE avec WebSocket, HTTP et autres modes de transmission
 
-- **Data Processing**: Parses and processes data based on TIDAS format (JSON Schema)
+- **Traitement des données** : Analyse et traite les données sur la base du format TIDAS (JSON Schema)
 
-- **Tool Scheduling**: Integrates various intelligent tools like `Search_flows_Tool`
+- **Ordonnancement des outils** : Intègre divers outils intelligents comme `Search_flows_Tool`
 
-- **Local Deployment**: Supports private deployment to ensure data security and compliance
+- **Déploiement local** : Prend en charge le déploiement privé pour garantir la sécurité et la conformité des données
 
-## 🔗 Open Source Link
+## 🔗 Code source
 
-MCP services are open-sourced on GitHub:  
+Les services MCP sont publiés en open source sur GitHub :  
 👉 [https://github.com/linancn/tiangong-lca-mcp](https://github.com/linancn/tiangong-lca-mcp)
 
-The project provides complete server code, sample frontend (including integration examples for the Inspector debugging tool), tool registration and testing documentation, enabling rapid development of AI-driven lifecycle data platforms based on TIDAS architecture.
+Le projet fournit le code serveur complet, un exemple de frontend (incluant des exemples d'intégration pour l'outil de débogage Inspector), la documentation d'enregistrement et de test des outils, permettant un développement rapide de plateformes de données de cycle de vie pilotées par l'IA basées sur l'architecture TIDAS.
 
-## 📦 Prerequisites
+## 📦 Prérequis
 
-- A lifecycle database compliant with [TIDAS Schema](/fr/docs/category/tidas-schema/) has been built
+- Une base de données de cycle de vie conforme au [Schéma TIDAS](/fr/docs/core-modules/schema/tidas-schema-intro/) a été construite
 
-- MCP Bearer Token and service address have been configured
+- Le jeton Bearer MCP et l'adresse du service ont été configurés
 
-- Required intelligent tools (e.g. Search_flows_Tool) have been registered as needed
+- Les outils intelligents requis (par exemple Search_flows_Tool) ont été enregistrés selon les besoins
 
 ---
 
-If you wish to further integrate LCA intelligent services or build your own AI data platform, MCP services provide an efficient starting point.
+Pour intégrer davantage de services intelligents d'ACV ou construire votre propre plateforme de données fondée sur l'IA, les services MCP offrent un point de départ efficace.
