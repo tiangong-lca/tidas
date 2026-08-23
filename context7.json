@@ -1,0 +1,21 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "TIDAS Docs",
+  "description": "TIDAS (TianGong LCA Data System) public documentation: JSON schema reference, tools, integrations (blockchain, AI, privacy computing), use cases, and FAQ.",
+  "branch": "main",
+  "folders": [
+    "content/docs"
+  ],
+  "excludeFolders": [
+    "node_modules",
+    "out",
+    ".next",
+    "public/assets",
+    "public/img",
+    "public/schemas",
+    "manifests",
+    "scripts",
+    "build",
+    ".docusaurus"
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "dryRun": false,
+  "pages": [
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-contact.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-contact.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-contact",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-datatype.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-datatype.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-datatype",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-flowproperty.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-flowproperty.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-flowproperty",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-flows.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-flows.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-flows",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-lciamethods.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-lciamethods.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-lciamethods",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-model.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-model.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-model",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-processes.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-processes.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-processes",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-source.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-source.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-source",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/schema-content/json-schema-unitgroup.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-unitgroup.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-unitgroup",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/tidas-schema-intro.md",
+      "targetPath": "content/docs/core-modules/schema/tidas-schema-intro.mdx",
+      "pageId": "core-modules/schema/tidas-schema-intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/core-modules/schema/tidas-schema-validation.md",
+      "targetPath": "content/docs/core-modules/schema/tidas-schema-validation.mdx",
+      "pageId": "core-modules/schema/tidas-schema-validation",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/faq/how-to-contribute-tidas-doc.md",
+      "targetPath": "content/docs/faq/how-to-contribute-tidas-doc.mdx",
+      "pageId": "faq/how-to-contribute-tidas-doc",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/faq/vscode-guide.md",
+      "targetPath": "content/docs/faq/vscode-guide.mdx",
+      "pageId": "faq/vscode-guide",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/integration/tidas-blockchain.mdx",
+      "targetPath": "content/docs/integration/tidas-blockchain.mdx",
+      "pageId": "integration/tidas-blockchain",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/integration/tidas-permission-control.mdx",
+      "targetPath": "content/docs/integration/tidas-permission-control.mdx",
+      "pageId": "integration/tidas-permission-control",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/integration/tidas-privacy-computing.mdx",
+      "targetPath": "content/docs/integration/tidas-privacy-computing.mdx",
+      "pageId": "integration/tidas-privacy-computing",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/integration/tidas-to-ai.mdx",
+      "targetPath": "content/docs/integration/tidas-to-ai.mdx",
+      "pageId": "integration/tidas-to-ai",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/intro.mdx",
+      "targetPath": "content/docs/intro.mdx",
+      "pageId": "intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/tool/tidas-tool-intro.md",
+      "targetPath": "content/docs/tool/tidas-tool-intro.mdx",
+      "pageId": "tool/tidas-tool-intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/use_case/block_builder.md",
+      "targetPath": "content/docs/use-case/block-builder.mdx",
+      "pageId": "use_case/block_builder",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "zh",
+      "sourcePath": "docs/use_case/tidas-to-antchain.md",
+      "targetPath": "content/docs/use-case/tidas-to-antchain.mdx",
+      "pageId": "use_case/tidas-to-antchain",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-contact.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-contact.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-contact",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-datatype.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-datatype.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-datatype",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-flowproperty.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-flowproperty.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-flowproperty",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-flows.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-flows.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-flows",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-lciamethods.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-lciamethods.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-lciamethods",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-model.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-model.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-model",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-processes.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-processes.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-processes",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-source.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-source.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-source",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/schema-content/json-schema-unitgroup.mdx",
+      "targetPath": "content/docs/core-modules/schema/schema-content/json-schema-unitgroup.en.mdx",
+      "pageId": "core-modules/schema/schema-content/json-schema-unitgroup",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/tidas-schema-intro.md",
+      "targetPath": "content/docs/core-modules/schema/tidas-schema-intro.en.mdx",
+      "pageId": "core-modules/schema/tidas-schema-intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/core-modules/schema/tidas-schema-validation.md",
+      "targetPath": "content/docs/core-modules/schema/tidas-schema-validation.en.mdx",
+      "pageId": "core-modules/schema/tidas-schema-validation",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/faq/how-to-contribute-tidas-doc.md",
+      "targetPath": "content/docs/faq/how-to-contribute-tidas-doc.en.mdx",
+      "pageId": "faq/how-to-contribute-tidas-doc",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/faq/vscode-guide.md",
+      "targetPath": "content/docs/faq/vscode-guide.en.mdx",
+      "pageId": "faq/vscode-guide",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/integration/tidas-blockchain.mdx",
+      "targetPath": "content/docs/integration/tidas-blockchain.en.mdx",
+      "pageId": "integration/tidas-blockchain",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/integration/tidas-permission-control.mdx",
+      "targetPath": "content/docs/integration/tidas-permission-control.en.mdx",
+      "pageId": "integration/tidas-permission-control",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/integration/tidas-privacy-computing.mdx",
+      "targetPath": "content/docs/integration/tidas-privacy-computing.en.mdx",
+      "pageId": "integration/tidas-privacy-computing",
+      "transforms": [
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/integration/tidas-to-ai.mdx",
+      "targetPath": "content/docs/integration/tidas-to-ai.en.mdx",
+      "pageId": "integration/tidas-to-ai",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/intro.mdx",
+      "targetPath": "content/docs/intro.en.mdx",
+      "pageId": "intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/tool/tidas-tool-intro.md",
+      "targetPath": "content/docs/tool/tidas-tool-intro.en.mdx",
+      "pageId": "tool/tidas-tool-intro",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/use_case/block_builder.md",
+      "targetPath": "content/docs/use-case/block-builder.en.mdx",
+      "pageId": "use_case/block_builder",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    },
+    {
+      "locale": "en",
+      "sourcePath": "i18n/en/docusaurus-plugin-content-docs/current/use_case/tidas-to-antchain.md",
+      "targetPath": "content/docs/use-case/tidas-to-antchain.en.mdx",
+      "pageId": "use_case/tidas-to-antchain",
+      "transforms": [
+        "strip-sidebar-frontmatter",
+        "h1-to-title",
+        "docusaurus-component-rewrites"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "targetAssetPath": "/assets/docs/e84e3b49/antdigitalgroup-en.svg",
+      "refs": 1
+    },
+    {
+      "targetAssetPath": "/assets/docs/12a1ac5a/git-clone.png",
+      "refs": 2
+    },
+    {
+      "targetAssetPath": "/assets/docs/78b24869/git-fork.png",
+      "refs": 2
+    },
+    {
+      "targetAssetPath": "/assets/docs/013f3854/antdigitalgroup-zh-cn.svg",
+      "refs": 1
+    }
+  ],
+  "warnings": [],
+  "internal": [
+    "_reference-package",
+    "_resources-and-support",
+    "_todo",
+    "core-modules/schema/schema-content/_json-schema",
+    "integration/_index",
+    "integration/_tidas-to-ai",
+    "tool/_tidas-eilcd",
+    "tool/_tidas-export",
+    "tool/_tidas-validation",
+    "use_case/_TIDAS-to-Hyperledger",
+    "use_case/_openlca-ipc-mcp"
+  ]
+}

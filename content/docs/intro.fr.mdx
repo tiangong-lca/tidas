@@ -1,0 +1,95 @@
+---
+title: "Introduction"
+---
+
+* *TIDAS** (**TI**angong **DA**ta **S**ystem) is an open-source data system built on JSON, providing unified, standardized, and extensible foundational support for Life Cycle Assessment (LCA) and carbon footprint management. It consists of three core modules: "Methodology, Format Specifications, and Data Resources," and through auxiliary tools and integration capabilities, enables intelligent, trustworthy, and automated data management.
+
+import { TidasImage } from '@/components/tidas-image';
+
+<TidasImage
+  filename="TIDAS.svg"
+  title="TIDAS"
+/>
+
+---
+
+## 🧱 Core System Architecture Modules
+
+TIDAS architecture consists of three components:
+
+### 📖 Methodology
+
+- [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
+  Provides methods for data construction, validation and maintenance, compatible with ISO 14040/44, ILCD Handbook and ecoinvent standards.
+
+### 🧾 Data Format
+
+- [TIDAS Data Structure](/fr/docs/category/tidas-schema/)  
+  Implements data structure validation based on JSON and JSON Schema, adaptable to new architectures like AI, data spaces and blockchain.
+
+### 📦 Data Resources
+
+- [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)  
+  Provides open-source reference database supporting data traceability, consistency and reliability.
+
+---
+
+## 🛠 Auxiliary Tools
+
+* *The TIDAS Tools consists of auxiliary components developed around the three core modules**, facilitating data construction, format interoperability and export operations between developers and systems.
+
+- 🧪 `validate`: Data validation tool - checks data structure, standardization and completeness  
+
+- 🔄 `convert`: Format converter - enables lossless bidirectional conversion between TIDAS and eILCD  
+
+- 📤 `export`: Data package publishing tool - packages compliant data into standard ZIP format for platform delivery and archiving
+
+👉 See full tool documentation: [TIDAS Toolkit](/fr/docs/category/tidas-tools/)
+
+---
+
+## 🔗 Technical Integration & Extension Capabilities
+
+TIDAS has built various integration solutions for practical scenarios, supporting trusted computing and data interoperability:
+
+- 🔐 [Permission Control](./integration/tidas-permission-control/): Implements data access control and authorization mechanisms for multi-party collaboration  
+
+- 🧠 [Privacy Computing](./integration/tidas-privacy-computing/): Achieves 'data available but invisible' through secure multi-party computation and federated analytics  
+
+- 🔗 [Blockchain Integration](./integration/tidas-blockchain/): Ensures data immutability and distributed verification  
+
+- 🤖 [AI Integration (MCP Service)](./integration/tidas-to-ai/): Integrates MCP AI Server for data semantic analysis, completion and intelligent validation
+
+---
+
+## 🌐 Enterprise-level Software: TianGong LCA Platform
+
+- [TianGong Platform](https://docs.tiangong.earth) is the first open-source platform based on TIDAS architecture, implementing complete LCA lifecycle management from data modeling to trusted delivery.
+
+---
+
+## 📂 Featured Use Cases
+
+- 🔗 [TIDAS + AntChain](./use-case/tidas-to-antchain/): Builds enterprise-level blockchain light node verification framework  
+
+- 🔧 [TIDAS + Haike Data](./use-case/block-builder/): Supports dual-channel integration via TIDAS and API for model interaction and data review
+
+---
+
+## 🤝 Community Participation
+
+- 📘 [Documentation Contribution Guide](/faq/how-to-contribute-tidas-doc.md)  
+
+- 🐞 [Bug Reports](https://github.com/tiangong-lca/tidas/issues)  
+
+- 💼 Contact: <a href="mailto:contact@tiangong.earth">📧 contact@tiangong.earth</a>
+
+---
+
+> 📌 **Quick Reading Suggestions**  
+> Recommended order to understand TIDAS architecture:
+>
+> 1. [Methodology Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
+> 2. [Data Structure Format](/fr/docs/category/tidas-schema/)  
+> 3. [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)  
+> 4. [Tool Module](/fr/docs/category/tidas-tools/) and [Integration Solutions](/fr/docs/category/integration/)

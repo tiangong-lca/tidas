@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "intro",
+    "core-modules",
+    "tool",
+    "integration",
+    "use-case",
+    "faq"
+  ]
+}

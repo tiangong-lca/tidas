@@ -1,0 +1,100 @@
+---
+title: "Schema 校验方法"
+---
+
+TIDAS 数据结构基于 JSON Schema 定义。正式的批量校验入口是统一 Rust
+CLI 的 `tidas validate`，它离线使用随 v0.1.1 二进制发布且经过完整性校验的
+JSON Schema、ILCD XSD 和规则资源，不依赖外部源码目录或 Python 环境。
+
+---
+
+## 验证 TIDAS JSON 包
+
+```bash
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --issues ./issues.jsonl \
+  --format json
+```
+
+- 输入目录是位置参数，应包含规范的 TIDAS 分类子目录。
+
+- `--issues` 原子写入完整、确定性的 JSONL 问题流。
+
+- `--format json` 只在 stdout 输出稳定的机器可读报告；诊断和进度使用 stderr。
+
+- `--report <path>` 可把完整报告原子写入文件。
+
+## 验证 ILCD XML 包
+
+```bash
+tidas validate ./ilcd-package \
+  --input-format ilcd-xml \
+  --issues ./issues.jsonl \
+  --format json
+```
+
+验证器只使用二进制内嵌的完整性锁定 XSD，并复用离线校验上下文。
+
+## 检查验证器指纹
+
+在需要可复现证据的 CI 或批处理工作流中，先记录验证协议、引擎和 Schema
+锁指纹：
+
+```bash
+tidas validate --describe --format json
+tidas version --format json
+```
+
+`document-validation-batch.v1` 协议还可对清单中精确列出的文档生成确定性的
+问题事件和最终证据哈希：
+
+```bash
+tidas validate ./batch-root \
+  --protocol document-validation-batch.v1 \
+  --input-manifest ./document-validation-batch.v1.jsonl \
+  --events ./validation-events.jsonl \
+  --format json
+```
+
+---
+
+## 验证内容概览
+
+TIDAS 的数据验证机制结合了两类校验能力：
+
+### 1. 结构校验（JSON Schema 标准）
+
+- 校验字段是否缺失（required）
+
+- 校验字段类型是否匹配（string, number 等）
+
+- 校验字段值是否符合定义（format, enum 等）
+
+- 支持模块间引用解析（$ref）
+
+### 2. 包级和分类逻辑校验
+
+适用于 flows、processes、sources 等分类结构：
+
+- **层级检查**：字段 `@level` 顺序是否正确
+
+- **代码规则**：子项是否以父项代码为前缀
+
+- **流程分类行业匹配规则**：行业编码是否满足国家标准映射逻辑
+
+- **引用与包结构检查**：按锁定资源检查跨模块引用和包级约束
+
+---
+
+## 验证结果输出
+
+普通校验报告提供有界的问题计数和问题流哈希；`--issues` 文件保留完整问题。
+文档问题表示扫描已完成，可通过报告与退出状态区分数据问题和协议/运行失败。
+自动化应解析 `--format json` 的稳定报告，而不是匹配人类可读文本。
+
+---
+
+如需了解 JSON Schema 的字段与模块，请前往
+[数据结构（JSON Schema）](/zh/docs/category/tidas-json-schema/)。安装、平台支持与旧命令迁移见
+[统一 TIDAS CLI](/zh/docs/category/tidas-tools/)。

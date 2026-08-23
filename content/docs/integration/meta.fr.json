@@ -1,0 +1,10 @@
+{
+  "title": "Intégration",
+  "pages": [
+    "index",
+    "integration/tidas-blockchain",
+    "integration/tidas-permission-control",
+    "integration/tidas-privacy-computing",
+    "integration/tidas-to-ai"
+  ]
+}

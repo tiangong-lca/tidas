@@ -32,9 +32,9 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-08-17
+lastReviewedAt: "2026-08-23"
 lastReviewedCommit: 9004873b0abdc0f9288b63a0668c1ebf64823e78
-lastReviewedNote: "Reviewed for Issue #39 Rust asset-source guidance correction; ownership, branch, release, and workspace-integration boundaries are unchanged."
+lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

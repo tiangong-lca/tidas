@@ -1,0 +1,8 @@
+{
+  "title": "Cas d'usage",
+  "pages": [
+    "index",
+    "use-case/block-builder",
+    "use-case/tidas-to-antchain"
+  ]
+}

@@ -1,0 +1,59 @@
+name: Publish docs
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-docs-main
+  cancel-in-progress: false
+
+env:
+  DOCS_SITE_URL: https://tidas.tiangong.earth
+
+jobs:
+  validate:
+    name: Validate (required check)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm 11.22.0
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.22.0
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.18.0'
+          cache: pnpm
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint markdown
+        run: pnpm lint
+
+      - name: Typecheck (TypeScript 7 native)
+        run: pnpm typecheck
+
+      - name: Build (ci fixture) and verify out contract
+        env:
+          DEPLOY_ENV: ci
+          CANONICAL_ORIGIN: http://localhost:3000
+          NEXT_PUBLIC_SEARCH_MODE: static
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: pnpm build

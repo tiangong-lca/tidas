@@ -1,12 +1,11 @@
 project_id: 'tidas'
 preserve_hierarchy: true
 files:
-  # # JSON translation files
-  # - source: /i18n/en/**/*
-  #   translation: /i18n/%two_letters_code%/**/%original_file_name%
-  # Docs Markdown files
-  - source: /docs/**/*
-    translation: /i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%
-  # Blog Markdown files
-  # - source: /blog/**/*
-  #   translation: /i18n/%two_letters_code%/docusaurus-plugin-content-blog/**/%original_file_name%
+  - source: /content/docs/**/*.mdx
+    ignore:
+      - /content/docs/**/*.en.mdx
+      - /content/docs/**/*.de.mdx
+      - /content/docs/**/*.fr.mdx
+    translation: /content/docs/**/%file_name%.%two_letters_code%.mdx
+  - source: /content/docs/**/meta.json
+    translation: /content/docs/**/meta.%two_letters_code%.json
