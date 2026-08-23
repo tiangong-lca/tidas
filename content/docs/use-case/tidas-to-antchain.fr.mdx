@@ -94,14 +94,14 @@ Le système TIDAS calcule d'abord la valeur de hachage des données métier orig
 
 **Processus opérationnel** :
 
-1. Connexion au système et autorisation par jeton  
+1. Connexion au système et autorisation par jeton
    Jeton : wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (partiellement affiché)
 
-2. Envoi du hachage de données à la blockchain  
+2. Envoi du hachage de données à la blockchain
    Envoi de la requête d'écriture blockchain...
 
-3. Confirmation de la blockchain et retour du hachage de transaction  
-   Hachage écrit avec succès sur la blockchain  
+3. Confirmation de la blockchain et retour du hachage de transaction
+   Hachage écrit avec succès sur la blockchain
    Hachage de transaction : 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
 
 > **Point clé** : Le hachage de transaction est un identifiant unique généré par la blockchain pour cette certification, seul le hachage de données étant réellement stocké sur chaîne.
@@ -126,13 +126,13 @@ Lorsqu'il est nécessaire de vérifier si les données ont été falsifiées, le
 
 **Processus de vérification** :
 
-1. Lecture du hachage de transaction stocké localement  
-   Hachage de transaction : 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487  
+1. Lecture du hachage de transaction stocké localement
+   Hachage de transaction : 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
    Numéro de bloc : 1414787
 
-2. Requête du hachage de certification original depuis la blockchain via le hachage de transaction  
-   Requête des données de transaction depuis la blockchain...  
-   Jeton de vérification du serveur : J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==  
+2. Requête du hachage de certification original depuis la blockchain via le hachage de transaction
+   Requête des données de transaction depuis la blockchain...
+   Jeton de vérification du serveur : J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==
    Hachage de données original stocké sur chaîne : b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
 3. Calcul du hachage de données actuel et comparaison avec le hachage sur chaîne
@@ -336,7 +336,7 @@ Créer une tâche de calcul préservant la confidentialité sur la plateforme de
    }
    ```
 
-2. Création de la tâche de calcul préservant la confidentialité  
+2. Création de la tâche de calcul préservant la confidentialité
 
    ```bash
    📋 Task Creation Result:
@@ -371,7 +371,7 @@ La plateforme de collaboration de confiance exécute la tâche de calcul selon l
    ⏳ Task in progress, checking again in 10 seconds...
    ```
 
-2. Achèvement de la tâche de calcul  
+2. Achèvement de la tâche de calcul
 
    ```bash
    📊 Check #10 - Current Status:
@@ -383,7 +383,7 @@ La plateforme de collaboration de confiance exécute la tâche de calcul selon l
    }
    ```
 
-3. Temps total de calcul  
+3. Temps total de calcul
 
    ```bash
    🕒 16:58:42 | ✅ Computation task completed | Time spent: 1 minute 48 seconds

@@ -10,19 +10,19 @@ Par rapport au format XML traditionnel utilisé par ILCD, TIDAS adopte une struc
 
 ## Caractéristiques techniques
 
-- **Basé sur la spécification JSON Schema**  
+- **Basé sur la spécification JSON Schema**
   Utilise JSON Schema pour définir les types de champs, la hiérarchie structurelle et les contraintes, permettant une validation structurée et une analyse automatisée afin de faciliter le développement et l'intégration des systèmes.
 
-- **Architecture modulaire**  
+- **Architecture modulaire**
   Le schéma est divisé en plusieurs modules logiques (17 au total), permettant une utilisation flexible et une extension rapide afin de répondre aux besoins de réutilisation dans divers scénarios d'application.
 
-- **Support de validation multilingue**  
+- **Support de validation multilingue**
   À travers les mécanismes de validation JSON Schema universels, il peut être directement supporté par plusieurs langages de programmation et moteurs de validation, facilitant l'intégration et l'application à travers différents systèmes.
 
-- **Diagnostics d'erreur détaillés**  
+- **Diagnostics d'erreur détaillés**
   La validation basée sur JSON Schema renvoie des informations d'erreur structurées, améliorant l'efficacité du débogage et assurant la qualité des données.
 
-- **Exigences de données renforcées**  
+- **Exigences de données renforcées**
   Au-delà du mappage sans perte du format ILCD, le schéma TIDAS introduit des exigences de contenu supplémentaires provenant de normes comme EF (Environmental Footprint) et GLAD (Global LCA Data Access). Par exemple, rendre certains champs obligatoires améliore la complétude et l'échangeabilité des données. Les données satisfaisant le schéma JSON TIDAS respecteront intrinsèquement les spécifications ILCD de base, assurant davantage la reconnaissance internationale et la circulation des données.
 
 La CLI `tidas` v0.1.1 intègre et vérifie l'intégrité des ressources JSON Schema, XSD ILCD et XSLT requises pour la conversion et la validation. `tidas convert` matérialise les ressources cibles verrouillées dans son paquet de sortie, les utilisateurs n'ont donc pas besoin de télécharger des fichiers depuis les anciens répertoires source Python. Exécutez [`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1) pour inspecter les empreintes d'actifs et d'exécution.
