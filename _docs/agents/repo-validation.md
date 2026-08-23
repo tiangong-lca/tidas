@@ -24,7 +24,7 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 45ea507c597395ebbe34213115cb301bb0f2fb68
+lastReviewedCommit: 5341f69234cdae9b5d01a444c2fee2fe11225cb0
 lastReviewedNote: "Reviewed for Issue #48 system identity, neutral UI, tabular Schema alignment, accessibility, localization, metadata, and visual gates."
 related:
   - ../../AGENTS.md
