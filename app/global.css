@@ -124,7 +124,7 @@ html {
 .atlas-hero h1 {
   max-width: 14ch;
   margin: 0;
-  font-size: clamp(2.65rem, 5.3vw, 4.7rem);
+  font-size: clamp(2.65rem, 5.3vw, 3.75rem);
   font-weight: 660;
   hyphens: auto;
   letter-spacing: -0.048em;
@@ -160,7 +160,7 @@ html {
   min-width: 0;
   justify-self: end;
   border: 1px solid var(--system-line);
-  border-radius: 0.8rem;
+  border-radius: 0.25rem;
   background: var(--system-surface);
   overflow: hidden;
 }
@@ -303,68 +303,6 @@ html {
   line-height: 1.72;
 }
 
-.atlas-path-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.atlas-path-card {
-  position: relative;
-  display: grid;
-  min-height: 13.5rem;
-  min-width: 0;
-  align-content: start;
-  border: 1px solid var(--system-line);
-  border-radius: 0.75rem;
-  padding: clamp(1.25rem, 3vw, 1.65rem);
-  background: var(--system-surface);
-  color: inherit;
-  gap: 0.68rem;
-  overflow: hidden;
-  transition: border-color 120ms ease, background 120ms ease;
-}
-
-.atlas-path-card:hover {
-  border-color: color-mix(in srgb, var(--tidas-accent) 52%, var(--system-line));
-  background: var(--system-surface-subtle);
-}
-
-.atlas-card-kicker {
-  color: var(--tidas-accent);
-  font: 680 0.65rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
-  letter-spacing: 0.09em;
-}
-
-.atlas-path-card h3 {
-  max-width: 20ch;
-  margin: 0.25rem 0 0;
-  font-size: clamp(1.22rem, 2.4vw, 1.55rem);
-  font-weight: 650;
-  letter-spacing: -0.03em;
-}
-
-.atlas-path-card p {
-  max-width: 44ch;
-  margin: 0;
-  color: var(--color-fd-muted-foreground);
-  line-height: 1.68;
-}
-
-.atlas-card-arrow {
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1.2rem;
-  display: inline-flex;
-  width: 1.9rem;
-  height: 1.9rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--system-line);
-  border-radius: 0.4rem;
-  color: var(--tidas-accent);
-}
-
 .atlas-closing {
   padding: 0 0 clamp(4.5rem, 9vw, 7rem);
 }
@@ -374,7 +312,7 @@ html {
   align-items: center;
   justify-content: space-between;
   border: 1px solid var(--system-line);
-  border-radius: 0.8rem;
+  border-radius: 0.25rem;
   background: var(--system-surface-subtle);
   gap: 2rem;
   padding-block: clamp(1.5rem, 4vw, 2.4rem);
@@ -403,7 +341,7 @@ html {
 .schema-explorer {
   margin-block: 1.5rem;
   border: 1px solid var(--system-line);
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   background: var(--system-surface);
   overflow: hidden;
 }
@@ -486,7 +424,7 @@ html {
 .schema-search input {
   width: 100%;
   border: 1px solid var(--system-line);
-  border-radius: 0.42rem;
+  border-radius: 0.25rem;
   padding: 0.62rem 0.7rem;
   background: var(--color-fd-background);
   color: var(--system-ink);
@@ -564,7 +502,7 @@ html {
   height: 1.65rem;
   align-items: center;
   justify-content: center;
-  border-radius: 0.3rem;
+  border-radius: 0.125rem;
   color: var(--tidas-accent);
 }
 
@@ -680,7 +618,7 @@ html {
 .schema-type {
   display: inline-block;
   border: 1px solid var(--system-line);
-  border-radius: 0.3rem;
+  border-radius: 0.125rem;
   padding: 0.08rem 0.38rem;
   background: var(--system-surface-subtle);
   color: var(--system-muted);
@@ -781,14 +719,6 @@ html {
 
   .tidas-system-capabilities span:nth-child(n + 3) {
     border-top: 1px solid var(--system-line);
-  }
-
-  .atlas-path-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .atlas-path-card {
-    min-height: 12.5rem;
   }
 
   .docs-pagination {

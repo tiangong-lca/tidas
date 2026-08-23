@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import { baseOptions } from '@/lib/layout.shared';
@@ -14,6 +15,7 @@ interface SystemLayer {
 interface HomeCopy {
   eyebrow: string;
   title: string;
+  titleLines?: readonly [string, string];
   description: string;
   primary: string;
   secondary: string;
@@ -34,7 +36,8 @@ interface HomeCopy {
 const copy: Record<Language, HomeCopy> = {
   zh: {
     eyebrow: 'TIDAS · TianGong Data System',
-    title: '连接方法、结构与数据的生命周期数据系统',
+    title: '连接方法、结构与数据，构建生命周期数据系统',
+    titleLines: ['连接方法、结构与数据', '构建生命周期数据系统'],
     description:
       'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、无损转换和系统集成基础。',
     primary: '了解系统架构',
@@ -164,12 +167,16 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
 
   return (
     <HomeLayout {...baseOptions(language, root ? '/' : undefined)}>
-      <main className="atlas-home">
+      <div className="atlas-home">
         <section className="atlas-hero">
           <div className="atlas-shell atlas-hero-grid">
             <div className="atlas-hero-copy">
               <p className="atlas-eyebrow">{content.eyebrow}</p>
-              <h1>{content.title}</h1>
+              <h1>
+                {content.titleLines
+                  ? content.titleLines.map((line) => <span className="block whitespace-nowrap" key={line}>{line}</span>)
+                  : content.title}
+              </h1>
               <p className="atlas-lede">{content.description}</p>
               <div className="atlas-actions">
                 <Link className={`${buttonVariants({ variant: 'primary' })} atlas-action`} data-primary-action href={`/${language}/docs/intro/`}>
@@ -216,16 +223,22 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
               <h2>{content.pathsTitle}</h2>
               <p>{content.pathsDescription}</p>
             </div>
-            <div className="atlas-path-grid">
+            <Cards className="grid-cols-2 gap-3 max-[40rem]:grid-cols-1">
               {content.paths.map((path) => (
-                <Link className="atlas-path-card" href={`/${language}/docs/${path.slug}/`} key={path.slug}>
-                  <span className="atlas-card-kicker">{path.label}</span>
-                  <h3>{path.title}</h3>
-                  <p>{path.description}</p>
-                  <span className="atlas-card-arrow"><Arrow /></span>
-                </Link>
+                <Card
+                  className="grid min-h-52 content-start gap-2.5 rounded-[2px] border-fd-border bg-fd-card p-5 text-inherit transition-colors duration-100 hover:border-fd-primary hover:bg-fd-accent max-[40rem]:min-h-48 [&>div:last-child]:self-end [&_h3]:m-0 [&_h3]:text-lg [&_h3]:leading-[1.35] [&_h3]:font-semibold [&_h3]:tracking-[-0.02em] [&_p]:m-0! [&_p]:text-sm [&_p]:leading-[1.6] [&_p]:text-fd-muted-foreground"
+                  description={path.description}
+                  href={`/${language}/docs/${path.slug}/`}
+                  key={path.slug}
+                  title={path.title}
+                >
+                  <span className="inline-flex items-center gap-2 text-xs font-medium text-fd-primary">
+                    {path.label}
+                    <Arrow />
+                  </span>
+                </Card>
               ))}
-            </div>
+            </Cards>
           </div>
         </section>
 
@@ -241,7 +254,7 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
             </Link>
           </div>
         </section>
-      </main>
+      </div>
     </HomeLayout>
   );
 }

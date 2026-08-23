@@ -134,9 +134,12 @@ for (const file of mdxFiles) {
   const relative = path.relative(root, file);
   if (/<a(?:\s|>)/i.test(source)) errors.push(`raw <a> is forbidden in MDX (use Markdown links): ${relative}`);
   if (/<p(?:\s|>)/i.test(source)) errors.push(`raw <p> is forbidden in MDX (prevents nested paragraph hydration): ${relative}`);
+  if (/https:\/\/github\.com\/user-attachments\//i.test(source)) {
+    errors.push(`GitHub user-attachment media must be vendored for deterministic builds: ${relative}`);
+  }
   if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
-passed.push(`${mdxFiles.length} MDX files pass hydration and credential-sample guards`);
+passed.push(`${mdxFiles.length} MDX files pass hydration, deterministic-media, and credential-sample guards`);
 
 const schemaViewerPath = path.join(root, 'components', 'json-schema-viewer.tsx');
 const schemaViewerSource = fs.readFileSync(schemaViewerPath, 'utf8');
@@ -173,11 +176,17 @@ if (!homeSource.includes('data-hero-signature="tidas-system-map"')) {
 if (!homeSource.includes('data-primary-action')) {
   errors.push('TIDAS homepage omits primary-action visual-test markers');
 }
+if (!homeSource.includes("fumadocs-ui/components/card")) {
+  errors.push('TIDAS task routes must use the shared Fumadocs Card primitives');
+}
+if (homeSource.includes('<main')) {
+  errors.push('TIDAS homepage must not nest a second main landmark inside HomeLayout');
+}
 for (const retiredLabel of ['TIDAS Data Specification', 'TianGong Data Atlas', 'Data Contract']) {
   if (identitySource.includes(retiredLabel)) errors.push(`retired TIDAS identity remains in public UI source: ${retiredLabel}`);
 }
 if (!identitySource.includes('TianGong Data System')) errors.push('TianGong Data System identity is missing');
-passed.push('TIDAS system identity and homepage signature are governed');
+passed.push('TIDAS system identity, homepage signature, Fumadocs cards, and landmark composition are governed');
 
 const globalCssSource = fs.readFileSync(path.join(root, 'app', 'global.css'), 'utf8');
 if (/\b(?:linear|radial|conic|repeating-linear|repeating-radial)-gradient\s*\(/i.test(globalCssSource)) {
