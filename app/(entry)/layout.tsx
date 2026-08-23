@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/',
-    siteName: 'TIDAS Data Specification',
+    siteName: 'TIDAS — TianGong Data System',
     title: localeMetadata.zh.title,
     description: localeMetadata.zh.description,
     locale: localeMetadata.zh.openGraphLocale,

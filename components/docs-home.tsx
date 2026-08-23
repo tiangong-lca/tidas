@@ -1,8 +1,15 @@
 import Link from 'next/link';
+import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import { baseOptions } from '@/lib/layout.shared';
 
 type Language = 'zh' | 'en' | 'de' | 'fr';
+
+interface SystemLayer {
+  code: string;
+  title: string;
+  description: string;
+}
 
 interface HomeCopy {
   eyebrow: string;
@@ -10,12 +17,15 @@ interface HomeCopy {
   description: string;
   primary: string;
   secondary: string;
-  mapLabel: string;
-  mapNodes: [string, string, string, string];
+  systemLabel: string;
+  systemTitle: string;
+  layers: [SystemLayer, SystemLayer, SystemLayer];
+  capabilitiesLabel: string;
+  capabilities: [string, string, string, string];
   pathsEyebrow: string;
   pathsTitle: string;
   pathsDescription: string;
-  paths: Array<{ title: string; description: string; slug: string; label: string; accent: string }>;
+  paths: Array<{ title: string; description: string; slug: string; label: string }>;
   closingTitle: string;
   closingDescription: string;
   closingAction: string;
@@ -23,92 +33,120 @@ interface HomeCopy {
 
 const copy: Record<Language, HomeCopy> = {
   zh: {
-    eyebrow: 'TianGong Data Atlas · 开放的 LCA 数据契约',
-    title: '让生命周期数据可以验证、转换与共享',
+    eyebrow: 'TIDAS · TianGong Data System',
+    title: '连接方法、结构与数据的生命周期数据系统',
     description:
-      'TIDAS 以 JSON Schema 描述 LCA 数据，保留 ILCD 语义，并为现代数据空间、自动化工具与可信协作提供统一接口。',
-    primary: '开始了解 TIDAS',
-    secondary: '浏览数据结构',
-    mapLabel: 'TIDAS 数据从定义、验证、转换到共享的循环',
-    mapNodes: ['定义', '验证', '转换', '共享'],
-    pathsEyebrow: '按任务探索',
-    pathsTitle: '从你现在要解决的数据问题开始',
-    pathsDescription: '先选择目标，再逐步进入规范细节；每条路径都指向可验证的结果。',
-    paths: [
-      { title: '理解数据契约', description: '了解 TIDAS 的定位、核心模块与 ILCD 语义边界。', slug: 'intro', label: '01 · INTRO', accent: 'plum' },
-      { title: '浏览 JSON Schema', description: '按数据集与分类体系探索字段、约束和引用关系。', slug: 'core-modules/schema/schema-content/json-schema-flows', label: '02 · SCHEMA', accent: 'violet' },
-      { title: '校验数据', description: '使用统一 CLI 产生稳定、可自动化处理的校验结果。', slug: 'core-modules/schema/tidas-schema-validation', label: '03 · VALIDATE', accent: 'amber' },
-      { title: '连接你的工具', description: '使用 TIDAS CLI、MCP 与集成方案接入数据能力。', slug: 'tool/tidas-tool-intro', label: '04 · INTEGRATE', accent: 'plum' },
+      'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、无损转换和系统集成基础。',
+    primary: '了解系统架构',
+    secondary: '浏览 JSON Schema',
+    systemLabel: 'TIDAS 由方法论、数据结构和数据资源三层组成，并支持校验、转换、发布与集成。',
+    systemTitle: '系统组成',
+    layers: [
+      { code: 'METHOD', title: '方法论', description: '定义数据如何生产、验证与维护' },
+      { code: 'FORMAT', title: '数据结构', description: '17 个 JSON Schema 描述字段、约束与引用' },
+      { code: 'DATA', title: '数据资源', description: '参考分类与基础数据支持一致交换' },
     ],
-    closingTitle: '只想走最短路径？',
-    closingDescription: '先用一分钟理解 TIDAS，再进入 Schema 浏览器查看真实的数据约束。',
-    closingAction: '阅读简介',
+    capabilitiesLabel: '系统能力',
+    capabilities: ['校验', '转换', '发布', '集成'],
+    pathsEyebrow: '从系统能力开始',
+    pathsTitle: '找到与你当前任务对应的入口',
+    pathsDescription: '先理解系统边界，再进入数据结构、工具或集成细节。',
+    paths: [
+      { title: '理解系统组成', description: '了解方法论、数据结构、数据资源以及它们之间的边界。', slug: 'intro', label: 'SYSTEM' },
+      { title: '浏览 JSON Schema', description: '按数据集与分类体系检查字段、约束和引用关系。', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
+      { title: '校验与转换', description: '使用统一 CLI 校验数据，并在 TIDAS 与 eILCD 之间转换。', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
+      { title: '接入现有系统', description: '通过 TIDAS CLI、MCP 与集成指南连接现有工作流。', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+    ],
+    closingTitle: '从系统总览开始',
+    closingDescription: '先明确 TIDAS 的组成和边界，再查看 Schema 中的真实数据约束。',
+    closingAction: '阅读系统简介',
   },
   en: {
-    eyebrow: 'TianGong Data Atlas · An open contract for LCA data',
-    title: 'Make life cycle data verifiable, convertible, and shareable',
+    eyebrow: 'TIDAS · TianGong Data System',
+    title: 'A life cycle data system connecting methods, structures, and data',
     description:
-      'TIDAS describes LCA data with JSON Schema, preserves ILCD semantics, and provides a common interface for data spaces, automation, and trusted collaboration.',
-    primary: 'Understand TIDAS',
-    secondary: 'Explore the schema',
-    mapLabel: 'The TIDAS data cycle from definition and validation to conversion and sharing',
-    mapNodes: ['Define', 'Validate', 'Convert', 'Share'],
-    pathsEyebrow: 'Explore by task',
-    pathsTitle: 'Start with the data problem in front of you',
-    pathsDescription: 'Choose an outcome first, then move into the specification detail with a verifiable result in view.',
-    paths: [
-      { title: 'Understand the contract', description: 'Learn the purpose, core modules, and ILCD semantic boundary of TIDAS.', slug: 'intro', label: '01 · INTRO', accent: 'plum' },
-      { title: 'Explore JSON Schema', description: 'Inspect fields, constraints, and references by dataset and taxonomy.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: '02 · SCHEMA', accent: 'violet' },
-      { title: 'Validate data', description: 'Use the unified CLI to produce stable, automation-ready validation evidence.', slug: 'core-modules/schema/tidas-schema-validation', label: '03 · VALIDATE', accent: 'amber' },
-      { title: 'Connect your tools', description: 'Integrate data capabilities through the TIDAS CLI, MCP, and guides.', slug: 'tool/tidas-tool-intro', label: '04 · INTEGRATE', accent: 'plum' },
+      'TIDAS combines data-production methods, JSON Schema, and open data resources into a common foundation for LCA and carbon-footprint modelling, validation, lossless conversion, and system integration.',
+    primary: 'Understand the system',
+    secondary: 'Explore JSON Schema',
+    systemLabel: 'TIDAS combines methodology, data structures, and data resources, with capabilities for validation, conversion, publication, and integration.',
+    systemTitle: 'System composition',
+    layers: [
+      { code: 'METHOD', title: 'Methodology', description: 'How data is produced, reviewed, and maintained' },
+      { code: 'FORMAT', title: 'Data structure', description: '17 JSON Schemas define fields, constraints, and references' },
+      { code: 'DATA', title: 'Data resources', description: 'Reference classifications and data support consistent exchange' },
     ],
-    closingTitle: 'Looking for the shortest path?',
-    closingDescription: 'Learn the purpose of TIDAS first, then inspect real constraints in the schema explorer.',
-    closingAction: 'Read the introduction',
+    capabilitiesLabel: 'System capabilities',
+    capabilities: ['Validate', 'Convert', 'Publish', 'Integrate'],
+    pathsEyebrow: 'Start with a system capability',
+    pathsTitle: 'Choose the entry point for the task in front of you',
+    pathsDescription: 'Understand the system boundary first, then move into structures, tools, or integrations.',
+    paths: [
+      { title: 'Understand the system', description: 'Learn how methodology, data structures, and data resources fit together.', slug: 'intro', label: 'SYSTEM' },
+      { title: 'Explore JSON Schema', description: 'Inspect fields, constraints, and references by dataset and taxonomy.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
+      { title: 'Validate and convert', description: 'Use the unified CLI to validate data and convert between TIDAS and eILCD.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
+      { title: 'Connect existing systems', description: 'Use the TIDAS CLI, MCP, and integration guides in existing workflows.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+    ],
+    closingTitle: 'Begin with the system overview',
+    closingDescription: 'Establish what TIDAS contains and where its boundary lies, then inspect real constraints in the Schema explorer.',
+    closingAction: 'Read the system introduction',
   },
   de: {
-    eyebrow: 'TianGong Data Atlas · Ein offener Vertrag für Ökobilanzdaten',
-    title: 'Lebenszyklusdaten prüfbar, konvertierbar und teilbar machen',
+    eyebrow: 'TIDAS · TianGong Data System',
+    title: 'Ein System für Lebenszyklusdaten, das Methoden, Strukturen und Daten verbindet',
     description:
-      'TIDAS beschreibt Ökobilanzdaten mit JSON Schema, bewahrt die ILCD-Semantik und bietet eine gemeinsame Schnittstelle für Datenräume, Automatisierung und vertrauensvolle Zusammenarbeit.',
-    primary: 'TIDAS verstehen',
-    secondary: 'Schema erkunden',
-    mapLabel: 'Der TIDAS-Datenkreislauf von Definition und Prüfung bis Konvertierung und Austausch',
-    mapNodes: ['Definieren', 'Prüfen', 'Konvertieren', 'Teilen'],
-    pathsEyebrow: 'Nach Aufgabe erkunden',
-    pathsTitle: 'Beginnen Sie mit Ihrem aktuellen Datenproblem',
-    pathsDescription: 'Wählen Sie zuerst das Ziel und gehen Sie dann mit einem prüfbaren Ergebnis vor Augen in die Details der Spezifikation.',
-    paths: [
-      { title: 'Datenvertrag verstehen', description: 'Zweck, Kernmodule und die ILCD-Semantikgrenze von TIDAS kennenlernen.', slug: 'intro', label: '01 · INTRO', accent: 'plum' },
-      { title: 'JSON Schema erkunden', description: 'Felder, Einschränkungen und Referenzen nach Datensatz und Taxonomie prüfen.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: '02 · SCHEMA', accent: 'violet' },
-      { title: 'Daten validieren', description: 'Mit der einheitlichen CLI stabile, automatisierbare Prüfnachweise erzeugen.', slug: 'core-modules/schema/tidas-schema-validation', label: '03 · VALIDATE', accent: 'amber' },
-      { title: 'Werkzeuge anbinden', description: 'Datenfunktionen über TIDAS CLI, MCP und Integrationsleitfäden verbinden.', slug: 'tool/tidas-tool-intro', label: '04 · INTEGRATE', accent: 'plum' },
+      'TIDAS vereint Methoden zur Datenerstellung, JSON-Schemas und offene Datenressourcen zu einer gemeinsamen Grundlage für Modellierung, Prüfung, verlustfreie Konvertierung und Systemintegration von Ökobilanz- und CO₂-Fußabdruckdaten.',
+    primary: 'Systemarchitektur verstehen',
+    secondary: 'JSON Schema erkunden',
+    systemLabel: 'TIDAS verbindet Methodik, Datenstrukturen und Datenressourcen mit Funktionen für Prüfung, Konvertierung, Veröffentlichung und Integration.',
+    systemTitle: 'Systemaufbau',
+    layers: [
+      { code: 'METHOD', title: 'Methodik', description: 'Wie Daten erstellt, geprüft und gepflegt werden' },
+      { code: 'FORMAT', title: 'Datenstruktur', description: '17 JSON-Schemas definieren Felder, Regeln und Referenzen' },
+      { code: 'DATA', title: 'Datenressourcen', description: 'Referenzklassifikationen und Daten sichern konsistenten Austausch' },
     ],
-    closingTitle: 'Sie suchen den kürzesten Weg?',
-    closingDescription: 'Verstehen Sie zuerst TIDAS und untersuchen Sie danach echte Regeln im Schema-Explorer.',
-    closingAction: 'Einführung lesen',
+    capabilitiesLabel: 'Systemfunktionen',
+    capabilities: ['Prüfen', 'Konvertieren', 'Veröffentlichen', 'Integrieren'],
+    pathsEyebrow: 'Mit einer Systemfunktion beginnen',
+    pathsTitle: 'Wählen Sie den Einstieg für Ihre aktuelle Aufgabe',
+    pathsDescription: 'Klären Sie zuerst die Systemgrenze und gehen Sie dann zu Strukturen, Werkzeugen oder Integrationen.',
+    paths: [
+      { title: 'System verstehen', description: 'Erfahren Sie, wie Methodik, Datenstrukturen und Datenressourcen zusammenspielen.', slug: 'intro', label: 'SYSTEM' },
+      { title: 'JSON Schema erkunden', description: 'Felder, Einschränkungen und Referenzen nach Datensatz und Klassifikation prüfen.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
+      { title: 'Prüfen und konvertieren', description: 'Daten mit der einheitlichen CLI prüfen und zwischen TIDAS und eILCD konvertieren.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
+      { title: 'Bestehende Systeme anbinden', description: 'TIDAS CLI, MCP und Integrationsleitfäden in bestehenden Abläufen einsetzen.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+    ],
+    closingTitle: 'Mit dem Systemüberblick beginnen',
+    closingDescription: 'Klären Sie Aufbau und Grenzen von TIDAS, bevor Sie reale Regeln im Schema-Explorer untersuchen.',
+    closingAction: 'Systemeinführung lesen',
   },
   fr: {
-    eyebrow: 'TianGong Data Atlas · Un contrat ouvert pour les données d’ACV',
-    title: 'Rendre les données de cycle de vie vérifiables, convertibles et partageables',
+    eyebrow: 'TIDAS · TianGong Data System',
+    title: 'Un système de données de cycle de vie reliant méthodes, structures et données',
     description:
-      'TIDAS décrit les données d’ACV avec JSON Schema, préserve la sémantique ILCD et fournit une interface commune aux espaces de données, à l’automatisation et à la collaboration de confiance.',
-    primary: 'Comprendre TIDAS',
-    secondary: 'Explorer le schéma',
-    mapLabel: 'Le cycle de données TIDAS, de la définition et la validation à la conversion et au partage',
-    mapNodes: ['Définir', 'Valider', 'Convertir', 'Partager'],
-    pathsEyebrow: 'Explorer par tâche',
-    pathsTitle: 'Commencez par le problème de données à résoudre',
-    pathsDescription: 'Choisissez d’abord le résultat, puis entrez dans le détail de la spécification en gardant un objectif vérifiable.',
-    paths: [
-      { title: 'Comprendre le contrat', description: 'Découvrez le rôle, les modules clés et la limite sémantique ILCD de TIDAS.', slug: 'intro', label: '01 · INTRO', accent: 'plum' },
-      { title: 'Explorer JSON Schema', description: 'Examinez les champs, contraintes et références par jeu de données et taxonomie.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: '02 · SCHEMA', accent: 'violet' },
-      { title: 'Valider les données', description: 'Produisez avec la CLI unifiée des preuves stables, prêtes pour l’automatisation.', slug: 'core-modules/schema/tidas-schema-validation', label: '03 · VALIDATE', accent: 'amber' },
-      { title: 'Connecter vos outils', description: 'Intégrez les capacités de données via la CLI TIDAS, MCP et les guides.', slug: 'tool/tidas-tool-intro', label: '04 · INTEGRATE', accent: 'plum' },
+      'TIDAS réunit les méthodes de production, JSON Schema et des ressources de données ouvertes dans un socle commun pour la modélisation ACV et empreinte carbone, la validation, la conversion sans perte et l’intégration de systèmes.',
+    primary: 'Comprendre le système',
+    secondary: 'Explorer JSON Schema',
+    systemLabel: 'TIDAS associe méthodologie, structures et ressources de données à des fonctions de validation, conversion, publication et intégration.',
+    systemTitle: 'Composition du système',
+    layers: [
+      { code: 'METHOD', title: 'Méthodologie', description: 'Comment les données sont produites, vérifiées et maintenues' },
+      { code: 'FORMAT', title: 'Structure de données', description: '17 schémas JSON définissent champs, contraintes et références' },
+      { code: 'DATA', title: 'Ressources de données', description: 'Classifications et données de référence assurent des échanges cohérents' },
     ],
-    closingTitle: 'Vous cherchez le chemin le plus court ?',
-    closingDescription: 'Comprenez d’abord TIDAS, puis inspectez des contraintes réelles dans l’explorateur de schéma.',
-    closingAction: 'Lire l’introduction',
+    capabilitiesLabel: 'Fonctions du système',
+    capabilities: ['Valider', 'Convertir', 'Publier', 'Intégrer'],
+    pathsEyebrow: 'Commencer par une fonction du système',
+    pathsTitle: 'Choisissez l’entrée adaptée à votre tâche',
+    pathsDescription: 'Comprenez d’abord le périmètre du système, puis accédez aux structures, outils ou intégrations.',
+    paths: [
+      { title: 'Comprendre le système', description: 'Découvrez comment méthodologie, structures et ressources de données s’articulent.', slug: 'intro', label: 'SYSTEM' },
+      { title: 'Explorer JSON Schema', description: 'Examinez champs, contraintes et références par jeu de données et taxonomie.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
+      { title: 'Valider et convertir', description: 'Validez les données et convertissez-les entre TIDAS et eILCD avec la CLI unifiée.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
+      { title: 'Connecter les systèmes', description: 'Utilisez la CLI TIDAS, MCP et les guides dans vos flux existants.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+    ],
+    closingTitle: 'Commencer par la vue d’ensemble',
+    closingDescription: 'Définissez la composition et le périmètre de TIDAS avant d’examiner les contraintes réelles dans l’explorateur.',
+    closingAction: 'Lire la présentation du système',
   },
 };
 
@@ -134,31 +172,40 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
               <h1>{content.title}</h1>
               <p className="atlas-lede">{content.description}</p>
               <div className="atlas-actions">
-                <Link className="atlas-button atlas-button-primary" href={`/${language}/docs/intro/`}>
+                <Link className={`${buttonVariants({ variant: 'primary' })} atlas-action`} data-primary-action href={`/${language}/docs/intro/`}>
                   {content.primary}
                   <Arrow />
                 </Link>
-                <Link className="atlas-button atlas-button-secondary" href={`/${language}/docs/core-modules/schema/schema-content/json-schema-flows/`}>
+                <Link className={`${buttonVariants({ variant: 'outline' })} atlas-action`} href={`/${language}/docs/core-modules/schema/schema-content/json-schema-flows/`}>
                   {content.secondary}
                 </Link>
               </div>
             </div>
 
-            <div className="atlas-map" role="img" aria-label={content.mapLabel}>
-              <div className="atlas-map-grid" aria-hidden="true" />
-              <div className="atlas-orbit atlas-orbit-one" aria-hidden="true" />
-              <div className="atlas-orbit atlas-orbit-two" aria-hidden="true" />
-              <div className="atlas-map-core" aria-hidden="true">
-                <span>Data</span>
-                <strong>Contract</strong>
+            <aside
+              aria-label={content.systemLabel}
+              className="tidas-system-map"
+              data-hero-signature="tidas-system-map"
+            >
+              <header className="tidas-system-header">
+                <strong>TIDAS</strong>
+                <span>{content.systemTitle}</span>
+              </header>
+              <div className="tidas-system-layers">
+                {content.layers.map((layer) => (
+                  <div className="tidas-system-layer" key={layer.code}>
+                    <code>{layer.code}</code>
+                    <div>
+                      <strong>{layer.title}</strong>
+                      <p>{layer.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              {content.mapNodes.map((node, index) => (
-                <div className={`atlas-map-node atlas-map-node-${index + 1}`} key={node} aria-hidden="true">
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  {node}
-                </div>
-              ))}
-            </div>
+              <footer aria-label={content.capabilitiesLabel} className="tidas-system-capabilities">
+                {content.capabilities.map((capability) => <span key={capability}>{capability}</span>)}
+              </footer>
+            </aside>
           </div>
         </section>
 
@@ -171,7 +218,7 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
             </div>
             <div className="atlas-path-grid">
               {content.paths.map((path) => (
-                <Link className={`atlas-path-card atlas-accent-${path.accent}`} href={`/${language}/docs/${path.slug}/`} key={path.slug}>
+                <Link className="atlas-path-card" href={`/${language}/docs/${path.slug}/`} key={path.slug}>
                   <span className="atlas-card-kicker">{path.label}</span>
                   <h3>{path.title}</h3>
                   <p>{path.description}</p>
@@ -188,7 +235,7 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
               <h2>{content.closingTitle}</h2>
               <p>{content.closingDescription}</p>
             </div>
-            <Link className="atlas-button atlas-button-primary" href={`/${language}/docs/intro/`}>
+            <Link className={`${buttonVariants({ variant: 'primary' })} atlas-action`} data-primary-action href={`/${language}/docs/intro/`}>
               {content.closingAction}
               <Arrow />
             </Link>
