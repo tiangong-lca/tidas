@@ -108,8 +108,25 @@ function qualifiers(node: Schema): Array<{ key: string; value: string }> {
   if (constant !== null) result.push({ key: 'const', value: constant });
   if (Array.isArray(node.required)) result.push({ key: 'required', value: node.required.join(', ') });
   if (Array.isArray(node.enum)) result.push({ key: 'enum', value: node.enum.map((item) => JSON.stringify(item)).join(' | ') });
-  for (const key of ['pattern', 'format', 'minimum', 'maximum', 'minItems', 'maxItems', 'default'] as const) {
+  for (const key of [
+    'pattern', 'format', 'minLength', 'maxLength',
+    'minimum', 'maximum', 'exclusiveMinimum', 'exclusiveMaximum', 'multipleOf',
+    'minItems', 'maxItems', 'uniqueItems', 'additionalItems',
+    'minProperties', 'maxProperties', 'minContains', 'maxContains',
+    'default', 'deprecated', 'readOnly', 'writeOnly',
+  ] as const) {
     if (node[key] !== undefined) result.push({ key, value: typeof node[key] === 'string' ? node[key] : JSON.stringify(node[key]) });
+  }
+  for (const key of ['additionalProperties', 'unevaluatedProperties', 'unevaluatedItems'] as const) {
+    if (typeof node[key] === 'boolean') result.push({ key, value: String(node[key]) });
+  }
+  for (const group of ['dependencies', 'dependentRequired'] as const) {
+    if (!isSchema(node[group])) continue;
+    for (const [name, dependency] of Object.entries(node[group])) {
+      if (Array.isArray(dependency)) {
+        result.push({ key: `${group}.${name}`, value: dependency.map(String).join(', ') });
+      }
+    }
   }
   return result;
 }
@@ -131,7 +148,11 @@ function childSchemas(node: Schema): Array<{ name: string; node: Schema; require
     list.forEach((child, index) => { if (isSchema(child)) children.push({ name: semanticName(child, `${combinator} ${index + 1}`), node: child }); });
   }
 
-  for (const group of ['$defs', 'definitions', 'patternProperties', 'dependencies'] as const) {
+  for (const keyword of ['if', 'then', 'else', 'not', 'contains', 'propertyNames', 'unevaluatedProperties', 'unevaluatedItems'] as const) {
+    if (isSchema(node[keyword])) children.push({ name: keyword, node: node[keyword] });
+  }
+
+  for (const group of ['$defs', 'definitions', 'patternProperties', 'dependencies', 'dependentSchemas'] as const) {
     if (!isSchema(node[group])) continue;
     for (const [name, child] of Object.entries(node[group])) if (isSchema(child)) children.push({ name: `${group}.${name}`, node: child });
   }
@@ -145,8 +166,8 @@ function SchemaNode({ name, node, depth, required = false }: { name: string; nod
   const details = qualifiers(node);
   const expandable = children.length > 0;
   return (
-    <div role="none" className="schema-node">
-      <button type="button" role="treeitem" aria-level={depth + 1} aria-expanded={expandable ? open : undefined}
+    <div className="schema-node">
+      <button type="button" aria-expanded={expandable ? open : undefined}
         onClick={() => expandable && setOpen((current) => !current)} className="schema-node-trigger">
         <span className="schema-chevron" aria-hidden="true">{expandable ? (open ? '−' : '+') : '·'}</span>
         <code>{name}</code>
@@ -156,7 +177,7 @@ function SchemaNode({ name, node, depth, required = false }: { name: string; nod
       {details.length > 0 && <dl className="schema-qualifiers">{details.map((detail) => (
         <div key={`${detail.key}:${detail.value}`}><dt>{detail.key}</dt><dd>{detail.value}</dd></div>
       ))}</dl>}
-      {open && expandable && <div role="group" className="schema-children">{children.map((child, index) => (
+      {open && expandable && <div className="schema-children">{children.map((child, index) => (
         <SchemaNode key={`${child.name}:${index}`} name={child.name} node={child.node} depth={depth + 1} required={child.required} />
       ))}</div>}
     </div>
@@ -200,13 +221,13 @@ function TaxonomyNode({ item }: { item: TaxonomyItem }) {
   const [open, setOpen] = useState(false);
   const expandable = item.children.length > 0;
   return (
-    <div role="none" className="taxonomy-node">
-      <button type="button" role="treeitem" aria-expanded={expandable ? open : undefined}
+    <div className="taxonomy-node">
+      <button type="button" aria-expanded={expandable ? open : undefined}
         onClick={() => expandable && setOpen((current) => !current)} className="taxonomy-row">
         <span className="schema-chevron" aria-hidden="true">{expandable ? (open ? '−' : '+') : '·'}</span>
         <code>{item.id}</code><span>{item.label}</span><small>L{item.level}</small>
       </button>
-      {open && expandable && <div role="group" className="taxonomy-children">{item.children.map((child) => (
+      {open && expandable && <div className="taxonomy-children">{item.children.map((child) => (
         <TaxonomyNode item={child} key={`${child.level}:${child.id}:${child.label}`} />
       ))}</div>}
     </div>
@@ -230,7 +251,7 @@ function TaxonomyViewer({ data, copy }: { data: NonNullable<ReturnType<typeof ta
         {matches.length === 0 && <p className="schema-notice">{copy.noResults}</p>}
         {matches.length > SEARCH_LIMIT && <p className="schema-notice">{copy.resultLimit}</p>}
       </div> : <>
-        <div role="tree" className="taxonomy-tree">{data.roots.slice(0, ROOT_LIMIT).map((item) => <TaxonomyNode item={item} key={`${item.id}:${item.label}`} />)}</div>
+        <div className="taxonomy-tree">{data.roots.slice(0, ROOT_LIMIT).map((item) => <TaxonomyNode item={item} key={`${item.id}:${item.label}`} />)}</div>
         {data.roots.length > ROOT_LIMIT && <p className="schema-notice">{copy.rootLimit}</p>}
       </>}
     </div>
@@ -262,7 +283,7 @@ export function JsonSchemaViewer({ src, title }: JsonSchemaViewerProps) {
       {status === 'loading' && <p className="schema-notice" role="status">{copy.loading}</p>}
       {status === 'error' && <div className="schema-error" role="alert"><p>{copy.error}</p><button type="button" onClick={load}>{copy.retry}</button></div>}
       {status === 'loaded' && schema && (taxonomy ? <TaxonomyViewer data={taxonomy} copy={copy} /> :
-        <div data-schema-mode="structure"><div className="schema-summary"><strong>{copy.structure}</strong><span>{typeOf(schema)}</span></div><div role="tree" className="schema-tree"><SchemaNode name={semanticName(schema, '(root)')} node={schema} depth={0} /></div></div>)}
+        <div data-schema-mode="structure"><div className="schema-summary"><strong>{copy.structure}</strong><span>{typeOf(schema)}</span></div><div className="schema-tree"><SchemaNode name={semanticName(schema, '(root)')} node={schema} depth={0} /></div></div>)}
     </section>
   );
 }
