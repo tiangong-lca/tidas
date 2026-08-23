@@ -172,7 +172,7 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
           <div className="atlas-shell atlas-hero-grid">
             <div className="atlas-hero-copy">
               <p className="atlas-eyebrow">{content.eyebrow}</p>
-              <h1 className={content.titleParts ? 'whitespace-nowrap' : undefined} data-controlled-title>
+              <h1 className={content.titleParts ? 'tidas-controlled-title' : undefined} data-controlled-title>
                 {content.titleParts
                   ? (
                       <>
