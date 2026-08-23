@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { source } from '@/lib/source';
 import { i18n } from '@/lib/i18n';
+import { languageAlternates } from '@/lib/metadata';
 
 export const dynamic = 'force-static';
 
@@ -12,7 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(Number(process.env.SOURCE_DATE_EPOCH ?? 0) * 1000);
 
   const entries: MetadataRoute.Sitemap = [
-    { url: `${origin}/`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
+    {
+      url: `${origin}/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 1,
+      alternates: { languages: languageAlternates() },
+    },
   ];
 
   for (const lang of i18n.languages) {
@@ -21,11 +28,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'weekly',
       priority: 1,
+      alternates: { languages: languageAlternates() },
     });
 
     for (const page of source.getPages(lang)) {
       const url = page.url.endsWith('/') ? page.url : `${page.url}/`;
-      entries.push({ url: `${origin}${url}`, lastModified, priority: 0.8 });
+      entries.push({
+        url: `${origin}${url}`,
+        lastModified,
+        priority: 0.8,
+        alternates: { languages: languageAlternates(['docs', ...page.slugs].join('/')) },
+      });
     }
   }
 
