@@ -25,8 +25,6 @@ lastReviewedCommit: 296ecc7
 lastReviewedNote: "Reviewed for Fumadocs migration (Next.js 16 + TS7 static site): docs/ and i18n/ trees migrated to content/docs dot-locale convention; ja locale dropped, de/fr scaffolded; site runtime is Next.js App Router with app/lib/components; EdgeOne Makers owns build+deploy via Git integration; legacy Docusaurus infrastructure removed."
 ---
 
-# TIDAS Documentation
-
 Public documentation for the [TIDAS](https://tidas.tiangong.earth) (TianGong LCA Data System), built with
 [Next.js 16](https://nextjs.org) + [Fumadocs 16](https://fumadocs.dev) + TypeScript 7 (native),
 exported as a fully static site and published by [EdgeOne Makers](https://pages.edgeone.ai)
@@ -85,7 +83,7 @@ See `.github/workflows/publish-docs.yml` for the PR validate gate.
 
 ## Repository layout
 
-```
+```text
 app/            Next.js App Router（[lang] 四语言路由 + 系统端点）
 components/     UI components（search dialog、TidasImage、JsonSchemaViewer、MDX components）
 content/docs/   文档源（dot-locale 契约）
