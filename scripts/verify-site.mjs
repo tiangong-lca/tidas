@@ -148,6 +148,46 @@ for (const keyword of [
 }
 passed.push('Schema Viewer source covers governed scalar and conditional keywords');
 
+for (const marker of [
+  'data-schema-taxonomy',
+  'data-taxonomy-row',
+  'data-taxonomy-id',
+  'data-taxonomy-label',
+  'schema-data-table',
+  'not-prose',
+]) {
+  if (!schemaViewerSource.includes(marker)) errors.push(`Schema Viewer omits visual-test marker ${marker}`);
+}
+if (schemaViewerSource.includes('function TaxonomyNode')) {
+  errors.push('Schema taxonomy regressed to recursively nested rows instead of the governed flat table');
+}
+passed.push('Schema Viewer retains flat-table and visual-test contracts');
+
+const homeSource = fs.readFileSync(path.join(root, 'components', 'docs-home.tsx'), 'utf8');
+const brandSource = fs.readFileSync(path.join(root, 'components', 'site-brand.tsx'), 'utf8');
+const metadataSource = fs.readFileSync(path.join(root, 'lib', 'metadata.ts'), 'utf8');
+const identitySource = `${homeSource}\n${brandSource}\n${metadataSource}`;
+if (!homeSource.includes('data-hero-signature="tidas-system-map"')) {
+  errors.push('TIDAS homepage omits the governed system-map signature');
+}
+if (!homeSource.includes('data-primary-action')) {
+  errors.push('TIDAS homepage omits primary-action visual-test markers');
+}
+for (const retiredLabel of ['TIDAS Data Specification', 'TianGong Data Atlas', 'Data Contract']) {
+  if (identitySource.includes(retiredLabel)) errors.push(`retired TIDAS identity remains in public UI source: ${retiredLabel}`);
+}
+if (!identitySource.includes('TianGong Data System')) errors.push('TianGong Data System identity is missing');
+passed.push('TIDAS system identity and homepage signature are governed');
+
+const globalCssSource = fs.readFileSync(path.join(root, 'app', 'global.css'), 'utf8');
+if (/\b(?:linear|radial|conic|repeating-linear|repeating-radial)-gradient\s*\(/i.test(globalCssSource)) {
+  errors.push('custom site CSS contains a prohibited decorative gradient');
+}
+if (/\bbox-shadow\s*:/i.test(globalCssSource)) {
+  errors.push('custom site CSS contains a prohibited decorative box shadow');
+}
+passed.push('custom site CSS stays gradient- and shadow-free');
+
 if (errors.length > 0) {
   console.error(`\n[verify-site] ${errors.length} FAILURES:`);
   for (const error of errors.slice(0, 80)) console.error(`  ✗ ${error}`);

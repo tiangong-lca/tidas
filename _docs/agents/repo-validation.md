@@ -24,8 +24,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
-lastReviewedNote: "Reviewed for Issue #46 static quality, Schema, localization, metadata, and visual gates."
+lastReviewedCommit: 64821fdb3129294cae6e3b9f4be937917f6234d5
+lastReviewedNote: "Reviewed for Issue #48 system identity, neutral UI, tabular Schema alignment, accessibility, localization, metadata, and visual gates."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -73,6 +73,7 @@ pnpm build
 - Schema pages do not contain anonymous `oneOf N` labels;
 - Schema HTML is at most 300,000 bytes;
 - a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
+- the TIDAS identity, system-map signature, flat taxonomy-table markers, and gradient- and shadow-free custom CSS contract remain present.
 
 For the loaded taxonomy page, browser proof must also show:
 
@@ -81,6 +82,8 @@ For the loaded taxonomy page, browser proof must also show:
 - document height below 30,000px;
 - search renders no more than 50 results;
 - collapsed branches do not materialize their descendants;
+- every taxonomy ID column has one stable horizontal position regardless of hierarchy depth;
+- hierarchy indentation affects the name cell only, leaf rows are not buttons, and search results retain ID, label, and parent breadcrumb;
 - `const`, `$ref`, tuple items, and semantic union labels are visible in the generic explorer.
 
 ## Browser smoke
