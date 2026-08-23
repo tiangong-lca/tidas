@@ -2,7 +2,7 @@
 title: "简介"
 ---
 
-* *TIDAS**（**TI**angong **DA**ta **S**ystem）是一个基于 JSON 构建的开源数据系统，为生命周期评估（LCA）和碳足迹管理提供统一、标准化、可拓展的底层支撑。它由“方法论、格式规范、数据资源”三大核心模块组成，并通过辅助工具与集成能力，实现智能化、可信化、自动化的数据管理体验。
+**TIDAS**（**TI**angong **DA**ta **S**ystem）是一个基于 JSON 构建的开源数据系统，为生命周期评估（LCA）和碳足迹管理提供统一、标准化、可拓展的底层支撑。它由“方法论、格式规范、数据资源”三大核心模块组成，并通过辅助工具与集成能力，实现智能化、可信化、自动化的数据管理体验。
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -19,32 +19,32 @@ TIDAS 架构由以下三部分组成：
 
 ### 📖 方法论（Methodology）
 
-- [LCA / 碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
+- [LCA / 碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
   提供数据构建、验证与维护方法，兼容 ISO 14040/44、ILCD Handbook 与 ecoinvent等标准。
 
 ### 🧾 数据结构（Format）
 
-- [TIDAS 数据结构](/zh/docs/category/tidas-schema/)  
+- [TIDAS 数据结构](/zh/docs/core-modules/schema/tidas-schema-intro/)
   基于 JSON 与 JSON Schema 实现数据结构验证，适配 AI、数据空间与区块链等新型架构。
 
 ### 📦 数据资源（Data）
 
-- [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)  
+- [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
   提供开源的参考数据库，支持数据可追溯性、一致性和可信度。
 
 ---
 
 ## 🛠 辅助工具（Tools）
 
-* *TIDAS 工具包是围绕三大核心模块开发的辅助组件**，便于开发者与系统之间进行数据构建、格式互通与导出操作。
+**TIDAS 工具包是围绕三大核心模块开发的辅助组件**，便于开发者与系统之间进行数据构建、格式互通与导出操作。
 
-- 🧪 `validate`：数据验证工具 – 检查数据结构、规范性、完整性  
+- 🧪 `validate`：数据验证工具 – 检查数据结构、规范性、完整性
 
-- 🔄 `convert`：格式转换器 – 实现 TIDAS 与 eILCD 双向无损转换  
+- 🔄 `convert`：格式转换器 – 实现 TIDAS 与 eILCD 双向无损转换
 
 - 📤 `export`：数据包发布工具 – 将合规数据打包为标准 ZIP 格式，用于平台交付与归档
 
-👉 全部工具说明详见：[TIDAS 工具包](/zh/docs/category/tidas-tools/)
+👉 全部工具说明详见：[TIDAS 工具包](/zh/docs/tool/tidas-tool-intro/)
 
 ---
 
@@ -52,11 +52,11 @@ TIDAS 架构由以下三部分组成：
 
 TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与数据互操作：
 
-- 🔐 [权限控制（Permission Control）](./integration/tidas-permission-control/)：实现多方协作下的数据访问控制与授权机制  
+- 🔐 [权限控制（Permission Control）](./integration/tidas-permission-control/)：实现多方协作下的数据访问控制与授权机制
 
 - 🧠 [隐私计算（Privacy Computing）](./integration/tidas-privacy-computing/)：基于多方安全计算与联邦分析实现数据可用不可见
 
-- 🔗 [区块链集成](./integration/tidas-blockchain/)：实现数据不可篡改与分布式验证  
+- 🔗 [区块链集成](./integration/tidas-blockchain/)：实现数据不可篡改与分布式验证
 
 - 🤖 [AI 集成（MCP 服务）](./integration/tidas-to-ai/)：集成 MCP AI Server，支持数据语义分析、数据补全与智能验证
 
@@ -70,7 +70,7 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 
 ## 📂 应用案例精选
 
-- 🔗 [TIDAS + 蚂蚁链](./use-case/tidas-to-antchain/)：构建企业级区块链轻节点验证框架  
+- 🔗 [TIDAS + 蚂蚁链](./use-case/tidas-to-antchain/)：构建企业级区块链轻节点验证框架
 
 - 🔧 [TIDAS + 海科数据](./use-case/block-builder/)：支持 TIDAS 和 API 双通道对接，实现模型交互与数据审核
 
@@ -78,18 +78,18 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 
 ## 🤝 参与共建
 
-- 📘 [文档贡献指南](/zh/docs/faq/how-to-contribute-tidas-doc.md/)  
+- 📘 [文档贡献指南](/zh/docs/faq/how-to-contribute-tidas-doc/)
 
-- 🐞 [Bug 报告](https://github.com/tiangong-lca/tidas/issues)  
+- 🐞 [Bug 报告](https://github.com/tiangong-lca/tidas/issues)
 
-- 💼 联系方式：<a href="mailto:contact@tiangong.earth">📧 contact@tiangong.earth</a>
+- 💼 联系方式：[📧 contact@tiangong.earth](mailto:contact@tiangong.earth)
 
 ---
 
-> 📌 **快速阅读建议**  
+> 📌 **快速阅读建议**
 > 了解 TIDAS 架构建议顺序：
 >
-> 1. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)  
-> 2. [数据结构格式](/zh/docs/category/tidas-schema/)  
-> 3. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)  
-> 4. [工具模块](/zh/docs/category/tidas-tools/) 和 [集成方案](/zh/docs/category/integration/)
+> 1. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+> 2. [数据结构格式](/zh/docs/core-modules/schema/tidas-schema-intro/)
+> 3. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
+> 4. [工具模块](/zh/docs/tool/tidas-tool-intro/) 和 [集成方案](/zh/docs/integration/)

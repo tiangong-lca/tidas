@@ -1,41 +1,41 @@
 ---
-title: "TIDAS Application Case on AntChain"
-description: "Detailed case study on how TIDAS data system integrates with and uses AntChain"
+title: "TIDAS-Anwendungsfall mit AntChain"
+description: "Fallstudie zur Integration des TIDAS-Datensystems mit AntChain."
 ---
 
-## 🏗️ Overview of TIDAS and AntChain Integration
+## 🏗️ Überblick über die Integration von TIDAS und AntChain
 
-AntChain provides a complete blockchain infrastructure through its [BaaS (Blockchain as a Service) platform](https://antdigital.com/products/baas) and [Trusted Data Sharing Platform](https://antdigital.com/products/tdsp), supporting various blockchain application scenarios.
+AntChain stellt mit seiner [BaaS-Plattform (Blockchain as a Service)](https://antdigital.com/products/baas) und der [Trusted Data Sharing Platform](https://antdigital.com/products/tdsp) eine vollständige Blockchain-Infrastruktur für unterschiedliche Anwendungsszenarien bereit.
 
-TIDAS data structures can be seamlessly integrated with the AntChain platform, currently enabling the following functionalities:
+TIDAS-Datenstrukturen lassen sich direkt mit der AntChain-Plattform verbinden. Derzeit werden folgende Funktionen unterstützt:
 
-1. [**Trusted Data Certification**](#-trusted-data-certification): Calculates and stores hashes of unit process data or carbon footprint factor data uploaded by enterprises onto the blockchain, ensuring data immutability and full process traceability.
+1. [**Vertrauenswürdige Datenzertifizierung**](#-vertrauenswürdige-datenzertifizierung): Hashwerte von hochgeladenen Einheitsprozess- oder CO₂-Fußabdruckfaktordaten werden berechnet und auf der Blockchain verankert. Das schützt vor Manipulation und ermöglicht eine lückenlose Rückverfolgung.
 
-2. [**Privacy-Preserving Computation**](#️-privacy-preserving-computation): Enables multi-party collaborative modeling and statistical analysis without exposing underlying data, ensuring data privacy and computation trustworthiness.
+2. [**Datenschutzwahrende Berechnung**](#️-datenschutzwahrende-berechnung): Mehrere Parteien können gemeinsam modellieren und statistische Analysen durchführen, ohne ihre Ausgangsdaten offenzulegen. Datenschutz und Vertrauenswürdigkeit der Berechnung bleiben gewahrt.
 
-## 🔗 Trusted Data Certification
+## 🔗 Vertrauenswürdige Datenzertifizierung
 
-TIDAS, in combination with AntChain, has built a data tampering prevention and integrity verification solution. This document introduces the core verification process and implementation details, demonstrating how blockchain technology can be used to ensure the trustworthiness of key production data, providing technical support for enterprise data management, environmental monitoring, and carbon emission accounting.
+TIDAS und AntChain bilden gemeinsam eine Lösung zum Schutz vor Datenmanipulation und zur Integritätsprüfung. Dieser Abschnitt beschreibt den Prüfablauf und die Umsetzung. Er zeigt, wie Blockchain-Technologie die Vertrauenswürdigkeit wichtiger Produktionsdaten absichert und damit Datenmanagement, Umweltüberwachung und Emissionsbilanzierung unterstützt.
 
-* *Core Process**:
+**Kernablauf**:
 
-1. Original data hash calculation
+1. Hashwert der Originaldaten berechnen
 
-2. Data hash on-chain certification
+2. Datenhash auf der Blockchain zertifizieren
 
-3. Local storage of transaction credentials
+3. Transaktionsnachweis lokal speichern
 
-4. Data tampering verification
+4. Daten auf Manipulation prüfen
 
-> **Example Scenario**:<br />Unit process data from a steel production facility is uploaded to the TIDAS platform (coke input of 13276.3428 tons), the data hash is calculated and certified through AntChain. When users subsequently access this data, they can verify whether the data has been tampered with by comparing the on-chain stored hash with the locally calculated hash. If the data is tampered with (coke input data changed to 13276.3427 tons), it can be immediately detected through verification.<br />**Data Source**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. (Beijing University of Technology, 2006)(Chinese)
+> **Beispielszenario**:<br />Ein Stahlwerk lädt Einheitsprozessdaten auf die TIDAS-Plattform, darunter einen Koksinput von 13.276,3428 Tonnen. Der Datenhash wird berechnet und über AntChain zertifiziert. Beim späteren Zugriff lässt sich durch den Vergleich des gespeicherten Blockchain-Hashs mit dem lokal berechneten Hash prüfen, ob die Daten verändert wurden. Eine Änderung des Koksinputs auf 13.276,3427 Tonnen wird sofort erkannt.<br />**Quelle**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. Beijing University of Technology, 2006 (Chinesisch).
 
-### 🔄 Data Verification and Trusted Certification Operation Process
+### 🔄 Ablauf von Datenprüfung und Zertifizierung
 
-#### Step 1: Original Data Hash Calculation
+#### Schritt 1: Hashwert der Originaldaten berechnen
 
-The TIDAS system first calculates the hash value of the original business data, generating a unique data fingerprint.
+TIDAS berechnet zunächst den Hashwert der ursprünglichen Geschäftsdaten und erzeugt damit einen eindeutigen Datenfingerabdruck.
 
-* *Original Data Example**:
+**Beispiel für Originaldaten**:
 
 ```json
 {
@@ -76,39 +76,39 @@ The TIDAS system first calculates the hash value of the original business data, 
 }
 ```
 
-* *Example Explanation**: The above data shows production process data in the TIDAS system, including indicator values, data sources, and other key information. This data will go through hash calculation to generate a data fingerprint for subsequent integrity verification.
+**Erläuterung**: Die Daten zeigen einen Produktionsprozess in TIDAS mit Kennwerten, Quellen und weiteren Schlüsselinformationen. Aus ihnen wird ein Datenfingerabdruck für die spätere Integritätsprüfung berechnet.
 
-* *Operation Process**:
+**Ablauf**:
 
-1. TIDAS data hash value calculation
+1. Hashwert der TIDAS-Daten berechnen
 
-2. SHA256 hash value: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+2. SHA-256-Hashwert: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
-> **Technical Note**: The system uses the SHA256 hash algorithm, which generates the same hash value for identical data, different hash values for different data, and cannot be reverse-engineered to derive the original data.
+> **Technischer Hinweis**: SHA-256 erzeugt für identische Daten denselben und für abweichende Daten einen anderen Hashwert. Aus dem Hash lassen sich die Originaldaten nicht zurückrechnen.
 
-#### Step 2: Data Hash On-Chain Certification
+#### Schritt 2: Datenhash auf der Blockchain zertifizieren
 
-Write the calculated **data hash** to the AntChain network and obtain a blockchain transaction hash as certification credentials.
+Der berechnete **Datenhash** wird in das AntChain-Netzwerk geschrieben. Der dabei entstehende Transaktionshash dient als Zertifizierungsnachweis.
 
-* *Operation Process**:
+**Ablauf**:
 
-1. System login and token authorization  
-   Token: wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (partially displayed)
+1. Systemanmeldung und Token-Autorisierung
+   Token: wsQR9eGcdUY22iVQKPQ4oIYrZaBDd18RO9KbWqFJW6aDxJpLTtUeQcO7hsqdqRP3FjYjY2N9QSe0QoL1C39YQDJ0F3R0QsYFyYO11imAxsLTanYe... (gekürzt)
 
-2. Send data hash to the blockchain  
-   Sending blockchain write request...
+2. Datenhash an die Blockchain senden
+   Blockchain-Schreibanfrage wird gesendet ...
 
-3. Blockchain confirmation and transaction hash return  
-   Hash successfully written to blockchain  
-   Transaction hash: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
+3. Bestätigung und Transaktionshash empfangen
+   Hash erfolgreich auf die Blockchain geschrieben
+   Transaktionshash: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
 
-> **Key Point**: The transaction hash is a unique identifier generated by the blockchain for this certification, with only the data hash actually stored on-chain.
+> **Wichtig**: Der Transaktionshash ist die eindeutige Kennung dieser Zertifizierung. Auf der Blockchain wird ausschließlich der Datenhash gespeichert.
 
-#### Step 3: Local Storage of Transaction Credentials
+#### Schritt 3: Transaktionsnachweis lokal speichern
 
-The system securely stores the transaction hash returned by the blockchain for subsequent data verification.
+Das System speichert den von der Blockchain zurückgegebenen Transaktionshash sicher für spätere Prüfungen.
 
-* *Stored Information Example**:
+**Beispiel der gespeicherten Informationen**:
 
 ```json
 {
@@ -118,24 +118,24 @@ The system securely stores the transaction hash returned by the blockchain for s
 }
 ```
 
-#### Step 4: Data Tampering Verification
+#### Schritt 4: Manipulation prüfen
 
-When needing to verify whether data has been tampered with, the system executes the following verification process:
+Zur Prüfung auf Manipulation führt das System folgenden Ablauf aus:
 
-* *Verification Process**:
+**Prüfablauf**:
 
-1. Read locally stored transaction hash  
-   Transaction hash: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487  
-   Block number: 1414787
+1. Lokal gespeicherten Transaktionshash lesen
+   Transaktionshash: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
+   Blocknummer: 1414787
 
-2. Query original certification hash from blockchain using transaction hash  
-   Querying transaction data from blockchain...  
-   Server verification token: J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==  
-   Original data hash stored on-chain: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
+2. Ursprünglichen Zertifizierungshash über den Transaktionshash abfragen
+   Transaktionsdaten werden von der Blockchain abgefragt ...
+   Server-Prüftoken: J3JsZW0zOTh3VTVTaVpWMFhVWjE3MTUyNzE3Y2Q0hVJyZjc3YTI5YzlibWhWapQYTmUyFiNTQyNGJjMDkzYw==
+   Auf der Blockchain gespeicherter Originalhash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424bc093c
 
-3. Calculate current data hash and compare with on-chain hash
+3. Aktuellen Datenhash berechnen und mit dem Blockchain-Hash vergleichen
 
-* *Verification Result**:
+**Prüfergebnis**:
 
 ```bash
 [Verification Successful] ✅
@@ -144,13 +144,13 @@ On-chain stored hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424
 Hash values match, data integrity is confirmed.
 ```
 
-> **Verification Principle**: If the data has not been tampered with, the currently calculated hash value should be identical to the original hash value stored on-chain.
+> **Prüfprinzip**: Wurden die Daten nicht verändert, stimmt der aktuell berechnete Hash mit dem auf der Blockchain gespeicherten Originalhash überein.
 
-### 🔍 Blockchain Explorer Query
+### 🔍 Abfrage im Blockchain Explorer
 
-The blockchain explorer provides transparent query functionality for transaction records, which can be used to view the confirmation status of certification records.
+Der Blockchain Explorer macht Transaktionsdatensätze transparent abfragbar und zeigt den Bestätigungsstatus der Zertifizierung.
 
-* *Query Information**:
+**Abfrageinformationen**:
 
 ```bash
 Transaction ID: 7ebcb315ebcc9d27983316f83ba9a1ed916f3524e19fc3db392a254f738f487
@@ -169,11 +169,11 @@ import { TidasImage } from '@/components/tidas-image';
   title="Blockchain-transaction-structure"
 />
 
-### ⚠️ Data Tampering Detection Case
+### ⚠️ Beispiel einer erkannten Manipulation
 
-When data is tampered with, the system can precisely identify and alert.
+Wurden Daten verändert, erkennt das System die Abweichung präzise und gibt eine Warnung aus.
 
-* *Tampering Example**:
+**Beispiel der Änderung**:
 
 ```diff
 
@@ -181,7 +181,7 @@ When data is tampered with, the system can precisely identify and alert.
 + "meanAmount": "13276.3427"
 ```
 
-* *Tampered Data**:
+**Veränderte Daten**:
 
 ```json
 {
@@ -222,7 +222,7 @@ When data is tampered with, the system can precisely identify and alert.
 }
 ```
 
-* *Verification Result**:
+**Prüfergebnis**:
 
 ```bash
 [Verification Failed] ❌
@@ -232,31 +232,31 @@ On-chain stored hash: b9e5f69bca64c412e12175c417c4669bf4772a29c9efa6d7a3b21a5424
 Hash values do not match, data tampering detected!
 ```
 
-> **Note**: Even if only a value after the decimal point is modified, the system can precisely detect data changes through hash comparison. The hash value of the tampered data does not match the original hash stored on the blockchain, and the system immediately detects the tampering behavior.
+> **Hinweis**: Selbst die Änderung einer einzelnen Nachkommastelle wird durch den Hashvergleich erkannt. Der Hash der veränderten Daten weicht vom auf der Blockchain gespeicherten Originalhash ab; das System meldet die Manipulation unmittelbar.
 
-## 🛡️ Privacy-Preserving Computation
+## 🛡️ Datenschutzwahrende Berechnung
 
-TIDAS, in combination with AntChain's Trusted Data Sharing Platform, has built a secure collaborative data analysis solution. This section provides detailed information on the core computation process and implementation details, demonstrating how secure collaborative analysis of multi-party data can be achieved while protecting sensitive enterprise data.
+TIDAS und die Trusted Data Sharing Platform von AntChain bilden eine Lösung für sichere, gemeinsame Datenanalysen. Dieser Abschnitt beschreibt Berechnungsablauf und Umsetzung und zeigt, wie mehrere Parteien Daten auswerten können, ohne sensible Unternehmensdaten offenzulegen.
 
-* *Core Process**:
+**Kernablauf**:
 
-1. Original data encryption and access
+1. Originaldaten verschlüsseln und anbinden
 
-2. Task creation and configuration
+2. Aufgabe erstellen und konfigurieren
 
-3. Privacy-preserving computation execution
+3. Datenschutzwahrende Berechnung ausführen
 
-4. Obtaining computation results
+4. Berechnungsergebnis abrufen
 
-> **Example Scenario**:<br />When developing industry data, statistical analysis of data from multiple steel enterprises (2 companies in this case example) is required. Through AntChain's Trusted Collaboration Platform, a privacy-preserving computation process is established to obtain calculation results without exposing the enterprises' original data.<br />**Data Source**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. (Beijing University of Technology, 2006)(Chinese)
+> **Beispielszenario**:<br />Für die Entwicklung von Branchendaten sollen Angaben mehrerer Stahlunternehmen statistisch ausgewertet werden; im Beispiel sind es zwei Unternehmen. Die Trusted Collaboration Platform von AntChain führt eine datenschutzwahrende Berechnung aus und liefert Ergebnisse, ohne die Originaldaten der Unternehmen offenzulegen.<br />**Quelle**: Liu Wei. Research on Analytical Methods in LCI Data Quality System. Beijing University of Technology, 2006 (Chinesisch).
 
-### 🔄 Multi-Party Data Secure Collaborative Analysis Operation Process
+### 🔄 Ablauf einer sicheren Mehrparteienanalyse
 
-#### Step 1: Original Data Encryption and Access
+#### Schritt 1: Originaldaten verschlüsseln und anbinden
 
-Enterprise production process emission data is accessed through API to trusted collaboration nodes. This process takes place in a trusted execution environment, ensuring that data will not be leaked.
+Emissionsdaten aus Unternehmensprozessen werden über eine API an vertrauenswürdige Kollaborationsknoten angebunden. Die Verarbeitung erfolgt in einer Trusted Execution Environment, sodass keine Daten nach außen gelangen.
 
-* *Original Sensitive Data Example (Node 1)**:
+**Beispiel sensibler Originaldaten (Knoten 1)**:
 
 ```json
 {
@@ -283,7 +283,7 @@ Enterprise production process emission data is accessed through API to trusted c
 }
 ```
 
-* *Original Sensitive Data Example (Node 2)**:
+**Beispiel sensibler Originaldaten (Knoten 2)**:
 
 ```json
 {
@@ -311,13 +311,13 @@ Enterprise production process emission data is accessed through API to trusted c
 }
 ```
 
-#### Step 2: Task Creation and Configuration
+#### Schritt 2: Aufgabe erstellen und konfigurieren
 
-Create a privacy-preserving computation task on the trusted collaboration platform, configuring data sources and computation logic.
+Auf der Kollaborationsplattform wird eine datenschutzwahrende Berechnungsaufgabe mit Datenquellen und Berechnungslogik angelegt.
 
-* *Operation Process**:
+**Ablauf**:
 
-1. System identifies sensitive datasets to be processed
+1. Das System identifiziert die zu verarbeitenden sensiblen Datensätze.
 
    ```bash
    🔑 Node 1 Data: {
@@ -332,7 +332,7 @@ Create a privacy-preserving computation task on the trusted collaboration platfo
    }
    ```
 
-2. Create privacy-preserving computation task  
+2. Datenschutzwahrende Berechnungsaufgabe erstellen
 
    ```bash
    📋 Task Creation Result:
@@ -345,15 +345,15 @@ Create a privacy-preserving computation task on the trusted collaboration platfo
    }
    ```
 
-> **Technical Note**: The system uses sensitive data from two nodes as input sources for computation in a trusted execution environment. Parties will not see each other's original data.
+> **Technischer Hinweis**: Das System verwendet sensible Daten zweier Knoten als Eingaben in einer vertrauenswürdigen Ausführungsumgebung. Keine Partei kann die Originaldaten der anderen einsehen.
 
-#### Step 3: Privacy-Preserving Computation Execution
+#### Schritt 3: Datenschutzwahrende Berechnung ausführen
 
-The trusted collaboration platform executes the computation task according to the set logic.
+Die Kollaborationsplattform führt die Aufgabe gemäß der festgelegten Logik aus.
 
-* *Execution Process**:
+**Ausführung**:
 
-1. Computation task status polling
+1. Status der Berechnungsaufgabe regelmäßig abfragen
 
    ```bash
    📊 Check #1 - Current Status:
@@ -367,7 +367,7 @@ The trusted collaboration platform executes the computation task according to th
    ⏳ Task in progress, checking again in 10 seconds...
    ```
 
-2. Computation task completion  
+2. Abschluss der Berechnungsaufgabe
 
    ```bash
    📊 Check #10 - Current Status:
@@ -379,17 +379,17 @@ The trusted collaboration platform executes the computation task according to th
    }
    ```
 
-3. Total computation time  
+3. Gesamte Berechnungsdauer
 
    ```bash
    🕒 16:58:42 | ✅ Computation task completed | Time spent: 1 minute 48 seconds
    ```
 
-#### Step 4: Obtaining Computation Results
+#### Schritt 4: Berechnungsergebnis abrufen
 
-After computation is completed, the system securely obtains the computation results, which do not contain sensitive information.
+Nach Abschluss ruft das System das Ergebnis sicher ab. Es enthält keine sensiblen Informationen.
 
-* *Final Computation Results**:
+**Vollständiges Berechnungsergebnis**:
 
 ```json
 {
@@ -406,19 +406,19 @@ After computation is completed, the system securely obtains the computation resu
 }
 ```
 
-* *Simplified Result**:
+**Vereinfachtes Ergebnis**:
 
 ```bash
 [ 1.982 ]
 ```
 
-> **Result Explanation**: Through the trusted collaboration platform, the average value of dust emission data from two nodes was successfully calculated as 1.982. This result can be safely shared without leaking any party's original sensitive data.
+> **Erläuterung**: Die Plattform hat aus den Staubemissionsdaten zweier Knoten erfolgreich den Mittelwert 1,982 berechnet. Das Ergebnis kann sicher geteilt werden, ohne Originaldaten einer Partei offenzulegen.
 
-The computation results can be further [certified on-chain](#-trusted-data-certification) to ensure the trustworthiness and immutability of the results.
+Das Ergebnis kann zusätzlich [auf der Blockchain zertifiziert](#-vertrauenswürdige-datenzertifizierung) werden, um Vertrauenswürdigkeit und Manipulationsschutz nachzuweisen.
 
-### 🔍 Trusted Collaboration Platform Visualization Interface
+### 🔍 Oberfläche der Trusted Collaboration Platform
 
-The trusted collaboration platform provides an intuitive task management and monitoring interface, facilitating tracking of the computation process and results.
+Die Plattform bietet eine übersichtliche Oberfläche für Aufgabenverwaltung und Überwachung, über die sich Berechnungsablauf und Ergebnis verfolgen lassen.
 
 <TidasImage
   filename="PrivateCalculation-dashboard.png"
@@ -429,19 +429,18 @@ The trusted collaboration platform provides an intuitive task management and mon
   title="PrivateCalculation-result"
 />
 
-### 🔐 Data Privacy Protection Mechanism
+### 🔐 Mechanismen zum Datenschutz
 
-The Trusted Data Sharing Platform employs multiple technologies to ensure data security:
+Die Trusted Data Sharing Platform kombiniert mehrere Technologien zur Datensicherheit:
 
-1. Secure Multi-party Computation - Computation performed in a trusted execution environment
+1. Sichere Mehrparteienberechnung in einer vertrauenswürdigen Ausführungsumgebung
 
-2. Computation Result Security Verification - Ensuring result data does not contain sensitive information
+2. Sicherheitsprüfung des Ergebnisses, damit keine sensiblen Angaben enthalten sind
 
-3. Full Process Traceability - Recording every step of the computation process
+3. Lückenlose Rückverfolgbarkeit durch Aufzeichnung aller Berechnungsschritte
 
 ---
 
-<div style={{marginTop: '20px', fontSize: '0.9em', color: '#666'}}>
-  <p>Technical Support: <strong>Ant Digital Technology</strong></p>
-  ![Ant Digital Group](/assets/docs/e84e3b49/antdigitalgroup-en.svg)
-</div>
+> Technische Unterstützung: **Ant Digital Technology**
+
+![Ant Digital Group](/assets/docs/e84e3b49/antdigitalgroup-en.svg)

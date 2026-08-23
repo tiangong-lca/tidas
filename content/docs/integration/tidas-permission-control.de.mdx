@@ -1,24 +1,24 @@
 ---
-title: "TIDAS Data Circulation and Authorization Mechanism"
+title: "Datenfreigabe und Autorisierung in TIDAS"
 ---
 
-## System Overview
+## Systemüberblick
 
-This document describes a product carbon footprint data circulation and authorization mechanism based on TIDAS transformation, which connects carbon footprint databases, the Tiangong data platform, and data users to form a complete carbon data value circulation loop.
+Dieses Dokument beschreibt einen auf TIDAS basierenden Mechanismus für die Weitergabe und Autorisierung von Daten zum Produkt-CO₂-Fußabdruck. Er verbindet Datenbanken für CO₂-Fußabdrücke, die TianGong-Datenplattform und Datennutzende zu einem geschlossenen Wertschöpfungskreislauf für CO₂-Daten.
 
-## Architecture Components
+## Architekturkomponenten
 
-The system consists of the following key components:
+Das System besteht aus folgenden zentralen Komponenten:
 
-- **Carbon Footprint Database**: Source of original product carbon footprint data storage
+- **Datenbank für CO₂-Fußabdrücke**: Speichert die ursprünglichen Daten zum Produkt-CO₂-Fußabdruck.
 
-- **Tiangong Data Platform**: Carbon data management and metadata service center
+- **TianGong-Datenplattform**: Zentrale Stelle für die Verwaltung von CO₂-Daten und Metadiensten.
 
-- **Data Users**: End users of carbon footprint data
+- **Datennutzende**: Verwenden die bereitgestellten Daten zum CO₂-Fußabdruck.
 
-- **Contract System**: Manages carbon data authorization and circulation permissions
+- **Vertragssystem**: Verwaltet Autorisierungen und Berechtigungen zur Datenweitergabe.
 
-## Data Circulation Process
+## Ablauf der Datenweitergabe
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -27,70 +27,70 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS-permission-control"
 />
 
-### 1. Metadata Distribution
+### 1. Bereitstellung der Metadaten
 
-The carbon footprint database provides metadata to the Tiangong data platform:
+Die Datenbank für CO₂-Fußabdrücke stellt der TianGong-Datenplattform Metadaten bereit:
 
-- Metadata contains basic information and structural descriptions of product carbon footprint data
+- Die Metadaten enthalten grundlegende Angaben und eine Strukturbeschreibung der Produktdaten.
 
-- The Tiangong platform standardizes the carbon data metadata
+- Die TianGong-Plattform vereinheitlicht die Metadaten der CO₂-Daten.
 
-- Metadata contains no sensitive content and can be safely shared
+- Die Metadaten enthalten keine sensiblen Inhalte und können sicher geteilt werden.
 
-### 2. Metadata Acquisition
+### 2. Abruf der Metadaten
 
-Data users obtain carbon footprint metadata from the Tiangong data platform:
+Datennutzende rufen Metadaten zum CO₂-Fußabdruck über die TianGong-Datenplattform ab:
 
-- Users can browse and search available carbon footprint datasets
+- Verfügbare Datensätze lassen sich durchsuchen und filtern.
 
-- Users evaluate the applicability of product carbon footprint data based on metadata
+- Anhand der Metadaten lässt sich beurteilen, ob Produktdaten für den jeweiligen Zweck geeignet sind.
 
-### 3. Data Request and Authorization
+### 3. Datenanfrage und Autorisierung
 
-Data users initiate carbon footprint data requests to the contract system:
+Datennutzende stellen eine Anfrage an das Vertragssystem:
 
-- Users select the required product carbon footprint data
+- Sie wählen die benötigten Daten zum Produkt-CO₂-Fußabdruck aus.
 
-- The contract system records request information and usage intentions
+- Das Vertragssystem protokolliert Anfrage und vorgesehenen Verwendungszweck.
 
-### 4. Permission Confirmation
+### 4. Bestätigung der Berechtigung
 
-The contract system requests transmission permission from the carbon footprint database:
+Das Vertragssystem fordert bei der Datenbank die Erlaubnis zur Übermittlung an:
 
-- Verifies the legitimacy of the request and user qualifications
+- Es prüft die Rechtmäßigkeit der Anfrage und die Berechtigung der anfragenden Stelle.
 
-- Obtains authorization confirmation from the carbon data owner
+- Es holt die Freigabe des Dateneigentümers ein.
 
-### 5. Data Provision
+### 5. Datenbereitstellung
 
-The carbon footprint database provides data to users through TIDAS transformation:
+Die Datenbank stellt die Daten nach der TIDAS-Transformation bereit:
 
-- TIDAS ensures the integrity and authenticity of carbon footprint data during transmission
+- TIDAS schützt Integrität und Authentizität während der Übertragung.
 
-- Data is provided according to the permission scope specified in the contract
+- Die Bereitstellung bleibt auf den im Vertrag festgelegten Berechtigungsumfang beschränkt.
 
-## TIDAS Transformation Mechanism
+## TIDAS-Transformationsmechanismus
 
-TIDAS plays a core role in the carbon footprint data circulation process:
+TIDAS übernimmt im Prozess der Datenweitergabe vier zentrale Aufgaben:
 
-- **Carbon Data Authenticity Verification**: Ensures product carbon footprint data has not been tampered with
+- **Authentizitätsprüfung**: Bestätigt, dass Produktdaten nicht manipuliert wurden.
 
-- **Source Traceability**: Records the entire process of carbon footprint data circulation
+- **Rückverfolgbarkeit**: Zeichnet den vollständigen Weg der CO₂-Daten auf.
 
-- **Authorization Condition Binding**: Binds usage conditions with carbon data
+- **Bindung an Nutzungsbedingungen**: Verknüpft Daten mit den vereinbarten Bedingungen.
 
-- **Access Control**: Implements precise permission control based on contracts
+- **Zugriffskontrolle**: Setzt vertraglich definierte Berechtigungen präzise durch.
 
-## Application Value
+## Nutzen
 
-This mechanism provides a technical foundation for the carbon data economy:
+Der Mechanismus bildet eine technische Grundlage für eine datenbasierte CO₂-Wirtschaft:
 
-- Enhances the credibility of product carbon footprint data
+- Er erhöht die Vertrauenswürdigkeit von Produktdaten.
 
-- Protects the rights of carbon data owners
+- Er schützt die Rechte der Dateneigentümer.
 
-- Promotes the safe release of carbon data value
+- Er ermöglicht eine sichere wirtschaftliche Nutzung der Daten.
 
-- Supports green supply chains and low-carbon decision-making
+- Er unterstützt grüne Lieferketten und emissionsarme Entscheidungen.
 
-Through this structured carbon footprint data circulation mechanism, the system achieves efficient circulation of product carbon footprint data while ensuring security and accuracy, providing data support for carbon management and emission reduction decisions.
+Durch den strukturierten Freigabeprozess können Daten zum Produkt-CO₂-Fußabdruck effizient genutzt werden, ohne Sicherheit und Genauigkeit zu vernachlässigen. Damit entsteht eine belastbare Datengrundlage für CO₂-Management und Minderungsentscheidungen.
