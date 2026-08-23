@@ -21,9 +21,9 @@ checkPaths:
   - public/schemas/**
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
-lastReviewedNote: "Reviewed for Issue #46 and the current static Fumadocs, Schema explorer, four-locale, and EdgeOne architecture."
+lastReviewedAt: 2026-08-23
+lastReviewedCommit: d3120b1a4b043631fa8eed9c53f33a9030a79c96
+lastReviewedNote: "Reviewed for Issue #48 and the current neutral Fumadocs, TianGong Data System landing, tabular Schema explorer, four-locale, and EdgeOne architecture."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -42,8 +42,8 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `app/(entry)/**` | root `x-default` homepage and document shell |
 | `app/(locale)/[lang]/**` | locale homepages and documentation routes |
 | `app/api`, `app/llms.txt`, `app/search-records.json`, `app/sitemap.ts`, `app/robots.ts`, `app/og` | generated discovery, search, crawler, and sharing surfaces |
-| `components/docs-home.tsx`, `components/site-brand.tsx`, `app/global.css` | shared TianGong Data Atlas visual contract and TIDAS identity |
-| `components/json-schema-viewer.tsx` | lazy semantic Schema structure and taxonomy explorer |
+| `components/docs-home.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs visual foundation and TianGong Data System identity |
+| `components/json-schema-viewer.tsx` | lazy semantic Schema structure table and taxonomy table |
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
 | `content/docs/**` | four-language public specification and guidance |
 | `public/schemas/**` | directly downloadable JSON Schema files |
@@ -75,7 +75,9 @@ content/docs + public/schemas + UI components
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
-Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a semantic hierarchy with bounded search. Other schemas render as a lazy tree whose branch labels prefer title, constants, enums, and references over ordinal names.
+Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a bounded flat native table: only the name cell is indented, identifier and child-count columns remain aligned, branches are interactive, and leaves remain non-button rows. Search uses the same columns and adds the parent breadcrumb. Other schemas render as a lazy flat structure table whose branch labels prefer title, constants, enums, and references over ordinal names.
+
+The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents methodology, data structure, and data resources. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces.
 
 ## Locale and URL model
 

@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
     openGraph: {
       type: 'website',
       url: `/${lang}/`,
-      siteName: 'TIDAS Data Specification',
+      siteName: 'TIDAS — TianGong Data System',
       title: copy.title,
       description: copy.description,
       locale: copy.openGraphLocale,

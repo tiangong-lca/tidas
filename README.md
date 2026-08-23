@@ -21,9 +21,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
-lastReviewedNote: "Reviewed for Issue #46 Data Atlas UI, semantic Schema explorer, complete localization, static quality gates, and EdgeOne publication."
+lastReviewedAt: 2026-08-23
+lastReviewedCommit: d3120b1a4b043631fa8eed9c53f33a9030a79c96
+lastReviewedNote: "Reviewed for Issue #48 TianGong Data System identity, neutral landing UI, tabular Schema explorer, complete localization, static quality gates, and EdgeOne publication."
 ---
 
 Public documentation and downloadable data contracts for
@@ -81,9 +81,10 @@ Documentation pages pass a public URL to `JsonSchemaViewer`; the browser fetches
 the file only after the reader opens the explorer. Large classification schemas
 therefore do not inflate static HTML.
 
-The explorer presents root classification `oneOf` data as searchable semantic
-taxonomies and presents ordinary schemas as lazy trees with constants,
-references, tuple items, and meaningful union labels.
+The explorer presents root classification `oneOf` data in a searchable flat
+table. Hierarchy is carried by the category-name cell while identifier and
+child-count columns remain aligned. Ordinary schemas use a lazy structure table
+with constants, references, tuple items, and meaningful union labels.
 
 ## Publishing
 
@@ -95,7 +96,7 @@ upload or deploy the built site.
 
 ```text
 app/             locale routes and generated search/crawler/sharing endpoints
-components/      Data Atlas UI, search, media, MDX, and Schema explorer
+components/      TianGong Data System UI, search, media, MDX, and Schema explorer
 content/docs/    four-language public documentation
 lib/             content loader, i18n, navigation, and metadata policy
 public/          downloadable schemas, images, assets, and brand files

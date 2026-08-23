@@ -134,9 +134,12 @@ for (const file of mdxFiles) {
   const relative = path.relative(root, file);
   if (/<a(?:\s|>)/i.test(source)) errors.push(`raw <a> is forbidden in MDX (use Markdown links): ${relative}`);
   if (/<p(?:\s|>)/i.test(source)) errors.push(`raw <p> is forbidden in MDX (prevents nested paragraph hydration): ${relative}`);
+  if (/https:\/\/github\.com\/user-attachments\//i.test(source)) {
+    errors.push(`GitHub user-attachment media must be vendored for deterministic builds: ${relative}`);
+  }
   if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
-passed.push(`${mdxFiles.length} MDX files pass hydration and credential-sample guards`);
+passed.push(`${mdxFiles.length} MDX files pass hydration, deterministic-media, and credential-sample guards`);
 
 const schemaViewerPath = path.join(root, 'components', 'json-schema-viewer.tsx');
 const schemaViewerSource = fs.readFileSync(schemaViewerPath, 'utf8');
@@ -147,6 +150,52 @@ for (const keyword of [
   if (!schemaViewerSource.includes(keyword)) errors.push(`Schema Viewer omits governed keyword ${keyword}`);
 }
 passed.push('Schema Viewer source covers governed scalar and conditional keywords');
+
+for (const marker of [
+  'data-schema-taxonomy',
+  'data-taxonomy-row',
+  'data-taxonomy-id',
+  'data-taxonomy-label',
+  'schema-data-table',
+  'not-prose',
+]) {
+  if (!schemaViewerSource.includes(marker)) errors.push(`Schema Viewer omits visual-test marker ${marker}`);
+}
+if (schemaViewerSource.includes('function TaxonomyNode')) {
+  errors.push('Schema taxonomy regressed to recursively nested rows instead of the governed flat table');
+}
+passed.push('Schema Viewer retains flat-table and visual-test contracts');
+
+const homeSource = fs.readFileSync(path.join(root, 'components', 'docs-home.tsx'), 'utf8');
+const brandSource = fs.readFileSync(path.join(root, 'components', 'site-brand.tsx'), 'utf8');
+const metadataSource = fs.readFileSync(path.join(root, 'lib', 'metadata.ts'), 'utf8');
+const identitySource = `${homeSource}\n${brandSource}\n${metadataSource}`;
+if (!homeSource.includes('data-hero-signature="tidas-system-map"')) {
+  errors.push('TIDAS homepage omits the governed system-map signature');
+}
+if (!homeSource.includes('data-primary-action')) {
+  errors.push('TIDAS homepage omits primary-action visual-test markers');
+}
+if (!homeSource.includes("fumadocs-ui/components/card")) {
+  errors.push('TIDAS task routes must use the shared Fumadocs Card primitives');
+}
+if (homeSource.includes('<main')) {
+  errors.push('TIDAS homepage must not nest a second main landmark inside HomeLayout');
+}
+for (const retiredLabel of ['TIDAS Data Specification', 'TianGong Data Atlas', 'Data Contract']) {
+  if (identitySource.includes(retiredLabel)) errors.push(`retired TIDAS identity remains in public UI source: ${retiredLabel}`);
+}
+if (!identitySource.includes('TianGong Data System')) errors.push('TianGong Data System identity is missing');
+passed.push('TIDAS system identity, homepage signature, Fumadocs cards, and landmark composition are governed');
+
+const globalCssSource = fs.readFileSync(path.join(root, 'app', 'global.css'), 'utf8');
+if (/\b(?:linear|radial|conic|repeating-linear|repeating-radial)-gradient\s*\(/i.test(globalCssSource)) {
+  errors.push('custom site CSS contains a prohibited decorative gradient');
+}
+if (/\bbox-shadow\s*:/i.test(globalCssSource)) {
+  errors.push('custom site CSS contains a prohibited decorative box shadow');
+}
+passed.push('custom site CSS stays gradient- and shadow-free');
 
 if (errors.length > 0) {
   console.error(`\n[verify-site] ${errors.length} FAILURES:`);

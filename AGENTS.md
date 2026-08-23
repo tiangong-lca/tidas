@@ -29,9 +29,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: "2026-08-23"
-lastReviewedCommit: 0c0b5b57c3b499ffeb827c8f5911519acb6f4050
-lastReviewedNote: "Reviewed for Issue #46: Data Atlas UI, lazy semantic Schema explorer, complete four-locale content, static-site quality gates, and current EdgeOne publication boundaries."
+lastReviewedAt: 2026-08-23
+lastReviewedCommit: d3120b1a4b043631fa8eed9c53f33a9030a79c96
+lastReviewedNote: "Reviewed for Issue #48: TianGong Data System identity, neutral Fumadocs landing UI, flat tabular Schema explorers, visual-test markers, and current static quality gates."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -108,7 +108,10 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
 - Search results must stay locale-scoped and bounded in the UI.
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
+- Schema taxonomies render as a flat native table whose name column alone carries hierarchy indentation; identifier and child-count columns remain aligned across levels.
+- Taxonomy branch controls expose expansion state, leaf rows are not buttons, and the governed `data-schema-taxonomy`, `data-taxonomy-row`, `data-taxonomy-id`, and `data-taxonomy-label` markers remain available to browser proof.
 - Do not render more than 50 taxonomy search results or eagerly materialize an unbounded taxonomy tree.
+- Public branding names TIDAS as the TianGong Data System. The Schema specification is one system layer, not the product subtitle.
 - Light and dark media variants must reference files that exist; use one asset in both themes when no dark variant exists.
 - Raw `<a>` and `<p>` elements are not allowed in public MDX because they bypass component mappings and can create invalid nested HTML.
 - German and French pages must contain genuine translations, not English body copies labeled as localized content.

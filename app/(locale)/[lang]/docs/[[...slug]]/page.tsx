@@ -50,7 +50,7 @@ export async function generateMetadata(
     },
     openGraph: {
       type: 'article',
-      siteName: 'TIDAS Data Specification',
+      siteName: 'TIDAS — TianGong Data System',
       url: page.url.endsWith('/') ? page.url : `${page.url}/`,
       title: page.data.title,
       description,
