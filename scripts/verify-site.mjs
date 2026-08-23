@@ -7,6 +7,15 @@ const root = path.resolve(import.meta.dirname, '..');
 const outRoot = path.join(root, 'out');
 const docsRoot = path.join(root, 'content', 'docs');
 const canonicalOrigin = process.env.CANONICAL_ORIGIN;
+const productionOrigin = 'https://tidas.tiangong.earth';
+const linkOrigin = (() => {
+  try {
+    return new URL(canonicalOrigin).origin;
+  } catch {
+    return 'https://tidas.invalid';
+  }
+})();
+const internalOrigins = new Set([linkOrigin, productionOrigin]);
 const errors = [];
 const passed = [];
 
@@ -21,18 +30,61 @@ function walk(directory, predicate) {
   return result;
 }
 
-function publicTargetExists(url) {
-  if (!url.startsWith('/') || url.startsWith('//')) return true;
-  const clean = decodeURIComponent(url.split(/[?#]/, 1)[0]).replace(/^\/+/, '');
-  if (clean.length === 0) return fs.existsSync(path.join(outRoot, 'index.html'));
-  const direct = path.join(outRoot, clean);
-  return fs.existsSync(direct)
-    || fs.existsSync(path.join(direct, 'index.html'))
-    || fs.existsSync(`${direct}.html`);
+function decodeHtml(value) {
+  return value.replace(
+    /&(?:#(\d+)|#x([\da-f]+)|(amp|apos|gt|lt|quot));/gi,
+    (entity, decimal, hexadecimal, named) => {
+      if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+      if (hexadecimal) return String.fromCodePoint(Number.parseInt(hexadecimal, 16));
+      return { amp: '&', apos: "'", gt: '>', lt: '<', quot: '"' }[named.toLowerCase()];
+    },
+  );
+}
+
+function routeForHtml(htmlFile) {
+  const relative = path.relative(outRoot, htmlFile).split(path.sep).join('/');
+  if (relative === 'index.html') return '/';
+  if (relative.endsWith('/index.html')) return `/${relative.slice(0, -'index.html'.length)}`;
+  return `/${relative}`;
+}
+
+function decodeUrlComponent(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return null;
+  }
+}
+
+function resolveOutputFile(pathname) {
+  const decodedPath = decodeUrlComponent(pathname);
+  if (decodedPath === null) return { error: 'invalid percent-encoding in URL path' };
+
+  const relative = decodedPath.replace(/^\/+/, '');
+  const candidates = decodedPath.endsWith('/')
+    ? [path.join(relative, 'index.html')]
+    : [relative, `${relative}.html`, path.join(relative, 'index.html')];
+
+  for (const candidate of candidates) {
+    const absolute = path.resolve(outRoot, candidate);
+    const relativeToOut = path.relative(outRoot, absolute);
+    if (relativeToOut.startsWith('..') || path.isAbsolute(relativeToOut)) continue;
+    if (fs.existsSync(absolute) && fs.statSync(absolute).isFile()) return { absolute };
+  }
+
+  return { error: `target does not exist (${decodedPath})` };
+}
+
+function collectAnchors(html) {
+  const anchors = new Set();
+  const attribute = /(?<![\w:-])\b(?:id|name)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+  let match;
+  while ((match = attribute.exec(html)) !== null) anchors.add(decodeHtml(match[1] ?? match[2]));
+  return anchors;
 }
 
 function extract(html, pattern) {
-  return [...html.matchAll(pattern)].map((match) => match[1].replaceAll('&amp;', '&'));
+  return [...html.matchAll(pattern)].map((match) => decodeHtml(match[1]));
 }
 
 if (!fs.existsSync(outRoot)) {
@@ -68,18 +120,57 @@ if (!canonicalOrigin || !fs.existsSync(sitemapPath)) {
 
 let linkCount = 0;
 let imageCount = 0;
+let fragmentCount = 0;
+const anchorCache = new Map();
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const relative = path.relative(outRoot, file);
+  const pageUrl = new URL(routeForHtml(file), linkOrigin);
   for (const href of extract(html, /<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi)) {
-    if (/^(?:https?:|mailto:|tel:|#|javascript:|data:)/i.test(href)) continue;
+    let resolved;
+    try {
+      resolved = new URL(href, pageUrl);
+    } catch {
+      errors.push(`invalid link ${href} in ${relative}`);
+      continue;
+    }
+    if (!internalOrigins.has(resolved.origin)) continue;
     linkCount += 1;
-    if (!publicTargetExists(href)) errors.push(`broken internal link ${href} in ${relative}`);
+    if (/^\/(?:zh|en|de|fr)\/docs\/intro\/(?:integration|use-case)(?:\/|$)/.test(resolved.pathname)) {
+      errors.push(`retired route shape ${resolved.pathname} from ${href} in ${relative}`);
+      continue;
+    }
+    const target = resolveOutputFile(resolved.pathname);
+    if (target.error) {
+      errors.push(`broken internal link ${href} in ${relative}: ${target.error}`);
+      continue;
+    }
+    if (resolved.hash.length <= 1 || !target.absolute.endsWith('.html')) continue;
+    fragmentCount += 1;
+    const fragment = decodeUrlComponent(resolved.hash.slice(1));
+    if (fragment === null) {
+      errors.push(`invalid fragment encoding ${href} in ${relative}`);
+      continue;
+    }
+    let anchors = anchorCache.get(target.absolute);
+    if (!anchors) {
+      anchors = collectAnchors(fs.readFileSync(target.absolute, 'utf8'));
+      anchorCache.set(target.absolute, anchors);
+    }
+    if (!anchors.has(fragment)) errors.push(`missing fragment #${fragment} from ${href} in ${relative}`);
   }
   for (const src of extract(html, /<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)) {
-    if (/^(?:https?:|data:|blob:)/i.test(src)) continue;
+    let resolved;
+    try {
+      resolved = new URL(src, pageUrl);
+    } catch {
+      errors.push(`invalid image URL ${src} in ${relative}`);
+      continue;
+    }
+    if (!internalOrigins.has(resolved.origin)) continue;
     imageCount += 1;
-    if (!publicTargetExists(src)) errors.push(`missing image ${src} in ${relative}`);
+    const target = resolveOutputFile(resolved.pathname);
+    if (target.error) errors.push(`missing image ${src} in ${relative}: ${target.error}`);
   }
 
   if (relative.includes(`${path.sep}schema-content${path.sep}`)) {
@@ -92,7 +183,8 @@ for (const file of htmlFiles) {
     if (/\boneOf\s+\d+\b/.test(html)) errors.push(`anonymous oneOf labels leaked into ${relative}`);
   }
 }
-passed.push(`${linkCount} internal link references resolve`);
+passed.push(`${linkCount} internal link references resolve with browser URL semantics`);
+passed.push(`${fragmentCount} internal fragments resolve to real anchors`);
 passed.push(`${imageCount} rendered image references resolve`);
 passed.push('schema HTML, element, button, and semantic-label budgets');
 
@@ -137,9 +229,12 @@ for (const file of mdxFiles) {
   if (/https:\/\/github\.com\/user-attachments\//i.test(source)) {
     errors.push(`GitHub user-attachment media must be vendored for deterministic builds: ${relative}`);
   }
+  for (const match of source.matchAll(/(?<!!)\[[^\]]+\]\((\.{1,2}\/[^)\s]+)(?:\s+"[^"]*")?\)/g)) {
+    errors.push(`relative internal Markdown link is forbidden; use a locale-absolute route: ${relative} -> ${match[1]}`);
+  }
   if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
-passed.push(`${mdxFiles.length} MDX files pass hydration, deterministic-media, and credential-sample guards`);
+passed.push(`${mdxFiles.length} MDX files pass hydration, locale-absolute-link, deterministic-media, and credential-sample guards`);
 
 const schemaViewerPath = path.join(root, 'components', 'json-schema-viewer.tsx');
 const schemaViewerSource = fs.readFileSync(schemaViewerPath, 'utf8');
