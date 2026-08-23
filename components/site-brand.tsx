@@ -7,7 +7,7 @@ export function SiteBrand() {
         <img src="/logo-dark.svg" alt="" width={30} height={30} className="hidden dark:block" />
       </span>
       <span className="atlas-brand-name">
-        TIDAS <span className="atlas-brand-product">Data Specification</span>
+        TIDAS <span className="atlas-brand-product">/ Data Specification</span>
       </span>
     </span>
   );

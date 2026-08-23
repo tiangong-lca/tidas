@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { i18nProvider } from 'fumadocs-ui/i18n';
 import { Provider } from '@/components/provider';
 import { toHtmlLang } from '@/lib/i18n';
-import { languageAlternates, localeMetadata, siteOrigin } from '@/lib/metadata';
+import { languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
 import { translations } from '@/lib/layout.shared';
 import '@/app/global.css';
 
@@ -21,11 +21,13 @@ export const metadata: Metadata = {
     title: localeMetadata.zh.title,
     description: localeMetadata.zh.description,
     locale: localeMetadata.zh.openGraphLocale,
+    images: [{ url: pageImagePath('zh', []) }],
   },
   twitter: {
     card: 'summary_large_image',
     title: localeMetadata.zh.title,
     description: localeMetadata.zh.description,
+    images: [pageImagePath('zh', [])],
   },
   ...(process.env.DEPLOY_ENV !== 'production'
     ? { robots: { index: false, follow: false } }

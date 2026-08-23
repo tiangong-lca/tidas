@@ -3,7 +3,7 @@ import { i18nProvider } from 'fumadocs-ui/i18n';
 import { Provider } from '@/components/provider';
 import { translations } from '@/lib/layout.shared';
 import { i18n, toHtmlLang } from '@/lib/i18n';
-import { languageAlternates, localeMetadata, siteOrigin } from '@/lib/metadata';
+import { languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
 import '@/app/global.css';
 
 export function generateStaticParams() {
@@ -32,11 +32,13 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
       title: copy.title,
       description: copy.description,
       locale: copy.openGraphLocale,
+      images: [{ url: pageImagePath(lang, []) }],
     },
     twitter: {
       card: 'summary_large_image',
       title: copy.title,
       description: copy.description,
+      images: [pageImagePath(lang, [])],
     },
     ...(process.env.DEPLOY_ENV !== 'production'
       ? { robots: { index: false, follow: false } }

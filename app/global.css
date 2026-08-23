@@ -10,6 +10,9 @@ html {
   --atlas-plum: #5c246a;
   --atlas-violet: #9e3ffd;
   --atlas-amber: #efb134;
+  --atlas-plum-text: #5c246a;
+  --atlas-violet-text: #7520c8;
+  --atlas-amber-text: #6d4900;
   --atlas-ink: #211625;
   --atlas-paper: #f8f6f9;
   --atlas-line: color-mix(in srgb, var(--atlas-plum) 18%, transparent);
@@ -25,6 +28,9 @@ html {
   --atlas-plum: #c99cff;
   --atlas-violet: #a855f7;
   --atlas-amber: #f4bd52;
+  --atlas-plum-text: #c99cff;
+  --atlas-violet-text: #c99cff;
+  --atlas-amber-text: #f4bd52;
   --atlas-ink: #f5edf8;
   --atlas-paper: #120d15;
   --atlas-line: color-mix(in srgb, var(--atlas-violet) 28%, transparent);
@@ -75,6 +81,8 @@ html {
 }
 
 .atlas-home {
+  min-width: 0;
+  max-width: 100%;
   flex: 1;
   overflow: clip;
   color: var(--color-fd-foreground);
@@ -82,6 +90,7 @@ html {
 
 .atlas-shell {
   width: 100%;
+  min-width: 0;
   max-width: 72rem;
   margin-inline: auto;
   padding-inline: clamp(1rem, 3vw, 2rem);
@@ -117,6 +126,7 @@ html {
 
 .atlas-hero-copy {
   position: relative;
+  min-width: 0;
   z-index: 1;
   max-width: 42rem;
 }
@@ -138,6 +148,7 @@ html {
   font-weight: 760;
   letter-spacing: -0.062em;
   line-height: 0.98;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
@@ -175,10 +186,8 @@ html {
 .atlas-button-primary {
   background: linear-gradient(120deg, var(--atlas-plum), var(--atlas-violet));
   box-shadow: 0 14px 35px color-mix(in srgb, var(--atlas-plum) 25%, transparent);
-  color: #fff;
+  color: var(--color-fd-primary-foreground);
 }
-
-.dark .atlas-button-primary { color: #fff; }
 
 .atlas-button-secondary {
   border-color: var(--atlas-line);
@@ -195,6 +204,8 @@ html {
 .atlas-map {
   position: relative;
   width: min(100%, 30rem);
+  min-width: 0;
+  max-width: 100%;
   aspect-ratio: 1;
   justify-self: end;
   border: 1px solid var(--atlas-line);
@@ -362,12 +373,12 @@ html {
   transform: translateY(-4px);
 }
 
-.atlas-accent-plum { --card-accent: var(--atlas-plum); }
-.atlas-accent-violet { --card-accent: var(--atlas-violet); }
-.atlas-accent-amber { --card-accent: var(--atlas-amber); }
+.atlas-accent-plum { --card-accent: var(--atlas-plum); --card-accent-text: var(--atlas-plum-text); }
+.atlas-accent-violet { --card-accent: var(--atlas-violet); --card-accent-text: var(--atlas-violet-text); }
+.atlas-accent-amber { --card-accent: var(--atlas-amber); --card-accent-text: var(--atlas-amber-text); }
 
 .atlas-card-kicker {
-  color: var(--card-accent);
+  color: var(--card-accent-text);
   font-size: 0.66rem;
   font-weight: 730;
   letter-spacing: 0.1em;
@@ -400,7 +411,7 @@ html {
   justify-content: center;
   border-radius: 999px;
   background: color-mix(in srgb, var(--card-accent) 12%, transparent);
-  color: var(--card-accent);
+  color: var(--card-accent-text);
 }
 
 .atlas-closing { padding: 0 0 clamp(4.5rem, 9vw, 7rem); }
@@ -448,8 +459,8 @@ html {
 }
 
 @media (max-width: 40rem) {
-  .atlas-brand-name { max-width: 13rem; }
-  .atlas-hero h1 { font-size: clamp(2.55rem, 13vw, 4rem); }
+  .atlas-brand-name { max-width: 10.5rem; font-size: 0.86rem; }
+  .atlas-hero h1 { max-width: 100%; font-size: clamp(2.25rem, 10.5vw, 3.25rem); letter-spacing: -0.055em; }
 
   .atlas-actions,
   .atlas-closing-card {
