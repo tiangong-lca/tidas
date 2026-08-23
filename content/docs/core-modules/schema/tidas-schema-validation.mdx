@@ -1,12 +1,12 @@
-- --
+---
 title: "Schema 校验方法"
-- --
+---
 
 TIDAS 数据结构基于 JSON Schema 定义。正式的批量校验入口是统一 Rust
 CLI 的 `tidas validate`，它离线使用随 v0.1.1 二进制发布且经过完整性校验的
 JSON Schema、ILCD XSD 和规则资源，不依赖外部源码目录或 Python 环境。
 
-- --
+---
 
 ## 验证 TIDAS JSON 包
 
@@ -57,7 +57,7 @@ tidas validate ./batch-root \
   --format json
 ```
 
-- --
+---
 
 ## 验证内容概览
 
@@ -85,7 +85,7 @@ TIDAS 的数据验证机制结合了两类校验能力：
 
 - **引用与包结构检查**：按锁定资源检查跨模块引用和包级约束
 
-- --
+---
 
 ## 验证结果输出
 
@@ -93,7 +93,7 @@ TIDAS 的数据验证机制结合了两类校验能力：
 文档问题表示扫描已完成，可通过报告与退出状态区分数据问题和协议/运行失败。
 自动化应解析 `--format json` 的稳定报告，而不是匹配人类可读文本。
 
-- --
+---
 
 如需了解 JSON Schema 的字段与模块，请前往
 [数据结构（JSON Schema）](/zh/docs/category/tidas-json-schema/)。安装、平台支持与旧命令迁移见
