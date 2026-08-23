@@ -15,9 +15,9 @@ html {
   --system-line: #dce2e8;
   --tidas-accent: #5c246a;
   --tidas-accent-soft: #eee8f0;
-  --color-fd-primary: #151a22;
+  --color-fd-primary: #5c246a;
   --color-fd-primary-foreground: #ffffff;
-  --color-fd-ring: #2563eb;
+  --color-fd-ring: #7a3f88;
   --color-fd-accent: #eef1f4;
   --color-fd-accent-foreground: #12161c;
 }
@@ -31,9 +31,9 @@ html {
   --system-line: #30363d;
   --tidas-accent: #c49bd0;
   --tidas-accent-soft: #2a2230;
-  --color-fd-primary: #f0f3f6;
-  --color-fd-primary-foreground: #0d1117;
-  --color-fd-ring: #58a6ff;
+  --color-fd-primary: #c49bd0;
+  --color-fd-primary-foreground: #1b1020;
+  --color-fd-ring: #d1a8dc;
   --color-fd-accent: #1b222c;
   --color-fd-accent-foreground: #f0f3f6;
 }
