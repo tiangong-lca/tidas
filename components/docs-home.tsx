@@ -15,7 +15,7 @@ interface SystemLayer {
 interface HomeCopy {
   eyebrow: string;
   title: string;
-  titleLines?: readonly [string, string];
+  titleParts?: readonly [string, string, string, string];
   description: string;
   primary: string;
   secondary: string;
@@ -37,7 +37,7 @@ const copy: Record<Language, HomeCopy> = {
   zh: {
     eyebrow: 'TIDAS · TianGong Data System',
     title: '连接方法、结构与数据，构建生命周期数据系统',
-    titleLines: ['连接方法、结构与数据', '构建生命周期数据系统'],
+    titleParts: ['连接方法、结构', '与数据，', '构建', '生命周期数据系统'],
     description:
       'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、无损转换和系统集成基础。',
     primary: '了解系统架构',
@@ -172,9 +172,19 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
           <div className="atlas-shell atlas-hero-grid">
             <div className="atlas-hero-copy">
               <p className="atlas-eyebrow">{content.eyebrow}</p>
-              <h1>
-                {content.titleLines
-                  ? content.titleLines.map((line) => <span className="block whitespace-nowrap" key={line}>{line}</span>)
+              <h1 className={content.titleParts ? 'whitespace-nowrap' : undefined} data-controlled-title>
+                {content.titleParts
+                  ? (
+                      <>
+                        {content.titleParts[0]}
+                        <br className="hidden max-[40rem]:block" />
+                        {content.titleParts[1]}
+                        <br className="max-[40rem]:hidden" />
+                        {content.titleParts[2]}
+                        <br className="hidden max-[40rem]:block" />
+                        {content.titleParts[3]}
+                      </>
+                    )
                   : content.title}
               </h1>
               <p className="atlas-lede">{content.description}</p>
