@@ -30,7 +30,7 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: 5341f69234cdae9b5d01a444c2fee2fe11225cb0
+lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
 lastReviewedNote: "Reviewed for Issue #48: TianGong Data System identity, neutral Fumadocs landing UI, flat tabular Schema explorers, visual-test markers, and current static quality gates."
 related:
   - .docpact/config.yaml
