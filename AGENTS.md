@@ -30,7 +30,7 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-23
-lastReviewedCommit: b867f324aa4730530d25ce9532bc17f199ce023a
+lastReviewedCommit: 9aafaf5a088f1ecf21342035fe937de4e2964b1e
 lastReviewedNote: "Reviewed for Issue #48: TianGong Data System identity, neutral Fumadocs landing UI, flat tabular Schema explorers, visual-test markers, and current static quality gates."
 related:
   - .docpact/config.yaml
@@ -75,6 +75,7 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect.
 - Locale homepages use `/{lang}/` for `zh`, `en`, `de`, and `fr`.
 - Documentation uses `/{lang}/docs/...`.
+- First-party document links use locale-absolute `/{lang}/docs/**/` targets. Path-relative document links are forbidden because trailing-slash pages resolve them below the current page directory.
 - All four locales are independent content sources with no fallback language.
 - `content/docs/**` uses dot-locale files: `page.mdx`, `page.en.mdx`, `page.de.mdx`, and `page.fr.mdx`.
 - `public/schemas/**` is the downloadable Schema surface. Large schemas are fetched by the client only when a reader opens the explorer; they must not be serialized into page HTML.
@@ -105,6 +106,7 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 
 - The site is a Next.js App Router static export using Fumadocs.
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
+- Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
 - Search results must stay locale-scoped and bounded in the UI.
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.

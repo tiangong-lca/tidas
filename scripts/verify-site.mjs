@@ -7,6 +7,15 @@ const root = path.resolve(import.meta.dirname, '..');
 const outRoot = path.join(root, 'out');
 const docsRoot = path.join(root, 'content', 'docs');
 const canonicalOrigin = process.env.CANONICAL_ORIGIN;
+const productionOrigin = 'https://tidas.tiangong.earth';
+const linkOrigin = (() => {
+  try {
+    return new URL(canonicalOrigin).origin;
+  } catch {
+    return 'https://tidas.invalid';
+  }
+})();
+const internalOrigins = new Set([linkOrigin, productionOrigin]);
 const errors = [];
 const passed = [];
 
@@ -21,24 +30,162 @@ function walk(directory, predicate) {
   return result;
 }
 
-function publicTargetExists(url) {
-  if (!url.startsWith('/') || url.startsWith('//')) return true;
-  const clean = decodeURIComponent(url.split(/[?#]/, 1)[0]).replace(/^\/+/, '');
-  if (clean.length === 0) return fs.existsSync(path.join(outRoot, 'index.html'));
-  const direct = path.join(outRoot, clean);
-  return fs.existsSync(direct)
-    || fs.existsSync(path.join(direct, 'index.html'))
-    || fs.existsSync(`${direct}.html`);
+function decodeHtml(value) {
+  return value.replace(
+    /&(?:#(\d+)|#x([\da-f]+)|(amp|apos|gt|lt|quot));/gi,
+    (entity, decimal, hexadecimal, named) => {
+      if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+      if (hexadecimal) return String.fromCodePoint(Number.parseInt(hexadecimal, 16));
+      return { amp: '&', apos: "'", gt: '>', lt: '<', quot: '"' }[named.toLowerCase()];
+    },
+  );
+}
+
+function routeForHtml(htmlFile) {
+  const relative = path.relative(outRoot, htmlFile).split(path.sep).join('/');
+  if (relative === 'index.html') return '/';
+  if (relative.endsWith('/index.html')) return `/${relative.slice(0, -'index.html'.length)}`;
+  return `/${relative}`;
+}
+
+function decodeUrlComponent(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return null;
+  }
+}
+
+function resolveOutputFile(pathname) {
+  const decodedPath = decodeUrlComponent(pathname);
+  if (decodedPath === null) return { error: 'invalid percent-encoding in URL path' };
+
+  const relative = decodedPath.replace(/^\/+/, '');
+  const candidates = decodedPath.endsWith('/')
+    ? [path.join(relative, 'index.html')]
+    : [relative, `${relative}.html`, path.join(relative, 'index.html')];
+
+  for (const candidate of candidates) {
+    const absolute = path.resolve(outRoot, candidate);
+    const relativeToOut = path.relative(outRoot, absolute);
+    if (relativeToOut.startsWith('..') || path.isAbsolute(relativeToOut)) continue;
+    if (fs.existsSync(absolute) && fs.statSync(absolute).isFile()) return { absolute };
+  }
+
+  return { error: `target does not exist (${decodedPath})` };
+}
+
+function collectAnchors(html) {
+  const anchors = new Set();
+  const attribute = /(?<![\w:-])\bid\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+  let match;
+  while ((match = attribute.exec(html)) !== null) anchors.add(decodeHtml(match[1] ?? match[2]));
+  for (const anchor of html.matchAll(/<a\b[^>]*>/gi)) {
+    const name = anchor[0].match(/(?<![\w:-])\bname\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+    if (name) anchors.add(decodeHtml(name[1] ?? name[2]));
+  }
+  return anchors;
+}
+
+function blankNonNewlines(value) {
+  return value.replace(/[^\r\n]/g, ' ');
+}
+
+function maskMdxCode(source) {
+  let masked = source.replace(/<!--[\s\S]*?-->/g, (value) => blankNonNewlines(value));
+  const lines = masked.match(/.*(?:\r?\n|$)/g) ?? [];
+  let fence = null;
+  masked = lines.map((line) => {
+    const marker = line.match(/^[ \t]{0,3}(`{3,}|~{3,})/);
+    if (!fence && marker) {
+      fence = { character: marker[1][0], length: marker[1].length };
+      return blankNonNewlines(line);
+    }
+    if (fence) {
+      const closing = new RegExp(`^[ \\t]{0,3}${fence.character}{${fence.length},}[ \\t]*(?:\\r?\\n)?$`);
+      if (closing.test(line)) fence = null;
+      return blankNonNewlines(line);
+    }
+    return line;
+  }).join('');
+  return masked.replace(/(`+)([^`\n]*?)\1/g, (value) => blankNonNewlines(value));
+}
+
+function sourceLine(source, offset) {
+  return source.slice(0, offset).split('\n').length;
+}
+
+function extractMdxDestinations(source) {
+  const links = [];
+  const masked = maskMdxCode(source);
+  const pattern = /(?<!!)\[[^\]]+\]\(\s*/g;
+  let match;
+  while ((match = pattern.exec(masked)) !== null) {
+    let cursor = pattern.lastIndex;
+    let value = '';
+    if (masked[cursor] === '<') {
+      const end = masked.indexOf('>', cursor + 1);
+      if (end === -1) continue;
+      value = masked.slice(cursor + 1, end);
+      pattern.lastIndex = end + 1;
+    } else {
+      let nested = 0;
+      const start = cursor;
+      for (; cursor < masked.length; cursor += 1) {
+        const character = masked[cursor];
+        if (/\s/.test(character) && nested === 0) break;
+        if (character === '(' && masked[cursor - 1] !== '\\') nested += 1;
+        if (character === ')' && masked[cursor - 1] !== '\\') {
+          if (nested === 0) break;
+          nested -= 1;
+        }
+      }
+      value = masked.slice(start, cursor);
+      pattern.lastIndex = cursor;
+    }
+    if (value) links.push({ value, line: sourceLine(source, match.index) });
+  }
+
+  const reference = /^[ \t]{0,3}\[[^\]\n]+\]:[ \t]*(?:<([^>\n]+)>|([^\s]+))/gm;
+  while ((match = reference.exec(masked)) !== null) {
+    links.push({ value: match[1] ?? match[2], line: sourceLine(source, match.index) });
+  }
+
+  const jsxHref = /(?<![\w:-])\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+  while ((match = jsxHref.exec(masked)) !== null) {
+    links.push({ value: match[1] ?? match[2], line: sourceLine(source, match.index) });
+  }
+  return links;
+}
+
+function isPathRelative(value) {
+  return value !== ''
+    && !/^(?:[a-z][a-z\d+.-]*:|\/|#|\?|\{|\\)/i.test(value);
 }
 
 function extract(html, pattern) {
-  return [...html.matchAll(pattern)].map((match) => match[1].replaceAll('&amp;', '&'));
+  return [...html.matchAll(pattern)].map((match) => decodeHtml(match[1]));
 }
 
 if (!fs.existsSync(outRoot)) {
   console.error('[verify-site] FAIL out/ does not exist');
   process.exit(1);
 }
+
+const parserFixture = [
+  '```md', '[ignored](inside/fence/)', '```',
+  '[bare](integration/foo/)', '[angle](<./angle/>)', '[multi\nline](multiline/)', '[reference]: ../reference/',
+  '<Link href="nested/jsx/" />',
+].join('\n');
+const fixtureRelative = extractMdxDestinations(parserFixture).filter((item) => isPathRelative(item.value)).map((item) => item.value);
+if (JSON.stringify(fixtureRelative) !== JSON.stringify(['integration/foo/', './angle/', 'multiline/', '../reference/', 'nested/jsx/'])) {
+  errors.push(`internal source-link parser regression: ${JSON.stringify(fixtureRelative)}`);
+}
+const anchorFixture = collectAnchors('<meta name="viewport"><div id="real"></div><a name="legacy"></a>');
+if (anchorFixture.has('viewport') || !anchorFixture.has('real') || !anchorFixture.has('legacy')) {
+  errors.push('internal fragment-anchor parser regression');
+}
+passed.push('link verifier adversarial fixtures');
 
 const htmlFiles = walk(outRoot, (file) => file.endsWith('.html'));
 if (fs.existsSync(path.join(outRoot, 'static'))) {
@@ -68,18 +215,57 @@ if (!canonicalOrigin || !fs.existsSync(sitemapPath)) {
 
 let linkCount = 0;
 let imageCount = 0;
+let fragmentCount = 0;
+const anchorCache = new Map();
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const relative = path.relative(outRoot, file);
+  const pageUrl = new URL(routeForHtml(file), linkOrigin);
   for (const href of extract(html, /<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi)) {
-    if (/^(?:https?:|mailto:|tel:|#|javascript:|data:)/i.test(href)) continue;
+    let resolved;
+    try {
+      resolved = new URL(href, pageUrl);
+    } catch {
+      errors.push(`invalid link ${href} in ${relative}`);
+      continue;
+    }
+    if (!internalOrigins.has(resolved.origin)) continue;
     linkCount += 1;
-    if (!publicTargetExists(href)) errors.push(`broken internal link ${href} in ${relative}`);
+    if (/^\/(?:zh|en|de|fr)\/docs\/intro\/(?:integration|use-case)(?:\/|$)/.test(resolved.pathname)) {
+      errors.push(`retired route shape ${resolved.pathname} from ${href} in ${relative}`);
+      continue;
+    }
+    const target = resolveOutputFile(resolved.pathname);
+    if (target.error) {
+      errors.push(`broken internal link ${href} in ${relative}: ${target.error}`);
+      continue;
+    }
+    if (resolved.hash.length <= 1 || !target.absolute.endsWith('.html')) continue;
+    fragmentCount += 1;
+    const fragment = decodeUrlComponent(resolved.hash.slice(1));
+    if (fragment === null) {
+      errors.push(`invalid fragment encoding ${href} in ${relative}`);
+      continue;
+    }
+    let anchors = anchorCache.get(target.absolute);
+    if (!anchors) {
+      anchors = collectAnchors(fs.readFileSync(target.absolute, 'utf8'));
+      anchorCache.set(target.absolute, anchors);
+    }
+    if (!anchors.has(fragment)) errors.push(`missing fragment #${fragment} from ${href} in ${relative}`);
   }
   for (const src of extract(html, /<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)) {
-    if (/^(?:https?:|data:|blob:)/i.test(src)) continue;
+    let resolved;
+    try {
+      resolved = new URL(src, pageUrl);
+    } catch {
+      errors.push(`invalid image URL ${src} in ${relative}`);
+      continue;
+    }
+    if (!internalOrigins.has(resolved.origin)) continue;
     imageCount += 1;
-    if (!publicTargetExists(src)) errors.push(`missing image ${src} in ${relative}`);
+    const target = resolveOutputFile(resolved.pathname);
+    if (target.error) errors.push(`missing image ${src} in ${relative}: ${target.error}`);
   }
 
   if (relative.includes(`${path.sep}schema-content${path.sep}`)) {
@@ -92,7 +278,8 @@ for (const file of htmlFiles) {
     if (/\boneOf\s+\d+\b/.test(html)) errors.push(`anonymous oneOf labels leaked into ${relative}`);
   }
 }
-passed.push(`${linkCount} internal link references resolve`);
+passed.push(`${linkCount} internal link references resolve with browser URL semantics`);
+passed.push(`${fragmentCount} internal fragments resolve to real anchors`);
 passed.push(`${imageCount} rendered image references resolve`);
 passed.push('schema HTML, element, button, and semantic-label budgets');
 
@@ -137,9 +324,14 @@ for (const file of mdxFiles) {
   if (/https:\/\/github\.com\/user-attachments\//i.test(source)) {
     errors.push(`GitHub user-attachment media must be vendored for deterministic builds: ${relative}`);
   }
+  for (const link of extractMdxDestinations(source)) {
+    if (isPathRelative(link.value)) {
+      errors.push(`relative internal Markdown link is forbidden; use a locale-absolute route: ${relative}:${link.line} -> ${link.value}`);
+    }
+  }
   if (credentialSample.test(source)) errors.push(`credential-shaped token example is forbidden in public MDX: ${relative}`);
 }
-passed.push(`${mdxFiles.length} MDX files pass hydration, deterministic-media, and credential-sample guards`);
+passed.push(`${mdxFiles.length} MDX files pass hydration, locale-absolute-link, deterministic-media, and credential-sample guards`);
 
 const schemaViewerPath = path.join(root, 'components', 'json-schema-viewer.tsx');
 const schemaViewerSource = fs.readFileSync(schemaViewerPath, 'utf8');

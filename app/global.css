@@ -589,7 +589,7 @@ html {
   display: grid;
   min-width: 0;
   grid-template-columns: 1.75rem minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
   padding-inline-start: calc(var(--schema-depth, 0) * 1rem);
 }
 
