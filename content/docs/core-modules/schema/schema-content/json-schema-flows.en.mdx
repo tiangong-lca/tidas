@@ -2,9 +2,6 @@
 title: "Flows"
 ---
 
-import FlowsSchema from '@/public/schemas/tidas_flows.json';
-import FlowsElementaryCategorySchema from '@/public/schemas/tidas_flows_elementary_category.json';
-import FlowsProductCategorySchema from '@/public/schemas/tidas_flows_product_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## JSON Schema for Flow and Flow categories
@@ -13,12 +10,12 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 Flow datasets contain invariant information about substances or energy forms, aligned with the "inputs and outputs" section of ISO/TS 14048. Each flow represents a physical exchange (e.g., material, energy, or waste), including identifiers and classifications. Flows are the building blocks of process and system datasets, ensuring consistency and traceability.
 </Callout>
 
-<JsonSchemaViewer schema={ FlowsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows.json" />
 
 ## Elementary Flow category
 
-<JsonSchemaViewer schema={ FlowsElementaryCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows_elementary_category.json" />
 
 ## Product / Waste Flow category
 
-<JsonSchemaViewer schema={ FlowsProductCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows_product_category.json" />

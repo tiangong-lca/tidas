@@ -13,6 +13,14 @@ export interface TidasImageProps {
   title: string;
 }
 
+const darkVariantNames = new Set([
+  'MCP-inspector',
+  'TIDAS',
+  'TIDAS-blockchain',
+  'TIDAS-dataspace',
+  'TIDAS-permission-control',
+]);
+
 /**
  * Docusaurus TidasImage 的静态替代：locale 图片 + 深/浅主题双变体。
  * 旧实现运行时 useDocusaurusContext + MutationObserver；
@@ -27,11 +35,12 @@ export function TidasImage({ filename, title }: TidasImageProps) {
   const dir = locale === 'zh' ? 'zh-CN' : 'en';
   const light = `/img/${dir}/${base}-${dir}.${ext}`;
   const dark = `/img/${dir}/${base}-${dir}-dark.${ext}`;
+  const hasDarkVariant = darkVariantNames.has(base);
 
   return (
     <span className="my-4 block">
-      <img src={light} alt={title} loading="lazy" className="mx-auto block w-full max-w-4xl dark:hidden" />
-      <img src={dark} alt={title} loading="lazy" className="mx-auto hidden w-full max-w-4xl dark:block" />
+      <img src={light} alt={title} loading="lazy" className={`mx-auto block w-full max-w-4xl ${hasDarkVariant ? 'dark:hidden' : ''}`} />
+      {hasDarkVariant && <img src={dark} alt={title} loading="lazy" className="mx-auto hidden w-full max-w-4xl dark:block" />}
     </span>
   );
 }

@@ -2,9 +2,6 @@
 title: "流（Flows）"
 ---
 
-import FlowsSchema from '@/public/schemas/tidas_flows.json';
-import FlowsElementaryCategorySchema from '@/public/schemas/tidas_flows_elementary_category.json';
-import FlowsProductCategorySchema from '@/public/schemas/tidas_flows_product_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## 流及流分类的数据结构
@@ -13,12 +10,12 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 流数据集定义了生命周期评估中使用的物质、能量或废弃物，​并描述了它的名称、分类、流属性等信息，是构建过程和系统数据集的基础，确保了数据的一致性和可追溯性。
 </Callout>
 
-<JsonSchemaViewer schema={ FlowsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows.json" />
 
 ## 基本流分类（Elementary Flows category）
 
-<JsonSchemaViewer schema={ FlowsElementaryCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows_elementary_category.json" />
 
 ## 产品/废物流分类（Product / Waste Flows category）
 
-<JsonSchemaViewer schema={ FlowsProductCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_flows_product_category.json" />

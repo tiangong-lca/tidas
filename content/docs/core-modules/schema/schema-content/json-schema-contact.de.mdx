@@ -2,8 +2,6 @@
 title: "Contacts"
 ---
 
-import contactsSchema from '@/public/schemas/tidas_contacts.json';
-import ContactsCategorySchema from '@/public/schemas/tidas_contacts_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## JSON Schema for Contacts and Contacts Category
@@ -12,8 +10,8 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 The contact dataset includes information about individuals, organizations, working groups, or database networks associated with a dataset. It typically includes names, addresses, phone numbers, and emails, facilitating communication and data governance.
 </Callout>
 
-<JsonSchemaViewer schema={ contactsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts.json" />
 
 ## Contacts category
 
-<JsonSchemaViewer schema={ ContactsCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts_category.json" />

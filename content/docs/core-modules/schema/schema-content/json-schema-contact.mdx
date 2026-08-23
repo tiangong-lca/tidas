@@ -2,8 +2,6 @@
 title: "联系人（Contacts）"
 ---
 
-import contactsSchema from '@/public/schemas/tidas_contacts.json';
-import ContactsCategorySchema from '@/public/schemas/tidas_contacts_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## 联系人及联系人分类的数据结构
@@ -12,8 +10,8 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 联系人数据集记录了与数据集相关的个人、工作组、组织或数据库网络的联系信息。​它包括名称、地址、电话、电子邮件等信息，支持在数据管理和交流中的联系和沟通。
 </Callout>
 
-<JsonSchemaViewer schema={ contactsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts.json" />
 
 ## 联系人分类（Contacts category）
 
-<JsonSchemaViewer schema={ ContactsCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_contacts_category.json" />

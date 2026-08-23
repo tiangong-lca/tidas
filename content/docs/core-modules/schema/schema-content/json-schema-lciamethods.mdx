@@ -2,8 +2,6 @@
 title: "生命周期环境影响评价方法（LCIA Method）"
 ---
 
-import LciamethodsSchema from '@/public/schemas/tidas_lciamethods.json';
-import LciamethodsCategorySchema from '@/public/schemas/tidas_lciamethods_category.json';
 import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 
 ## 生命周期环境影响评价方法及其分类的数据结构
@@ -12,8 +10,8 @@ import { JsonSchemaViewer } from '@/components/json-schema-viewer';
 生命周期环境影响评价方法数据集包含了用于计算环境影响的所有分类因子和类别。​它还包括方法的文档信息，支持在生命周期评估中对环境影响的系统化分析。
 </Callout>
 
-<JsonSchemaViewer schema={ LciamethodsSchema } />
+<JsonSchemaViewer src="/schemas/tidas_lciamethods.json" />
 
 ## 生命周期环境影响评价方法分类（LCIA Method category）
 
-<JsonSchemaViewer schema={ LciamethodsCategorySchema } />
+<JsonSchemaViewer src="/schemas/tidas_lciamethods_category.json" />
