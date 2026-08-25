@@ -29,9 +29,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-23
-lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
-lastReviewedNote: "Reviewed for Issue #54 after the four-locale docs root became a TIDAS system hub with a definition-to-operation matrix and representative Schema entry points."
+lastReviewedAt: 2026-08-25
+lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
+lastReviewedNote: "Reviewed for Issue #56 after Node 24.19.0, pnpm 11.23.0, TypeScript 7.0.2, local markdownlint, and immutable CI actions became one fail-closed toolchain contract."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -58,11 +58,13 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 ## Minimal execution facts
 
 - package manager: `pnpm` as pinned by `packageManager`
+- exact toolchain: Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`; `.nvmrc`, package engines, EdgeOne metadata, environment checks, lock state, and CI must agree
 - routine branch and PR base: `main`
 - branch model: `M1`
 - canonical local baseline:
   - `pnpm lint`
   - `pnpm typecheck`
+  - `pnpm test`
   - `DEPLOY_ENV=ci CANONICAL_ORIGIN=http://localhost:3000 NEXT_PUBLIC_SEARCH_MODE=static pnpm build`
 - visual changes additionally require browser checks at desktop and mobile widths
 - EdgeOne Pages Git integration owns production build and deployment from `main`
@@ -106,6 +108,8 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 ## Runtime and content invariants
 
 - The site is a Next.js App Router static export using Fumadocs.
+- `scripts/check-env.mjs` fails closed unless the runtime is exactly Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`; the build runs its positive/negative Node contracts before static generation.
+- Markdown lint uses exact local `markdownlint-cli2` through `pnpm exec`. Active repository automation has no npm/npx fallback, and every external GitHub Action is pinned to a reviewed executable commit rather than a tag object or moving tag.
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
 - Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.

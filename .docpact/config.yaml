@@ -1,7 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-08-23"
-lastReviewedCommit: "8b7fe6e33645ea77a04159ea0aaa8ce5276fb386"
+lastReviewedAt: "2026-08-25"
+lastReviewedCommit: "d0bdbc123af97156be6c7dc772331ca003366218"
+lastReviewedNote: "Reviewed for Issue #56: existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules already govern the exact toolchain and its Node contract tests."
 
 catalog:
   repos:
