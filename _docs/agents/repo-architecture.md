@@ -19,11 +19,16 @@ checkPaths:
   - lib/**
   - content/docs/**
   - public/schemas/**
+  - package.json
+  - .nvmrc
+  - scripts/build.mjs
+  - scripts/check-env.mjs
+  - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-23
-lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
-lastReviewedNote: "Reviewed for Issue #54 after the ordinary docs layout gained a four-locale TIDAS system portal distinct from the marketing landing."
+lastReviewedAt: 2026-08-25
+lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
+lastReviewedNote: "Reviewed for Issue #56 after the static pipeline gained one exact fail-closed Node/pnpm/TypeScript contract and deterministic pnpm-only CI tooling."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -49,7 +54,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `public/schemas/**` | directly downloadable JSON Schema files |
 | `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
 | `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts` | content loading, navigation, localization, and metadata policy |
-| `scripts/build.mjs`, `scripts/verify-*.mjs` | deterministic build pipeline and static-site gates |
+| `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | exact toolchain enforcement, deterministic build pipeline, Node contracts, and static-site gates |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
 | `.github/workflows/publish-docs.yml` | pull-request validation |
 
@@ -72,6 +77,8 @@ content/docs + public/schemas + UI components
                     ▼
               EdgeOne deploy
 ```
+
+Before static generation, the build requires exact Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. The package graph uses local markdownlint, while CI uses immutable executable action commits with the same exact runtime identity.
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 

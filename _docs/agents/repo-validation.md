@@ -15,7 +15,11 @@ whenToUpdate:
 checkPaths:
   - _docs/agents/repo-validation.md
   - package.json
+  - .nvmrc
   - scripts/build.mjs
+  - scripts/check-env.mjs
+  - scripts/check-env.test.mjs
+  - scripts/toolchain-contract.test.mjs
   - scripts/verify-out.mjs
   - scripts/verify-site.mjs
   - content/docs/**
@@ -23,9 +27,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-23
-lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
-lastReviewedNote: "Reviewed for Issue #54 after static and browser proof was extended to the four-locale TIDAS docs system hub and module-matrix markers."
+lastReviewedAt: 2026-08-25
+lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
+lastReviewedNote: "Reviewed for Issue #56 after exact Node/pnpm/TypeScript checks, full Node contracts, local markdownlint, and immutable CI setup became required proof."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -40,13 +44,14 @@ Run from the repository root:
 ```bash
 pnpm lint
 pnpm typecheck
+pnpm test
 DEPLOY_ENV=ci \
 CANONICAL_ORIGIN=http://localhost:3000 \
 NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
 ```
 
-`pnpm build` runs the environment contract, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
+`pnpm build` runs the exact environment contract, all Node toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
 
 ## Change matrix
 
@@ -60,6 +65,7 @@ pnpm build
 | media | full build image gate plus light/dark browser inspection |
 | metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
+| toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require exact Node `24.19.0`, pnpm `11.23.0`, TypeScript `7.0.2`, and reviewed executable action commits |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
 
 ## Static site gates

@@ -21,9 +21,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-23
-lastReviewedCommit: 8b7fe6e33645ea77a04159ea0aaa8ce5276fb386
-lastReviewedNote: "Reviewed for Issue #54 after contributor orientation documented the localized TIDAS system-navigation hubs and their static quality gate."
+lastReviewedAt: 2026-08-25
+lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
+lastReviewedNote: "Reviewed for Issue #56; existing pnpm/Fumadocs setup remains current and exact versions stay owned by .nvmrc, package.json, and edgeone.json."
 ---
 
 Public documentation and downloadable data contracts for
