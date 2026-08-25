@@ -2,9 +2,10 @@
   "name": "tidas-docs",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.23.0",
   "engines": {
-    "node": ">=24.18.0"
+    "node": "24.19.0",
+    "pnpm": "11.23.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -13,7 +14,10 @@
     "check:env": "node scripts/check-env.mjs",
     "verify:out": "node scripts/verify-out.mjs",
     "verify:site": "node scripts/verify-site.mjs",
-    "lint": "markdownlint-cli2 '**/*.md' '**/*.mdx' '#node_modules' '#content/docs/.source'"
+    "test": "node --test scripts/check-env.test.mjs scripts/toolchain-contract.test.mjs",
+    "test:env": "node --test scripts/check-env.test.mjs",
+    "test:toolchain": "node --test scripts/toolchain-contract.test.mjs",
+    "lint": "pnpm exec markdownlint-cli2 '**/*.md' '**/*.mdx' '#node_modules' '#content/docs/.source'"
   },
   "dependencies": {
     "@fumadocs/language": "0.2.2",
