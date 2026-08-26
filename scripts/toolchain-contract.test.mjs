@@ -22,8 +22,8 @@ test('pins one exact Node, pnpm, TypeScript, and markdownlint toolchain', () => 
   const packageJson = readJson('package.json');
   const edgeOne = readJson('edgeone.json');
 
-  assert.equal(packageJson.packageManager, 'pnpm@11.23.0');
-  assert.deepEqual(packageJson.engines, { node: '24.19.0', pnpm: '11.23.0' });
+  assert.equal(packageJson.packageManager, 'pnpm@11.24.0');
+  assert.deepEqual(packageJson.engines, { node: '24.19.0', pnpm: '11.24.0' });
   assert.equal(packageJson.devDependencies.typescript, '7.0.2');
   assert.equal(packageJson.devDependencies['markdownlint-cli2'], '0.23.2');
   assert.equal(read('.nvmrc').trim(), '24.19.0');
@@ -92,7 +92,7 @@ test('pins every external action to a reviewed executable commit', () => {
 test('binds the pull-request workflow to the exact pnpm and Node runtime', () => {
   const setupWorkflows = workflowSources.filter(({ source }) => source.includes('uses: pnpm/setup@'));
   assert.equal(setupWorkflows.length, 1);
-  assert.match(setupWorkflows[0].source, /version:\s*11\.23\.0/u);
+  assert.match(setupWorkflows[0].source, /version:\s*11\.24\.0/u);
   assert.match(setupWorkflows[0].source, /runtime:\s*node@24\.19\.0/u);
   assert.match(setupWorkflows[0].source, /install:\s*false/u);
 });
