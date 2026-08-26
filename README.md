@@ -21,10 +21,14 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-25
-lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
-lastReviewedNote: "Reviewed for Issue #56; existing pnpm/Fumadocs setup remains current and exact versions stay owned by .nvmrc, package.json, and edgeone.json."
+lastReviewedAt: 2026-08-26
+lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
+lastReviewedNote: "Reviewed for Issue #58 after the contributor-facing pnpm-only toolchain advanced to exact pnpm 11.24.0 without dependency, lockfile, site, or publication drift."
 ---
+
+Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
+
+Review note, 2026-08-26: Issue #58 updates the current pnpm-only toolchain to exact pnpm 11.24.0 across the root manifest, engine, environment, CI, and test contracts. pnpm 11.24.0 reconciles the existing sole root workspace lock without changing its bytes; Node 24.19.0, TypeScript 7.0.2, dependencies, site content/runtime, package version, tags, and publication remain unchanged.
 
 Public documentation and downloadable data contracts for
 [TIDAS](https://tidas.tiangong.earth), the TianGong LCA Data System. The site is a

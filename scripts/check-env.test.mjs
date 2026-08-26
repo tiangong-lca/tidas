@@ -57,21 +57,21 @@ test('accepts only the exact repository toolchain versions', () => {
   assert.deepEqual(
     validateToolchainVersions({
       node: '24.19.0',
-      pnpm: '11.23.0',
+      pnpm: '11.24.0',
       typescript: '7.0.2',
     }),
     [],
   );
   assert.deepEqual(EXPECTED_TOOLCHAIN_VERSIONS, {
     node: '24.19.0',
-    pnpm: '11.23.0',
+    pnpm: '11.24.0',
     typescript: '7.0.2',
   });
 });
 
 for (const [tool, actual] of [
   ['node', '24.18.0'],
-  ['pnpm', '11.22.0'],
+  ['pnpm', '11.23.0'],
   ['typescript', '6.9.0'],
   ['pnpm', 'unavailable'],
 ]) {

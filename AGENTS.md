@@ -29,15 +29,19 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-25
-lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
-lastReviewedNote: "Reviewed for Issue #56 after Node 24.19.0, pnpm 11.23.0, TypeScript 7.0.2, local markdownlint, and immutable CI actions became one fail-closed toolchain contract."
+lastReviewedAt: 2026-08-26
+lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
+lastReviewedNote: "Reviewed for Issue #58 after exact pnpm 11.24.0 was aligned across the manifest, fail-closed environment check, CI bootstrap, and Node contracts without lockfile or runtime drift."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
   - _docs/agents/repo-architecture.md
   - README.md
 ---
+
+Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 together with local markdownlint, immutable CI actions, and one fail-closed toolchain contract.
+
+Review note, 2026-08-26: Issue #58 advances only the current package-manager contract from exact pnpm 11.23.0 to 11.24.0. Root `packageManager`, package engines, the fail-closed environment check, CI bootstrap, and Node contracts agree on that version; pnpm 11.24.0 leaves the sole root workspace lock byte-identical. Node 24.19.0, the sole TypeScript 7.0.2 graph, package version and dependencies, public schemas/generated content, runtime behavior, tags, and publication remain unchanged, with no npm/Yarn fallback.
 
 ## Repository contract
 
@@ -58,7 +62,7 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 ## Minimal execution facts
 
 - package manager: `pnpm` as pinned by `packageManager`
-- exact toolchain: Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`; `.nvmrc`, package engines, EdgeOne metadata, environment checks, lock state, and CI must agree
+- exact toolchain: Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`; `.nvmrc`, package engines, EdgeOne metadata, environment checks, lock state, and CI must agree
 - routine branch and PR base: `main`
 - branch model: `M1`
 - canonical local baseline:
@@ -108,7 +112,7 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 ## Runtime and content invariants
 
 - The site is a Next.js App Router static export using Fumadocs.
-- `scripts/check-env.mjs` fails closed unless the runtime is exactly Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`; the build runs its positive/negative Node contracts before static generation.
+- `scripts/check-env.mjs` fails closed unless the runtime is exactly Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`; the build runs its positive/negative Node contracts before static generation.
 - Markdown lint uses exact local `markdownlint-cli2` through `pnpm exec`. Active repository automation has no npm/npx fallback, and every external GitHub Action is pinned to a reviewed executable commit rather than a tag object or moving tag.
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
 - Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.

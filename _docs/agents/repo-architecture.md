@@ -26,15 +26,19 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-25
-lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
-lastReviewedNote: "Reviewed for Issue #56 after the static pipeline gained one exact fail-closed Node/pnpm/TypeScript contract and deterministic pnpm-only CI tooling."
+lastReviewedAt: 2026-08-26
+lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
+lastReviewedNote: "Reviewed for Issue #58 after the current package-manager identity advanced to exact pnpm 11.24.0 without changing the static pipeline, package graph, generated surface, or publication path."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
   - ./repo-validation.md
   - ../../README.md
 ---
+
+Historical review note, 2026-08-25: Issue #56 established one exact fail-closed Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 contract with deterministic pnpm-only CI tooling.
+
+Review note, 2026-08-26: Issue #58 changes only the current package-manager identity from pnpm 11.23.0 to exact pnpm 11.24.0. The same root workspace and byte-identical lock, Node 24.19.0, sole TypeScript 7.0.2 graph, static pipeline, schemas/generated output, dependencies, version, and publication path remain in place.
 
 ## Site shape
 
@@ -78,7 +82,7 @@ content/docs + public/schemas + UI components
               EdgeOne deploy
 ```
 
-Before static generation, the build requires exact Node `24.19.0`, pnpm `11.23.0`, and TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. The package graph uses local markdownlint, while CI uses immutable executable action commits with the same exact runtime identity.
+Before static generation, the build requires exact Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. The package graph uses local markdownlint, while CI uses immutable executable action commits with the same exact runtime identity.
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 

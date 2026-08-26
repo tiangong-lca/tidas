@@ -1,8 +1,10 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-08-25"
-lastReviewedCommit: "d0bdbc123af97156be6c7dc772331ca003366218"
-lastReviewedNote: "Reviewed for Issue #56: existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules already govern the exact toolchain and its Node contract tests."
+lastReviewedAt: "2026-08-26"
+lastReviewedCommit: "30171cee7c22bfc902f7e9c5ffaac6e929dc194e"
+lastReviewedNote: "Reviewed for Issue #58: existing ownership, scripts/*.mjs and workflow coverage, routing, and proof rules already govern the exact pnpm 11.24.0 toolchain update; no rule-graph change is required."
+# Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
+# Review note, 2026-08-26: Issue #58 only advances the current pnpm contract from 11.23.0 to 11.24.0. Existing site-runtime ownership, scripts/*.mjs and workflow coverage, routed governed documents, and proof rules already own the manifest, environment checker, tests, CI bootstrap, root workspace/lock, and active documentation; no ownership or routing change is required.
 
 catalog:
   repos:

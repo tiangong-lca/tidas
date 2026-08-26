@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 export const EXPECTED_TOOLCHAIN_VERSIONS = Object.freeze({
   node: '24.19.0',
-  pnpm: '11.23.0',
+  pnpm: '11.24.0',
   typescript: '7.0.2',
 });
 
