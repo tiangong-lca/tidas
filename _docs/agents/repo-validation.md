@@ -27,15 +27,19 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-25
-lastReviewedCommit: d0bdbc123af97156be6c7dc772331ca003366218
-lastReviewedNote: "Reviewed for Issue #56 after exact Node/pnpm/TypeScript checks, full Node contracts, local markdownlint, and immutable CI setup became required proof."
+lastReviewedAt: 2026-08-26
+lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
+lastReviewedNote: "Reviewed for Issue #58 after toolchain proof advanced to exact pnpm 11.24.0 and retained the frozen-lock, full Node contract, local markdownlint, and immutable CI requirements."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
   - ./repo-architecture.md
   - ../../README.md
 ---
+
+Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 checks, full Node contracts, local markdownlint, and immutable CI setup required proof.
+
+Review note, 2026-08-26: Issue #58 requires exact pnpm 11.24.0 for the current toolchain proofs while retaining Node 24.19.0 and sole TypeScript 7.0.2. Toolchain validation also audits that pnpm 11.24.0 leaves the single root workspace lock byte-identical and that no npm/Yarn fallback, schema/generated drift, dependency, package-version, tag, or publication change appears.
 
 ## Default baseline
 
@@ -65,7 +69,7 @@ pnpm build
 | media | full build image gate plus light/dark browser inspection |
 | metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
-| toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require exact Node `24.19.0`, pnpm `11.23.0`, TypeScript `7.0.2`, and reviewed executable action commits |
+| toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require exact Node `24.19.0`, pnpm `11.24.0`, TypeScript `7.0.2`, and reviewed executable action commits |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
 
 ## Static site gates
