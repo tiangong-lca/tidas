@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-26
-lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
-lastReviewedNote: "Reviewed for Issue #58 after exact pnpm 11.24.0 was aligned across the manifest, fail-closed environment check, CI bootstrap, and Node contracts without lockfile or runtime drift."
+lastReviewedAt: 2026-08-30
+lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
+lastReviewedNote: "Reviewed for Issue #61 after Node policy was bounded to supported 24.x runtimes, EdgeOne was pinned to preinstalled 24.18.0, and pnpm/TypeScript remained exact."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -43,6 +43,8 @@ related:
 Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 together with local markdownlint, immutable CI actions, and one fail-closed toolchain contract.
 
 Review note, 2026-08-26: Issue #58 advances only the current package-manager contract from exact pnpm 11.23.0 to 11.24.0. Root `packageManager`, package engines, the fail-closed environment check, CI bootstrap, and Node contracts agree on that version; pnpm 11.24.0 leaves the sole root workspace lock byte-identical. Node 24.19.0, the sole TypeScript 7.0.2 graph, package version and dependencies, public schemas/generated content, runtime behavior, tags, and publication remain unchanged, with no npm/Yarn fallback.
+
+Review note, 2026-08-30: Issue #61 replaces the exact Node patch invariant with a bounded `>=24.18.0 <25` runtime policy. `.nvmrc` selects the current Node 24 release for local work, EdgeOne uses its preinstalled `24.18.0`, and PR validation remains pinned to reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
 
 ## Repository contract
 
@@ -63,7 +65,7 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 ## Minimal execution facts
 
 - package manager: `pnpm` as pinned by `packageManager`
-- exact toolchain: Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`; `.nvmrc`, package engines, EdgeOne metadata, environment checks, lock state, and CI must agree
+- toolchain contract: Node `>=24.18.0 <25`, exact pnpm `11.24.0`, and exact TypeScript `7.0.2`; `.nvmrc` selects Node major `24`, EdgeOne pins its preinstalled `24.18.0`, and PR validation uses reviewed Node `24.19.0`
 - routine branch and PR base: `main`
 - branch model: `M1`
 - canonical local baseline:
@@ -115,7 +117,7 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 ## Runtime and content invariants
 
 - The site is a Next.js App Router static export using Fumadocs.
-- `scripts/check-env.mjs` fails closed unless the runtime is exactly Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`; the build runs its positive/negative Node contracts before static generation.
+- `scripts/check-env.mjs` fails closed unless Node is within `>=24.18.0 <25` and pnpm/TypeScript are exactly `11.24.0`/`7.0.2`; the build runs positive and negative runtime contracts before static generation.
 - Markdown lint uses exact local `markdownlint-cli2` through `pnpm exec`. Active repository automation has no npm/npx fallback, and every external GitHub Action is pinned to a reviewed executable commit rather than a tag object or moving tag.
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
 - Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.

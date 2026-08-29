@@ -14,6 +14,7 @@ whenToUpdate:
 checkPaths:
   - README.md
   - package.json
+  - .nvmrc
   - next.config.ts
   - edgeone.json
   - app/**
@@ -22,14 +23,16 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-26
-lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
-lastReviewedNote: "Reviewed for Issue #58 after the contributor-facing pnpm-only toolchain advanced to exact pnpm 11.24.0 without dependency, lockfile, site, or publication drift."
+lastReviewedAt: 2026-08-30
+lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
+lastReviewedNote: "Reviewed for Issue #61 after local Node selection, the bounded Node 24 runtime contract, and the EdgeOne 24.18.0 publication pin were separated without package or site drift."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
 
 Review note, 2026-08-26: Issue #58 updates the current pnpm-only toolchain to exact pnpm 11.24.0 across the root manifest, engine, environment, CI, and test contracts. pnpm 11.24.0 reconciles the existing sole root workspace lock without changing its bytes; Node 24.19.0, TypeScript 7.0.2, dependencies, site content/runtime, package version, tags, and publication remain unchanged.
+
+Review note, 2026-08-30: Issue #61 allows supported Node 24 patch releases from `24.18.0` up to (but not including) Node 25. Local `.nvmrc` selects Node major `24`, EdgeOne pins preinstalled Node `24.18.0`, and PR validation remains on reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
 
 Public documentation and downloadable data contracts for
 [TIDAS](https://tidas.tiangong.earth), the TianGong LCA Data System. The site is a
@@ -48,8 +51,9 @@ and `page.fr.mdx`. Metadata files use the equivalent `meta*.json` convention.
 
 ## Development
 
-Use the Node.js and pnpm versions declared by `.nvmrc`, `package.json`, and
-`edgeone.json`.
+Use Node `>=24.18.0 <25` and pnpm `11.24.0`. `.nvmrc` selects the current local
+Node 24 release, while `edgeone.json` independently pins EdgeOne's preinstalled
+Node `24.18.0` build runtime.
 
 ```bash
 pnpm install --frozen-lockfile

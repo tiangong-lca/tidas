@@ -53,30 +53,41 @@ test('rejects missing, nonexistent, and command-shell pnpm shims', () => {
   );
 });
 
-test('accepts only the exact repository toolchain versions', () => {
-  assert.deepEqual(
-    validateToolchainVersions({
-      node: '24.19.0',
-      pnpm: '11.24.0',
-      typescript: '7.0.2',
-    }),
-    [],
-  );
+test('accepts the supported Node 24 range with exact pnpm and TypeScript', () => {
+  for (const node of ['24.18.0', '24.19.0', '24.20.3']) {
+    assert.deepEqual(
+      validateToolchainVersions({
+        node,
+        pnpm: '11.24.0',
+        typescript: '7.0.2',
+      }),
+      [],
+      node,
+    );
+  }
   assert.deepEqual(EXPECTED_TOOLCHAIN_VERSIONS, {
-    node: '24.19.0',
+    node: '>=24.18.0 <25',
     pnpm: '11.24.0',
     typescript: '7.0.2',
   });
 });
 
+const validToolchainVersions = {
+  node: '24.19.0',
+  pnpm: '11.24.0',
+  typescript: '7.0.2',
+};
+
 for (const [tool, actual] of [
-  ['node', '24.18.0'],
+  ['node', '24.17.9'],
+  ['node', '25.0.0'],
+  ['node', '24'],
   ['pnpm', '11.23.0'],
   ['typescript', '6.9.0'],
   ['pnpm', 'unavailable'],
 ]) {
   test(`rejects ${tool} version ${actual}`, () => {
-    const versions = { ...EXPECTED_TOOLCHAIN_VERSIONS, [tool]: actual };
+    const versions = { ...validToolchainVersions, [tool]: actual };
     assert.deepEqual(validateToolchainVersions(versions), [
       `${tool} version mismatch: expected ${EXPECTED_TOOLCHAIN_VERSIONS[tool]}, got ${actual}`,
     ]);

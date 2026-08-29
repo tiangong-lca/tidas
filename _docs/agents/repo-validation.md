@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-26
-lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
-lastReviewedNote: "Reviewed for Issue #58 after toolchain proof advanced to exact pnpm 11.24.0 and retained the frozen-lock, full Node contract, local markdownlint, and immutable CI requirements."
+lastReviewedAt: 2026-08-30
+lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
+lastReviewedNote: "Reviewed for Issue #61 after Node proof was bounded to supported 24.x runtimes while EdgeOne, local selection, and PR CI retained explicit environment-specific selectors."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -42,6 +42,8 @@ related:
 Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 checks, full Node contracts, local markdownlint, and immutable CI setup required proof.
 
 Review note, 2026-08-26: Issue #58 requires exact pnpm 11.24.0 for the current toolchain proofs while retaining Node 24.19.0 and sole TypeScript 7.0.2. Toolchain validation also audits that pnpm 11.24.0 leaves the single root workspace lock byte-identical and that no npm/Yarn fallback, schema/generated drift, dependency, package-version, tag, or publication change appears.
+
+Review note, 2026-08-30: Issue #61 requires Node `>=24.18.0 <25`, exact pnpm `11.24.0`, and exact TypeScript `7.0.2`. Proof must accept EdgeOne's preinstalled Node `24.18.0` and newer Node 24 patches while rejecting older Node 24 releases, major-only runtime strings, and Node 25+.
 
 ## Default baseline
 
@@ -57,7 +59,7 @@ NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
 ```
 
-`pnpm build` runs the exact environment contract, all Node toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
+`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
 
 ## Change matrix
 
@@ -72,7 +74,7 @@ pnpm build
 | media | full build image gate plus light/dark browser inspection |
 | metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
-| toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require exact Node `24.19.0`, pnpm `11.24.0`, TypeScript `7.0.2`, and reviewed executable action commits |
+| toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require Node `>=24.18.0 <25`, exact pnpm `11.24.0`, exact TypeScript `7.0.2`, EdgeOne `24.18.0`, local `.nvmrc` major `24`, and reviewed executable action commits |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
 
 ## Static site gates

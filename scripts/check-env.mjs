@@ -9,16 +9,25 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const EXPECTED_TOOLCHAIN_VERSIONS = Object.freeze({
-  node: '24.19.0',
+  node: '>=24.18.0 <25',
   pnpm: '11.24.0',
   typescript: '7.0.2',
 });
+
+function isSupportedNodeVersion(value) {
+  const match = /^(\d+)\.(\d+)\.(\d+)$/u.exec(value);
+  if (!match) return false;
+
+  const [, major, minor, patch] = match.map(Number);
+  return major === 24 && (minor > 18 || (minor === 18 && patch >= 0));
+}
 
 export function validateToolchainVersions(versions) {
   const errors = [];
   for (const [tool, expected] of Object.entries(EXPECTED_TOOLCHAIN_VERSIONS)) {
     const actual = versions[tool] ?? 'unavailable';
-    if (actual !== expected) {
+    const matches = tool === 'node' ? isSupportedNodeVersion(actual) : actual === expected;
+    if (!matches) {
       errors.push(`${tool} version mismatch: expected ${expected}, got ${actual}`);
     }
   }
