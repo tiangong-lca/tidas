@@ -31,6 +31,7 @@ ownership:
     - id: public-spec-and-schema-surface
       paths:
         include:
+          - content/schema-inventory.json
           - content/docs/**
           - public/schemas/**
       ownerRepo: tidas
@@ -57,6 +58,7 @@ ownership:
           - public/logo-*.svg
           - scripts/build.mjs
           - scripts/check-env.mjs
+          - scripts/*.test.mjs
           - scripts/verify-out.mjs
           - scripts/verify-site.mjs
           - .github/workflows/publish-docs.yml
@@ -93,6 +95,7 @@ coverage:
     - components/**
     - lib/**
     - content/docs/**
+    - content/schema-inventory.json
     - public/**
     - scripts/**
   exclude:
@@ -122,6 +125,7 @@ routing:
         - content/docs/**
     schema-docs:
       paths:
+        - content/schema-inventory.json
         - content/docs/core-modules/schema/**
         - components/json-schema-viewer.tsx
         - public/schemas/**
@@ -132,6 +136,7 @@ routing:
         - content/docs/use-case/**
     published-schemas:
       paths:
+        - content/schema-inventory.json
         - public/schemas/**
     site-runtime:
       paths:
@@ -144,6 +149,7 @@ routing:
         - lib/**
         - scripts/build.mjs
         - scripts/check-env.mjs
+        - scripts/*.test.mjs
         - scripts/verify-out.mjs
         - scripts/verify-site.mjs
         - .github/workflows/publish-docs.yml
@@ -153,8 +159,10 @@ routing:
         - package.json
         - app/**
         - components/**
+        - content/schema-inventory.json
         - content/docs/**
         - public/schemas/**
+        - scripts/*.test.mjs
         - scripts/verify-*.mjs
         - .github/workflows/publish-docs.yml
     repo-docs:
@@ -220,6 +228,8 @@ rules:
     triggers:
       - path: content/docs/**
         kind: public-doc
+      - path: content/schema-inventory.json
+        kind: schema-inventory
       - path: public/schemas/**
         kind: published-schema
     requiredDocs:

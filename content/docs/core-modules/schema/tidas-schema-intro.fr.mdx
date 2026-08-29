@@ -2,33 +2,21 @@
 title: "Introduction"
 ---
 
-Le schéma TIDAS est un cadre de standardisation des données d'analyse du cycle de vie (ACV) basé sur JSON Schema, conçu pour améliorer la normalisation, l'interopérabilité et le potentiel d'application intelligente des données ACV. La structure de données TIDAS est entièrement alignée avec les normes ILCD (International Life Cycle Data system), préservant le système complet de préfixes utilisé dans le format XML ILCD pour permettre un mappage sans perte des fichiers XML ILCD.
+TIDAS Schema utilise JSON Schema pour décrire les objets de jeu de données, les vocabulaires de classification et les types partagés de l’analyse du cycle de vie (ACV). Il reprend des concepts et noms ILCD pertinents pour les flux JSON. La compatibilité d’un jeu de données avec ILCD/eILCD dépend toutefois du profil choisi, des valeurs des champs et des résultats de conversion et de validation. Une validation JSON Schema réussie ne prouve ni la conformité ILCD/eILCD ni une conversion aller-retour.
 
-Par rapport au format XML traditionnel utilisé par ILCD, TIDAS adopte une structure JSON qui offre des avantages significatifs en termes de simplicité, lisibilité, extensibilité et capacités d'intégration système. Ce design maintient la compatibilité avec les normes de données internationales existantes tout en facilitant l'interface avec l'infrastructure numérique moderne (tels que les systèmes blockchain, les espaces de données, les moteurs IA, etc.), améliorant ainsi la mobilité, l'intelligence et la fiabilité des données.
+> [Parcourir et télécharger les fichiers TIDAS JSON Schema publiés depuis le dépôt de ce site](https://github.com/tiangong-lca/tidas/tree/main/public/schemas)
 
-> 👉 [Parcourir et télécharger les fichiers **TIDAS** JSON Schema publiés depuis le dépôt de ce site](https://github.com/tiangong-lca/tidas/tree/main/public/schemas)
+<SchemaInventorySummary lang="fr" />
 
-## Caractéristiques techniques
+Le répertoire public contient 18 schémas de contrat logiques : 8 objets de jeu de données, 9 vocabulaires de classification et 1 fichier de types partagés. Une dix-neuvième ressource JSON est une projection dérivée de ces types pour l’explorateur. Elle sert uniquement à la présentation et ne doit pas être utilisée pour la validation ou une preuve de conformité. Un nom identique dans le verrouillage des outils ne garantit pas une parité structurelle ou octet par octet.
 
-- **Basé sur la spécification JSON Schema**
-  Utilise JSON Schema pour définir les types de champs, la hiérarchie structurelle et les contraintes, permettant une validation structurée et une analyse automatisée afin de faciliter le développement et l'intégration des systèmes.
+## Limite technique
 
-- **Architecture modulaire**
-  Le schéma est divisé en plusieurs modules logiques (17 au total), permettant une utilisation flexible et une extension rapide afin de répondre aux besoins de réutilisation dans divers scénarios d'application.
+- **Contrats structurels** : JSON Schema définit les types de champs, la hiérarchie, les références et les contraintes structurelles exécutables.
+- **Composition modulaire** : les schémas d’objets référencent les types partagés et les vocabulaires de classification ; les consommateurs doivent résoudre les références depuis le schéma racine choisi.
+- **Le diagnostic n’est pas la conformité** : `tidas validate --schema-only` exécute uniquement le diagnostic au niveau Schema et ne prouve pas la convertibilité eILCD. Une conclusion de conformité requiert l’exécution complète de `tidas validate` avec le profil applicable et, si un format d’échange est requis, un essai de conversion réel.
+- **Version observable** : les [`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) font autorité pour les publications. `tidas version --format json` permet d’inspecter la version binaire installée, les schémas de contrat et les empreintes des ressources intégrées.
 
-- **Support de validation multilingue**
-  À travers les mécanismes de validation JSON Schema universels, il peut être directement supporté par plusieurs langages de programmation et moteurs de validation, facilitant l'intégration et l'application à travers différents systèmes.
+## Étapes suivantes
 
-- **Diagnostics d'erreur détaillés**
-  La validation basée sur JSON Schema renvoie des informations d'erreur structurées, améliorant l'efficacité du débogage et assurant la qualité des données.
-
-- **Exigences de données renforcées**
-  Au-delà du mappage sans perte du format ILCD, le schéma TIDAS introduit des exigences de contenu supplémentaires provenant de normes comme EF (Environmental Footprint) et GLAD (Global LCA Data Access). Par exemple, rendre certains champs obligatoires améliore la complétude et l'échangeabilité des données. Les données satisfaisant le schéma JSON TIDAS respecteront intrinsèquement les spécifications ILCD de base, assurant davantage la reconnaissance internationale et la circulation des données.
-
-La CLI `tidas` v0.1.1 intègre et vérifie l'intégrité des ressources JSON Schema, XSD ILCD et XSLT requises pour la conversion et la validation. `tidas convert` matérialise les ressources cibles verrouillées dans son paquet de sortie, les utilisateurs n'ont donc pas besoin de télécharger des fichiers depuis les anciens répertoires source Python. Exécutez [`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1) pour inspecter les empreintes d'actifs et d'exécution.
-
-## Structure et utilisation des fichiers
-
-Le schéma TIDAS se compose de 17 fichiers de schéma JSON principaux, chacun décrivant un module de données spécifique. Pour plus de détails, voir [Structure de données (JSON Schema)](/fr/docs/core-modules/schema/schema-content/json-schema-contact/).
-
-Pour apprendre à utiliser JSON Schema pour la validation des données et la conversion de formats, consultez [Validation du schéma](/fr/docs/core-modules/schema/tidas-schema-validation/).
+Choisissez un objet racine dans la [Structure de données (JSON Schema)](/fr/docs/core-modules/schema/schema-content/json-schema-contact/), assemblez les données référencées, puis suivez la [Validation du schéma](/fr/docs/core-modules/schema/tidas-schema-validation/) pour le diagnostic Schema et la validation complète.

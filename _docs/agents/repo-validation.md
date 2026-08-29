@@ -19,9 +19,11 @@ checkPaths:
   - scripts/build.mjs
   - scripts/check-env.mjs
   - scripts/check-env.test.mjs
+  - scripts/content-contract.test.mjs
   - scripts/toolchain-contract.test.mjs
   - scripts/verify-out.mjs
   - scripts/verify-site.mjs
+  - content/schema-inventory.json
   - content/docs/**
   - public/schemas/**
   - app/**
@@ -61,7 +63,8 @@ pnpm build
 
 | Change | Required proof |
 | --- | --- |
-| prose or navigation | lint, full build, generated-link gate, spot-check affected locale pages |
+| prose or navigation | `pnpm test:content`, lint, full build, generated-link gate, spot-check affected locale pages |
+| section index or Schema inventory | `pnpm test:content`, full build, verify folder/index de-duplication in all locales, reconcile every public JSON asset and 8/9/1/1 roles, confirm the viewer projection is non-normative |
 | German or French translation | lint, full build, compare source meaning, verify no English body copy remains, inspect navigation and search in that locale |
 | site UI or responsive layout | baseline plus browser screenshots at 390, 1440, 1633, 2048, and 2560 widths, light and dark themes, keyboard focus, no horizontal overflow |
 | root or language behavior | visit `/` and all locale homes; switch from `/` to another language; verify there is no redirect and URLs remain within the current route model |
@@ -88,6 +91,8 @@ pnpm build
 - a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
 - the TIDAS identity, system-map signature, flat taxonomy-table markers, and gradient- and shadow-free custom CSS contract remain present.
 - all four documentation roots retain the TIDAS system-hub and system-matrix markers.
+
+`scripts/content-contract.test.mjs` checks the source-side contracts that must fail before static generation: substantive four-locale section indexes, `pagesIndex` de-duplication, page-tree-derived directories, responsive brand labels, complete Schema inventory coverage and role counts, viewer derivation boundaries, CLI release authority, and locale-preserving platform links.
 
 For the loaded taxonomy page, browser proof must also show:
 

@@ -2,7 +2,7 @@
 title: "Validation de schéma"
 ---
 
-Les structures de données TIDAS sont définies avec JSON Schema. Le point d'entrée de validation par lot supporté est `tidas validate` dans la CLI Rust unifiée. Il utilise les ressources de schéma JSON, XSD ILCD et de règles intégrées et vérifiées pour l'intégrité de la version 0.1.1 hors ligne, sans arborescence source externe ou environnement Python.
+Les structures de données TIDAS sont définies avec JSON Schema. Le point d’entrée de validation par lot pris en charge est `tidas validate` dans la CLI Rust unifiée. Il utilise hors ligne les ressources JSON Schema, XSD ILCD et de règles intégrées et vérifiées dans la version installée, sans arborescence source externe ni environnement Python. Enregistrez la version binaire et les empreintes réelles avec `tidas version --format json` ; les [`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) font autorité pour les publications.
 
 ---
 
@@ -22,6 +22,17 @@ tidas validate ./tidas-package \
 - `--format json` maintient stdout vers un rapport stable lisible par machine; les diagnostics et la progression utilisent stderr.
 
 - `--report <path>` persiste de manière atomique le rapport complet.
+
+### Exécuter uniquement le diagnostic Schema
+
+```bash
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --schema-only \
+  --format json
+```
+
+`--schema-only` vérifie uniquement la couche Schema. Il ignore les contrôles complets du paquet, des références et du profil de conversion ; il ne prouve donc pas la convertibilité eILCD et ne constitue pas une preuve complète de conformité.
 
 ## Valider un paquet XML ILCD
 

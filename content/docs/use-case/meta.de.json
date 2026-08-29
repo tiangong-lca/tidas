@@ -1,7 +1,7 @@
 {
   "title": "Anwendungsfälle",
+  "pagesIndex": "index",
   "pages": [
-    "index",
     "block-builder",
     "tidas-to-antchain"
   ]

@@ -1,4 +1,34 @@
 ---
-title: "核心模块"
-description: "TIDAS 的方法论、格式规范与数据资源模块。"
+title: "核心模块概览"
+description: "从 LCA 对象关系、合规层级和最小数据包路线理解 TIDAS。"
 ---
+
+TIDAS 把生命周期数据的语义、JSON 结构与可执行工具分层组织。本页先给出数据对象和合规边界，再引导读者进入具体 Schema。
+
+## LCA 对象关系
+
+- **Process** 通过 exchange 引用 **Flow**，表达生产系统的输入与输出。
+- **Flow** 通过 **Flow Property** 和 **Unit Group** 表达可比较的定量值。
+- **Location** 和各类 taxonomy 为地理、过程、流与方法提供稳定分类。
+- **Contact** 与 **Source** 支持责任归属、出处和可追溯性；**LCIA Method** 与 **Life Cycle Model** 承载影响评价和系统模型引用。
+
+<SchemaInventorySummary lang="zh" />
+
+## 合规层级
+
+1. JSON 可解析：文档语法有效。
+2. Schema 合规：字段、类型和局部约束通过 JSON Schema。
+3. 包与引用完整：目录、ID、版本和跨文档引用一致。
+4. 转换 profile 通过：按所声明版本的 Schema、XSD、XSLT 和规则资产验证可转换范围。
+5. LCA 质量适用：系统边界、代表性、分配和审核还需要方法学判断。
+
+> **规范边界：** 机器可执行边界由清单中标记为规范的 Schema，以及所选校验 profile 实际应用的锁定资产和规则组成。“规范”是该版本清单的角色声明；本站的导航、图示、案例和集成方案是说明性内容，不会自动扩展约束。
+
+## 最小数据包路线
+
+1. 从 [Process](/zh/docs/core-modules/schema/schema-content/json-schema-processes/) 建立主数据集。
+2. 补齐被引用的 Flow、Flow Property、Unit Group、Contact 和 Source。
+3. 使用 `tidas validate --schema-only` 进行结构诊断，再运行完整 `tidas validate` 检查包级和引用约束。
+4. 用 `tidas version --format json` 记录实际使用的合同、资产和运行时指纹。
+
+<CategoryDirectory lang="zh" path="core-modules" />

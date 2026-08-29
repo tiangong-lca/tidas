@@ -1,7 +1,7 @@
 {
   "title": "应用案例",
+  "pagesIndex": "index",
   "pages": [
-    "index",
     "block-builder",
     "tidas-to-antchain"
   ]

@@ -34,7 +34,7 @@ test('pins one exact Node, pnpm, TypeScript, and markdownlint toolchain', () => 
   );
   assert.equal(
     packageJson.scripts.test,
-    'node --test scripts/check-env.test.mjs scripts/toolchain-contract.test.mjs',
+    'node --test scripts/check-env.test.mjs scripts/content-contract.test.mjs scripts/toolchain-contract.test.mjs',
   );
 });
 

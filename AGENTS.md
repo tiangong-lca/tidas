@@ -25,6 +25,7 @@ checkPaths:
   - app/**
   - components/**
   - lib/**
+  - content/schema-inventory.json
   - content/docs/**
   - public/schemas/**
   - scripts/**
@@ -82,10 +83,12 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - Locale homepages use `/{lang}/` for `zh`, `en`, `de`, and `fr`.
 - Documentation uses `/{lang}/docs/...`.
 - `/{lang}/docs/` is a system-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. Its governed markers are `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"`.
+- Section roots such as `/{lang}/docs/core-modules/` are substantive folder indexes. Their localized `meta*.json` files use `pagesIndex: "index"` and omit `index` from `pages`, while `CategoryDirectory` derives child cards from the Fumadocs page tree so the folder and its index are not duplicated in navigation.
 - First-party document links use locale-absolute `/{lang}/docs/**/` targets. Path-relative document links are forbidden because trailing-slash pages resolve them below the current page directory.
 - All four locales are independent content sources with no fallback language.
 - `content/docs/**` uses dot-locale files: `page.mdx`, `page.en.mdx`, `page.de.mdx`, and `page.fr.mdx`.
 - `public/schemas/**` is the downloadable Schema surface. Large schemas are fetched by the client only when a reader opens the explorer; they must not be serialized into page HTML.
+- `content/schema-inventory.json` is the machine-readable count and role authority for the 19 published JSON assets: 8 dataset objects, 9 classification vocabularies, 1 shared-types contract, and 1 derived non-normative viewer projection. Matching the `tidas-tools` lock by file name does not assert structural or byte-for-byte parity.
 - `out/**` is generated static output and never an authority source.
 
 This is a greenfield URL model. Do not add redirects, aliases, or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
@@ -119,10 +122,12 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
 - Search results must stay locale-scoped and bounded in the UI.
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
+- Public Schema counts and role summaries must derive from `content/schema-inventory.json`. The viewer projection is presentation-only and must never be described or used as a validation Schema or conformance proof.
 - Schema taxonomies render as a flat native table whose name column alone carries hierarchy indentation; identifier and child-count columns remain aligned across levels.
 - Taxonomy branch controls expose expansion state, leaf rows are not buttons, and the governed `data-schema-taxonomy`, `data-taxonomy-row`, `data-taxonomy-id`, and `data-taxonomy-label` markers remain available to browser proof.
 - Do not render more than 50 taxonomy search results or eagerly materialize an unbounded taxonomy tree.
 - Public branding names TIDAS as the TianGong Data System. The Schema specification is one system layer, not the product subtitle.
+- Constrained documentation navigation displays the explicit compact label `TIDAS`; the complete `TIDAS — TianGong Data System` accessible name remains available and branding must not degrade to a partial ellipsis.
 - Light and dark media variants must reference files that exist; use one asset in both themes when no dark variant exists.
 - Raw `<a>` and `<p>` elements are not allowed in public MDX because they bypass component mappings and can create invalid nested HTML.
 - German and French pages must contain genuine translations, not English body copies labeled as localized content.

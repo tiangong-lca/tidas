@@ -4,8 +4,11 @@ title: "Schema Validation"
 
 TIDAS data structures are defined with JSON Schema. The supported batch
 validation entry point is `tidas validate` in the unified Rust CLI. It uses the
-integrity-locked JSON Schema, ILCD XSD, and rules assets packaged with v0.1.1
-offline, without an external source tree or Python environment.
+integrity-locked JSON Schema, ILCD XSD, and rules assets embedded in the installed
+version, without an external source tree or Python environment. Record the actual
+binary and asset fingerprints with `tidas version --format json`; use
+[`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest)
+as the release authority.
 
 ---
 
@@ -25,6 +28,19 @@ tidas validate ./tidas-package \
 - `--format json` keeps stdout to a stable machine-readable report; diagnostics and progress use stderr.
 
 - `--report <path>` atomically persists the complete report.
+
+### Run Schema diagnostics only
+
+```bash
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --schema-only \
+  --format json
+```
+
+`--schema-only` checks the Schema layer only. It skips full package, reference,
+and conversion-profile checks, so it does not prove eILCD convertibility and is
+not complete conformance evidence.
 
 ## Validate an ILCD XML package
 

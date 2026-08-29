@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "semantics": {
+    "contractSchemas": "Assets marked normative are the 18 public validation contracts designated by this inventory.",
+    "sourceAlignment": "Their file-name set matches the 18 logical entries in the tidas-tools schema lock; structural or byte-for-byte equivalence is not implied.",
+    "viewerProjection": "The viewer projection is derived, non-normative, and must not be used for validation or conformance claims."
+  },
+  "counts": {
+    "publishedAssets": 19,
+    "contractSchemas": 18,
+    "datasetObjects": 8,
+    "classificationVocabularies": 9,
+    "sharedTypes": 1,
+    "viewerProjections": 1,
+    "derivedAssets": 1
+  },
+  "assets": [
+    {
+      "file": "tidas_contacts.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-contact"
+    },
+    {
+      "file": "tidas_contacts_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-contact"
+    },
+    {
+      "file": "tidas_data_types.json",
+      "role": "shared-types",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-datatype"
+    },
+    {
+      "file": "tidas_data_types_viewer.json",
+      "role": "viewer-projection",
+      "normative": false,
+      "derivation": {
+        "kind": "viewer-projection",
+        "source": "tidas_data_types.json"
+      },
+      "docsPath": "core-modules/schema/schema-content/json-schema-datatype"
+    },
+    {
+      "file": "tidas_flowproperties.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-flowproperty"
+    },
+    {
+      "file": "tidas_flowproperties_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-flowproperty"
+    },
+    {
+      "file": "tidas_flows.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-flows"
+    },
+    {
+      "file": "tidas_flows_elementary_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-flows"
+    },
+    {
+      "file": "tidas_flows_product_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-flows"
+    },
+    {
+      "file": "tidas_lciamethods.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-lciamethods"
+    },
+    {
+      "file": "tidas_lciamethods_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-lciamethods"
+    },
+    {
+      "file": "tidas_lifecyclemodels.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-model"
+    },
+    {
+      "file": "tidas_locations_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-processes"
+    },
+    {
+      "file": "tidas_processes.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-processes"
+    },
+    {
+      "file": "tidas_processes_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-processes"
+    },
+    {
+      "file": "tidas_sources.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-source"
+    },
+    {
+      "file": "tidas_sources_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-source"
+    },
+    {
+      "file": "tidas_unitgroups.json",
+      "role": "dataset-object",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-unitgroup"
+    },
+    {
+      "file": "tidas_unitgroups_category.json",
+      "role": "classification-vocabulary",
+      "normative": true,
+      "derivation": { "kind": "none-declared" },
+      "docsPath": "core-modules/schema/schema-content/json-schema-unitgroup"
+    }
+  ]
+}

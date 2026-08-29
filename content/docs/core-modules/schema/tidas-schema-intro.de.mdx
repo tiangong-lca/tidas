@@ -2,38 +2,21 @@
 title: "Einführung"
 ---
 
-Das TIDAS-Schema ist ein auf JSON Schema basierender Standardrahmen für Ökobilanzdaten (LCA). Es verbessert Standardisierung, Interoperabilität und die Eignung für intelligente Anwendungen. Die TIDAS-Datenstruktur ist vollständig auf ILCD (International Life Cycle Data System) abgestimmt und bewahrt das Präfixsystem des ILCD-XML-Formats, sodass sich ILCD-XML-Dateien verlustfrei abbilden lassen.
+TIDAS Schema beschreibt mit JSON Schema Datensatzobjekte, Klassifikationsvokabulare und gemeinsame Typen für Ökobilanzdaten (LCA). Es übernimmt relevante ILCD-Konzepte und -Bezeichnungen für JSON-Arbeitsabläufe. Ob konkrete Daten mit ILCD/eILCD kompatibel sind, hängt weiterhin vom gewählten Profil, den Feldwerten sowie den Ergebnissen von Konvertierung und Validierung ab. Eine bestandene JSON-Schema-Prüfung allein belegt weder ILCD/eILCD-Konformität noch eine Rundlaufkonvertierung.
 
-Im Vergleich zum traditionellen ILCD-XML nutzt TIDAS eine JSON-Struktur. Sie ist einfacher, besser lesbar und erweiterbar und lässt sich leichter integrieren. Die Kompatibilität mit internationalen Datenstandards bleibt erhalten, während moderne Infrastrukturen wie Blockchains, Datenräume und KI-Systeme einfacher angebunden werden können. Das erhöht Mobilität, intelligente Nutzbarkeit und Vertrauenswürdigkeit der Daten.
+> [Die veröffentlichten TIDAS-JSON-Schema-Dateien im Repository ansehen und herunterladen](https://github.com/tiangong-lca/tidas/tree/main/public/schemas)
 
-> 👉 [Die veröffentlichten **TIDAS**-JSON-Schema-Dateien im Repository ansehen und herunterladen](https://github.com/tiangong-lca/tidas/tree/main/public/schemas)
+<SchemaInventorySummary lang="de" />
 
-## Technische Merkmale
+Das öffentliche Verzeichnis enthält 18 logische Vertrags-Schemas: 8 Datensatzobjekte, 9 Klassifikationsvokabulare und 1 Datei für gemeinsame Typen. Ein neunzehntes JSON-Asset ist eine aus den gemeinsamen Typen abgeleitete Viewer-Projektion. Sie dient nur der Darstellung und darf nicht zur Validierung oder als Konformitätsnachweis verwendet werden. Ein gleicher Dateiname im Tool-Lock belegt keine strukturelle oder bytegenaue Gleichheit.
 
-- **Auf JSON Schema aufgebaut**
-  Feldtypen, Strukturhierarchien und Einschränkungen werden mit JSON Schema definiert. Das ermöglicht strukturierte Prüfungen und automatisches Einlesen und erleichtert Entwicklung sowie Systemintegration.
+## Technische Abgrenzung
 
-- **Modulare Architektur**
-  Das Schema ist in 17 logische Module gegliedert. Sie lassen sich flexibel verwenden und erweitern und in unterschiedlichen Anwendungsszenarien wiederverwenden.
+- **Strukturverträge**: JSON Schema definiert Feldtypen, Hierarchie, Referenzen und maschinell prüfbare Strukturregeln.
+- **Modulare Zusammensetzung**: Objektschemas referenzieren gemeinsame Typen und Klassifikationsvokabulare; Verbraucher sollten Referenzen vom gewählten Wurzelobjekt aus auflösen.
+- **Diagnose ist keine Konformität**: `tidas validate --schema-only` führt nur eine Diagnose auf Schema-Ebene aus und belegt keine eILCD-Konvertierbarkeit. Für eine Konformitätsaussage sind die vollständige Ausführung von `tidas validate` mit dem zutreffenden Profil und bei Bedarf eine tatsächliche Konvertierungsprüfung erforderlich.
+- **Nachvollziehbare Version**: Maßgeblich sind die [`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest). Mit `tidas version --format json` lassen sich installierte Binärversion, Vertrags-Schemas und Fingerabdrücke eingebetteter Assets prüfen.
 
-- **Sprachunabhängige Validierung**
-  Allgemeine JSON-Schema-Mechanismen werden von vielen Programmiersprachen und Prüf-Engines unterstützt und erleichtern die systemübergreifende Integration.
+## Nächste Schritte
 
-- **Detaillierte Fehlerdiagnose**
-  Die Validierung liefert strukturierte Fehlerinformationen. Das beschleunigt die Fehlersuche und schützt die Datenqualität.
-
-- **Erweiterte Datenanforderungen**
-  Neben der verlustfreien ILCD-Abbildung übernimmt TIDAS zusätzliche Inhaltsanforderungen aus Standards wie EF (Environmental Footprint) und GLAD (Global LCA Data Access). Pflichtfelder verbessern beispielsweise Vollständigkeit und Austauschbarkeit. Daten, die dem TIDAS-JSON-Schema entsprechen, erfüllen zugleich die grundlegenden ILCD-Vorgaben und unterstützen damit internationale Anerkennung und Datenaustausch.
-
-Die `tidas`-CLI v0.1.1 enthält die für Konvertierung und Validierung benötigten
-JSON-Schema-, ILCD-XSD- und XSLT-Assets und prüft deren Integrität. `tidas convert`
-legt die gesperrten Ziel-Assets im Ausgabepaket ab; Dateien aus früheren
-Python-Quellverzeichnissen müssen nicht heruntergeladen werden. Mit
-[`tidas version --format json`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)
-lassen sich Asset- und Laufzeitfingerabdrücke prüfen.
-
-## Dateistruktur und Verwendung
-
-Das TIDAS-Schema besteht aus 17 zentralen JSON-Schema-Dateien, die jeweils ein Datenmodul beschreiben. Einzelheiten finden Sie unter [Datenstruktur (JSON Schema)](/de/docs/core-modules/schema/schema-content/json-schema-contact/).
-
-Die Verwendung für Datenprüfung und Formatkonvertierung beschreibt die Seite [Schema-Validierung](/de/docs/core-modules/schema/tidas-schema-validation/).
+Wählen Sie unter [Datenstruktur (JSON Schema)](/de/docs/core-modules/schema/schema-content/json-schema-contact/) ein Wurzelobjekt, stellen Sie die referenzierten Daten zusammen und folgen Sie anschließend der [Schema-Validierung](/de/docs/core-modules/schema/tidas-schema-validation/) für Schema-Diagnose und vollständige Prüfung.

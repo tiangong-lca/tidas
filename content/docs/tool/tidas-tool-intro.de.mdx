@@ -3,21 +3,51 @@ title: "Einheitliche TIDAS-CLI"
 ---
 
 Die TIDAS-Kommandozeilenwerkzeuge werden als eine plattformübergreifende,
-in Rust entwickelte ausführbare Datei namens `tidas` bereitgestellt. Die aktuelle
-stabile Version ist [`v0.1.1`](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1).
-Zur Laufzeit sind weder Python, Java, Node.js, Homebrew noch vcpkg erforderlich.
+in Rust entwickelte ausführbare Datei namens `tidas` bereitgestellt. Diese
+Website beschreibt die stabilen Befehlssemantiken. Maßgeblich für Versionen,
+Plattformarchive, Prüfsummen und Installationsvoraussetzungen ist die
+[neueste GitHub-Veröffentlichung](https://github.com/tiangong-lca/tidas-tools/releases/latest),
+damit keine kopierte Versionsnummer von der tatsächlichen Veröffentlichung abweicht.
 
 ---
 
-## 🔍 Befehlsübersicht
+## 🚀 Veröffentlichung beziehen und prüfen
+
+Endanwender wählen in der neuesten Veröffentlichung das vorgefertigte Archiv für
+ihr Betriebssystem und ihre Architektur und prüfen es mit den `SHA256SUMS`
+derselben Veröffentlichung. Eine beigefügte Homebrew-Formel oder ein
+Winget-Manifest beschreibt das zugehörige Archiv und dessen Hash; ob ein externer
+Tap oder ein Winget-Community-Paket verfügbar ist, steht in den Release Notes.
+
+Wer aus crates.io installiert, prüft zuerst die dort genannten Anforderungen an
+Rust und native Abhängigkeiten und verwendet dann die in Releases ausgewählte Version:
+
+```bash
+# Version aus Releases/latest kopieren und ein führendes v gegebenenfalls entfernen.
+TIDAS_VERSION="<release-version>"
+cargo install tidas --version "$TIDAS_VERSION" --locked
+```
+
+Nach der Installation sollte die Version nicht aus einem Archivnamen abgeleitet
+werden. Stattdessen werden die tatsächlich aufgerufene Binärdatei und die
+Fingerabdrücke ihrer eingebetteten Assets geprüft:
+
+```bash
+tidas version --format json
+```
+
+Diese Ausgabe ist der bevorzugte Nachweis für die wirksamen CLI- und
+Vertragsversionen sowie die Fingerabdrücke von JSON Schema, XSD, XSLT und Methodik.
+
+## 🔍 Sieben einheitliche Unterbefehle
+
+- `tidas convert` konvertiert zwischen unterstützten TIDAS-JSON- und eILCD-XML-Pfaden.
+
+- `tidas import` überführt unterstützte EcoSpold-, SimaPro-, openLCA- oder ILCD-Quellen in den einheitlichen Ablauf.
+
+- `tidas export` erzeugt deterministische TIDAS-/ILCD-ZIP-Dateien aus Datenbankeinträgen und optionalem Objektspeicher.
 
 - `tidas validate` prüft TIDAS-JSON oder ILCD-XML offline und kann einen deterministischen JSONL-Problemstrom schreiben.
-
-- `tidas convert` konvertiert in beide Richtungen zwischen TIDAS-JSON und eILCD-XML.
-
-- `tidas import` importiert EcoSpold 1/2, SimaPro CSV, openLCA JSON-LD, openLCA Process XLSX oder ILCD.
-
-- `tidas export` erzeugt aus Datenbankeinträgen und optionalem Objektspeicher ein deterministisches TIDAS-/ILCD-ZIP.
 
 - `tidas release` prüft und konvertiert Daten und erstellt reproduzierbare Veröffentlichungspakete.
 
@@ -25,95 +55,63 @@ Zur Laufzeit sind weder Python, Java, Node.js, Homebrew noch vcpkg erforderlich.
 
 - `tidas version` gibt Fingerabdrücke von Binärdatei, Vertrag, Assets und Laufzeit aus.
 
-Alle Produktbefehle sind in Rust implementiert und unterstützen Optionen für die
-Automatisierung, darunter `--format json`, `--report` sowie begrenzbare Speicher-
-und Warteschlangensteuerungen.
+Für die aktuellen Optionen ist `tidas <command> --help` maßgeblich. In der
+Automatisierung sollten die vom jeweiligen Befehl unterstützten strukturierten
+Ausgaben, Berichtsdateien und Ressourcengrenzen verwendet werden.
 
----
+## ✅ Validierungsstufen verstehen
 
-## 🚀 Version 0.1.1 installieren
-
-Für Endanwender werden die vorgefertigten Archive der GitHub-Veröffentlichung
-empfohlen. Unterstützt werden Linux x86_64/ARM64, macOS auf Intel/Apple Silicon
-und Windows x86_64. Windows ARM64 wird nicht unterstützt.
-
-macOS/Linux:
+`--schema-only` ist lediglich eine strukturelle Schema-Diagnose. Die Option ist
+keine vollständige Konsistenzprüfung und beweist nicht, dass sich ein Datensatz
+in eILCD konvertieren lässt. Vor der Auslieferung ist das normale `validate`
+auszuführen; verlangt der Zielablauf eILCD, muss zusätzlich der passende
+Konvertierungspfad erprobt werden:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -fsSLO \
-  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.sh
-sh install.sh --version 0.1.1 --prefix "$HOME/.local"
-```
-
-Windows PowerShell:
-
-```powershell
-Invoke-WebRequest `
-  https://github.com/tiangong-lca/tidas-tools/releases/download/v0.1.1/install.ps1 `
-  -OutFile install.ps1
-.\install.ps1 -Version 0.1.1
-```
-
-Die Installationsskripte wählen das passende Plattformarchiv und prüfen dessen
-SHA-256-Prüfsumme. Archiv und `SHA256SUMS` können auch direkt aus der
-[Veröffentlichung v0.1.1](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.1.1)
-geladen werden. Die beigefügte Homebrew-Formel und die Winget-Manifeste binden
-dieselben Archiv-Hashes; daraus folgt jedoch nicht, dass bereits ein externer
-Tap oder eine Winget-Community-Einreichung verfügbar ist.
-
-Entwickler mit Rust 1.88+ und den plattformspezifischen
-libxml2-/libxslt-Entwicklungsabhängigkeiten können über crates.io installieren:
-
-```bash
-cargo install tidas --version 0.1.1 --locked
-```
-
-## ⚡ Kurze Beispiele
-
-```bash
-tidas version --format json
+tidas validate ./tidas-package --schema-only --format json
 tidas validate ./tidas-package --issues ./issues.jsonl --format json
 tidas convert ./tidas-package --output ./eilcd-package --to ilcd --format json
+```
+
+Weitere häufige Einstiegspunkte sind:
+
+```bash
 tidas convert ./eilcd-data --output ./tidas-package --to tidas --format json
 tidas import ./database.zip --output ./imported --target both --format json
 ```
 
-Die CLI enthält die benötigten JSON-Schema-, XSD-, XSLT- und Methodik-Assets und
-prüft deren Integrität. Bei normaler Verwendung müssen keine Assets aus alten
-Quellverzeichnissen kopiert werden. Die Konvertierung legt die gesperrten
-Ziel-Assets im Ausgabepaket ab.
+Die CLI enthält die zur Laufzeit benötigten JSON-Schema-, XSD-, XSLT- und
+Methodik-Assets und prüft deren Integrität. Bei normaler Verwendung müssen daher
+keine Assets aus alten Quellverzeichnissen kopiert werden. Für Audit und
+Reproduktion sollte die Fingerprint-Ausgabe von `tidas version --format json`
+aufbewahrt werden.
 
 ## Von früheren Befehlen migrieren
 
 Die früheren Einzelprogramme und das Argumentlayout des Python-Pakets sind nicht
 mehr der von dieser Dokumentation unterstützte Weg:
 
-| Früherer Einstiegspunkt | Einstiegspunkt in v0.1.1 |
+| Früherer Einstiegspunkt | Einstiegspunkt der einheitlichen CLI |
 | --- | --- |
 | `tidas-validate` / `validation.py` | `tidas validate` |
 | `tidas-convert` | `tidas convert` |
 | `tidas-import` | `tidas import` |
 | `tidas-export` | `tidas export` |
 
-Auch das Argumentlayout hat sich geändert. Eingaben sind meist positionsgebunden,
-Ausgaben verwenden `--output`, und die Konvertierungsrichtung wird mit
-`--to ilcd|tidas` festgelegt. Prüfen Sie vor der Migration einer Automatisierung
-`tidas <command> --help`, statt alte Optionen unverändert zu übernehmen.
+Eingaben sind meist positionsgebunden, Ausgaben verwenden `--output`, und die
+Konvertierungsrichtung wird mit `--to ilcd|tidas` festgelegt. Vor der Migration
+jeden Schritts ist `tidas <command> --help` zu prüfen, statt alte Optionen zu übernehmen.
 
 ---
 
 ## 📬 Hilfe und Mitarbeit
 
-Entwickler und Datennutzende sind eingeladen, die Werkzeuge gemeinsam zu verbessern:
-
 - 📚 Quellcode und vollständige CLI-Dokumentation: [tidas-tools-Repository](https://github.com/tiangong-lca/tidas-tools)
 
 - 📌 Fragen und Funktionswünsche: [Issue erstellen](https://github.com/tiangong-lca/tidas-tools/issues)
 
-- 📦 Veröffentlichte Versionen: [GitHub Releases](https://github.com/tiangong-lca/tidas-tools/releases)
+- 📦 Maßgebliche Veröffentlichungshistorie: [GitHub Releases](https://github.com/tiangong-lca/tidas-tools/releases)
 
----
-
-**Über TIDAS:**
-TIDAS ist ein offenes LCA-Datensystem des TianGong-Projekts mit hoher Erweiterbarkeit und Schnittstellen für KI-gestützte Datenverarbeitung.
-👉 [TIDAS-Architektur kennenlernen](/de/docs/core-modules/schema/tidas-schema-intro/)
+TIDAS ist ein offenes LCA-Datensystem des TianGong-Projekts. Die Abgrenzung
+zwischen Datenvertrag und Werkzeugen erläutert die
+[TIDAS-Architektur](/de/docs/core-modules/schema/tidas-schema-intro/).

@@ -18,6 +18,7 @@ checkPaths:
   - edgeone.json
   - app/**
   - components/**
+  - content/schema-inventory.json
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
@@ -88,6 +89,12 @@ Documentation pages pass a public URL to `JsonSchemaViewer`; the browser fetches
 the file only after the reader opens the explorer. Large classification schemas
 therefore do not inflate static HTML.
 
+`content/schema-inventory.json` is the machine-readable authority for published
+asset counts and roles. It distinguishes dataset objects, classification
+vocabularies, shared types, and the derived non-normative viewer projection;
+matching tool-side file names does not imply that the public files are an
+automatic mirror.
+
 The explorer presents root classification `oneOf` data in a searchable flat
 table. Hierarchy is carried by the category-name cell while identifier and
 child-count columns remain aligned. Ordinary schemas use a lazy structure table
@@ -104,7 +111,8 @@ upload or deploy the built site.
 ```text
 app/             locale routes and generated search/crawler/sharing endpoints
 components/      TianGong Data System UI, search, media, MDX, and Schema explorer
-content/docs/    four-language public documentation
+content/docs/    four-language public documentation and localized section indexes
+content/schema-inventory.json  published Schema asset roles and count authority
 lib/             content loader, i18n, navigation, and metadata policy
 public/          downloadable schemas, images, assets, and brand files
 scripts/         build, output/site verification, and Docpact wrappers

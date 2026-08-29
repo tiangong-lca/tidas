@@ -3,8 +3,10 @@ title: "Schema 校验方法"
 ---
 
 TIDAS 数据结构基于 JSON Schema 定义。正式的批量校验入口是统一 Rust
-CLI 的 `tidas validate`，它离线使用随 v0.1.1 二进制发布且经过完整性校验的
-JSON Schema、ILCD XSD 和规则资源，不依赖外部源码目录或 Python 环境。
+CLI 的 `tidas validate`。它离线使用当前安装版本内嵌且经过完整性校验的
+JSON Schema、ILCD XSD 和规则资源，不依赖外部源码目录或 Python 环境。用
+`tidas version --format json` 记录实际二进制版本和资产指纹；发布信息以
+[`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) 为准。
 
 ---
 
@@ -24,6 +26,18 @@ tidas validate ./tidas-package \
 - `--format json` 只在 stdout 输出稳定的机器可读报告；诊断和进度使用 stderr。
 
 - `--report <path>` 可把完整报告原子写入文件。
+
+### 仅做 Schema 诊断
+
+```bash
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --schema-only \
+  --format json
+```
+
+`--schema-only` 只检查 Schema 层，不执行完整包、引用或转换 profile 检查，
+因此不能证明数据可转换为 eILCD，也不能作为完整符合性证据。
 
 ## 验证 ILCD XML 包
 
