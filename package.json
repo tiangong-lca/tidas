@@ -14,9 +14,10 @@
     "check:env": "node scripts/check-env.mjs",
     "verify:out": "node scripts/verify-out.mjs",
     "verify:site": "node scripts/verify-site.mjs",
-    "test": "node --test scripts/check-env.test.mjs scripts/toolchain-contract.test.mjs",
+    "test": "node --test scripts/check-env.test.mjs scripts/content-contract.test.mjs scripts/toolchain-contract.test.mjs",
     "test:env": "node --test scripts/check-env.test.mjs",
     "test:toolchain": "node --test scripts/toolchain-contract.test.mjs",
+    "test:content": "node --test scripts/content-contract.test.mjs",
     "lint": "pnpm exec markdownlint-cli2 '**/*.md' '**/*.mdx' '#node_modules' '#content/docs/.source'"
   },
   "dependencies": {

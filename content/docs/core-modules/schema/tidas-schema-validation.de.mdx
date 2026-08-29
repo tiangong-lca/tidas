@@ -4,8 +4,11 @@ title: "Schema-Validierung"
 
 TIDAS-Datenstrukturen werden mit JSON Schema definiert. Für Stapelprüfungen dient
 `tidas validate` in der einheitlichen Rust-CLI. Der Befehl verwendet offline die
-in v0.1.1 enthaltenen, integritätsgesicherten JSON-Schema-, ILCD-XSD- und
-Regel-Assets; ein externer Quellbaum oder eine Python-Umgebung sind nicht nötig.
+in der installierten Version eingebetteten, integritätsgesicherten JSON-Schema-,
+ILCD-XSD- und Regel-Assets; ein externer Quellbaum oder eine Python-Umgebung sind
+nicht nötig. Erfassen Sie die tatsächliche Binärversion und die Asset-Fingerabdrücke
+mit `tidas version --format json`; maßgeblich sind die
+[`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest).
 
 ---
 
@@ -25,6 +28,19 @@ tidas validate ./tidas-package \
 - `--format json` beschränkt stdout auf einen stabilen maschinenlesbaren Bericht; Diagnose und Fortschritt werden über stderr ausgegeben.
 
 - `--report <path>` speichert den vollständigen Bericht atomar.
+
+### Nur Schema-Diagnose ausführen
+
+```bash
+tidas validate ./tidas-package \
+  --input-format tidas-json \
+  --schema-only \
+  --format json
+```
+
+`--schema-only` prüft nur die Schema-Ebene. Vollständige Paket-, Referenz- und
+Konvertierungsprofilprüfungen entfallen; der Befehl belegt daher weder die
+eILCD-Konvertierbarkeit noch eine vollständige Konformität.
 
 ## ILCD-XML-Paket validieren
 

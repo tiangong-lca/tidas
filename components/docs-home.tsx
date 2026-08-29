@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Card, Cards } from 'fumadocs-ui/components/card';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
+import schemaInventory from '@/content/schema-inventory.json';
 import { baseOptions } from '@/lib/layout.shared';
 
 type Language = 'zh' | 'en' | 'de' | 'fr';
@@ -39,14 +40,14 @@ const copy: Record<Language, HomeCopy> = {
     title: '连接方法、结构与数据，构建生命周期数据系统',
     titleParts: ['连接方法、结构', '与数据，', '构建', '生命周期数据系统'],
     description:
-      'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、无损转换和系统集成基础。',
+      'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、版本化转换和系统集成基础。',
     primary: '了解系统架构',
     secondary: '浏览 JSON Schema',
     systemLabel: 'TIDAS 由方法论、数据结构和数据资源三层组成，并支持校验、转换、发布与集成。',
     systemTitle: '系统组成',
     layers: [
       { code: 'METHOD', title: '方法论', description: '定义数据如何生产、验证与维护' },
-      { code: 'FORMAT', title: '数据结构', description: '17 个 JSON Schema 描述字段、约束与引用' },
+      { code: 'FORMAT', title: '数据结构', description: `${schemaInventory.counts.contractSchemas} 个逻辑合同 Schema 描述字段、约束与引用` },
       { code: 'DATA', title: '数据资源', description: '参考分类与基础数据支持一致交换' },
     ],
     capabilitiesLabel: '系统能力',
@@ -68,14 +69,14 @@ const copy: Record<Language, HomeCopy> = {
     eyebrow: 'TIDAS · TianGong Data System',
     title: 'A life cycle data system connecting methods, structures, and data',
     description:
-      'TIDAS combines data-production methods, JSON Schema, and open data resources into a common foundation for LCA and carbon-footprint modelling, validation, lossless conversion, and system integration.',
+      'TIDAS combines data-production methods, JSON Schema, and open data resources into a common foundation for LCA and carbon-footprint modelling, validation, versioned conversion, and system integration.',
     primary: 'Understand the system',
     secondary: 'Explore JSON Schema',
     systemLabel: 'TIDAS combines methodology, data structures, and data resources, with capabilities for validation, conversion, publication, and integration.',
     systemTitle: 'System composition',
     layers: [
       { code: 'METHOD', title: 'Methodology', description: 'How data is produced, reviewed, and maintained' },
-      { code: 'FORMAT', title: 'Data structure', description: '17 JSON Schemas define fields, constraints, and references' },
+      { code: 'FORMAT', title: 'Data structure', description: `${schemaInventory.counts.contractSchemas} logical contract Schemas define fields, constraints, and references` },
       { code: 'DATA', title: 'Data resources', description: 'Reference classifications and data support consistent exchange' },
     ],
     capabilitiesLabel: 'System capabilities',
@@ -97,14 +98,14 @@ const copy: Record<Language, HomeCopy> = {
     eyebrow: 'TIDAS · TianGong Data System',
     title: 'Ein System für Lebenszyklusdaten, das Methoden, Strukturen und Daten verbindet',
     description:
-      'TIDAS vereint Methoden zur Datenerstellung, JSON-Schemas und offene Datenressourcen zu einer gemeinsamen Grundlage für Modellierung, Prüfung, verlustfreie Konvertierung und Systemintegration von Ökobilanz- und CO₂-Fußabdruckdaten.',
+      'TIDAS vereint Methoden zur Datenerstellung, JSON-Schemas und offene Datenressourcen zu einer gemeinsamen Grundlage für Modellierung, Prüfung, versionierte Konvertierung und Systemintegration von Ökobilanz- und CO₂-Fußabdruckdaten.',
     primary: 'Systemarchitektur verstehen',
     secondary: 'JSON Schema erkunden',
     systemLabel: 'TIDAS verbindet Methodik, Datenstrukturen und Datenressourcen mit Funktionen für Prüfung, Konvertierung, Veröffentlichung und Integration.',
     systemTitle: 'Systemaufbau',
     layers: [
       { code: 'METHOD', title: 'Methodik', description: 'Wie Daten erstellt, geprüft und gepflegt werden' },
-      { code: 'FORMAT', title: 'Datenstruktur', description: '17 JSON-Schemas definieren Felder, Regeln und Referenzen' },
+      { code: 'FORMAT', title: 'Datenstruktur', description: `${schemaInventory.counts.contractSchemas} logische Vertrags-Schemas definieren Felder, Regeln und Referenzen` },
       { code: 'DATA', title: 'Datenressourcen', description: 'Referenzklassifikationen und Daten sichern konsistenten Austausch' },
     ],
     capabilitiesLabel: 'Systemfunktionen',
@@ -126,14 +127,14 @@ const copy: Record<Language, HomeCopy> = {
     eyebrow: 'TIDAS · TianGong Data System',
     title: 'Un système de données de cycle de vie reliant méthodes, structures et données',
     description:
-      'TIDAS réunit les méthodes de production, JSON Schema et des ressources de données ouvertes dans un socle commun pour la modélisation ACV et empreinte carbone, la validation, la conversion sans perte et l’intégration de systèmes.',
+      'TIDAS réunit les méthodes de production, JSON Schema et des ressources de données ouvertes dans un socle commun pour la modélisation ACV et empreinte carbone, la validation, la conversion versionnée et l’intégration de systèmes.',
     primary: 'Comprendre le système',
     secondary: 'Explorer JSON Schema',
     systemLabel: 'TIDAS associe méthodologie, structures et ressources de données à des fonctions de validation, conversion, publication et intégration.',
     systemTitle: 'Composition du système',
     layers: [
       { code: 'METHOD', title: 'Méthodologie', description: 'Comment les données sont produites, vérifiées et maintenues' },
-      { code: 'FORMAT', title: 'Structure de données', description: '17 schémas JSON définissent champs, contraintes et références' },
+      { code: 'FORMAT', title: 'Structure de données', description: `${schemaInventory.counts.contractSchemas} schémas de contrat logiques définissent champs, contraintes et références` },
       { code: 'DATA', title: 'Ressources de données', description: 'Classifications et données de référence assurent des échanges cohérents' },
     ],
     capabilitiesLabel: 'Fonctions du système',

@@ -1,6 +1,34 @@
 ---
-title: "Modules principaux"
-description: "Méthodologie, spécification de format et modules de ressources de données de TIDAS."
+title: "Vue d’ensemble des modules principaux"
+description: "Comprendre TIDAS par le graphe d’objets ACV, les niveaux de conformité et le chemin du paquet minimal."
 ---
 
-Méthodologie, spécification de format et modules de ressources de données de TIDAS.
+TIDAS sépare la sémantique des données de cycle de vie, les structures JSON et les outils exécutables en couches explicites. Cette vue d’ensemble présente les relations entre objets et la limite de conformité avant les schémas individuels.
+
+## Relations entre les objets ACV
+
+- Un **processus** référence des **flux** par ses échanges afin de décrire les entrées et sorties d’un système de produit.
+- Un **flux** utilise des **propriétés de flux** et des **groupes d’unités** pour exprimer des quantités comparables.
+- Les **localisations** et taxonomies classent la géographie, les processus, les flux et les méthodes.
+- Les **contacts** et **sources** assurent responsabilité, provenance et traçabilité ; les **méthodes ACVI** et **modèles de cycle de vie** portent les références d’impact et de modèle système.
+
+<SchemaInventorySummary lang="fr" />
+
+## Niveaux de conformité
+
+1. JSON analysable : la syntaxe du document est valide.
+2. Conformité au schéma : champs, types et contraintes locales passent la validation JSON Schema.
+3. Intégrité du paquet et des références : répertoires, identifiants, versions et références concordent.
+4. Profil de conversion : le paquet est vérifié avec les versions déclarées des ressources Schema, XSD, XSLT et de règles.
+5. Aptitude ACV : périmètres, représentativité, allocation et revue exigent encore un jugement méthodologique.
+
+> **Limite normative :** la limite exécutable comprend les schémas marqués normatifs par l’inventaire ainsi que les ressources verrouillées et les règles réellement appliquées par le profil de validation choisi. « Normatif » est un rôle déclaré par cette version de l’inventaire ; navigation, diagrammes, exemples et modèles d’intégration sont informatifs et n’ajoutent aucune contrainte.
+
+## Chemin du paquet minimal
+
+1. Commencer par un jeu de données de [processus](/fr/docs/core-modules/schema/schema-content/json-schema-processes/).
+2. Ajouter chaque flux, propriété de flux, groupe d’unités, contact et source référencés.
+3. Utiliser `tidas validate --schema-only` pour le diagnostic structurel, puis `tidas validate` pour les contrôles du paquet et des références.
+4. Enregistrer le contrat effectif et les empreintes des ressources et de l’exécution avec `tidas version --format json`.
+
+<CategoryDirectory lang="fr" path="core-modules" />

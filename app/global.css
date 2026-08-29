@@ -61,12 +61,24 @@ html {
 }
 
 .atlas-brand-name {
-  overflow: hidden;
+  display: inline-flex;
+  align-items: baseline;
   font-size: 0.925rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.atlas-brand-compact {
+  display: none;
+}
+
+#nd-sidebar .atlas-brand-compact {
+  display: inline;
+}
+
+#nd-sidebar .atlas-brand-full {
+  display: none;
 }
 
 .atlas-brand-product {
@@ -685,12 +697,15 @@ html {
 
 @media (max-width: 40rem) {
   .atlas-brand-name {
-    max-width: 12rem;
     font-size: 0.85rem;
   }
 
-  .atlas-brand-product {
-    font-size: 0.68rem;
+  .atlas-brand-compact {
+    display: inline;
+  }
+
+  .atlas-brand-full {
+    display: none;
   }
 
   .atlas-hero h1 {

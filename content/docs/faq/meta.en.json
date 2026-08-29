@@ -1,7 +1,7 @@
 {
   "title": "FAQ",
+  "pagesIndex": "index",
   "pages": [
-    "index",
     "how-to-contribute-tidas-doc",
     "vscode-guide"
   ]

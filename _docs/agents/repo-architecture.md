@@ -17,6 +17,7 @@ checkPaths:
   - app/**
   - components/**
   - lib/**
+  - content/schema-inventory.json
   - content/docs/**
   - public/schemas/**
   - package.json
@@ -51,7 +52,9 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `app/(entry)/**` | root `x-default` homepage and document shell |
 | `app/(locale)/[lang]/**` | locale homepages and documentation routes |
 | `app/api`, `app/llms.txt`, `app/search-records.json`, `app/sitemap.ts`, `app/robots.ts`, `app/og` | generated discovery, search, crawler, and sharing surfaces |
-| `components/docs-home.tsx`, `components/docs-portal.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs foundation, landing identity, and documentation-root navigation |
+| `components/docs-home.tsx`, `components/docs-portal.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs foundation, landing identity, compact/full responsive brand, and documentation-root navigation |
+| `components/category-directory.tsx` | localized section directories derived from the Fumadocs page tree |
+| `components/schema-inventory-summary.tsx`, `content/schema-inventory.json` | rendered Schema role/count summary and its machine-readable asset authority |
 | `components/json-schema-viewer.tsx` | lazy semantic Schema structure table and taxonomy table |
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
 | `content/docs/**` | four-language public specification and guidance |
@@ -65,30 +68,36 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 ## Request and build flow
 
 ```text
-content/docs + public/schemas + UI components
-                    │
-                    ▼
-            Next.js static build
-                    │
-          ┌─────────┴──────────┐
-          ▼                    ▼
-     out/**/*.html      search / llms / sitemap / OG
-          │                    │
-          └─────────┬──────────┘
-                    ▼
-            static quality gates
-                    │
-                    ▼
-              EdgeOne deploy
+content/docs + schema inventory + public/schemas + UI components
+                              │
+                              ▼
+                      Next.js static build
+                              │
+                    ┌─────────┴──────────┐
+                    ▼                    ▼
+               out/**/*.html      search / llms / sitemap / OG
+                    │                    │
+                    └─────────┬──────────┘
+                              ▼
+                      static quality gates
+                              │
+                              ▼
+                        EdgeOne deploy
 ```
 
 Before static generation, the build requires exact Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. The package graph uses local markdownlint, while CI uses immutable executable action commits with the same exact runtime identity.
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
+`content/schema-inventory.json` classifies every published JSON asset and owns the public count vocabulary. It separates 8 dataset-object contracts, 9 classification-vocabulary contracts, 1 shared-types contract, and 1 derived viewer projection. The viewer projection is non-normative and presentation-only. The 18 contract file names match the logical entries in the `tidas-tools` schema lock, but the public directory is not an automatic mirror and the inventory does not claim structural or byte-for-byte equality.
+
+Localized section roots are real content pages as well as navigation folders. Each section `meta*.json` points `pagesIndex` at `index` and excludes `index` from its child list; `components/category-directory.tsx` resolves the current folder from `source.getPageTree(language)` and renders its children. This preserves existing URLs, removes folder/index duplicate labels, and makes new children discoverable without duplicating manual card lists.
+
 Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a bounded flat native table: only the name cell is indented, identifier and child-count columns remain aligned, branches are interactive, and leaves remain non-button rows. Search uses the same columns and adds the parent breadcrumb. Other schemas render as a lazy flat structure table whose branch labels prefer title, constants, enums, and references over ordinal names.
 
 The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents methodology, data structure, and data resources. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces.
+
+The shared brand has one complete accessible name. Wide unconstrained navigation may show `TIDAS / TianGong Data System`; the fixed documentation sidebar and mobile header deliberately render `TIDAS` rather than clipping or ellipsizing part of the product name.
 
 The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` inside the ordinary Fumadocs document layout. The portal preserves the document title and sidebar, then adds recommended entry points, a definition-to-operation system matrix, and representative Schema links. It shares the same three-part information hierarchy as the TianGong LCA documentation hub but exposes a distinct `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"` product signature instead of the LCA task route.
 

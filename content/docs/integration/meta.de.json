@@ -1,7 +1,7 @@
 {
   "title": "Integration",
+  "pagesIndex": "index",
   "pages": [
-    "index",
     "tidas-blockchain",
     "tidas-permission-control",
     "tidas-privacy-computing",

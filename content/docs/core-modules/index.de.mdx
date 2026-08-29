@@ -1,4 +1,34 @@
 ---
-title: "Kernmodule"
-description: "Methodik, Formatspezifikation und Datenressourcen von TIDAS."
+title: "Übersicht der Kernmodule"
+description: "TIDAS anhand des LCA-Objektmodells, der Konformitätsstufen und des minimalen Datenpakets verstehen."
 ---
+
+TIDAS trennt die Semantik von Lebenszyklusdaten, JSON-Strukturen und ausführbare Werkzeuge in klar benannte Ebenen. Diese Übersicht erklärt zuerst Objektbeziehungen und Konformitätsgrenzen und führt danach zu den einzelnen Schemas.
+
+## Beziehungen der LCA-Objekte
+
+- Ein **Prozess** verweist über Austausche auf **Flüsse** und beschreibt damit Ein- und Ausgänge eines Produktsystems.
+- Ein **Fluss** verwendet **Flusseigenschaften** und **Einheitengruppen**, um vergleichbare Mengen auszudrücken.
+- **Orte** und Taxonomien klassifizieren Geografie, Prozesse, Flüsse und Methoden.
+- **Kontakte** und **Quellen** sichern Verantwortung, Herkunft und Rückverfolgbarkeit; **LCIA-Methoden** und **Lebenszyklusmodelle** tragen Wirkungs- und Systemmodellreferenzen.
+
+<SchemaInventorySummary lang="de" />
+
+## Konformitätsstufen
+
+1. Parsebares JSON: Die Dokumentsyntax ist gültig.
+2. Schema-Konformität: Felder, Typen und lokale Regeln bestehen die JSON-Schema-Prüfung.
+3. Paket- und Referenzintegrität: Verzeichnisse, IDs, Versionen und dokumentübergreifende Referenzen stimmen überein.
+4. Konvertierungsprofil: Das Paket wird gegen die angegebenen Versionen von Schema-, XSD-, XSLT- und Regel-Assets geprüft.
+5. LCA-Eignung: Systemgrenzen, Repräsentativität, Allokation und Review erfordern weiterhin methodische Beurteilung.
+
+> **Normative Grenze:** Die maschinell ausführbare Grenze besteht aus den im Inventar als normativ markierten Schemas sowie den gesperrten Assets und Regeln, die das gewählte Prüfprofil tatsächlich anwendet. „Normativ“ ist eine Rollenangabe des versionierten Inventars; Navigation, Diagramme, Beispiele und Integrationsmuster sind informativ und fügen keine Regeln hinzu.
+
+## Weg zum minimalen Datenpaket
+
+1. Mit einem [Prozessdatensatz](/de/docs/core-modules/schema/schema-content/json-schema-processes/) beginnen.
+2. Alle referenzierten Flüsse, Flusseigenschaften, Einheitengruppen, Kontakte und Quellen ergänzen.
+3. `tidas validate --schema-only` zur Strukturdiagnose und danach `tidas validate` für Paket- und Referenzprüfungen ausführen.
+4. Den wirksamen Vertrag sowie Asset- und Laufzeitfingerabdrücke mit `tidas version --format json` festhalten.
+
+<CategoryDirectory lang="de" path="core-modules" />
