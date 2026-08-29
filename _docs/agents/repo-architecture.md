@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-26
-lastReviewedCommit: 30171cee7c22bfc902f7e9c5ffaac6e929dc194e
-lastReviewedNote: "Reviewed for Issue #58 after the current package-manager identity advanced to exact pnpm 11.24.0 without changing the static pipeline, package graph, generated surface, or publication path."
+lastReviewedAt: 2026-08-30
+lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
+lastReviewedNote: "Reviewed for Issue #61 after the Node runtime contract was bounded within Node 24 and EdgeOne was pinned to its preinstalled 24.18.0 without changing the static pipeline."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -40,6 +40,8 @@ related:
 Historical review note, 2026-08-25: Issue #56 established one exact fail-closed Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 contract with deterministic pnpm-only CI tooling.
 
 Review note, 2026-08-26: Issue #58 changes only the current package-manager identity from pnpm 11.23.0 to exact pnpm 11.24.0. The same root workspace and byte-identical lock, Node 24.19.0, sole TypeScript 7.0.2 graph, static pipeline, schemas/generated output, dependencies, version, and publication path remain in place.
+
+Review note, 2026-08-30: Issue #61 separates the Node selectors by environment while retaining one bounded runtime contract: local `.nvmrc` tracks Node major `24`, EdgeOne uses preinstalled `24.18.0`, PR validation uses reviewed `24.19.0`, and all must satisfy `>=24.18.0 <25`.
 
 ## Site shape
 
@@ -61,7 +63,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `public/schemas/**` | directly downloadable JSON Schema files |
 | `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
 | `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts` | content loading, navigation, localization, and metadata policy |
-| `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | exact toolchain enforcement, deterministic build pipeline, Node contracts, and static-site gates |
+| `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | bounded Node 24 and exact package-tool enforcement, deterministic build pipeline, and static-site gates |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
 | `.github/workflows/publish-docs.yml` | pull-request validation |
 
@@ -85,7 +87,7 @@ content/docs + schema inventory + public/schemas + UI components
                         EdgeOne deploy
 ```
 
-Before static generation, the build requires exact Node `24.19.0`, pnpm `11.24.0`, and TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. The package graph uses local markdownlint, while CI uses immutable executable action commits with the same exact runtime identity.
+Before static generation, the build requires Node `>=24.18.0 <25`, exact pnpm `11.24.0`, and exact TypeScript `7.0.2`, then executes the environment/toolchain Node contracts. Local work selects the current Node 24 through `.nvmrc`; EdgeOne uses preinstalled Node `24.18.0`; PR CI uses reviewed Node `24.19.0` with immutable executable action commits.
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
