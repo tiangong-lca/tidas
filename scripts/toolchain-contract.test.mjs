@@ -18,16 +18,16 @@ const expectedActions = new Map([
   ['pnpm/setup', '84cb39b217b10273981911c288cd62326dc7c6d2'],
 ]);
 
-test('pins one exact Node, pnpm, TypeScript, and markdownlint toolchain', () => {
+test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', () => {
   const packageJson = readJson('package.json');
   const edgeOne = readJson('edgeone.json');
 
   assert.equal(packageJson.packageManager, 'pnpm@11.24.0');
-  assert.deepEqual(packageJson.engines, { node: '24.19.0', pnpm: '11.24.0' });
+  assert.deepEqual(packageJson.engines, { node: '>=24.18.0 <25', pnpm: '11.24.0' });
   assert.equal(packageJson.devDependencies.typescript, '7.0.2');
   assert.equal(packageJson.devDependencies['markdownlint-cli2'], '0.23.2');
-  assert.equal(read('.nvmrc').trim(), '24.19.0');
-  assert.equal(edgeOne.nodeVersion, '24.19.0');
+  assert.equal(read('.nvmrc').trim(), '24');
+  assert.equal(edgeOne.nodeVersion, '24.18.0');
   assert.equal(
     packageJson.scripts.lint,
     "pnpm exec markdownlint-cli2 '**/*.md' '**/*.mdx' '#node_modules' '#content/docs/.source'",
