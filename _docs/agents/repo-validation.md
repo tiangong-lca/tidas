@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
-lastReviewedNote: "Reviewed for Issue #61 after Node proof was bounded to supported 24.x runtimes while EdgeOne, local selection, and PR CI retained explicit environment-specific selectors."
+lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
+lastReviewedNote: "Reviewed for the beginner-facing terminology update: content proof now covers plain-language entry copy, four localized glossaries, navigation, and the boundary between automated checks and professional LCA judgement."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -44,6 +44,8 @@ Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.2
 Review note, 2026-08-26: Issue #58 requires exact pnpm 11.24.0 for the current toolchain proofs while retaining Node 24.19.0 and sole TypeScript 7.0.2. Toolchain validation also audits that pnpm 11.24.0 leaves the single root workspace lock byte-identical and that no npm/Yarn fallback, schema/generated drift, dependency, package-version, tag, or publication change appears.
 
 Review note, 2026-08-30: Issue #61 requires Node `>=24.18.0 <25`, exact pnpm `11.24.0`, and exact TypeScript `7.0.2`. Proof must accept EdgeOne's preinstalled Node `24.18.0` and newer Node 24 patches while rejecting older Node 24 releases, major-only runtime strings, and Node 25+.
+
+Review note, 2026-08-30: the beginner-facing terminology update extends content-contract proof to require the four localized glossaries in root navigation, plain homepage and inventory labels, advanced placement of tool-version details, and explicit separation of format checks, documentation completeness, data quality, independent review, and named compliance claims.
 
 ## Default baseline
 
@@ -94,7 +96,7 @@ pnpm build
 - the TIDAS identity, system-map signature, flat taxonomy-table markers, and gradient- and shadow-free custom CSS contract remain present.
 - all four documentation roots retain the TIDAS system-hub and system-matrix markers.
 
-`scripts/content-contract.test.mjs` checks the source-side contracts that must fail before static generation: substantive four-locale section indexes, `pagesIndex` de-duplication, page-tree-derived directories, responsive brand labels, complete Schema inventory coverage and role counts, viewer derivation boundaries, CLI release authority, and locale-preserving platform links.
+`scripts/content-contract.test.mjs` checks the source-side contracts that must fail before static generation: substantive four-locale section indexes, `pagesIndex` de-duplication, page-tree-derived directories, responsive brand labels, complete Schema inventory coverage and role counts, viewer derivation boundaries, CLI release authority, locale-preserving platform links, beginner-facing homepage and inventory language, four root glossaries, and the boundary between automated checks and professional LCA judgement.
 
 For the loaded taxonomy page, browser proof must also show:
 

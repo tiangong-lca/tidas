@@ -1,10 +1,20 @@
 ---
-title: "TIDAS 工具概览"
-description: "找到校验、转换、导入、导出和可复现发布的执行入口。"
+title: "TIDAS 工具：检查、转换和打包数据"
+description: "了解 tidas 命令行工具能做什么、不能做什么，以及从哪里下载安装。"
 ---
 
-TIDAS 规范本身由本站解释，可执行行为由 `tidas-tools` 中的统一 `tidas` CLI 实现。建议先用 `tidas version --format json` 记录当前二进制、合同、资产和运行时指纹，再把同一份证据与校验或转换结果一起保存。
+`tidas` 是一个在电脑终端中运行的命令行工具。它可以检查 TIDAS 文件的字段和相互引用，在受支持的情况下转换 TIDAS 与 eILCD 数据，并帮助导入、导出和制作可交付的数据包。
 
-本节介绍安装、命令边界和迁移路线。最新版本和安装资产以 [tidas-tools Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) 为准，页面不复制会随发布变化的版本号。
+工具检查的是文件结构和已实现的规则。它不会替你确定功能单位、系统边界或分配方法，也不能判断数据质量是否足够或代替独立专业评审。当前版本与安装文件请从 [tidas-tools 最新发布页](https://github.com/tiangong-lca/tidas-tools/releases/latest)获取；安装后可用 `tidas --help` 查看入口。
+
+## 进阶：记录工具版本
+
+如果团队需要在以后复现一次检查或转换，可运行：
+
+```bash
+tidas version --format json
+```
+
+这条命令会以便于保存的格式列出当时使用的工具和配套规则版本。把输出与检查报告或转换结果放在一起，方便后来确认当时用了哪一版工具；普通浏览和第一次使用不必先理解这些技术信息。
 
 <CategoryDirectory lang="zh" path="tool" />

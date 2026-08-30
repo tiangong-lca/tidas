@@ -1,0 +1,85 @@
+---
+title: "Begriffe und Abkürzungen"
+description: "Verständliche Erklärungen der LCA-Begriffe, Datenbegriffe und Prüfergebnisse auf dieser Website."
+---
+
+Diese Seite richtet sich an Leserinnen und Leser, die neu mit LCA-Daten arbeiten. Die Begriffe stützen sich auf das [ILCD Handbook: General guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf) und die Datenformat-Hinweise der Gemeinsamen Forschungsstelle (JRC) der Europäischen Kommission; die Kurztexte wurden für diese Website vereinfacht.
+
+## Häufige Begriffe einer LCA-Studie
+
+### Ökobilanz (LCA)
+
+Eine Methode zur Untersuchung von Ressourcennutzung, Emissionen und potenziellen Umweltwirkungen im Lebensweg eines Produkts oder einer Dienstleistung – von der Rohstoffgewinnung über Herstellung und Nutzung bis zum Lebensende. Sie umfasst Ziel und Untersuchungsrahmen, Sachbilanz, Wirkungsabschätzung und Auswertung und ist nicht nur eine einzelne CO₂-Zahl.
+
+### Ziele und Untersuchungsrahmen
+
+Die Beschreibung, warum die Studie durchgeführt wird, wer sie nutzt, was untersucht wird und wie weit die Berechnung reicht. Sie bestimmt Datenbedarf, Systemgrenze, Wirkungsabschätzung und Schlussfolgerungen.
+
+### Funktionelle Einheit
+
+Die quantifizierte Leistung, auf die alle Ergebnisse bezogen werden und die Vergleiche ermöglicht. Sie beschreibt Funktion, Menge, Qualität und Dauer, zum Beispiel „Lieferung von 1 kWh Wechselstrom an einen Niederspannungsnutzer in einer bestimmten Region“.
+
+### Referenzfluss
+
+Die Menge eines Produkts oder einer Dienstleistung, die das Produktsystem für eine funktionelle Einheit benötigt. Alle anderen Ein- und Ausgänge werden darauf bezogen.
+
+### Systemgrenze
+
+Die Festlegung, welche Lebenswegabschnitte und Prozesse einbezogen oder ausgeschlossen werden und warum.
+
+### Produktsystem
+
+Eine Gruppe verbundener Elementarprozesse, die gemeinsam eine Funktion bereitstellen. Produkt-, Abfall- und andere Flüsse verbinden die Prozesse.
+
+### Elementarprozess und Prozessdatensatz
+
+Ein **Elementarprozess** ist die kleinste Aktivität, deren Ein- und Ausgänge getrennt erfasst werden, etwa eine einzelne Stromerzeugungs- oder Transportaktivität. Ein **Prozessdatensatz** dokumentiert eine Aktivität, Ein- und Ausgänge, Zeit, Ort, Technik und Quellen; beide Begriffe sind nicht immer austauschbar. Siehe das [ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html).
+
+### Austausch
+
+Ein einzelner Ein- oder Ausgang eines Prozesses. Er verbindet den Prozess mit einem Produktfluss, Abfallfluss oder Elementarfluss und nennt Menge und Einheit.
+
+### Elementarfluss
+
+Materie oder Energie, die direkt aus der natürlichen Umwelt in das technische System gelangt oder direkt dorthin zurückgegeben wird, etwa ein entnommener Rohstoff oder eine Emission in die Luft.
+
+### Sachbilanz (LCI)
+
+Die mengenmäßige Erfassung dessen, was die Prozesse eines Produktsystems einsetzen, erzeugen und emittieren.
+
+### Wirkungsabschätzung (LCIA)
+
+Die Umrechnung der Ressourcennutzung und Emissionen aus der Sachbilanz in Indikatoren für potenzielle Umweltwirkungen wie den Klimawandel. Diese Indikatoren sind keine unmittelbare Vorhersage tatsächlicher Umweltfolgen.
+
+### Datenqualität und Repräsentativität
+
+Die Frage, ob Daten ausreichend vollständig und verlässlich sind und zur benötigten Technik, Region und Zeit passen. Technische, geografische und zeitliche Repräsentativität werden getrennt betrachtet, ebenso Präzision, Unsicherheit und methodische Eignung.
+
+### Unabhängige kritische Prüfung
+
+Eine Prüfung von Daten, Methoden, Auswertung und Bericht durch eine entsprechend qualifizierte und ausreichend unabhängige Person nach festgelegtem Umfang und Verfahren. Eine automatische Formatprüfung ist keine unabhängige kritische Prüfung.
+
+## Begriffe von TIDAS und seinen Werkzeugen
+
+### TIDAS
+
+Eine Datenstruktur mit Werkzeugregeln zum Speichern, Prüfen und Austauschen von LCA-Daten. TIDAS ordnet Prozesse, Flüsse, Einheiten, Quellen und Verweise, ersetzt aber keine fachlichen Entscheidungen zu Zielen, Systemgrenzen, Allokation, Datenqualität oder Review.
+
+### JSON und JSON Schema
+
+**JSON** ist ein Dateiformat für strukturierte Daten. **JSON Schema** enthält maschinenlesbare Prüfregeln für Pflichtfelder, Datentypen, zulässige Werte und weitere Teile der TIDAS-Datenstruktur.
+
+### Elektronisches Austauschformat
+
+Eine Dateiorganisation, mit der eine Anwendung oder Datenbank vollständige Daten an ein anderes System übergeben kann. TIDAS und eILCD lassen sich dort konvertieren, wo die Werkzeuge dies ausdrücklich unterstützen; eine erfolgreiche Konvertierung bedeutet keine vollständige methodische Gleichheit.
+
+## Prüfergebnisse, die getrennt bleiben müssen
+
+- **Strukturprüfung bestanden:** Datei, Felder, Typen und lokale Regeln bestehen JSON Schema.
+- **Dateien und Verweise vollständig:** Benötigte Dateien sind vorhanden; IDs, Versionen und Verweise stimmen überein.
+- **Austausch in einem benannten Format gelungen:** Eine angegebene Version der Konvertierungsregeln lief erfolgreich und die Ausgabe wurde geprüft.
+- **Datenqualität beschrieben:** Vollständigkeit, Repräsentativität und Unsicherheit sind belegt und beurteilt; ein Schema kann dies nicht automatisch entscheiden.
+- **Unabhängige Prüfung abgeschlossen:** Prüfer, Umfang, Methode und Ergebnisse sind dokumentiert; dies unterscheidet sich von automatischer Validierung.
+- **Benannte Konformitätsaussage:** Nur verwenden, wenn System und Version genannt und die Anforderungen an Methode, Qualität, Dokumentation und Review beurteilt wurden. Eine Formatprüfung allein genügt nicht.
+
+Zur Abgrenzung von ILCD-Formatprüfung, Dokumentationsvollständigkeit und Review-Feldern siehe den JRC-Leitfaden zur [Dokumentation von LCA-Datensätzen](https://eplca.jrc.ec.europa.eu/uploads/QMS_H08_ENSURE_ILCD_GuidanceDocumentationLCADataSets_Version1-1Beta_2011_ISBN_clean.pdf).

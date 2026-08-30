@@ -2,7 +2,9 @@
 title: "简介"
 ---
 
-**TIDAS**（**TI**angong **DA**ta **S**ystem）是一个基于 JSON 构建的开源数据系统，为生命周期评估（LCA）和碳足迹管理提供统一、标准化、可拓展的底层支撑。它由“方法论、格式规范、数据资源”三大核心模块组成，并通过辅助工具与集成能力，实现智能化、可信化、自动化的数据管理体验。
+**TIDAS**（**TI**angong **DA**ta **S**ystem）是一套开放的 LCA 数据结构和工具规则。它把过程、流、单位、来源及其相互引用按同一方式保存，让不同团队和软件更容易检查、转换和交换数据。
+
+可以把 TIDAS 理解为 LCA 数据的“共同填写方式”。它帮助整理和检查数据，但不会替代研究目的、功能单位、系统边界、分配、数据质量和专业评审等 LCA 判断。
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -11,38 +13,40 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS"
 />
 
+> 第一次接触这些概念？先查看[术语与缩写](/zh/docs/glossary/)，再从下面三个部分认识 TIDAS。
+
 ---
 
-## 🧱 系统架构核心模块
+## 🧱 TIDAS 包含什么
 
 TIDAS 架构由以下三部分组成：
 
-### 📖 方法论（Methodology）
+### 📖 LCA 数据工作要求（Methodology）
 
 - [LCA / 碳足迹数据库构建导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-  提供数据构建、验证与维护方法，兼容 ISO 14040/44、ILCD Handbook 与 ecoinvent等标准。
+  说明建立和维护 LCA 数据库时需要记录的方法、质量和评审信息，并参考 ISO 14040/44、ILCD Handbook 与 ecoinvent 的相关实践。
 
-### 🧾 数据结构（Format）
+### 🧾 数据填写与交换结构（Format）
 
 - [TIDAS 数据结构](/zh/docs/core-modules/schema/tidas-schema-intro/)
-  基于 JSON 与 JSON Schema 实现数据结构验证，适配 AI、数据空间与区块链等新型架构。
+  用 JSON 保存数据，并用 JSON Schema 检查必填字段、数据类型、取值和引用关系。
 
-### 📦 数据资源（Data）
+### 📦 参考数据（Data）
 
 - [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
-  提供开源的参考数据库，支持数据可追溯性、一致性和可信度。
+  提供可复用的分类、单位和基础数据，帮助不同数据集使用一致的名称和编号。
 
 ---
 
 ## 🛠 辅助工具（Tools）
 
-**TIDAS 工具包是围绕三大核心模块开发的辅助组件**，便于开发者与系统之间进行数据构建、格式互通与导出操作。
+**TIDAS 工具**是在电脑终端中运行的命令行程序，用于检查文件、转换受支持的格式以及导出数据包。
 
-- 🧪 `validate`：数据验证工具 – 检查数据结构、规范性、完整性
+- 🧪 `validate`：检查文件结构、必填字段和文件之间的引用
 
-- 🔄 `convert`：格式转换器 – 在受支持的 profile 和已验证资产版本下执行 TIDAS 与 eILCD 双向转换
+- 🔄 `convert`：在工具明确支持的规则范围内转换 TIDAS 与 eILCD 数据
 
-- 📤 `export`：数据包发布工具 – 将合规数据打包为标准 ZIP 格式，用于平台交付与归档
+- 📤 `export`：把通过所需检查的数据整理为 ZIP 文件，用于交付与归档
 
 👉 全部工具说明详见：[TIDAS 工具包](/zh/docs/tool/tidas-tool-intro/)
 
@@ -64,7 +68,7 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 
 ## 🌐 企业级软件：天工 LCA 平台
 
-- [天工平台](https://docs.tiangong.earth/zh/docs/) 使用 TIDAS 数据合同支持从数据建模到可信交付的 LCA 工作流；具体功能与操作边界以平台文档为准。
+- [天工平台](https://docs.tiangong.earth/zh/docs/) 使用按 TIDAS 结构整理的数据支持 LCA 建模、计算和协作；具体功能与操作边界以平台文档为准。
 
 ---
 
@@ -89,7 +93,8 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 > 📌 **快速阅读建议**
 > 了解 TIDAS 架构建议顺序：
 >
-> 1. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-> 2. [数据结构格式](/zh/docs/core-modules/schema/tidas-schema-intro/)
-> 3. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
-> 4. [工具模块](/zh/docs/tool/tidas-tool-intro/) 和 [集成方案](/zh/docs/integration/)
+> 1. [术语与缩写](/zh/docs/glossary/)
+> 2. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+> 3. [数据结构格式](/zh/docs/core-modules/schema/tidas-schema-intro/)
+> 4. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
+> 5. [工具模块](/zh/docs/tool/tidas-tool-intro/) 和 [集成方案](/zh/docs/integration/)

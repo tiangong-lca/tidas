@@ -2,7 +2,9 @@
 title: "Introduction"
 ---
 
-**TIDAS** (**TI**angong **DA**ta **S**ystem) is an open-source data system built on JSON, providing unified, standardized, and extensible foundational support for Life Cycle Assessment (LCA) and carbon footprint management. It consists of three core modules: "Methodology, Format Specifications, and Data Resources," and through auxiliary tools and integration capabilities, enables intelligent, trustworthy, and automated data management.
+**TIDAS** (**TI**angong **DA**ta **S**ystem) is an open data structure and set of tool rules for LCA data. It stores processes, flows, units, sources, and their links in a shared way so teams and software can check, convert, and exchange data more easily.
+
+Think of TIDAS as a common way to fill in and hand over LCA data. It helps organize and check files, but it does not replace LCA decisions about the study goal, functional unit, system boundary, allocation, data quality, or professional review.
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -11,38 +13,40 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS"
 />
 
+> New to these concepts? Start with [terms and abbreviations](/en/docs/glossary/), then use the three parts below to understand TIDAS.
+
 ---
 
-## 🧱 Core System Architecture Modules
+## 🧱 What TIDAS contains
 
 TIDAS architecture consists of three components:
 
-### 📖 Methodology
+### 📖 LCA data-work requirements (Methodology)
 
 - [LCA/Carbon Footprint Database Construction Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-  Provides methods for data construction, validation and maintenance, compatible with ISO 14040/44, ILCD Handbook and ecoinvent standards.
+  Describes the method, quality, and review information needed when building and maintaining LCA databases, with reference to relevant ISO 14040/44, ILCD Handbook, and ecoinvent practices.
 
-### 🧾 Data Format
+### 🧾 Data-entry and exchange structure (Format)
 
 - [TIDAS Data Structure](/en/docs/core-modules/schema/tidas-schema-intro/)
-  Implements data structure validation based on JSON and JSON Schema, adaptable to new architectures like AI, data spaces and blockchain.
+  Stores data as JSON and uses JSON Schema to check required fields, data types, allowed values, and references.
 
-### 📦 Data Resources
+### 📦 Reference data (Data)
 
 - [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)
-  Provides open-source reference database supporting data traceability, consistency and reliability.
+  Provides reusable classifications, units, and base data so different data sets can use consistent names and identifiers.
 
 ---
 
 ## 🛠 Auxiliary Tools
 
-**The TIDAS Tools consists of auxiliary components developed around the three core modules**, facilitating data construction, format interoperability and export operations between developers and systems.
+**TIDAS tools** are command-line programs that run in a computer terminal to check files, convert supported formats, and export data packages.
 
-- 🧪 `validate`: Data validation tool - checks data structure, standardization and completeness
+- 🧪 `validate`: checks file structure, required fields, and links between files
 
-- 🔄 `convert`: Format converter - performs bidirectional TIDAS/eILCD conversion for supported profiles and validated asset versions
+- 🔄 `convert`: converts TIDAS and eILCD data where the implemented rules support it
 
-- 📤 `export`: Data package publishing tool - packages compliant data into standard ZIP format for platform delivery and archiving
+- 📤 `export`: packages data that has passed the required checks as a ZIP file for delivery or archiving
 
 👉 See full tool documentation: [TIDAS Toolkit](/en/docs/tool/tidas-tool-intro/)
 
@@ -64,7 +68,7 @@ TIDAS has built various integration solutions for practical scenarios, supportin
 
 ## 🌐 Enterprise-level Software: TianGong LCA Platform
 
-- [TianGong Platform](https://docs.tiangong.earth/en/docs/) uses TIDAS data contracts in LCA workflows from data modeling to trusted delivery; the platform documentation defines the current features and operational boundary.
+- [TianGong Platform](https://docs.tiangong.earth/en/docs/) uses data organized in the TIDAS structure for LCA modelling, calculation, and collaboration; the platform documentation defines the current features and operational boundary.
 
 ---
 
@@ -89,7 +93,8 @@ TIDAS has built various integration solutions for practical scenarios, supportin
 > 📌 **Quick Reading Suggestions**
 > Recommended order to understand TIDAS architecture:
 >
-> 1. [Methodology Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-> 2. [Data Structure Format](/en/docs/core-modules/schema/tidas-schema-intro/)
-> 3. [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)
-> 4. [Tool Module](/en/docs/tool/tidas-tool-intro/) and [Integration Solutions](/en/docs/integration/)
+> 1. [Terms and abbreviations](/en/docs/glossary/)
+> 2. [Methodology Guidelines](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+> 3. [Data Structure Format](/en/docs/core-modules/schema/tidas-schema-intro/)
+> 4. [Reference Data Package](https://github.com/linancn/EF-reference-package-3.1-Correction)
+> 5. [Tool Module](/en/docs/tool/tidas-tool-intro/) and [Integration Solutions](/en/docs/integration/)

@@ -2,7 +2,9 @@
 title: "Introduction"
 ---
 
-**TIDAS** (**TI**angong **DA**ta **S**ystem) est un système de données open source fondé sur JSON qui fournit un socle unifié, normalisé et extensible pour l'analyse du cycle de vie (ACV) et la gestion de l'empreinte carbone. Il se compose de trois modules principaux — « Méthodologie, spécifications de format et ressources de données » — et permet, grâce à des outils auxiliaires et à des capacités d'intégration, une gestion intelligente, fiable et automatisée des données.
+**TIDAS** (**TI**angong **DA**ta **S**ystem) est une structure ouverte assortie de règles d’outils pour les données d’ACV. Elle enregistre de manière commune les processus, flux, unités, sources et références afin que les équipes et logiciels puissent plus facilement contrôler, convertir et échanger les données.
+
+TIDAS est donc une façon commune de remplir et transmettre les données d’ACV. Il aide à organiser et contrôler les fichiers, sans remplacer les décisions professionnelles concernant l’objectif de l’étude, l’unité fonctionnelle, la frontière du système, l’allocation, la qualité des données ou la revue.
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -11,38 +13,40 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS"
 />
 
+> Ces concepts sont nouveaux pour vous ? Commencez par les [termes et sigles](/fr/docs/glossary/), puis découvrez TIDAS à travers les trois parties ci-dessous.
+
 ---
 
-## 🧱 Modules de l'architecture système principale
+## 🧱 Ce que contient TIDAS
 
 L'architecture TIDAS se compose de trois composants :
 
-### 📖 Méthodologie
+### 📖 Exigences du travail sur les données d’ACV (Méthodologie)
 
 - [Directives de construction de bases de données ACV/Empreinte carbone](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-  Fournit des méthodes pour la construction, la validation et la maintenance des données, compatibles avec ISO 14040/44, le manuel ILCD et les standards ecoinvent.
+  Décrit les informations de méthode, de qualité et de revue nécessaires à la construction et à la maintenance des bases de données d’ACV, en s’appuyant sur les pratiques pertinentes d’ISO 14040/44, du manuel ILCD et d’ecoinvent.
 
-### 🧾 Format de données
+### 🧾 Structure de saisie et d’échange (Format)
 
 - [Structure de données TIDAS](/fr/docs/core-modules/schema/tidas-schema-intro/)
-  Implémente la validation de la structure de données basée sur JSON et JSON Schema, adaptable aux nouvelles architectures comme l'IA, les espaces de données et la blockchain.
+  Enregistre les données en JSON et utilise JSON Schema pour contrôler les champs obligatoires, types, valeurs autorisées et références.
 
-### 📦 Ressources de données
+### 📦 Données de référence
 
 - [Paquet de données de référence](https://github.com/linancn/EF-reference-package-3.1-Correction)
-  Fournit une base de données de référence open source favorisant la traçabilité, la cohérence et la fiabilité des données.
+  Fournit des classifications, unités et données de base réutilisables afin que les jeux de données utilisent des noms et identifiants cohérents.
 
 ---
 
 ## 🛠 Outils auxiliaires
 
-**Les outils TIDAS se composent de composants auxiliaires développés autour des trois modules principaux**, facilitant la construction de données, l'interopérabilité de format et les opérations d'exportation entre développeurs et systèmes.
+**Les outils TIDAS** sont des programmes en ligne de commande exécutés dans un terminal. Ils contrôlent les fichiers, convertissent les formats pris en charge et exportent des paquets de données.
 
-- 🧪 `validate` : Outil de validation de données - vérifie la structure, la standardisation et la complétude des données
+- 🧪 `validate` : contrôle la structure, les champs obligatoires et les références entre fichiers
 
-- 🔄 `convert` : Convertisseur de format - effectue la conversion bidirectionnelle TIDAS/eILCD pour les profils pris en charge et les versions de ressources vérifiées
+- 🔄 `convert` : convertit les données TIDAS et eILCD lorsque les règles mises en œuvre le permettent
 
-- 📤 `export` : Outil de publication de paquets de données - empaquette les données conformes dans un format ZIP standard pour la livraison et l'archivage sur plateforme
+- 📤 `export` : regroupe les données ayant passé les contrôles requis dans un fichier ZIP destiné à la livraison ou à l’archivage
 
 👉 Voir la documentation complète des outils : [Boîte à outils TIDAS](/fr/docs/tool/tidas-tool-intro/)
 
@@ -64,7 +68,7 @@ TIDAS propose diverses solutions d'intégration pour des cas d'usage concrets, p
 
 ## 🌐 Logiciel d'entreprise : Plateforme TianGong LCA
 
-- [La plateforme TianGong](https://docs.tiangong.earth/fr/docs/) utilise les contrats de données TIDAS dans les flux ACV, de la modélisation à la livraison de confiance ; la documentation de la plateforme définit les fonctions et limites opérationnelles actuelles.
+- [La plateforme TianGong](https://docs.tiangong.earth/fr/docs/) utilise des données organisées selon la structure TIDAS pour la modélisation, le calcul et la collaboration en ACV ; sa documentation définit les fonctions et limites opérationnelles actuelles.
 
 ---
 
@@ -89,7 +93,8 @@ TIDAS propose diverses solutions d'intégration pour des cas d'usage concrets, p
 > 📌 **Suggestions de lecture rapide**
 > Ordre recommandé pour comprendre l'architecture TIDAS :
 >
-> 1. [Directives de méthodologie](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-> 2. [Format de structure de données](/fr/docs/core-modules/schema/tidas-schema-intro/)
-> 3. [Paquet de données de référence](https://github.com/linancn/EF-reference-package-3.1-Correction)
-> 4. [Module d'outils](/fr/docs/tool/tidas-tool-intro/) et [Solutions d'intégration](/fr/docs/integration/)
+> 1. [Termes et sigles](/fr/docs/glossary/)
+> 2. [Directives de méthodologie](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+> 3. [Format de structure de données](/fr/docs/core-modules/schema/tidas-schema-intro/)
+> 4. [Paquet de données de référence](https://github.com/linancn/EF-reference-package-3.1-Correction)
+> 5. [Module d'outils](/fr/docs/tool/tidas-tool-intro/) et [Solutions d'intégration](/fr/docs/integration/)

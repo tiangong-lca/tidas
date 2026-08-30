@@ -16,7 +16,7 @@ interface SystemLayer {
 interface HomeCopy {
   eyebrow: string;
   title: string;
-  titleParts?: readonly [string, string, string, string];
+  titleParts?: readonly [string, string, string];
   description: string;
   primary: string;
   secondary: string;
@@ -37,120 +37,120 @@ interface HomeCopy {
 const copy: Record<Language, HomeCopy> = {
   zh: {
     eyebrow: 'TIDAS · TianGong Data System',
-    title: '连接方法、结构与数据，构建生命周期数据系统',
-    titleParts: ['连接方法、结构', '与数据，', '构建', '生命周期数据系统'],
+    title: '让 LCA 数据按同一套规则保存、检查和交换',
+    titleParts: ['让 LCA 数据', '按同一套规则', '保存、检查和交换'],
     description:
-      'TIDAS 以 JSON Schema 为结构层，结合数据生产方法与开放数据资源，为 LCA 与碳足迹数据提供建模、校验、版本化转换和系统集成基础。',
-    primary: '了解系统架构',
-    secondary: '浏览 JSON Schema',
-    systemLabel: 'TIDAS 由方法论、数据结构和数据资源三层组成，并支持校验、转换、发布与集成。',
-    systemTitle: '系统组成',
+      'TIDAS 规定过程、流、单位、来源以及它们之间的引用怎样写入同一套数据结构。不同团队和软件因此更容易保存、检查、转换和交换 LCA 数据。它不会替代系统边界、分配、数据质量或评审等专业判断。',
+    primary: '先了解 TIDAS',
+    secondary: '查看数据结构',
+    systemLabel: 'TIDAS 把 LCA 工作要求、数据填写规则和参考数据连接起来；工具帮助检查格式与引用。',
+    systemTitle: 'TIDAS 包含什么',
     layers: [
-      { code: 'METHOD', title: '方法论', description: '定义数据如何生产、验证与维护' },
-      { code: 'FORMAT', title: '数据结构', description: `${schemaInventory.counts.contractSchemas} 个逻辑合同 Schema 描述字段、约束与引用` },
-      { code: 'DATA', title: '数据资源', description: '参考分类与基础数据支持一致交换' },
+      { code: 'LCA', title: 'LCA 工作要求', description: '说明数据为什么创建、适用于哪里，以及需要怎样的质量和评审' },
+      { code: '数据结构', title: '数据填写规则', description: `${schemaInventory.counts.contractSchemas} 组检查规则说明字段、取值和引用怎样组织` },
+      { code: '参考数据', title: '参考数据', description: '统一分类、单位和基础数据，方便不同系统交换' },
     ],
-    capabilitiesLabel: '系统能力',
-    capabilities: ['校验', '转换', '发布', '集成'],
-    pathsEyebrow: '从系统能力开始',
-    pathsTitle: '找到与你当前任务对应的入口',
-    pathsDescription: '先理解系统边界，再进入数据结构、工具或集成细节。',
+    capabilitiesLabel: '可以做什么',
+    capabilities: ['整理', '检查', '转换', '交换'],
+    pathsEyebrow: '你想完成什么？',
+    pathsTitle: '从当前任务开始',
+    pathsDescription: '选择最接近你现在工作的入口；遇到术语时可随时查看集中解释。',
     paths: [
-      { title: '理解系统组成', description: '了解方法论、数据结构、数据资源以及它们之间的边界。', slug: 'intro', label: 'SYSTEM' },
-      { title: '浏览 JSON Schema', description: '按数据集与分类体系检查字段、约束和引用关系。', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
-      { title: '校验与转换', description: '使用统一 CLI 校验数据，并在 TIDAS 与 eILCD 之间转换。', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
-      { title: '接入现有系统', description: '通过 TIDAS CLI、MCP 与集成指南连接现有工作流。', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+      { title: '第一次了解 TIDAS', description: '先看 TIDAS 解决什么问题，以及它和 LCA 方法、工具、数据资源的关系。', slug: 'intro', label: '入门' },
+      { title: '查看数据怎样填写', description: '了解过程、流、单位、来源和相互引用怎样统一整理。', slug: 'core-modules', label: '数据结构' },
+      { title: '检查或转换数据', description: '用 TIDAS 工具检查文件结构和引用，或在 TIDAS 与 eILCD 之间转换。', slug: 'tool', label: '工具' },
+      { title: '查术语和缩写', description: '集中查看 LCA、LCI、LCIA、功能单位、系统边界等概念。', slug: 'glossary', label: '术语' },
     ],
-    closingTitle: '从系统总览开始',
-    closingDescription: '先明确 TIDAS 的组成和边界，再查看 Schema 中的真实数据约束。',
-    closingAction: '阅读系统简介',
+    closingTitle: '第一次来？先用两分钟了解 TIDAS',
+    closingDescription: '先了解它能帮你整理和交换什么，也了解哪些 LCA 判断仍需要专业人员完成。',
+    closingAction: '阅读简介',
   },
   en: {
     eyebrow: 'TIDAS · TianGong Data System',
-    title: 'A life cycle data system connecting methods, structures, and data',
+    title: 'Save, check, and exchange LCA data with one shared set of rules',
     description:
-      'TIDAS combines data-production methods, JSON Schema, and open data resources into a common foundation for LCA and carbon-footprint modelling, validation, versioned conversion, and system integration.',
-    primary: 'Understand the system',
-    secondary: 'Explore JSON Schema',
-    systemLabel: 'TIDAS combines methodology, data structures, and data resources, with capabilities for validation, conversion, publication, and integration.',
-    systemTitle: 'System composition',
+      'TIDAS defines how processes, flows, units, sources, and their references are stored in a shared data structure. This makes LCA data easier to save, check, convert, and exchange across teams and software. It does not replace professional judgement about the system boundary, allocation, data quality, or review.',
+    primary: 'What is TIDAS?',
+    secondary: 'See how data is organized',
+    systemLabel: 'TIDAS connects LCA work requirements, data-entry rules, and reference data; tools help check file structure and references.',
+    systemTitle: 'What TIDAS contains',
     layers: [
-      { code: 'METHOD', title: 'Methodology', description: 'How data is produced, reviewed, and maintained' },
-      { code: 'FORMAT', title: 'Data structure', description: `${schemaInventory.counts.contractSchemas} logical contract Schemas define fields, constraints, and references` },
-      { code: 'DATA', title: 'Data resources', description: 'Reference classifications and data support consistent exchange' },
+      { code: 'LCA', title: 'LCA work requirements', description: 'Why data is created, where it applies, and what quality and review it needs' },
+      { code: 'STRUCTURE', title: 'Data-entry rules', description: `${schemaInventory.counts.contractSchemas} sets of checks describe fields, values, and references` },
+      { code: 'REFERENCE', title: 'Reference data', description: 'Shared classifications, units, and base data support exchange between systems' },
     ],
-    capabilitiesLabel: 'System capabilities',
-    capabilities: ['Validate', 'Convert', 'Publish', 'Integrate'],
-    pathsEyebrow: 'Start with a system capability',
-    pathsTitle: 'Choose the entry point for the task in front of you',
-    pathsDescription: 'Understand the system boundary first, then move into structures, tools, or integrations.',
+    capabilitiesLabel: 'What it helps you do',
+    capabilities: ['Organize', 'Check', 'Convert', 'Exchange'],
+    pathsEyebrow: 'What do you want to do?',
+    pathsTitle: 'Start with your current task',
+    pathsDescription: 'Choose the closest task. Open the glossary whenever an LCA term is new to you.',
     paths: [
-      { title: 'Understand the system', description: 'Learn how methodology, data structures, and data resources fit together.', slug: 'intro', label: 'SYSTEM' },
-      { title: 'Explore JSON Schema', description: 'Inspect fields, constraints, and references by dataset and taxonomy.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
-      { title: 'Validate and convert', description: 'Use the unified CLI to validate data and convert between TIDAS and eILCD.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
-      { title: 'Connect existing systems', description: 'Use the TIDAS CLI, MCP, and integration guides in existing workflows.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+      { title: 'Learn what TIDAS is', description: 'See the problem TIDAS solves and how it relates to LCA methods, tools, and data resources.', slug: 'intro', label: 'START' },
+      { title: 'See how data is organized', description: 'Learn how processes, flows, units, sources, and links are recorded consistently.', slug: 'core-modules', label: 'STRUCTURE' },
+      { title: 'Check or convert data', description: 'Use TIDAS tools to check file structure and links, or convert between TIDAS and eILCD.', slug: 'tool', label: 'TOOLS' },
+      { title: 'Look up terms and abbreviations', description: 'Find plain explanations of LCA, LCI, LCIA, functional units, system boundaries, and more.', slug: 'glossary', label: 'TERMS' },
     ],
-    closingTitle: 'Begin with the system overview',
-    closingDescription: 'Establish what TIDAS contains and where its boundary lies, then inspect real constraints in the Schema explorer.',
-    closingAction: 'Read the system introduction',
+    closingTitle: 'New here? Understand TIDAS in two minutes',
+    closingDescription: 'Learn what TIDAS can organize and exchange—and which LCA decisions still need professional judgement.',
+    closingAction: 'Read the introduction',
   },
   de: {
     eyebrow: 'TIDAS · TianGong Data System',
-    title: 'Ein System für Lebenszyklusdaten, das Methoden, Strukturen und Daten verbindet',
+    title: 'LCA-Daten nach gemeinsamen Regeln speichern, prüfen und austauschen',
     description:
-      'TIDAS vereint Methoden zur Datenerstellung, JSON-Schemas und offene Datenressourcen zu einer gemeinsamen Grundlage für Modellierung, Prüfung, versionierte Konvertierung und Systemintegration von Ökobilanz- und CO₂-Fußabdruckdaten.',
-    primary: 'Systemarchitektur verstehen',
-    secondary: 'JSON Schema erkunden',
-    systemLabel: 'TIDAS verbindet Methodik, Datenstrukturen und Datenressourcen mit Funktionen für Prüfung, Konvertierung, Veröffentlichung und Integration.',
-    systemTitle: 'Systemaufbau',
+      'TIDAS legt fest, wie Prozesse, Flüsse, Einheiten, Quellen und ihre Verweise in einer gemeinsamen Datenstruktur gespeichert werden. So lassen sich LCA-Daten leichter zwischen Teams und Software speichern, prüfen, konvertieren und austauschen. Fachliche Entscheidungen zu Systemgrenze, Allokation, Datenqualität oder Review ersetzt TIDAS nicht.',
+    primary: 'Was ist TIDAS?',
+    secondary: 'Datenaufbau ansehen',
+    systemLabel: 'TIDAS verbindet Anforderungen der LCA-Arbeit, Regeln für die Dateneingabe und Referenzdaten; Werkzeuge prüfen Dateistruktur und Verweise.',
+    systemTitle: 'Was TIDAS umfasst',
     layers: [
-      { code: 'METHOD', title: 'Methodik', description: 'Wie Daten erstellt, geprüft und gepflegt werden' },
-      { code: 'FORMAT', title: 'Datenstruktur', description: `${schemaInventory.counts.contractSchemas} logische Vertrags-Schemas definieren Felder, Regeln und Referenzen` },
-      { code: 'DATA', title: 'Datenressourcen', description: 'Referenzklassifikationen und Daten sichern konsistenten Austausch' },
+      { code: 'ÖKOBILANZ', title: 'Anforderungen der LCA-Arbeit', description: 'Warum Daten erstellt werden, wo sie gelten und welche Qualität und Prüfung nötig sind' },
+      { code: 'STRUKTUR', title: 'Regeln für die Dateneingabe', description: `${schemaInventory.counts.contractSchemas} Prüfsätze beschreiben Felder, Werte und Verweise` },
+      { code: 'REFERENZ', title: 'Referenzdaten', description: 'Gemeinsame Klassifikationen, Einheiten und Basisdaten erleichtern den Austausch' },
     ],
-    capabilitiesLabel: 'Systemfunktionen',
-    capabilities: ['Prüfen', 'Konvertieren', 'Veröffentlichen', 'Integrieren'],
-    pathsEyebrow: 'Mit einer Systemfunktion beginnen',
-    pathsTitle: 'Wählen Sie den Einstieg für Ihre aktuelle Aufgabe',
-    pathsDescription: 'Klären Sie zuerst die Systemgrenze und gehen Sie dann zu Strukturen, Werkzeugen oder Integrationen.',
+    capabilitiesLabel: 'Wobei TIDAS hilft',
+    capabilities: ['Ordnen', 'Prüfen', 'Konvertieren', 'Austauschen'],
+    pathsEyebrow: 'Was möchten Sie tun?',
+    pathsTitle: 'Mit der aktuellen Aufgabe beginnen',
+    pathsDescription: 'Wählen Sie die passende Aufgabe. Unbekannte LCA-Begriffe finden Sie im Glossar.',
     paths: [
-      { title: 'System verstehen', description: 'Erfahren Sie, wie Methodik, Datenstrukturen und Datenressourcen zusammenspielen.', slug: 'intro', label: 'SYSTEM' },
-      { title: 'JSON Schema erkunden', description: 'Felder, Einschränkungen und Referenzen nach Datensatz und Klassifikation prüfen.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
-      { title: 'Prüfen und konvertieren', description: 'Daten mit der einheitlichen CLI prüfen und zwischen TIDAS und eILCD konvertieren.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
-      { title: 'Bestehende Systeme anbinden', description: 'TIDAS CLI, MCP und Integrationsleitfäden in bestehenden Abläufen einsetzen.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+      { title: 'TIDAS kennenlernen', description: 'Erfahren Sie, welches Problem TIDAS löst und wie Methoden, Werkzeuge und Daten zusammenhängen.', slug: 'intro', label: 'START' },
+      { title: 'Datenaufbau verstehen', description: 'Sehen Sie, wie Prozesse, Flüsse, Einheiten, Quellen und Verweise einheitlich erfasst werden.', slug: 'core-modules', label: 'STRUKTUR' },
+      { title: 'Daten prüfen oder konvertieren', description: 'Prüfen Sie Dateistruktur und Verweise oder konvertieren Sie zwischen TIDAS und eILCD.', slug: 'tool', label: 'WERKZEUGE' },
+      { title: 'Begriffe nachschlagen', description: 'Finden Sie verständliche Erklärungen zu LCA, LCI, LCIA, funktioneller Einheit und Systemgrenze.', slug: 'glossary', label: 'BEGRIFFE' },
     ],
-    closingTitle: 'Mit dem Systemüberblick beginnen',
-    closingDescription: 'Klären Sie Aufbau und Grenzen von TIDAS, bevor Sie reale Regeln im Schema-Explorer untersuchen.',
-    closingAction: 'Systemeinführung lesen',
+    closingTitle: 'Neu hier? TIDAS in zwei Minuten verstehen',
+    closingDescription: 'Erfahren Sie, was TIDAS ordnen und austauschen kann und welche LCA-Entscheidungen Fachwissen erfordern.',
+    closingAction: 'Einführung lesen',
   },
   fr: {
     eyebrow: 'TIDAS · TianGong Data System',
-    title: 'Un système de données de cycle de vie reliant méthodes, structures et données',
+    title: 'Enregistrer, vérifier et échanger les données d’ACV selon des règles communes',
     description:
-      'TIDAS réunit les méthodes de production, JSON Schema et des ressources de données ouvertes dans un socle commun pour la modélisation ACV et empreinte carbone, la validation, la conversion versionnée et l’intégration de systèmes.',
-    primary: 'Comprendre le système',
-    secondary: 'Explorer JSON Schema',
-    systemLabel: 'TIDAS associe méthodologie, structures et ressources de données à des fonctions de validation, conversion, publication et intégration.',
-    systemTitle: 'Composition du système',
+      'TIDAS définit comment les processus, flux, unités, sources et leurs références sont enregistrés dans une structure de données commune. Les équipes et logiciels peuvent ainsi enregistrer, vérifier, convertir et échanger plus facilement les données d’ACV. TIDAS ne remplace pas le jugement professionnel sur la frontière du système, l’allocation, la qualité des données ou la revue.',
+    primary: 'Qu’est-ce que TIDAS ?',
+    secondary: 'Voir l’organisation des données',
+    systemLabel: 'TIDAS relie les exigences du travail d’ACV, les règles de saisie et les données de référence ; les outils vérifient la structure des fichiers et les références.',
+    systemTitle: 'Ce que contient TIDAS',
     layers: [
-      { code: 'METHOD', title: 'Méthodologie', description: 'Comment les données sont produites, vérifiées et maintenues' },
-      { code: 'FORMAT', title: 'Structure de données', description: `${schemaInventory.counts.contractSchemas} schémas de contrat logiques définissent champs, contraintes et références` },
-      { code: 'DATA', title: 'Ressources de données', description: 'Classifications et données de référence assurent des échanges cohérents' },
+      { code: 'ACV', title: 'Exigences du travail d’ACV', description: 'Pourquoi les données sont créées, où elles s’appliquent et quelle qualité ou revue est requise' },
+      { code: 'STRUCTURE', title: 'Règles de saisie', description: `${schemaInventory.counts.contractSchemas} ensembles de contrôles décrivent les champs, les valeurs et les références` },
+      { code: 'RÉFÉRENCE', title: 'Données de référence', description: 'Des classifications, unités et données de base communes facilitent les échanges' },
     ],
-    capabilitiesLabel: 'Fonctions du système',
-    capabilities: ['Valider', 'Convertir', 'Publier', 'Intégrer'],
-    pathsEyebrow: 'Commencer par une fonction du système',
-    pathsTitle: 'Choisissez l’entrée adaptée à votre tâche',
-    pathsDescription: 'Comprenez d’abord le périmètre du système, puis accédez aux structures, outils ou intégrations.',
+    capabilitiesLabel: 'Ce que TIDAS aide à faire',
+    capabilities: ['Organiser', 'Vérifier', 'Convertir', 'Échanger'],
+    pathsEyebrow: 'Que souhaitez-vous faire ?',
+    pathsTitle: 'Commencer par votre tâche actuelle',
+    pathsDescription: 'Choisissez la tâche la plus proche. Le glossaire explique les termes d’ACV moins familiers.',
     paths: [
-      { title: 'Comprendre le système', description: 'Découvrez comment méthodologie, structures et ressources de données s’articulent.', slug: 'intro', label: 'SYSTEM' },
-      { title: 'Explorer JSON Schema', description: 'Examinez champs, contraintes et références par jeu de données et taxonomie.', slug: 'core-modules/schema/schema-content/json-schema-flows', label: 'SCHEMA' },
-      { title: 'Valider et convertir', description: 'Validez les données et convertissez-les entre TIDAS et eILCD avec la CLI unifiée.', slug: 'core-modules/schema/tidas-schema-validation', label: 'TOOLS' },
-      { title: 'Connecter les systèmes', description: 'Utilisez la CLI TIDAS, MCP et les guides dans vos flux existants.', slug: 'tool/tidas-tool-intro', label: 'INTEGRATION' },
+      { title: 'Découvrir TIDAS', description: 'Comprenez le problème traité par TIDAS et le lien entre méthodes, outils et données.', slug: 'intro', label: 'DÉBUT' },
+      { title: 'Comprendre l’organisation des données', description: 'Voyez comment processus, flux, unités, sources et références sont enregistrés de façon cohérente.', slug: 'core-modules', label: 'STRUCTURE' },
+      { title: 'Vérifier ou convertir des données', description: 'Vérifiez la structure et les références, ou convertissez entre TIDAS et eILCD.', slug: 'tool', label: 'OUTILS' },
+      { title: 'Consulter les termes et sigles', description: 'Trouvez des explications simples pour ACV, ICV, ACVI, unité fonctionnelle et frontière du système.', slug: 'glossary', label: 'TERMES' },
     ],
-    closingTitle: 'Commencer par la vue d’ensemble',
-    closingDescription: 'Définissez la composition et le périmètre de TIDAS avant d’examiner les contraintes réelles dans l’explorateur.',
-    closingAction: 'Lire la présentation du système',
+    closingTitle: 'Vous débutez ? Comprendre TIDAS en deux minutes',
+    closingDescription: 'Voyez ce que TIDAS peut organiser et échanger, et quelles décisions d’ACV exigent toujours un jugement professionnel.',
+    closingAction: 'Lire l’introduction',
   },
 };
 
@@ -175,17 +175,9 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
               <p className="atlas-eyebrow">{content.eyebrow}</p>
               <h1 className={content.titleParts ? 'tidas-controlled-title' : undefined} data-controlled-title>
                 {content.titleParts
-                  ? (
-                      <>
-                        {content.titleParts[0]}
-                        <br className="hidden max-[40rem]:block" />
-                        {content.titleParts[1]}
-                        <br className="max-[40rem]:hidden" />
-                        {content.titleParts[2]}
-                        <br className="hidden max-[40rem]:block" />
-                        {content.titleParts[3]}
-                      </>
-                    )
+                  ? content.titleParts.map((line) => (
+                      <span className="block" data-controlled-title-line key={line}>{line}</span>
+                    ))
                   : content.title}
               </h1>
               <p className="atlas-lede">{content.description}</p>

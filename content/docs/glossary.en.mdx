@@ -1,0 +1,85 @@
+---
+title: "Terms and abbreviations"
+description: "Plain-language explanations of the LCA concepts, data terms, and check results used on this site."
+---
+
+This page helps readers who are new to LCA data. Definitions follow the European Commission Joint Research Centre (JRC) [ILCD Handbook: General guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf) and its data-format guidance; the short explanations below are written for this website.
+
+## Common concepts in an LCA study
+
+### Life Cycle Assessment (LCA)
+
+A method for studying resource use, emissions, and potential environmental impacts across the life cycle of a product or service—from raw-material acquisition through production and use to end of life. It includes goal and scope definition, inventory, impact assessment, and interpretation rather than producing one carbon number alone.
+
+### Goal and scope
+
+The statement of why the study is being done, who will use it, what is studied, and how far the calculation extends. It guides the data needs, system boundary, impact assessment, and conclusions.
+
+### Functional unit
+
+The quantified service to which every result refers and the basis for comparing alternatives. It should say what function is provided, how much, at what quality, and for how long—for example, “delivery of 1 kWh of alternating-current electricity to a low-voltage user in a specified region.”
+
+### Reference flow
+
+The amount of product or service that a product system needs to deliver one functional unit. Other inputs and outputs are quantified in relation to it.
+
+### System boundary
+
+The statement of which life-cycle stages and processes are included, which are excluded, and why.
+
+### Product system
+
+A set of connected unit processes that together deliver a function. Product, waste, and other flows connect the processes.
+
+### Unit process and process data set
+
+A **unit process** is the smallest activity for which inputs and outputs are recorded separately, such as one electricity-generation or transport activity. A **process data set** is a data record for an activity, its inputs and outputs, time, place, technology, and sources; the two terms are not always interchangeable. See the [ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html).
+
+### Exchange
+
+A record of one input or output of a process. An exchange connects the process to a product flow, waste flow, or elementary flow and states its amount and unit.
+
+### Elementary flow
+
+Matter or energy taken directly from the natural environment into the technical system, or released directly back to the natural environment, such as an extracted resource or an emission to air.
+
+### Life cycle inventory (LCI)
+
+The account of what each process in a product system uses, produces, and emits, including the quantities.
+
+### Life cycle impact assessment (LCIA)
+
+The step that translates resource use and emissions in the inventory into indicators for potential impacts such as climate change. LCIA results are indicators, not direct predictions of actual environmental consequences.
+
+### Data quality and representativeness
+
+Whether data is sufficiently complete and reliable and resembles the technology, geography, and time period required by the study. Technical, geographical, and time representativeness are assessed separately, alongside factors such as precision, uncertainty, and methodological appropriateness.
+
+### Independent critical review
+
+A check of data, methods, interpretation, and reporting by a suitably qualified person with the required independence, following a stated scope and method. An automated format check is not an independent critical review.
+
+## Terms used by TIDAS and its tools
+
+### TIDAS
+
+A data structure and set of tool rules for saving, checking, and exchanging LCA data. It organizes processes, flows, units, sources, and their links but does not replace professional choices about goals, system boundaries, allocation, data quality, or review.
+
+### JSON and JSON Schema
+
+**JSON** is a file format for structured data. **JSON Schema** is a set of machine-readable checks for required fields, data types, allowed values, and other parts of the TIDAS data structure.
+
+### Electronic exchange format
+
+A way to organize files so one application or database can hand complete data to another. TIDAS and eILCD can be converted where the tools explicitly support it; successful conversion does not mean that every methodological meaning is identical.
+
+## Check results that must remain separate
+
+- **Structure check passed:** the file can be read and its fields, types, and local rules pass JSON Schema.
+- **Files and references are complete:** required files exist and IDs, versions, and cross-file references agree.
+- **Exchange in a named format succeeded:** a stated version of the conversion rules ran successfully and the output was inspected.
+- **Data quality is described:** completeness, representativeness, uncertainty, and related judgements have supporting information; a Schema cannot decide this automatically.
+- **Independent review completed:** the reviewer, scope, method, and findings are recorded; this differs from automated validation.
+- **Named compliance claim:** use only when the named system and version are explicit and its method, quality, documentation, and review requirements have been assessed. A format check alone is not enough.
+
+For the boundary between ILCD format checks, documentation completeness, and review fields, see the JRC [guidance for documenting LCA data sets](https://eplca.jrc.ec.europa.eu/uploads/QMS_H08_ENSURE_ILCD_GuidanceDocumentationLCADataSets_Version1-1Beta_2011_ISBN_clean.pdf).

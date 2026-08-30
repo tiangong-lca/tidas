@@ -1,10 +1,20 @@
 ---
-title: "Übersicht der TIDAS-Werkzeuge"
-description: "Ausführbare Wege für Prüfung, Konvertierung, Import, Export und reproduzierbare Veröffentlichung finden."
+title: "TIDAS-Werkzeuge: Daten prüfen, konvertieren und verpacken"
+description: "Erfahren Sie, was das tidas-Kommandozeilenwerkzeug kann, wo seine Grenzen liegen und wo es erhältlich ist."
 ---
 
-Diese Website erklärt die TIDAS-Spezifikation; das einheitliche `tidas`-CLI in `tidas-tools` definiert das ausführbare Verhalten. Führen Sie zuerst `tidas version --format json` aus, damit Fingerabdrücke von Binärdatei, Vertrag, Assets und Laufzeit zusammen mit Prüf- oder Konvertierungsnachweisen gespeichert werden.
+`tidas` ist ein Kommandozeilenprogramm, das in einem Computerterminal ausgeführt wird. Es prüft Felder und Verweise in TIDAS-Dateien, konvertiert – soweit unterstützt – zwischen TIDAS und eILCD und hilft beim Import, Export und Erstellen übergabefertiger Datenpakete.
 
-Dieser Abschnitt beschreibt Installation, Befehlsgrenzen und Migration. Die [tidas-tools-Veröffentlichungen](https://github.com/tiangong-lca/tidas-tools/releases/latest) sind die Quelle für die aktuelle Version und Installationsdateien; langfristige Dokumentation kopiert keine veränderliche Versionsnummer.
+Das Werkzeug prüft Dateistruktur und implementierte Regeln. Es wählt weder funktionelle Einheit, Systemgrenze oder Allokationsmethode, noch beurteilt es eine ausreichende Datenqualität oder ersetzt eine unabhängige kritische Prüfung. Die aktuelle Version und Installationsdateien stehen auf der Seite der [neuesten tidas-tools-Veröffentlichung](https://github.com/tiangong-lca/tidas-tools/releases/latest). Nach der Installation zeigt `tidas --help` die verfügbaren Einstiege.
+
+## Für Fortgeschrittene: Werkzeugversion festhalten
+
+Soll eine Prüfung oder Konvertierung später reproduziert werden, führen Sie Folgendes aus:
+
+```bash
+tidas version --format json
+```
+
+Der Befehl listet die verwendeten Werkzeug- und Regelversionen in speicherbarer Form auf. Bewahren Sie die Ausgabe zusammen mit dem Prüfbericht oder Konvertierungsergebnis auf. Für das normale Lesen oder einen ersten Versuch ist dieses technische Detail nicht erforderlich.
 
 <CategoryDirectory lang="de" path="tool" />

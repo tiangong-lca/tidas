@@ -1,34 +1,40 @@
 ---
-title: "核心模块概览"
-description: "从 LCA 对象关系、合规层级和最小数据包路线理解 TIDAS。"
+title: "核心内容：LCA 数据怎样组织"
+description: "认识过程、流、单位和来源之间的关系，并分清格式检查、数据质量与专业评审。"
 ---
 
-TIDAS 把生命周期数据的语义、JSON 结构与可执行工具分层组织。本页先给出数据对象和合规边界，再引导读者进入具体 Schema。
+TIDAS 把常见的 LCA 数据整理成相互关联的文件。本页先解释这些数据记录了什么，再说明工具可以检查到哪里。遇到不熟悉的概念，可随时查看[术语与缩写](/zh/docs/glossary/)。
 
-## LCA 对象关系
+## LCA 数据怎样关联
 
-- **Process** 通过 exchange 引用 **Flow**，表达生产系统的输入与输出。
-- **Flow** 通过 **Flow Property** 和 **Unit Group** 表达可比较的定量值。
-- **Location** 和各类 taxonomy 为地理、过程、流与方法提供稳定分类。
-- **Contact** 与 **Source** 支持责任归属、出处和可追溯性；**LCIA Method** 与 **Life Cycle Model** 承载影响评价和系统模型引用。
+- **过程数据集（Process dataset）**：记录一项生产或服务活动，以及它使用什么、产出什么、在哪里和何时发生、资料来自哪里。
+- **交换（Exchange）**：把过程与流（Flow）连接起来。流可以是产品或废物，也可以是直接从自然环境取用或排回自然环境的**基本流**。
+- **流属性（Flow Property）与单位组（Unit Group）**：说明数量如何计量和换算，例如质量、能量或体积。
+- **来源（Source）与联系人（Contact）**：记录资料依据和责任信息；分类表帮助不同数据使用相同名称和编号。
+- **生命周期影响评价方法（LCIA Method）与生命周期模型（Life Cycle Model）**：保存计算环境影响和连接产品系统所需的引用。
 
 <SchemaInventorySummary lang="zh" />
 
-## 合规层级
+## 数据会经过哪些检查
 
-1. JSON 可解析：文档语法有效。
-2. Schema 合规：字段、类型和局部约束通过 JSON Schema。
-3. 包与引用完整：目录、ID、版本和跨文档引用一致。
-4. 转换 profile 通过：按所声明版本的 Schema、XSD、XSLT 和规则资产验证可转换范围。
-5. LCA 质量适用：系统边界、代表性、分配和审核还需要方法学判断。
+1. **文件能否读取**：JSON 语法是否正确。
+2. **数据结构是否正确**：JSON Schema 检查必填字段、数据类型、允许取值和单个文件中的关系。
+3. **文件之间是否完整一致**：检查目录、ID、版本和跨文件引用能否对应。
+4. **能否按指定格式交换**：需要转换为 eILCD 等电子交换格式时，还要按所选转换规则实际执行转换并查看结果。
+5. **是否适合研究目的**：系统边界、功能单位、分配、技术/地理/时间代表性、不确定性和评审状态需要另行说明和判断。
 
-> **规范边界：** 机器可执行边界由清单中标记为规范的 Schema，以及所选校验 profile 实际应用的锁定资产和规则组成。“规范”是该版本清单的角色声明；本站的导航、图示、案例和集成方案是说明性内容，不会自动扩展约束。
+## 工具能检查什么、不能检查什么
 
-## 最小数据包路线
+TIDAS 工具可以检查文件格式、字段和引用，也可以执行受支持的格式转换。这些自动检查通过，不能证明 LCA 方法选择正确、数据质量足够，也不能代替独立专业评审。
 
-1. 从 [Process](/zh/docs/core-modules/schema/schema-content/json-schema-processes/) 建立主数据集。
-2. 补齐被引用的 Flow、Flow Property、Unit Group、Contact 和 Source。
-3. 使用 `tidas validate --schema-only` 进行结构诊断，再运行完整 `tidas validate` 检查包级和引用约束。
-4. 用 `tidas version --format json` 记录实际使用的合同、资产和运行时指纹。
+只有在明确写出所依据的体系和版本，并完成该体系要求的质量、方法、文档与评审检查后，才适合给出具名的合规声明。“结构检查通过”“文档完整”“数据质量说明”“已完成独立评审”应分别记录，不能合并成一个笼统状态。
+
+## 从一个最小数据包开始
+
+1. 建立一个[过程数据集](/zh/docs/core-modules/schema/schema-content/json-schema-processes/)。
+2. 加入它引用的流、流属性、单位组、联系人和来源。
+3. 用 `tidas validate --schema-only` 查找字段和结构问题。
+4. 再运行完整的 `tidas validate`，检查数据包和跨文件引用。
+5. 根据数据用途补充数据质量说明、方法判断和所需评审；如需留存工具版本，参见[进阶说明](/zh/docs/tool/)。
 
 <CategoryDirectory lang="zh" path="core-modules" />

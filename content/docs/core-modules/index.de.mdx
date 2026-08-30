@@ -1,34 +1,40 @@
 ---
-title: "Übersicht der Kernmodule"
-description: "TIDAS anhand des LCA-Objektmodells, der Konformitätsstufen und des minimalen Datenpakets verstehen."
+title: "Kerninhalte: So sind LCA-Daten aufgebaut"
+description: "Verstehen Sie die Beziehungen zwischen Prozessen, Flüssen, Einheiten und Quellen und trennen Sie Formatprüfung, Datenqualität und fachliche Prüfung."
 ---
 
-TIDAS trennt die Semantik von Lebenszyklusdaten, JSON-Strukturen und ausführbare Werkzeuge in klar benannte Ebenen. Diese Übersicht erklärt zuerst Objektbeziehungen und Konformitätsgrenzen und führt danach zu den einzelnen Schemas.
+TIDAS ordnet gängige LCA-Informationen als miteinander verknüpfte Dateien. Diese Seite erklärt zuerst deren Inhalt und zeigt danach, wo automatische Prüfungen enden. Unbekannte Begriffe finden Sie unter [Begriffe und Abkürzungen](/de/docs/glossary/).
 
-## Beziehungen der LCA-Objekte
+## So sind LCA-Daten verknüpft
 
-- Ein **Prozess** verweist über Austausche auf **Flüsse** und beschreibt damit Ein- und Ausgänge eines Produktsystems.
-- Ein **Fluss** verwendet **Flusseigenschaften** und **Einheitengruppen**, um vergleichbare Mengen auszudrücken.
-- **Orte** und Taxonomien klassifizieren Geografie, Prozesse, Flüsse und Methoden.
-- **Kontakte** und **Quellen** sichern Verantwortung, Herkunft und Rückverfolgbarkeit; **LCIA-Methoden** und **Lebenszyklusmodelle** tragen Wirkungs- und Systemmodellreferenzen.
+- Ein **Prozessdatensatz** beschreibt eine Produktions- oder Dienstleistungsaktivität: ihre Ein- und Ausgänge, Ort und Zeit sowie die zugrunde liegenden Quellen.
+- Ein **Austausch** verbindet einen Prozess mit einem **Fluss**. Ein Fluss kann ein Produkt oder Abfall sein, aber auch ein **Elementarfluss**, der direkt aus der natürlichen Umwelt entnommen oder dorthin abgegeben wird.
+- **Flusseigenschaften** und **Einheitengruppen** legen fest, wie Größen wie Masse, Energie oder Volumen gemessen und umgerechnet werden.
+- **Quellen** und **Kontakte** dokumentieren Grundlagen und Zuständigkeit; Klassifikationen geben verschiedenen Datensätzen gemeinsame Namen und Kennungen.
+- **Methoden der Wirkungsabschätzung (LCIA)** und **Lebenszyklusmodelle** enthalten Verweise für die Berechnung potenzieller Umweltwirkungen und den Aufbau eines Produktsystems.
 
 <SchemaInventorySummary lang="de" />
 
-## Konformitätsstufen
+## Welche Prüfungen die Daten durchlaufen
 
-1. Parsebares JSON: Die Dokumentsyntax ist gültig.
-2. Schema-Konformität: Felder, Typen und lokale Regeln bestehen die JSON-Schema-Prüfung.
-3. Paket- und Referenzintegrität: Verzeichnisse, IDs, Versionen und dokumentübergreifende Referenzen stimmen überein.
-4. Konvertierungsprofil: Das Paket wird gegen die angegebenen Versionen von Schema-, XSD-, XSLT- und Regel-Assets geprüft.
-5. LCA-Eignung: Systemgrenzen, Repräsentativität, Allokation und Review erfordern weiterhin methodische Beurteilung.
+1. **Ist die Datei lesbar?** Die JSON-Syntax muss gültig sein.
+2. **Stimmt der Datenaufbau?** JSON Schema prüft Pflichtfelder, Datentypen, zulässige Werte und Beziehungen innerhalb einer Datei.
+3. **Sind die Dateien gemeinsam vollständig und konsistent?** Verzeichnisse, IDs, Versionen und dateiübergreifende Verweise müssen zusammenpassen.
+4. **Lassen sich die Daten im gewünschten Format austauschen?** Wird eILCD oder ein anderes elektronisches Austauschformat benötigt, muss die gewählte Konvertierung ausgeführt und ihr Ergebnis geprüft werden.
+5. **Sind die Daten für die Studie geeignet?** Systemgrenze, funktionelle Einheit, Allokation, technische/geografische/zeitliche Repräsentativität, Unsicherheit und Review-Status erfordern eine eigene Erläuterung und Beurteilung.
 
-> **Normative Grenze:** Die maschinell ausführbare Grenze besteht aus den im Inventar als normativ markierten Schemas sowie den gesperrten Assets und Regeln, die das gewählte Prüfprofil tatsächlich anwendet. „Normativ“ ist eine Rollenangabe des versionierten Inventars; Navigation, Diagramme, Beispiele und Integrationsmuster sind informativ und fügen keine Regeln hinzu.
+## Was Werkzeuge prüfen können – und was nicht
 
-## Weg zum minimalen Datenpaket
+TIDAS-Werkzeuge können Dateiformat, Felder und Verweise prüfen und unterstützte Konvertierungen ausführen. Bestandene automatische Prüfungen belegen weder eine geeignete LCA-Methode noch ausreichende Datenqualität oder eine unabhängige kritische Prüfung.
 
-1. Mit einem [Prozessdatensatz](/de/docs/core-modules/schema/schema-content/json-schema-processes/) beginnen.
+Eine Konformitätsaussage sollte nur ein benanntes System und eine Version nennen, deren Anforderungen an Qualität, Methode, Dokumentation und Review tatsächlich beurteilt wurden. „Strukturprüfung bestanden“, „Dokumentation vollständig“, „Datenqualität beschrieben“ und „unabhängig geprüft“ bleiben getrennte Aussagen.
+
+## Mit einem minimalen Datenpaket beginnen
+
+1. Einen [Prozessdatensatz](/de/docs/core-modules/schema/schema-content/json-schema-processes/) anlegen.
 2. Alle referenzierten Flüsse, Flusseigenschaften, Einheitengruppen, Kontakte und Quellen ergänzen.
-3. `tidas validate --schema-only` zur Strukturdiagnose und danach `tidas validate` für Paket- und Referenzprüfungen ausführen.
-4. Den wirksamen Vertrag sowie Asset- und Laufzeitfingerabdrücke mit `tidas version --format json` festhalten.
+3. Mit `tidas validate --schema-only` Feld- und Strukturprobleme suchen.
+4. Danach `tidas validate` vollständig ausführen, um Paket und dateiübergreifende Verweise zu prüfen.
+5. Die für den Verwendungszweck nötige Datenqualitätsbeschreibung, methodische Beurteilung und Prüfung ergänzen. Hinweise zur Werkzeugversion stehen im [Abschnitt für Fortgeschrittene](/de/docs/tool/).
 
 <CategoryDirectory lang="de" path="core-modules" />

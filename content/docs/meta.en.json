@@ -1,6 +1,7 @@
 {
   "pages": [
     "intro",
+    "glossary",
     "core-modules",
     "tool",
     "integration",
