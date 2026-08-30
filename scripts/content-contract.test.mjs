@@ -181,6 +181,7 @@ test('beginner entry points use plain LCA language and keep software internals i
     ...locales.flatMap((locale) => {
       const suffix = locale === 'zh' ? '' : `.${locale}`;
       return [
+        read(`content/docs/intro${suffix}.mdx`),
         read(`content/docs/core-modules/index${suffix}.mdx`),
         read(`content/docs/tool/index${suffix}.mdx`),
       ];
@@ -217,6 +218,36 @@ test('beginner entry points use plain LCA language and keep software internals i
       headingIndex < commandIndex,
       `${locale} tool overview must introduce the version command only after the advanced heading`,
     );
+  }
+});
+
+test('technical integrations appear only after a skippable advanced heading', () => {
+  const advancedHeadings = {
+    zh: '## 进阶：把 TIDAS 接入其他系统',
+    en: '## Advanced: connect TIDAS to other systems',
+    de: '## Für Fortgeschrittene: TIDAS mit anderen Systemen verbinden',
+    fr: '## Pour aller plus loin : connecter TIDAS à d’autres systèmes',
+  };
+  const skipNotes = {
+    zh: '如果你只想保存、检查和交换 LCA 数据，可以跳过本节',
+    en: 'If you only want to save, check, and exchange LCA data, you can skip this section',
+    de: 'Wenn Sie LCA-Daten nur speichern, prüfen und austauschen möchten, können Sie diesen Abschnitt überspringen',
+    fr: 'Si vous souhaitez seulement enregistrer, contrôler et échanger des données d’ACV, vous pouvez ignorer cette section',
+  };
+  const technicalTerms = /多方安全计算|联邦分析|区块链|MCP|secure multi-party computation|federated analytics|blockchain|sichere Mehrparteienberechnung|föderierte Analysen|Blockchain|calcul multipartite sécurisé|analyse fédérée/iu;
+
+  for (const locale of locales) {
+    const suffix = locale === 'zh' ? '' : `.${locale}`;
+    const introPath = `content/docs/intro${suffix}.mdx`;
+    const intro = read(introPath);
+    const headingIndex = intro.indexOf(advancedHeadings[locale]);
+    const noteIndex = intro.indexOf(skipNotes[locale]);
+    const technicalIndex = intro.search(technicalTerms);
+
+    assert.notEqual(headingIndex, -1, `${introPath} must label system integration as advanced`);
+    assert.notEqual(noteIndex, -1, `${introPath} must tell beginners they can skip the section`);
+    assert.notEqual(technicalIndex, -1, `${introPath} must retain links for advanced integrations`);
+    assert.ok(headingIndex < noteIndex && noteIndex < technicalIndex, `${introPath} must explain the optional boundary before technical terms`);
   }
 });
 

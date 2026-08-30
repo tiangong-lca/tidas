@@ -52,17 +52,17 @@ TIDAS 架构由以下三部分组成：
 
 ---
 
-## 🔗 集成能力(Features)
+## 进阶：把 TIDAS 接入其他系统
 
-TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与数据互操作：
+如果你只想保存、检查和交换 LCA 数据，可以跳过本节。以下内容面向需要把 TIDAS 接入企业系统或开发工具的团队：
 
-- 🔐 [权限控制（Permission Control）](/zh/docs/integration/tidas-permission-control/)：实现多方协作下的数据访问控制与授权机制
+- 🔐 [控制谁能查看或修改数据](/zh/docs/integration/tidas-permission-control/)：介绍多人协作时的访问权限。
 
-- 🧠 [隐私计算（Privacy Computing）](/zh/docs/integration/tidas-privacy-computing/)：基于多方安全计算与联邦分析实现数据可用不可见
+- 🧠 [在不直接共享原始数据时共同分析](/zh/docs/integration/tidas-privacy-computing/)：介绍隐私计算方案；实现细节包括多方安全计算和联邦分析。
 
-- 🔗 [区块链集成](/zh/docs/integration/tidas-blockchain/)：实现数据不可篡改与分布式验证
+- 🔗 [记录并核对多方之间的数据变更](/zh/docs/integration/tidas-blockchain/)：介绍使用区块链记录和验证数据的方案及其适用范围。
 
-- 🤖 [AI 集成（MCP 服务）](/zh/docs/integration/tidas-to-ai/)：集成 MCP AI Server，支持数据语义分析、数据补全与智能验证
+- 🤖 [让 AI 工具读取和辅助处理 TIDAS 数据](/zh/docs/integration/tidas-to-ai/)：介绍模型上下文协议（MCP）连接方式以及可以辅助完成的数据处理工作。
 
 ---
 
@@ -72,7 +72,7 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 
 ---
 
-## 📂 应用案例精选
+## 📂 进阶应用案例
 
 - 🔗 [TIDAS + 蚂蚁链](/zh/docs/use-case/tidas-to-antchain/)：构建企业级区块链轻节点验证框架
 
@@ -97,4 +97,5 @@ TIDAS 已构建多种面向实际场景的集成方案，支持可信计算与�
 > 2. [方法论导则](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
 > 3. [数据结构格式](/zh/docs/core-modules/schema/tidas-schema-intro/)
 > 4. [基础数据包](https://github.com/linancn/EF-reference-package-3.1-Correction)
-> 5. [工具模块](/zh/docs/tool/tidas-tool-intro/) 和 [集成方案](/zh/docs/integration/)
+> 5. [工具模块](/zh/docs/tool/tidas-tool-intro/)
+> 6. 如果你负责系统对接，再查看[进阶集成方案](/zh/docs/integration/)
