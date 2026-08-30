@@ -24,8 +24,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
-lastReviewedNote: "Reviewed for Issue #61 after local Node selection, the bounded Node 24 runtime contract, and the EdgeOne 24.18.0 publication pin were separated without package or site drift."
+lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
+lastReviewedNote: "Reviewed for the beginner-facing terminology update: contributor setup and publication remain unchanged while the public site gains a four-locale glossary and plain-language entry copy."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -33,6 +33,8 @@ Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup 
 Review note, 2026-08-26: Issue #58 updates the current pnpm-only toolchain to exact pnpm 11.24.0 across the root manifest, engine, environment, CI, and test contracts. pnpm 11.24.0 reconciles the existing sole root workspace lock without changing its bytes; Node 24.19.0, TypeScript 7.0.2, dependencies, site content/runtime, package version, tags, and publication remain unchanged.
 
 Review note, 2026-08-30: Issue #61 allows supported Node 24 patch releases from `24.18.0` up to (but not including) Node 25. Local `.nvmrc` selects Node major `24`, EdgeOne pins preinstalled Node `24.18.0`, and PR validation remains on reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
+
+Review note, 2026-08-30: the beginner-facing terminology update adds a localized `/docs/glossary/` page and rewrites the homepage, introduction, core overview, tool overview, and Schema inventory labels without changing contributor setup, schemas, executable tools, or publication behavior.
 
 Public documentation and downloadable data contracts for
 [TIDAS](https://tidas.tiangong.earth), the TianGong LCA Data System. The site is a
@@ -44,6 +46,7 @@ Next.js App Router static export using Fumadocs and TypeScript.
 - `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
 - Documentation uses `/{lang}/docs/...`.
 - Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
+- Each `/{lang}/docs/glossary/` page centrally explains LCA concepts, TIDAS data terms, and the difference between automated checks, data quality, independent review, and named compliance claims.
 - Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
 
 Sources use the dot-locale convention: `page.mdx`, `page.en.mdx`, `page.de.mdx`,

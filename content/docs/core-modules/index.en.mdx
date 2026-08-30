@@ -1,34 +1,40 @@
 ---
-title: "Core Modules Overview"
-description: "Understand TIDAS through its LCA object graph, conformance ladder, and minimum-package path."
+title: "Core content: how LCA data is organized"
+description: "Understand how processes, flows, units, and sources relate—and separate format checks from data quality and professional review."
 ---
 
-TIDAS separates life cycle data semantics, JSON structures, and executable tooling into explicit layers. This overview establishes the object relationships and conformance boundary before linking to individual Schemas.
+TIDAS organizes common LCA information as a set of linked files. This page first explains what those files record, then shows where automated checks stop. Open the [terms and abbreviations](/en/docs/glossary/) whenever a concept is unfamiliar.
 
-## LCA object relationships
+## How LCA data is connected
 
-- A **Process** references **Flows** through exchanges to describe inputs and outputs of a product system.
-- A **Flow** uses **Flow Properties** and **Unit Groups** to express comparable quantities.
-- **Locations** and taxonomies provide stable classifications for geography, processes, flows, and methods.
-- **Contacts** and **Sources** support responsibility, provenance, and traceability; **LCIA Methods** and **Life Cycle Models** carry impact-assessment and system-model references.
+- A **process data set** records a production or service activity: what it uses and produces, when and where it occurs, and which sources support it.
+- An **exchange** connects a process to a **flow**. A flow may be a product or waste, or an **elementary flow** taken directly from or released directly to the natural environment.
+- **Flow properties** and **unit groups** define how quantities such as mass, energy, or volume are measured and converted.
+- **Sources** and **contacts** record supporting information and responsibility; classifications let different data use common names and identifiers.
+- **Life cycle impact assessment (LCIA) methods** and **life cycle models** hold references used to calculate potential impacts and connect a product system.
 
 <SchemaInventorySummary lang="en" />
 
-## Conformance ladder
+## Which checks the data goes through
 
-1. Parseable JSON: the document syntax is valid.
-2. Schema conformance: fields, types, and local constraints pass JSON Schema validation.
-3. Package and reference integrity: directories, IDs, versions, and cross-document references agree.
-4. Conversion profile: the package is checked against the declared versions of the Schema, XSD, XSLT, and rules assets.
-5. LCA fitness: system boundaries, representativeness, allocation, and review still require methodological judgement.
+1. **Can the file be read?** The JSON syntax must be valid.
+2. **Is the data structure correct?** JSON Schema checks required fields, data types, allowed values, and relationships within one file.
+3. **Are the files complete and consistent together?** Directories, IDs, versions, and links between files must agree.
+4. **Can the data be exchanged in the requested format?** If eILCD or another electronic exchange format is needed, run the selected conversion rules and inspect the result.
+5. **Is the data suitable for the study?** System boundaries, functional units, allocation, technical/geographical/time representativeness, uncertainty, and review status need separate explanation and judgement.
 
-> **Normative boundary:** the machine-executable boundary consists of Schemas marked normative by the inventory plus the locked assets and rules actually applied by the selected validation profile. “Normative” is a role declared by that versioned inventory; navigation, diagrams, examples, and integration patterns on this site are informative and add no constraints.
+## What tools can—and cannot—check
 
-## Minimum-package path
+TIDAS tools can check file format, fields, and references and can run supported format conversions. Passing those automated checks does not prove that the LCA method is appropriate, that data quality is sufficient, or that an independent critical review has taken place.
 
-1. Start with a [Process](/en/docs/core-modules/schema/schema-content/json-schema-processes/) dataset.
-2. Add every referenced Flow, Flow Property, Unit Group, Contact, and Source.
-3. Use `tidas validate --schema-only` for structural diagnosis, then run full `tidas validate` for package and reference checks.
-4. Record the effective contract, assets, and runtime fingerprints with `tidas version --format json`.
+Name a compliance claim only when its system and version are explicit and its requirements for quality, method, documentation, and review have been assessed. Record “structure check passed,” “documentation complete,” “data quality described,” and “independently reviewed” as separate statements, not one generic status.
+
+## Start with a minimum data package
+
+1. Create one [process data set](/en/docs/core-modules/schema/schema-content/json-schema-processes/).
+2. Add every flow, flow property, unit group, contact, and source it references.
+3. Run `tidas validate --schema-only` to find field and structure problems.
+4. Run full `tidas validate` to check the package and links between files.
+5. Add the data-quality explanation, methodological judgement, and review required for the intended use. See the [advanced note](/en/docs/tool/) if you need to record the tool version.
 
 <CategoryDirectory lang="en" path="core-modules" />

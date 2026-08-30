@@ -1,8 +1,9 @@
 version: 1
 layout: repo
 lastReviewedAt: "2026-08-30"
-lastReviewedCommit: "920187d843c09fd670966cce71884b40606f5246"
-lastReviewedNote: "Reviewed for Issue #61: existing site-runtime ownership, scripts/*.mjs coverage, routing, and proof rules already govern the bounded Node 24 runtime policy and EdgeOne publication pin; no rule-graph change is required."
+lastReviewedCommit: "b10585ba7695ec66636d5078d970ac54105bdf0e"
+lastReviewedNote: "Reviewed for the beginner-facing terminology update: existing public-doc, component, localization, proof, and review-or-update rules already govern the four-locale glossary and entry-copy changes; no ownership or rule-graph change is required."
+# Review note, 2026-08-30: the beginner-facing terminology update adds a localized glossary and plain-language homepage, introduction, core, tool, and Schema inventory copy. Existing content/docs/**, components/**, and scripts/*.test.mjs coverage and required governed-document review remain sufficient.
 # Review note, 2026-08-30: Issue #61 keeps the existing ownership and rule graph while separating the local Node 24 selector, bounded runtime validation, EdgeOne's preinstalled 24.18.0 pin, and the reviewed PR CI runtime.
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
 # Review note, 2026-08-26: Issue #58 only advances the current pnpm contract from 11.23.0 to 11.24.0. Existing site-runtime ownership, scripts/*.mjs and workflow coverage, routed governed documents, and proof rules already own the manifest, environment checker, tests, CI bootstrap, root workspace/lock, and active documentation; no ownership or routing change is required.

@@ -1,34 +1,40 @@
 ---
-title: "Vue d’ensemble des modules principaux"
-description: "Comprendre TIDAS par le graphe d’objets ACV, les niveaux de conformité et le chemin du paquet minimal."
+title: "Contenu principal : comment les données d’ACV sont organisées"
+description: "Comprendre les liens entre processus, flux, unités et sources, et distinguer contrôle de format, qualité des données et revue professionnelle."
 ---
 
-TIDAS sépare la sémantique des données de cycle de vie, les structures JSON et les outils exécutables en couches explicites. Cette vue d’ensemble présente les relations entre objets et la limite de conformité avant les schémas individuels.
+TIDAS organise les informations courantes d’ACV dans des fichiers reliés entre eux. Cette page explique d’abord leur contenu, puis indique où s’arrêtent les contrôles automatiques. Consultez les [termes et sigles](/fr/docs/glossary/) lorsqu’un concept n’est pas familier.
 
-## Relations entre les objets ACV
+## Comment les données d’ACV sont reliées
 
-- Un **processus** référence des **flux** par ses échanges afin de décrire les entrées et sorties d’un système de produit.
-- Un **flux** utilise des **propriétés de flux** et des **groupes d’unités** pour exprimer des quantités comparables.
-- Les **localisations** et taxonomies classent la géographie, les processus, les flux et les méthodes.
-- Les **contacts** et **sources** assurent responsabilité, provenance et traçabilité ; les **méthodes ACVI** et **modèles de cycle de vie** portent les références d’impact et de modèle système.
+- Un **jeu de données de processus** décrit une activité de production ou de service : ce qu’elle utilise et produit, où et quand elle a lieu, et les sources qui la documentent.
+- Un **échange** relie un processus à un **flux**. Un flux peut être un produit ou un déchet, mais aussi un **flux élémentaire** prélevé directement dans l’environnement naturel ou rejeté directement vers celui-ci.
+- Les **propriétés de flux** et **groupes d’unités** définissent comment mesurer et convertir des quantités telles que la masse, l’énergie ou le volume.
+- Les **sources** et **contacts** consignent les informations justificatives et les responsabilités ; les classifications fournissent des noms et identifiants communs.
+- Les **méthodes d’évaluation de l’impact du cycle de vie (ACVI)** et **modèles de cycle de vie** portent les références nécessaires au calcul des impacts potentiels et à la construction d’un système de produit.
 
 <SchemaInventorySummary lang="fr" />
 
-## Niveaux de conformité
+## Quels contrôles sont appliqués aux données
 
-1. JSON analysable : la syntaxe du document est valide.
-2. Conformité au schéma : champs, types et contraintes locales passent la validation JSON Schema.
-3. Intégrité du paquet et des références : répertoires, identifiants, versions et références concordent.
-4. Profil de conversion : le paquet est vérifié avec les versions déclarées des ressources Schema, XSD, XSLT et de règles.
-5. Aptitude ACV : périmètres, représentativité, allocation et revue exigent encore un jugement méthodologique.
+1. **Le fichier est-il lisible ?** La syntaxe JSON doit être correcte.
+2. **La structure des données est-elle correcte ?** JSON Schema contrôle les champs obligatoires, les types, les valeurs autorisées et les relations dans un fichier.
+3. **Les fichiers sont-ils complets et cohérents ensemble ?** Répertoires, identifiants, versions et références entre fichiers doivent correspondre.
+4. **Les données peuvent-elles être échangées au format demandé ?** Si eILCD ou un autre format d’échange électronique est requis, exécutez les règles de conversion choisies et examinez le résultat.
+5. **Les données conviennent-elles à l’étude ?** Frontière du système, unité fonctionnelle, allocation, représentativité technique/géographique/temporelle, incertitude et état de la revue nécessitent une explication et un jugement distincts.
 
-> **Limite normative :** la limite exécutable comprend les schémas marqués normatifs par l’inventaire ainsi que les ressources verrouillées et les règles réellement appliquées par le profil de validation choisi. « Normatif » est un rôle déclaré par cette version de l’inventaire ; navigation, diagrammes, exemples et modèles d’intégration sont informatifs et n’ajoutent aucune contrainte.
+## Ce que les outils peuvent contrôler — et ce qu’ils ne peuvent pas
 
-## Chemin du paquet minimal
+Les outils TIDAS peuvent contrôler le format des fichiers, les champs et les références, et exécuter les conversions prises en charge. La réussite de ces contrôles ne prouve ni la pertinence de la méthode d’ACV, ni une qualité des données suffisante, ni la réalisation d’une revue critique indépendante.
 
-1. Commencer par un jeu de données de [processus](/fr/docs/core-modules/schema/schema-content/json-schema-processes/).
+Une déclaration de conformité ne doit nommer un système et une version que si leurs exigences de qualité, de méthode, de documentation et de revue ont été évaluées. « Structure contrôlée », « documentation complète », « qualité des données décrite » et « revue indépendante réalisée » sont des mentions distinctes.
+
+## Commencer par un paquet de données minimal
+
+1. Créer un [jeu de données de processus](/fr/docs/core-modules/schema/schema-content/json-schema-processes/).
 2. Ajouter chaque flux, propriété de flux, groupe d’unités, contact et source référencés.
-3. Utiliser `tidas validate --schema-only` pour le diagnostic structurel, puis `tidas validate` pour les contrôles du paquet et des références.
-4. Enregistrer le contrat effectif et les empreintes des ressources et de l’exécution avec `tidas version --format json`.
+3. Exécuter `tidas validate --schema-only` pour repérer les problèmes de champs et de structure.
+4. Exécuter ensuite `tidas validate` au complet pour contrôler le paquet et les références entre fichiers.
+5. Ajouter l’explication de la qualité des données, le jugement méthodologique et la revue requis par l’usage prévu. Pour consigner la version de l’outil, voir la [note avancée](/fr/docs/tool/).
 
 <CategoryDirectory lang="fr" path="core-modules" />

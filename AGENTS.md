@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
-lastReviewedNote: "Reviewed for Issue #61 after Node policy was bounded to supported 24.x runtimes, EdgeOne was pinned to preinstalled 24.18.0, and pnpm/TypeScript remained exact."
+lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
+lastReviewedNote: "Reviewed for the beginner-facing terminology update: the new four-locale glossary and plain-language entry copy preserve repository ownership, URL, runtime, publication, and executable-tool boundaries."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -45,6 +45,8 @@ Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pn
 Review note, 2026-08-26: Issue #58 advances only the current package-manager contract from exact pnpm 11.23.0 to 11.24.0. Root `packageManager`, package engines, the fail-closed environment check, CI bootstrap, and Node contracts agree on that version; pnpm 11.24.0 leaves the sole root workspace lock byte-identical. Node 24.19.0, the sole TypeScript 7.0.2 graph, package version and dependencies, public schemas/generated content, runtime behavior, tags, and publication remain unchanged, with no npm/Yarn fallback.
 
 Review note, 2026-08-30: Issue #61 replaces the exact Node patch invariant with a bounded `>=24.18.0 <25` runtime policy. `.nvmrc` selects the current Node 24 release for local work, EdgeOne uses its preinstalled `24.18.0`, and PR validation remains pinned to reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
+
+Review note, 2026-08-30: the beginner-facing terminology update adds one substantive four-locale `/docs/glossary/` route, rewrites the homepage, introduction, core overview, tool overview, and Schema inventory labels in plain LCA language, and makes format checks, documentation completeness, data quality, independent review, and named compliance claims distinct. It changes no Schema meaning or executable `tidas-tools` behavior.
 
 ## Repository contract
 
@@ -89,6 +91,7 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - First-party document links use locale-absolute `/{lang}/docs/**/` targets. Path-relative document links are forbidden because trailing-slash pages resolve them below the current page directory.
 - All four locales are independent content sources with no fallback language.
 - `content/docs/**` uses dot-locale files: `page.mdx`, `page.en.mdx`, `page.de.mdx`, and `page.fr.mdx`.
+- `/{lang}/docs/glossary/` is the centralized beginner-facing explanation of LCA terms, TIDAS data terms, and the separate meanings of format checks, data quality, review, and named compliance claims.
 - `public/schemas/**` is the downloadable Schema surface. Large schemas are fetched by the client only when a reader opens the explorer; they must not be serialized into page HTML.
 - `content/schema-inventory.json` is the machine-readable count and role authority for the 19 published JSON assets: 8 dataset objects, 9 classification vocabularies, 1 shared-types contract, and 1 derived non-normative viewer projection. Matching the `tidas-tools` lock by file name does not assert structural or byte-for-byte parity.
 - `out/**` is generated static output and never an authority source.

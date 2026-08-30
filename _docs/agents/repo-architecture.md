@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 920187d843c09fd670966cce71884b40606f5246
-lastReviewedNote: "Reviewed for Issue #61 after the Node runtime contract was bounded within Node 24 and EdgeOne was pinned to its preinstalled 24.18.0 without changing the static pipeline."
+lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
+lastReviewedNote: "Reviewed for the beginner-facing terminology update: a four-locale root glossary now supports plain-language entry pages without changing the static pipeline, Schema delivery, or repository handoffs."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -42,6 +42,8 @@ Historical review note, 2026-08-25: Issue #56 established one exact fail-closed 
 Review note, 2026-08-26: Issue #58 changes only the current package-manager identity from pnpm 11.23.0 to exact pnpm 11.24.0. The same root workspace and byte-identical lock, Node 24.19.0, sole TypeScript 7.0.2 graph, static pipeline, schemas/generated output, dependencies, version, and publication path remain in place.
 
 Review note, 2026-08-30: Issue #61 separates the Node selectors by environment while retaining one bounded runtime contract: local `.nvmrc` tracks Node major `24`, EdgeOne uses preinstalled `24.18.0`, PR validation uses reviewed `24.19.0`, and all must satisfy `>=24.18.0 <25`.
+
+Review note, 2026-08-30: the beginner-facing terminology update keeps the existing route family and adds `/{lang}/docs/glossary/` as a substantive root page in each locale. The homepage, introduction, core overview, tool overview, and Schema inventory summary now introduce TIDAS as a shared way to organize and exchange LCA data, while advanced software identity remains subordinate and executable behavior remains in `tidas-tools`.
 
 ## Site shape
 
@@ -97,7 +99,7 @@ Localized section roots are real content pages as well as navigation folders. Ea
 
 Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a bounded flat native table: only the name cell is indented, identifier and child-count columns remain aligned, branches are interactive, and leaves remain non-button rows. Search uses the same columns and adds the parent breadcrumb. Other schemas render as a lazy flat structure table whose branch labels prefer title, constants, enums, and references over ordinal names.
 
-The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents methodology, data structure, and data resources. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces.
+The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents LCA work requirements, data-entry rules, and reference data in beginner-facing language. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces. Each locale links directly to its root glossary, which centralizes LCA terminology and separates structural checks from data quality, independent review, and named compliance claims.
 
 The shared brand has one complete accessible name. Wide unconstrained navigation may show `TIDAS / TianGong Data System`; the fixed documentation sidebar and mobile header deliberately render `TIDAS` rather than clipping or ellipsizing part of the product name.
 

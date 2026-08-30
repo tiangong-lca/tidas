@@ -1,10 +1,20 @@
 ---
-title: "TIDAS Tools Overview"
-description: "Find the executable path for validation, conversion, import, export, and reproducible release workflows."
+title: "TIDAS tools: check, convert, and package data"
+description: "Learn what the tidas command-line tool can and cannot do, and where to install it."
 ---
 
-This site explains the TIDAS specification; the unified `tidas` CLI in `tidas-tools` owns executable behavior. Start by running `tidas version --format json` so the binary, contract, asset, and runtime fingerprints travel with validation or conversion evidence.
+`tidas` is a command-line program that runs in a computer terminal. It can check fields and links in TIDAS files, convert between TIDAS and eILCD where supported, and help import, export, and prepare data packages for delivery.
 
-This section covers installation, command boundaries, and migration. Treat [tidas-tools Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) as the authority for the current release and installation assets instead of copying a release number into long-lived documentation.
+The tool checks file structure and implemented rules. It does not choose a functional unit, system boundary, or allocation method for you, judge whether data quality is sufficient, or replace an independent critical review. Get the current version and installer from the [latest tidas-tools release](https://github.com/tiangong-lca/tidas-tools/releases/latest), then run `tidas --help` to see the available starting points.
+
+## Advanced: record the tool version
+
+If your team needs to reproduce a check or conversion later, run:
+
+```bash
+tidas version --format json
+```
+
+This command lists the tool and accompanying rule versions in a format that is easy to save. Keep the output with the check report or conversion result so others can see which version was used. You do not need this technical detail for ordinary browsing or a first trial.
 
 <CategoryDirectory lang="en" path="tool" />

@@ -1,0 +1,85 @@
+---
+title: "Termes et sigles"
+description: "Explications en langage courant des concepts d’ACV, des termes de données et des résultats de contrôle utilisés sur ce site."
+---
+
+Cette page aide les personnes qui découvrent les données d’ACV. Les notions s’appuient sur l’[ILCD Handbook: General guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf) et les guides de format de données du Centre commun de recherche (JRC) de la Commission européenne ; les explications courtes sont adaptées à ce site.
+
+## Concepts courants d’une étude d’ACV
+
+### Analyse du cycle de vie (ACV)
+
+Une méthode d’étude des ressources utilisées, des émissions et des impacts environnementaux potentiels au cours du cycle de vie d’un produit ou service, de l’acquisition des matières premières à la fin de vie en passant par la production et l’utilisation. Elle comprend objectifs et champ de l’étude, inventaire, évaluation des impacts et interprétation ; elle ne se réduit pas à un chiffre carbone.
+
+### Objectifs et champ de l’étude
+
+La description de la raison de l’étude, de ses utilisateurs, de son objet et de la portée du calcul. Elle oriente les besoins en données, la frontière du système, l’évaluation des impacts et les conclusions.
+
+### Unité fonctionnelle
+
+Le service quantifié auquel tous les résultats se rapportent et qui permet de comparer des solutions. Elle précise la fonction, la quantité, la qualité et la durée, par exemple « fournir 1 kWh d’électricité alternative à un utilisateur basse tension dans une région donnée ».
+
+### Flux de référence
+
+La quantité de produit ou de service nécessaire au système de produit pour fournir une unité fonctionnelle. Les autres entrées et sorties sont quantifiées par rapport à ce flux.
+
+### Frontière du système
+
+La définition des étapes du cycle de vie et processus inclus ou exclus, ainsi que la justification des exclusions.
+
+### Système de produit
+
+Un ensemble de processus élémentaires reliés qui fournissent ensemble une fonction. Des flux de produits, de déchets et d’autres flux relient les processus.
+
+### Processus élémentaire et jeu de données de processus
+
+Un **processus élémentaire** est la plus petite activité dont les entrées et sorties sont enregistrées séparément, par exemple une activité de production d’électricité ou de transport. Un **jeu de données de processus** enregistre une activité, ses entrées et sorties, la période, le lieu, la technologie et les sources ; les deux notions ne sont pas toujours interchangeables. Voir l’[ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html).
+
+### Échange
+
+L’enregistrement d’une entrée ou d’une sortie d’un processus. Il relie le processus à un flux de produit, de déchet ou élémentaire et indique la quantité et l’unité.
+
+### Flux élémentaire
+
+Une matière ou énergie prélevée directement dans l’environnement naturel par le système technique, ou rejetée directement vers celui-ci, par exemple une ressource extraite ou une émission dans l’air.
+
+### Inventaire du cycle de vie (ICV)
+
+Le relevé quantifié de ce que chaque processus du système de produit utilise, produit et émet.
+
+### Évaluation de l’impact du cycle de vie (ACVI)
+
+L’étape qui traduit les ressources utilisées et les émissions de l’inventaire en indicateurs d’impacts potentiels, tels que le changement climatique. Ces indicateurs ne prédisent pas directement les conséquences réelles sur l’environnement.
+
+### Qualité et représentativité des données
+
+Le fait que les données soient suffisamment complètes et fiables et correspondent à la technologie, à la région et à la période étudiées. Les représentativités technique, géographique et temporelle sont examinées séparément, avec la précision, l’incertitude et la pertinence méthodologique.
+
+### Revue critique indépendante
+
+Un examen des données, méthodes, interprétations et rapports par une personne suffisamment qualifiée et indépendante, selon un champ et une méthode définis. Un contrôle automatique du format n’est pas une revue critique indépendante.
+
+## Termes utilisés par TIDAS et ses outils
+
+### TIDAS
+
+Une structure de données et des règles d’outils pour enregistrer, contrôler et échanger les données d’ACV. TIDAS organise processus, flux, unités, sources et références, mais ne remplace pas les choix professionnels concernant objectifs, frontière du système, allocation, qualité des données ou revue.
+
+### JSON et JSON Schema
+
+**JSON** est un format de fichier pour les données structurées. **JSON Schema** est un ensemble de contrôles lisibles par logiciel pour les champs obligatoires, types, valeurs autorisées et autres éléments de la structure TIDAS.
+
+### Format d’échange électronique
+
+Une organisation des fichiers permettant à une application ou base de données de transmettre des données complètes à une autre. TIDAS et eILCD peuvent être convertis lorsque les outils le prennent explicitement en charge ; une conversion réussie ne signifie pas que toutes les significations méthodologiques sont identiques.
+
+## Résultats de contrôle à ne pas confondre
+
+- **Structure contrôlée :** le fichier est lisible et ses champs, types et règles locales passent JSON Schema.
+- **Fichiers et références complets :** les fichiers requis existent et les identifiants, versions et références correspondent.
+- **Échange réussi dans un format nommé :** une version indiquée des règles de conversion a été exécutée et la sortie a été examinée.
+- **Qualité des données décrite :** complétude, représentativité et incertitude sont documentées et jugées ; un schéma ne peut pas le décider automatiquement.
+- **Revue indépendante terminée :** personne, champ, méthode et conclusions sont consignés ; cela diffère d’une validation automatique.
+- **Déclaration de conformité nommée :** à utiliser seulement si le système et sa version sont précisés et si les exigences de méthode, qualité, documentation et revue ont été évaluées. Un contrôle de format ne suffit pas.
+
+Pour distinguer contrôle du format ILCD, complétude documentaire et champs de revue, voir le guide du JRC sur la [documentation des jeux de données d’ACV](https://eplca.jrc.ec.europa.eu/uploads/QMS_H08_ENSURE_ILCD_GuidanceDocumentationLCADataSets_Version1-1Beta_2011_ISBN_clean.pdf).

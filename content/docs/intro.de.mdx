@@ -2,7 +2,9 @@
 title: "Einführung"
 ---
 
-**TIDAS** (**TI**angong **DA**ta **S**ystem) ist ein offenes, JSON-basiertes Datensystem. Es schafft eine einheitliche, standardisierte und erweiterbare Grundlage für Ökobilanzen (LCA) und das Management von CO₂-Fußabdrücken. Die drei Kernmodule „Methodik, Formatspezifikation und Datenressourcen“ werden durch Werkzeuge und Integrationen ergänzt, sodass Daten intelligent, vertrauenswürdig und automatisiert verwaltet werden können.
+**TIDAS** (**TI**angong **DA**ta **S**ystem) ist eine offene Datenstruktur mit Werkzeugregeln für LCA-Daten. Prozesse, Flüsse, Einheiten, Quellen und ihre Verweise werden einheitlich gespeichert, damit Teams und Software Daten leichter prüfen, konvertieren und austauschen können.
+
+TIDAS ist damit eine gemeinsame Art, LCA-Daten auszufüllen und zu übergeben. Es hilft beim Ordnen und Prüfen von Dateien, ersetzt aber keine fachlichen Entscheidungen zu Studienziel, funktioneller Einheit, Systemgrenze, Allokation, Datenqualität oder Review.
 
 import { TidasImage } from '@/components/tidas-image';
 
@@ -11,64 +13,66 @@ import { TidasImage } from '@/components/tidas-image';
   title="TIDAS"
 />
 
+> Neu bei diesen Begriffen? Beginnen Sie mit [Begriffen und Abkürzungen](/de/docs/glossary/) und lernen Sie TIDAS danach über die drei Teile unten kennen.
+
 ---
 
-## 🧱 Kernmodule der Systemarchitektur
+## 🧱 Was TIDAS umfasst
 
 Die TIDAS-Architektur besteht aus drei Bereichen:
 
-### 📖 Methodik
+### 📖 Anforderungen der LCA-Datenarbeit (Methodik)
 
 - [Leitfaden zum Aufbau von LCA- und CO₂-Fußabdruckdatenbanken](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-  Beschreibt Aufbau, Prüfung und Pflege von Daten und berücksichtigt ISO 14040/44, das ILCD Handbook sowie ecoinvent-Konventionen.
+  Beschreibt die Methoden-, Qualitäts- und Review-Angaben für Aufbau und Pflege von LCA-Datenbanken unter Bezug auf einschlägige Praktiken aus ISO 14040/44, ILCD Handbook und ecoinvent.
 
-### 🧾 Datenformat
+### 🧾 Eingabe- und Austauschstruktur (Format)
 
 - [TIDAS-Datenstruktur](/de/docs/core-modules/schema/tidas-schema-intro/)
-  Validiert Datenstrukturen mit JSON und JSON Schema und unterstützt moderne Architekturen wie KI, Datenräume und Blockchain.
+  Speichert Daten als JSON und nutzt JSON Schema zur Prüfung von Pflichtfeldern, Datentypen, zulässigen Werten und Verweisen.
 
-### 📦 Datenressourcen
+### 📦 Referenzdaten
 
 - [Referenzdatenpaket](https://github.com/linancn/EF-reference-package-3.1-Correction)
-  Stellt eine offene Referenzdatenbank für rückverfolgbare, konsistente und belastbare Daten bereit.
+  Stellt wiederverwendbare Klassifikationen, Einheiten und Basisdaten bereit, damit Datensätze gemeinsame Namen und Kennungen verwenden.
 
 ---
 
 ## 🛠 Unterstützende Werkzeuge
 
-Die **TIDAS-Werkzeuge** ergänzen die drei Kernmodule und unterstützen Datenaufbau, Formatinteroperabilität und Exporte zwischen Entwicklungsteams und Systemen.
+Die **TIDAS-Werkzeuge** sind Kommandozeilenprogramme im Computerterminal. Sie prüfen Dateien, konvertieren unterstützte Formate und exportieren Datenpakete.
 
-- 🧪 `validate`: prüft Datenstruktur, Regelkonformität und Vollständigkeit.
+- 🧪 `validate`: prüft Dateistruktur, Pflichtfelder und Verweise zwischen Dateien.
 
-- 🔄 `convert`: konvertiert TIDAS und eILCD für unterstützte Profile und geprüfte Asset-Versionen in beide Richtungen.
+- 🔄 `convert`: konvertiert TIDAS- und eILCD-Daten, soweit die implementierten Regeln dies unterstützen.
 
-- 📤 `export`: paketiert konforme Daten als standardisiertes ZIP für Übergabe und Archivierung.
+- 📤 `export`: verpackt Daten nach den erforderlichen Prüfungen als ZIP-Datei für Übergabe oder Archivierung.
 
 👉 Vollständige Beschreibung: [TIDAS-Werkzeuge](/de/docs/tool/tidas-tool-intro/)
 
 ---
 
-## 🔗 Integration und Erweiterung
+## Für Fortgeschrittene: TIDAS mit anderen Systemen verbinden
 
-TIDAS bietet Integrationslösungen für praktische Szenarien, vertrauenswürdige Berechnungen und Dateninteroperabilität:
+Wenn Sie LCA-Daten nur speichern, prüfen und austauschen möchten, können Sie diesen Abschnitt überspringen. Die folgenden Seiten richten sich an Teams, die TIDAS mit Unternehmenssystemen oder Entwicklungswerkzeugen verbinden:
 
-- 🔐 [Berechtigungssteuerung](/de/docs/integration/tidas-permission-control/): regelt Datenzugriff und Autorisierung bei der Zusammenarbeit mehrerer Parteien.
+- 🔐 [Steuern, wer Daten sehen oder ändern darf](/de/docs/integration/tidas-permission-control/): erklärt Zugriffsrechte bei der Zusammenarbeit mehrerer Personen oder Organisationen.
 
-- 🧠 [Vertrauliche Datenverarbeitung](/de/docs/integration/tidas-privacy-computing/): ermöglicht mit sicherer Mehrparteienberechnung und föderierten Analysen „nutzbare, aber nicht sichtbare“ Daten.
+- 🧠 [Gemeinsam analysieren, ohne Quelldaten direkt weiterzugeben](/de/docs/integration/tidas-privacy-computing/): erklärt Verfahren zum Schutz vertraulicher Daten; technisch gehören dazu sichere Mehrparteienberechnung und föderierte Analysen.
 
-- 🔗 [Blockchain-Integration](/de/docs/integration/tidas-blockchain/): schützt vor Manipulation und ermöglicht verteilte Prüfungen.
+- 🔗 [Datenänderungen zwischen Beteiligten aufzeichnen und prüfen](/de/docs/integration/tidas-blockchain/): erklärt eine Blockchain-Lösung und ihren vorgesehenen Einsatzbereich.
 
-- 🤖 [KI-Integration (MCP-Dienst)](/de/docs/integration/tidas-to-ai/): bindet einen MCP-AI-Server für semantische Analyse, Ergänzung und intelligente Validierung ein.
+- 🤖 [KI-Werkzeuge beim Lesen und Bearbeiten von TIDAS-Daten unterstützen](/de/docs/integration/tidas-to-ai/): erklärt die Anbindung über das Model Context Protocol (MCP) und die unterstützten Datenaufgaben.
 
 ---
 
 ## 🌐 Unternehmenssoftware: TianGong-LCA-Plattform
 
-- Die [TianGong-Plattform](https://docs.tiangong.earth/de/docs/) verwendet TIDAS-Datenverträge in LCA-Arbeitsabläufen von der Datenmodellierung bis zur vertrauenswürdigen Bereitstellung; aktuelle Funktionen und Betriebsgrenzen beschreibt die Plattformdokumentation.
+- Die [TianGong-Plattform](https://docs.tiangong.earth/de/docs/) nutzt nach der TIDAS-Struktur geordnete Daten für LCA-Modellierung, Berechnung und Zusammenarbeit; aktuelle Funktionen und Betriebsgrenzen beschreibt die Plattformdokumentation.
 
 ---
 
-## 📂 Ausgewählte Anwendungsfälle
+## 📂 Anwendungsfälle für Fortgeschrittene
 
 - 🔗 [TIDAS + AntChain](/de/docs/use-case/tidas-to-antchain/): Prüfrahmen mit leichtgewichtigem Blockchain-Knoten für Unternehmen.
 
@@ -89,7 +93,9 @@ TIDAS bietet Integrationslösungen für praktische Szenarien, vertrauenswürdige
 > 📌 **Empfohlene Lesereihenfolge**
 > Lernen Sie die TIDAS-Architektur in dieser Reihenfolge kennen:
 >
-> 1. [Methodischer Leitfaden](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
-> 2. [Datenstruktur](/de/docs/core-modules/schema/tidas-schema-intro/)
-> 3. [Referenzdatenpaket](https://github.com/linancn/EF-reference-package-3.1-Correction)
-> 4. [Werkzeuge](/de/docs/tool/tidas-tool-intro/) und [Integrationslösungen](/de/docs/integration/)
+> 1. [Begriffe und Abkürzungen](/de/docs/glossary/)
+> 2. [Methodischer Leitfaden](https://www.carbonfootprint.network/docs/category/lca-database-guideline)
+> 3. [Datenstruktur](/de/docs/core-modules/schema/tidas-schema-intro/)
+> 4. [Referenzdatenpaket](https://github.com/linancn/EF-reference-package-3.1-Correction)
+> 5. [Werkzeuge](/de/docs/tool/tidas-tool-intro/)
+> 6. Wenn Sie Systeme anbinden, lesen Sie anschließend die [Integrationslösungen für Fortgeschrittene](/de/docs/integration/)
