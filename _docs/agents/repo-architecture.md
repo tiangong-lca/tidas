@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-15
-lastReviewedCommit: 5ed2b8d9f0c2a33606cfa98e90fcff5d49620703
-lastReviewedNote: "Reviewed for TIDAS #66: full local baseline uses lint/typecheck/build once; standalone focused tests remain available and build still requires the full suite plus both output verifiers. Actual wrapper traces and failure mutations pass, as do frozen install, lint, typecheck and full build with 26 tests and both output gates. Ownership, schemas, runtime, CI and publication unchanged; source delivery pending."
+lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
+lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -130,3 +130,9 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 - Importing a large JSON Schema from MDX serializes it into HTML and RSC payloads even if the visible tree is collapsed.
 - Locale-labelled English copies are not translations.
 - A merged child PR does not complete workspace delivery.
+
+The shared navigation links to the independently owned PCR methodology library.
+Chinese readers receive its Chinese root; English, German and French readers
+receive its actual English entry, with the destination language identified for
+German/French readers. This entry point does not create additional PCR locales or
+change TIDAS schemas, content ownership, or the four-language TIDAS site contract.

@@ -24,8 +24,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-15
-lastReviewedCommit: 5ed2b8d9f0c2a33606cfa98e90fcff5d49620703
-lastReviewedNote: "Reviewed for TIDAS #66: full local baseline uses lint/typecheck/build once; standalone focused tests remain available and build still requires the full suite plus both output verifiers. Actual wrapper traces and failure mutations pass, as do frozen install, lint, typecheck and full build with 26 tests and both output gates. Ownership, schemas, runtime, CI and publication unchanged; source delivery pending."
+lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
+lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
