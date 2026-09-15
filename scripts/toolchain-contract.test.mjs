@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import test from 'node:test';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (relativePath) => fs.readFileSync(path.join(repositoryRoot, relativePath), 'utf8');
@@ -95,4 +96,72 @@ test('binds the pull-request workflow to the exact pnpm and Node runtime', () =>
   assert.match(setupWorkflows[0].source, /version:\s*11\.24\.0/u);
   assert.match(setupWorkflows[0].source, /runtime:\s*node@24\.19\.0/u);
   assert.match(setupWorkflows[0].source, /install:\s*false/u);
+});
+
+// Run the real build wrapper in a disposable process. Only its external phase
+// commands are intercepted; an inner pnpm test must not recursively run this test.
+function traceBuild(failAt = -1, failureStatus = 19) {
+  const driver = `
+    import childProcess from 'node:child_process';
+    import { syncBuiltinESMExports } from 'node:module';
+    let index = 0;
+    childProcess.spawnSync = (command, args) => {
+      console.log('TRACE ' + JSON.stringify([command, ...args]));
+      return { status: index++ === Number(process.argv[2]) ? JSON.parse(process.argv[3]) : 0 };
+    };
+    syncBuiltinESMExports();
+    await import(process.argv[1]);
+  `;
+  const result = spawnSync(
+    process.execPath,
+    ['--input-type=module', '-e', driver, pathToFileURL(path.join(repositoryRoot, 'scripts/build.mjs')).href,
+      String(failAt), JSON.stringify(failureStatus)],
+    {
+      cwd: repositoryRoot,
+      encoding: 'utf8',
+      timeout: 10_000,
+      env: { ...process.env, NODE_OPTIONS: '', SOURCE_COMMIT: 'a'.repeat(40), SOURCE_DATE_EPOCH: '1',
+        DEPLOY_ENV: 'ci', CANONICAL_ORIGIN: 'http://localhost:3000', NEXT_PUBLIC_SEARCH_MODE: 'static' },
+    },
+  );
+  assert.ifError(result.error);
+  return { ...result, trace: result.stdout.split('\n').filter((line) => line.startsWith('TRACE '))
+    .map((line) => JSON.parse(line.slice(6))) };
+}
+
+const expectedBuildTrace = [
+  ['node', 'scripts/check-env.mjs'], ['pnpm', 'test'], ['next', 'build'],
+  ['node', 'scripts/verify-out.mjs'], ['node', 'scripts/verify-site.mjs'],
+];
+
+test('documented full baselines execute tests once through the actual build wrapper', () => {
+  const build = traceBuild();
+  assert.equal(build.status, 0, build.stderr);
+  assert.deepEqual(build.trace, expectedBuildTrace);
+  assert.match(build.stdout, /BUILD PIPELINE GREEN/u);
+  const baselines = [
+    read('AGENTS.md').split('- canonical local baseline:')[1]?.split('- visual changes')[0],
+    read('_docs/agents/repo-validation.md').split('## Default baseline')[1]?.match(/```bash([\s\S]*?)```/u)?.[1],
+  ];
+  for (const baseline of baselines) {
+    assert.ok(baseline, 'the governed baseline must remain discoverable');
+    const commands = [...baseline.matchAll(/\bpnpm (lint|typecheck|test|build)\b/gu)].map((match) => match[1]);
+    assert.deepEqual(commands.filter((command) => command !== 'test'), ['lint', 'typecheck', 'build']);
+    const fullTests = commands.filter((command) => command === 'test').length
+      + build.trace.filter(([command, argument]) => command === 'pnpm' && argument === 'test').length;
+    assert.equal(fullTests, 1, 'build already runs the full test suite');
+  }
+});
+
+test('actual build stops at every failed phase and never reports green', () => {
+  for (const [index] of expectedBuildTrace.entries()) {
+    const build = traceBuild(index);
+    assert.equal(build.status, 19, build.stderr);
+    assert.deepEqual(build.trace, expectedBuildTrace.slice(0, index + 1));
+    assert.doesNotMatch(build.stdout, /BUILD PIPELINE GREEN/u);
+  }
+  const interrupted = traceBuild(1, null);
+  assert.equal(interrupted.status, 1);
+  assert.deepEqual(interrupted.trace, expectedBuildTrace.slice(0, 2));
+  assert.doesNotMatch(interrupted.stdout, /BUILD PIPELINE GREEN/u);
 });

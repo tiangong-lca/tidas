@@ -1,8 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-08-30"
-lastReviewedCommit: "b10585ba7695ec66636d5078d970ac54105bdf0e"
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: existing public-doc, component, localization, proof, and review-or-update rules already govern the four-locale glossary and entry-copy changes; no ownership or rule-graph change is required."
+lastReviewedAt: "2026-09-15"
+lastReviewedCommit: "5ed2b8d9f0c2a33606cfa98e90fcff5d49620703"
+lastReviewedNote: "Reviewed for TIDAS #66: full local baseline uses lint/typecheck/build once; standalone focused tests remain available and build still requires the full suite plus both output verifiers. Actual wrapper traces and failure mutations pass, as do frozen install, lint, typecheck and full build with 26 tests and both output gates. Ownership, schemas, runtime, CI and publication unchanged; source delivery pending."
 # Review note, 2026-08-30: the beginner-facing terminology update adds a localized glossary and plain-language homepage, introduction, core, tool, and Schema inventory copy. Existing content/docs/**, components/**, and scripts/*.test.mjs coverage and required governed-document review remain sufficient.
 # Review note, 2026-08-30: Issue #61 keeps the existing ownership and rule graph while separating the local Node 24 selector, bounded runtime validation, EdgeOne's preinstalled 24.18.0 pin, and the reviewed PR CI runtime.
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.

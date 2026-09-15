@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-30
-lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: the new four-locale glossary and plain-language entry copy preserve repository ownership, URL, runtime, publication, and executable-tool boundaries."
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 5ed2b8d9f0c2a33606cfa98e90fcff5d49620703
+lastReviewedNote: "Reviewed for TIDAS #66: full local baseline uses lint/typecheck/build once; standalone focused tests remain available and build still requires the full suite plus both output verifiers. Actual wrapper traces and failure mutations pass, as do frozen install, lint, typecheck and full build with 26 tests and both output gates. Ownership, schemas, runtime, CI and publication unchanged; source delivery pending."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -73,9 +73,9 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 - canonical local baseline:
   - `pnpm lint`
   - `pnpm typecheck`
-  - `pnpm test`
   - `DEPLOY_ENV=ci CANONICAL_ORIGIN=http://localhost:3000 NEXT_PUBLIC_SEARCH_MODE=static pnpm build`
 - visual changes additionally require browser checks at desktop and mobile widths
+- `pnpm build` runs the full test suite before generation and output verification; use `pnpm test` for focused early feedback when a full build is not yet needed
 - EdgeOne Pages Git integration owns production build and deployment from `main`
 - GitHub Actions validates pull requests; it does not publish the site
 

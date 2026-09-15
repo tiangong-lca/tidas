@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-30
-lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: content proof now covers plain-language entry copy, four localized glossaries, navigation, and the boundary between automated checks and professional LCA judgement."
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 5ed2b8d9f0c2a33606cfa98e90fcff5d49620703
+lastReviewedNote: "Reviewed for TIDAS #66: full local baseline uses lint/typecheck/build once; standalone focused tests remain available and build still requires the full suite plus both output verifiers. Actual wrapper traces and failure mutations pass, as do frozen install, lint, typecheck and full build with 26 tests and both output gates. Ownership, schemas, runtime, CI and publication unchanged; source delivery pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -54,14 +54,13 @@ Run from the repository root:
 ```bash
 pnpm lint
 pnpm typecheck
-pnpm test
 DEPLOY_ENV=ci \
 CANONICAL_ORIGIN=http://localhost:3000 \
 NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
 ```
 
-`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
+`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof. Run `pnpm test` or the named `test:env`, `test:content`, and `test:toolchain` commands for focused early feedback; they need not be repeated separately when running the full baseline because build already runs the complete suite.
 
 ## Change matrix
 
