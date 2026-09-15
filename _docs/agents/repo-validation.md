@@ -54,14 +54,13 @@ Run from the repository root:
 ```bash
 pnpm lint
 pnpm typecheck
-pnpm test
 DEPLOY_ENV=ci \
 CANONICAL_ORIGIN=http://localhost:3000 \
 NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
 ```
 
-`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof.
+`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof. Run `pnpm test` or the named `test:env`, `test:content`, and `test:toolchain` commands for focused early feedback; they need not be repeated separately when running the full baseline because build already runs the complete suite.
 
 ## Change matrix
 

@@ -73,9 +73,9 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 - canonical local baseline:
   - `pnpm lint`
   - `pnpm typecheck`
-  - `pnpm test`
   - `DEPLOY_ENV=ci CANONICAL_ORIGIN=http://localhost:3000 NEXT_PUBLIC_SEARCH_MODE=static pnpm build`
 - visual changes additionally require browser checks at desktop and mobile widths
+- `pnpm build` runs the full test suite before generation and output verification; use `pnpm test` for focused early feedback when a full build is not yet needed
 - EdgeOne Pages Git integration owns production build and deployment from `main`
 - GitHub Actions validates pull requests; it does not publish the site
 
