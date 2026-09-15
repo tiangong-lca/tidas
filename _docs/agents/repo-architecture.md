@@ -130,3 +130,9 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 - Importing a large JSON Schema from MDX serializes it into HTML and RSC payloads even if the visible tree is collapsed.
 - Locale-labelled English copies are not translations.
 - A merged child PR does not complete workspace delivery.
+
+The shared navigation links to the independently owned PCR methodology library.
+Chinese readers receive its Chinese root; English, German and French readers
+receive its actual English entry, with the destination language identified for
+German/French readers. This entry point does not create additional PCR locales or
+change TIDAS schemas, content ownership, or the four-language TIDAS site contract.
