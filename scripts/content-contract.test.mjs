@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
@@ -11,6 +12,36 @@ const readJson = (relativePath) => JSON.parse(read(relativePath));
 const locales = ['zh', 'en', 'de', 'fr'];
 const categories = ['core-modules', 'tool', 'integration', 'use-case', 'faq'];
 const cliCommands = ['convert', 'import', 'export', 'validate', 'release', 'ruleset', 'version'];
+
+test('the product taxonomy matches the pinned official CPC 3.0 structure', () => {
+  const schema = readJson('public/schemas/tidas_flows_product_category.json');
+  const tuples = schema.oneOf.map(({ properties }) =>
+    ['@level', '@classId', '#text'].map((key) => properties[key].const),
+  );
+  const byCode = new Map(tuples.map((tuple) => [tuple[1], tuple]));
+
+  assert.match(schema.$comment, /CPC Version 3\.0.*2025-06-30/u);
+  assert.equal(tuples.length, 4586);
+  assert.equal(byCode.size, tuples.length);
+  for (const [level, code] of tuples) {
+    assert.equal(level, String(code.length - 1));
+    if (code.length > 1) assert.ok(byCode.has(code.slice(0, -1)), `missing parent for ${code}`);
+  }
+  // Independently projected from UNSD CPC_Ver_3.0_Structure_30Jun2025.csv,
+  // SHA256 5cd2c1c4890dd6be16af48e9bb940fed48efff9865f39ff15edaa921da25fb7c.
+  // Projection: ordered [level, exact code, English title with trailing whitespace removed].
+  assert.equal(
+    createHash('sha256').update(JSON.stringify(tuples)).digest('hex'),
+    '0993af3656a2ec4d85d72fa695267202e71f2ede01451d3ae16df26f7a5e7922',
+  );
+  assert.equal(byCode.get('01271')[2], 'Mushrooms, farmed');
+  assert.equal(byCode.has('01270'), false, 'retired mushroom code must not remain current');
+  assert.equal(byCode.get('12010')[2], 'Petroleum oils and oils obtained from bituminous minerals, crude');
+  for (const locale of locales) {
+    const suffix = locale === 'zh' ? '' : `.${locale}`;
+    assert.match(read(`content/docs/core-modules/schema/schema-content/json-schema-flows${suffix}.mdx`), /CPC Version 3\.0/u);
+  }
+});
 
 function localizedFile(category, locale, extension) {
   const suffix = locale === 'zh' ? '' : `.${locale}`;

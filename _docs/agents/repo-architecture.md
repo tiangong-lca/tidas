@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-08-30
-lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: a four-locale root glossary now supports plain-language entry pages without changing the static pipeline, Schema delivery, or repository handoffs."
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 55d8a813341cd7baf126d3f85f16539bedfee50a
+lastReviewedNote: 'Reviewed for TIDAS #64: exact official CPC 3.0 structure, edition provenance, complete hierarchy and four-language guidance; runtime and publication ownership remain unchanged.'
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -123,6 +123,8 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 - `lca-workspace` owns the final submodule pointer and cross-repository integration.
 
 `public/schemas/**` is a deliberate published site surface, not an automatic mirror. Compare it explicitly with the maintained tool assets when refreshing schemas.
+
+The Product/Waste classification download uses UNSD CPC Version 3.0, structure dated 2025-06-30. Its Schema `$comment` records the official source URL and source digest. The content contract checks the full ordered code/level/English-title projection against that source. A taxonomy edition is separate from the TIDAS or SDK package version; historical dataset classifications require an explicit mapping review instead of a version-label replacement.
 
 ## Common misreads
 

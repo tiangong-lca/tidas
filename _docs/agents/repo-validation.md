@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-30
-lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: content proof now covers plain-language entry copy, four localized glossaries, navigation, and the boundary between automated checks and professional LCA judgement."
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 55d8a813341cd7baf126d3f85f16539bedfee50a
+lastReviewedNote: 'Reviewed for TIDAS #64: exact official CPC 3.0 structure, edition provenance, complete hierarchy and four-language guidance; runtime and publication ownership remain unchanged.'
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -97,6 +97,8 @@ pnpm build
 - all four documentation roots retain the TIDAS system-hub and system-matrix markers.
 
 `scripts/content-contract.test.mjs` checks the source-side contracts that must fail before static generation: substantive four-locale section indexes, `pagesIndex` de-duplication, page-tree-derived directories, responsive brand labels, complete Schema inventory coverage and role counts, viewer derivation boundaries, CLI release authority, locale-preserving platform links, beginner-facing homepage and inventory language, four root glossaries, and the boundary between automated checks and professional LCA judgement.
+
+For a CPC refresh, compare every ordered code, level, and English title with the pinned official structure, retaining leading zeros and normalizing only trailing title whitespace. The Product/Waste taxonomy contract checks the source projection digest, unique codes, complete parents, current and retired code examples, and the edition statement in all four locales. Changing only an edition label cannot satisfy this check. Keep the source URL and raw source digest in the Schema `$comment`; do not infer edition identity from one unchanged category or a package version.
 
 For the loaded taxonomy page, browser proof must also show:
 

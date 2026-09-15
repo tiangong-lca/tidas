@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-08-30
-lastReviewedCommit: b10585ba7695ec66636d5078d970ac54105bdf0e
-lastReviewedNote: "Reviewed for the beginner-facing terminology update: the new four-locale glossary and plain-language entry copy preserve repository ownership, URL, runtime, publication, and executable-tool boundaries."
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 55d8a813341cd7baf126d3f85f16539bedfee50a
+lastReviewedNote: 'Reviewed for TIDAS #64: exact official CPC 3.0 structure, edition provenance, complete hierarchy and four-language guidance; runtime and publication ownership remain unchanged.'
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
