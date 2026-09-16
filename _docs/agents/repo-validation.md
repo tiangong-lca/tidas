@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
-lastReviewedNote: "Reviewed for TIDAS #70: proof now includes the canonical URL model. `verify:out` requires that `/zh` is not exported, that `/` carries the canonical, that edgeone.json declares both permanent redirects, that the sitemap omits lastmod and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact; it measures page summaries from artifacts as authored, derived or unresolved and prints the unresolved URLs as advisory editorial debt. `verify:site` requires HTML and sitemap hreflang to agree per page on targets that exist, fails rather than passing when a check would inspect zero pages, and validates every BreadcrumbList. Frozen install, lint, typecheck, 44 tests, full build and the shared root checker with zero findings pass; independent review and production publication remain pending."
+lastReviewedCommit: c7533fdb279dbae53ff847c45e51f0d636196f5d
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: proof for the optional search-console marker means building with BAIDU_SITE_VERIFICATION set and confirming `verify:out` reports the exact marker on the document heads, then confirming the same gate reports absence across every page when it is unset; neither run may print the value. The absence branch scans all exported pages and the not-found pages are excluded from the presence requirement. Four cases were exercised on real artifacts: configured (pass), a real build without the variable (pass), unset against a marker-carrying artifact (fail, so the branch is not vacuous) and a wrong value (fail on exactness, value not echoed). CI additionally runs the pinned shared checker over the built export and retains its report. Lint, typecheck, 48 tests and the full baseline pass; independent review and production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -79,11 +79,12 @@ pnpm build
 | breadcrumb or structured data | baseline; `verify-site` requires ordered, absolute crumb targets that resolve to real exported pages |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
 | toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require Node `>=24.18.0 <25`, exact pnpm `11.24.0`, exact TypeScript `7.0.2`, EdgeOne `24.18.0`, local `.nvmrc` major `24`, and reviewed executable action commits |
+| search-console ownership marker | build with `BAIDU_SITE_VERIFICATION` set and confirm `verify:out` reports the exact marker on the document heads; build without it and confirm the same gate reports absence across every page. Neither run may print the value |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
 
 ## Static site gates
 
-`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion. It also requires that `/zh` is not exported while `/` carries the canonical, that `edgeone.json` declares both permanent redirects, that the sitemap omits `lastmod` and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact. It measures page summaries from the artifacts as authored, derived, or unresolved, and prints the unresolved URLs as advisory editorial debt that blocks nothing.
+`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion. It also checks the optional search-console ownership marker: when `BAIDU_SITE_VERIFICATION` is set the exact value must appear on the probed document heads, and when it is unset no page may carry the marker at all. The gate reports presence, absence or a mismatch, and never echoes the value. It also requires that `/zh` is not exported while `/` carries the canonical, that `edgeone.json` declares both permanent redirects, that the sitemap omits `lastmod` and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact. It measures page summaries from the artifacts as authored, derived, or unresolved, and prints the unresolved URLs as advisory editorial debt that blocks nothing.
 
 `scripts/verify-site.mjs` checks:
 

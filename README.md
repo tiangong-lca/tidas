@@ -24,8 +24,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
-lastReviewedNote: "Reviewed for TIDAS #70: the Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, no longer generated, canonical, or listed as an alternate; documentation keeps `/{lang}/docs/**` in all four locales. Alternates are resolved from the locales that really publish each page, for both the HTML links and the sitemap, and x-default is omitted when the default-language counterpart does not exist. The sitemap lists only real pages and omits lastmod rather than publishing the deployment date; unknown and retired paths stay 404. Page summaries are authored, derived from the page's own prose, or reported: 44 authored, 64 derived and 4 unresolved URLs of advisory editorial debt that blocks nothing and changes no indexability. Frozen install, lint, typecheck, 44 tests, full static build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review, the shared action pin, and production publication remain pending."
+lastReviewedCommit: c7533fdb279dbae53ff847c45e51f0d636196f5d
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: the Baidu search-console marker is optional and arrives as the build environment variable BAIDU_SITE_VERIFICATION through one helper, spread by both document heads, never hardcoded and never logged. `verify:out` requires the exact marker on the probed document heads when it is configured and its absence across every exported page when it is unset; four cases were exercised on real artifacts, including a real build without the variable and two failing controls, and no run printed the token. CI now runs the pinned root-owned shared checker tiangong-lca/workspace/.github/actions/seo-check@dff8180 against the artifacts the existing build already produced (origin http://localhost:3000, artifact-indexing disabled, no rebuild) and retains its JSON report with actions/upload-artifact@043fb46d under `if: always()`. `.docpact/runs/` is ignored so generated run artifacts cannot enter a commit. Lint, typecheck, 48 tests, the full baseline with the marker set, and the shared checker over the TIDAS export pass. Independent review and production publication remain pending. No Portal links exist in this repository, so the Portal www change did not apply here."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -83,6 +83,7 @@ origin, and search mode inputs.
 | `DEPLOY_ENV` | `ci`, `preview`, or `production` |
 | `CANONICAL_ORIGIN` | origin without a trailing path; production is `https://tidas.tiangong.earth` |
 | `NEXT_PUBLIC_SEARCH_MODE` | `static`, or explicitly configured `algolia` in production |
+| `BAIDU_SITE_VERIFICATION` | optional search-console ownership marker for the deployed site. Omitted, no marker is published; the value is never hardcoded in this repository, and gates report its presence or a mismatch without echoing it |
 
 `pnpm build` produces `out/` and runs both output-contract and site-quality
 verification. The gates cover generated endpoints, locale/search evidence,

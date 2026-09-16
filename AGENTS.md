@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
-lastReviewedNote: "Reviewed for TIDAS #70: the Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, no longer generated, canonical, or listed as an alternate; documentation keeps `/{lang}/docs/**` in all four locales. Alternates are resolved from the locales that really publish each page, for both the HTML links and the sitemap, and x-default is omitted when the default-language counterpart does not exist. The sitemap lists only real pages and omits lastmod rather than publishing the deployment date; unknown and retired paths stay 404. Page summaries are authored, derived from the page's own prose, or reported: 44 authored, 64 derived and 4 unresolved URLs of advisory editorial debt that blocks nothing and changes no indexability. Frozen install, lint, typecheck, 44 tests, full static build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review, the shared action pin, and production publication remain pending."
+lastReviewedCommit: c7533fdb279dbae53ff847c45e51f0d636196f5d
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: the Baidu search-console marker is optional and arrives as the build environment variable BAIDU_SITE_VERIFICATION through one helper, spread by both document heads, never hardcoded and never logged. `verify:out` requires the exact marker on the probed document heads when it is configured and its absence across every exported page when it is unset; four cases were exercised on real artifacts, including a real build without the variable and two failing controls, and no run printed the token. CI now runs the pinned root-owned shared checker tiangong-lca/workspace/.github/actions/seo-check@dff8180 against the artifacts the existing build already produced (origin http://localhost:3000, artifact-indexing disabled, no rebuild) and retains its JSON report with actions/upload-artifact@043fb46d under `if: always()`. `.docpact/runs/` is ignored so generated run artifacts cannot enter a commit. Lint, typecheck, 48 tests, the full baseline with the marker set, and the shared checker over the TIDAS export pass. Independent review and production publication remain pending. No Portal links exist in this repository, so the Portal www change did not apply here."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -77,7 +77,7 @@ Read this file first, then `.docpact/config.yaml` and the routed workflow docume
 - visual changes additionally require browser checks at desktop and mobile widths
 - `pnpm build` runs the full test suite before generation and output verification; use `pnpm test` for focused early feedback when a full build is not yet needed
 - EdgeOne Pages Git integration owns production build and deployment from `main`
-- GitHub Actions validates pull requests; it does not publish the site
+- GitHub Actions validates pull requests; it does not publish the site. The pull-request workflow then runs the pinned shared SEO checker from `tiangong-lca/workspace` against the artifacts that build already produced, and retains its JSON report; it does not rebuild.
 
 Use exact versions and additional commands from `package.json`, `edgeone.json`, and `_docs/agents/repo-validation.md`; do not reconstruct them from this contract.
 
@@ -130,6 +130,7 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 - The sitemap lists only pages that exist and omits `lastmod`. The build's only date is the deployment commit time, which is not a content date; a uniform deployment-date `lastmod` must not be published.
 - A page summary comes from authored frontmatter or from the page's own prose. A page with neither publishes no page-specific description: it is reported as editorial debt by `verify:out` and is never filled with the locale site description, which is a site default rather than a page summary.
 - `BreadcrumbList` structured data is generated only from pages that exist. A crumb whose target is only a folder, or a trail that would 404, is omitted rather than invented.
+- The Baidu search-console marker is optional and arrives as the build environment variable `BAIDU_SITE_VERIFICATION`. It is never hardcoded in this repository, so a checkout without that variable publishes no marker; the deployed site's owner is responsible for the value matching the verified property. Gates report whether the marker is present and exact without echoing its value.
 - Search results must stay locale-scoped and bounded in the UI.
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
 - Public Schema counts and role summaries must derive from `content/schema-inventory.json`. The viewer projection is presentation-only and must never be described or used as a validation Schema or conformance proof.

@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
-lastReviewedNote: "Reviewed for TIDAS #70: `lib/seo-policy.mjs` is the single source for the home path, alternate, page-summary and breadcrumb rules; `lib/metadata.ts` re-exports it and `scripts/seo-policy.test.mjs` exercises it directly. The Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, never generated, canonical, or used as an alternate, while `/{lang}/docs/**` keeps its locale prefix in all four locales. BreadcrumbList is built from resolved pages only, so an ancestor that is a folder without a page of its own is skipped rather than linked, and home or index pages emit no trail; no visual change. The sitemap lists only real pages and omits lastmod. Frozen install, lint, typecheck, 44 tests, full build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review and production publication remain pending."
+lastReviewedCommit: c7533fdb279dbae53ff847c45e51f0d636196f5d
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: `lib/seo-policy.mjs` also owns `baiduVerificationMetadata()`, which returns a spreadable metadata fragment from the optional BAIDU_SITE_VERIFICATION build variable; both document heads spread it so every locale home and documentation page inherits it, and the token is never hardcoded or logged. The pull-request workflow now runs the pinned root-owned shared checker after the build against `out/` with the real origin http://localhost:3000 and `--artifact-indexing disabled`, and uploads the JSON report under `if: always()`; it does not rebuild. `.gitignore` now ignores `.docpact/runs/`, and the runtime contract covers that file so generated run artifacts stay out of commits. Independent review and production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -67,7 +67,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts`, `lib/seo-policy.mjs` | content loading, navigation, localization, and metadata policy; `seo-policy.mjs` holds the home-path, alternate, page-summary, and breadcrumb rules that `scripts/seo-policy.test.mjs` exercises directly |
 | `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | bounded Node 24 and exact package-tool enforcement, deterministic build pipeline, and static-site gates |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
-| `.github/workflows/publish-docs.yml` | pull-request validation |
+| `.github/workflows/publish-docs.yml` | pull-request validation; after the build it runs the pinned root-owned shared SEO checker against the export and uploads the JSON report |
 
 ## Canonical URLs, summaries, and trails
 
