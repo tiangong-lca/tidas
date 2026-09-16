@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 65653f829a3f487434cc4f19244a9964c6888b2f
-lastReviewedNote: "Reviewed for TIDAS #70 follow-up: `lib/seo-policy.mjs` also owns `baiduVerificationMetadata()`, which returns a spreadable metadata fragment from the optional BAIDU_SITE_VERIFICATION build variable; both document heads spread it so every locale home and documentation page inherits it, and the token is never hardcoded or logged. The pull-request workflow checks the generated `scripts/vendor/workspace-seo/` snapshot against its manifest before installing, then runs that snapshot after the build against `out/` with the real origin http://localhost:3000 and `--artifact-indexing disabled`, and uploads the JSON report under `if: always()`; it does not rebuild, and it fetches no private action or token. The locale and URL model now states the shipped behavior: `/` is the canonical Chinese home, the `/zh` and `/zh/` home pair is the only redirect (a provider 301 to `/`, with no `zh` home page generated), and every unrelated retired path keeps its 404. `.gitignore` now ignores `.docpact/runs/`, and the runtime contract covers that file so generated run artifacts stay out of commits. Independent review and production publication remain pending."
+lastReviewedCommit: e981fc7a3bc42b55f441528ff349ef0dac2bfa9f
+lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
