@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
+lastReviewedNote: "Reviewed for TIDAS #70: `lib/seo-policy.mjs` is the single source for the home path, alternate, page-summary and breadcrumb rules; `lib/metadata.ts` re-exports it and `scripts/seo-policy.test.mjs` exercises it directly. The Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, never generated, canonical, or used as an alternate, while `/{lang}/docs/**` keeps its locale prefix in all four locales. BreadcrumbList is built from resolved pages only, so an ancestor that is a folder without a page of its own is skipped rather than linked, and home or index pages emit no trail; no visual change. The sitemap lists only real pages and omits lastmod. Frozen install, lint, typecheck, 44 tests, full build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review and production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -64,10 +64,21 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `content/docs/**` | four-language public specification and guidance |
 | `public/schemas/**` | directly downloadable JSON Schema files |
 | `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
-| `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts` | content loading, navigation, localization, and metadata policy |
+| `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts`, `lib/seo-policy.mjs` | content loading, navigation, localization, and metadata policy; `seo-policy.mjs` holds the home-path, alternate, page-summary, and breadcrumb rules that `scripts/seo-policy.test.mjs` exercises directly |
 | `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | bounded Node 24 and exact package-tool enforcement, deterministic build pipeline, and static-site gates |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
 | `.github/workflows/publish-docs.yml` | pull-request validation |
+
+## Canonical URLs, summaries, and trails
+
+The default language's home is `/`. `/zh` and `/zh/` are permanent 301 redirects to `/`, declared in `edgeone.json`; they are never generated, never a canonical, and never an alternate. Documentation keeps its `/{lang}/docs/**` URL in every locale, so the alias pair covers the home only.
+
+`lib/seo-policy.mjs` is the single source for the rules that follow, and `lib/metadata.ts` re-exports them for the app. It avoids the `@/` alias and framework-only imports so plain `node --test` can exercise it.
+
+- **Alternates** are emitted only for locales that really publish that page, resolved with `source.getPage`. The default-language counterpart is the `x-default`; when it does not exist the `x-default` is omitted rather than pointed at an unrelated page.
+- **Sitemap** entries list only pages that exist and carry no `lastmod`, because the build's only date is the deployment commit time.
+- **Page summaries** are authored frontmatter first, then the page's own first block of prose after link cleanup; code, JSX, tables, list runs and navigation labels are rejected rather than trimmed into a sentence. A page with neither publishes no page-specific description, so Next inherits the layout's site description. That inherited value is a site default, not a page summary, and `verify:out` reports the URL as editorial content debt without changing indexability or blocking the build.
+- **Breadcrumbs** are built from resolved pages only. An ancestor that is a folder without a page of its own is skipped rather than linked to a URL that would 404, and home or index pages emit no trail.
 
 ## Request and build flow
 

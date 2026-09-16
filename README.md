@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
+lastReviewedNote: "Reviewed for TIDAS #70: the Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, no longer generated, canonical, or listed as an alternate; documentation keeps `/{lang}/docs/**` in all four locales. Alternates are resolved from the locales that really publish each page, for both the HTML links and the sitemap, and x-default is omitted when the default-language counterpart does not exist. The sitemap lists only real pages and omits lastmod rather than publishing the deployment date; unknown and retired paths stay 404. Page summaries are authored, derived from the page's own prose, or reported: 44 authored, 64 derived and 4 unresolved URLs of advisory editorial debt that blocks nothing and changes no indexability. Frozen install, lint, typecheck, 44 tests, full static build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review, the shared action pin, and production publication remain pending."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -42,9 +42,10 @@ Next.js App Router static export using Fumadocs and TypeScript.
 
 ## Public URLs and locales
 
-- `/` renders the complete default Chinese homepage and serves as `x-default`.
-- `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
-- Documentation uses `/{lang}/docs/...`.
+- `/` renders the complete default Chinese homepage and serves as `x-default`. It is the only Chinese home.
+- `/zh` and `/zh/` are permanent 301 redirects to `/` and are never generated, canonical, or used as an alternate.
+- `/en/`, `/de/`, and `/fr/` are locale homepages.
+- Documentation uses `/{lang}/docs/...` in all four locales, including `zh`.
 - Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
 - Each `/{lang}/docs/glossary/` page centrally explains LCA concepts, TIDAS data terms, and the difference between automated checks, data quality, independent review, and named compliance claims.
 - Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
@@ -88,6 +89,17 @@ verification. The gates cover generated endpoints, locale/search evidence,
 browser-resolved internal links and fragments, images, MDX hydration hazards,
 and Schema page budgets. Public MDX uses locale-absolute document routes rather
 than `./` or `../` links.
+
+The gates also hold the canonical URL model: `/` is the Chinese home, `/zh` and
+`/zh/` are permanent redirects declared in `edgeone.json` and are never exported,
+canonical, or used as an alternate; the sitemap lists only pages that exist and
+carries no `lastmod`. Page summaries are measured as authored, derived, or
+unresolved, and the unresolved URLs are printed as editorial debt that blocks
+nothing.
+
+`pnpm test` runs the environment, content, toolchain, and SEO policy suites.
+`pnpm test:env`, `pnpm test:content`, `pnpm test:toolchain`, and `pnpm test:seo`
+run one suite each for focused early feedback.
 
 ## Schema explorer
 

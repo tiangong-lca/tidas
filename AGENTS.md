@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
+lastReviewedNote: "Reviewed for TIDAS #70: the Chinese home is `/` and `/zh` and `/zh/` are permanent 301 redirects declared in edgeone.json, no longer generated, canonical, or listed as an alternate; documentation keeps `/{lang}/docs/**` in all four locales. Alternates are resolved from the locales that really publish each page, for both the HTML links and the sitemap, and x-default is omitted when the default-language counterpart does not exist. The sitemap lists only real pages and omits lastmod rather than publishing the deployment date; unknown and retired paths stay 404. Page summaries are authored, derived from the page's own prose, or reported: 44 authored, 64 derived and 4 unresolved URLs of advisory editorial debt that blocks nothing and changes no indexability. Frozen install, lint, typecheck, 44 tests, full static build, output and link gates, the shared root checker with zero findings, and desktop/mobile browser proof pass. Independent review, the shared action pin, and production publication remain pending."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -83,9 +83,10 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 
 ## Current public surface
 
-- `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect.
-- Locale homepages use `/{lang}/` for `zh`, `en`, `de`, and `fr`.
-- Documentation uses `/{lang}/docs/...`.
+- `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect. It is the only home for Chinese.
+- `/zh` and `/zh/` are permanent 301 redirects to `/` declared in `edgeone.json`. They are never generated, never a canonical, and never an hreflang target. This is the only alias pair in the route model.
+- Locale homepages use `/{lang}/` for `en`, `de`, and `fr`.
+- Documentation uses `/{lang}/docs/...` for all four locales, including `zh`.
 - `/{lang}/docs/` is a system-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. Its governed markers are `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"`.
 - Section roots such as `/{lang}/docs/core-modules/` are substantive folder indexes. Their localized `meta*.json` files use `pagesIndex: "index"` and omit `index` from `pages`, while `CategoryDirectory` derives child cards from the Fumadocs page tree so the folder and its index are not duplicated in navigation.
 - First-party document links use locale-absolute `/{lang}/docs/**/` targets. Path-relative document links are forbidden because trailing-slash pages resolve them below the current page directory.
@@ -96,7 +97,7 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - `content/schema-inventory.json` is the machine-readable count and role authority for the 19 published JSON assets: 8 dataset objects, 9 classification vocabularies, 1 shared-types contract, and 1 derived non-normative viewer projection. Matching the `tidas-tools` lock by file name does not assert structural or byte-for-byte parity.
 - `out/**` is generated static output and never an authority source.
 
-This is a greenfield URL model. Do not add redirects, aliases, or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
+This is a greenfield URL model. The `/zh` pair above is the only redirect; do not add further aliases or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
 
 ## Ownership boundaries
 
@@ -125,6 +126,10 @@ Public guidance about tools remains here, but executable behavior remains in `ti
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
 - Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
+- Alternates name only locales that actually publish that page, resolved with `source.getPage` for both the HTML links and the sitemap. `x-default` is the default-language counterpart, and is omitted rather than pointed at an unrelated page when that counterpart does not exist. `/zh` is never a target.
+- The sitemap lists only pages that exist and omits `lastmod`. The build's only date is the deployment commit time, which is not a content date; a uniform deployment-date `lastmod` must not be published.
+- A page summary comes from authored frontmatter or from the page's own prose. A page with neither publishes no page-specific description: it is reported as editorial debt by `verify:out` and is never filled with the locale site description, which is a site default rather than a page summary.
+- `BreadcrumbList` structured data is generated only from pages that exist. A crumb whose target is only a folder, or a trail that would 404, is omitted rather than invented.
 - Search results must stay locale-scoped and bounded in the UI.
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
 - Public Schema counts and role summaries must derive from `content/schema-inventory.json`. The viewer projection is presentation-only and must never be described or used as a validation Schema or conformance proof.

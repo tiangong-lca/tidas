@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 2323d19eb0884158f48580240c01517be840f7f1
+lastReviewedNote: "Reviewed for TIDAS #70: proof now includes the canonical URL model. `verify:out` requires that `/zh` is not exported, that `/` carries the canonical, that edgeone.json declares both permanent redirects, that the sitemap omits lastmod and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact; it measures page summaries from artifacts as authored, derived or unresolved and prints the unresolved URLs as advisory editorial debt. `verify:site` requires HTML and sitemap hreflang to agree per page on targets that exist, fails rather than passing when a check would inspect zero pages, and validates every BreadcrumbList. Frozen install, lint, typecheck, 44 tests, full build and the shared root checker with zero findings pass; independent review and production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -60,7 +60,7 @@ NEXT_PUBLIC_SEARCH_MODE=static \
 pnpm build
 ```
 
-`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof. Run `pnpm test` or the named `test:env`, `test:content`, and `test:toolchain` commands for focused early feedback; they need not be repeated separately when running the full baseline because build already runs the complete suite.
+`pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof. Run `pnpm test` or the named `test:env`, `test:content`, `test:toolchain`, and `test:seo` commands for focused early feedback; they need not be repeated separately when running the full baseline because build already runs the complete suite.
 
 ## Change matrix
 
@@ -74,13 +74,16 @@ pnpm build
 | Schema explorer | baseline plus generic structure and taxonomy interaction checks, raw download, error state, search cap, lazy expansion, and the budgets below |
 | media | full build image gate plus light/dark browser inspection |
 | metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
+| canonical home, `/zh` alias, or alternate resolution | baseline plus `pnpm test:seo`; confirm `out/zh/index.html` is absent, `/` carries the canonical, no alternate or sitemap entry names `/zh`, and `edgeone.json` declares both permanent redirects |
+| page summary or description coverage | baseline; read the `verify:out` authored/derived/unresolved measurement and its sorted unresolved URL list. Unresolved pages are editorial debt, never a build failure and never an auto-noindex |
+| breadcrumb or structured data | baseline; `verify-site` requires ordered, absolute crumb targets that resolve to real exported pages |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
 | toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require Node `>=24.18.0 <25`, exact pnpm `11.24.0`, exact TypeScript `7.0.2`, EdgeOne `24.18.0`, local `.nvmrc` major `24`, and reviewed executable action commits |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
 
 ## Static site gates
 
-`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion.
+`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion. It also requires that `/zh` is not exported while `/` carries the canonical, that `edgeone.json` declares both permanent redirects, that the sitemap omits `lastmod` and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact. It measures page summaries from the artifacts as authored, derived, or unresolved, and prints the unresolved URLs as advisory editorial debt that blocks nothing.
 
 `scripts/verify-site.mjs` checks:
 
@@ -94,6 +97,8 @@ pnpm build
 - a Schema page contains fewer than 500 rendered buttons and 6,000 static elements.
 - the TIDAS identity, system-map signature, flat taxonomy-table markers, and gradient- and shadow-free custom CSS contract remain present.
 - all four documentation roots retain the TIDAS system-hub and system-matrix markers.
+- every page that declares an hreflang alternate declares the same set in the HTML and in the sitemap, and each target resolves to a real exported file; a page declaring none, or a check that would inspect zero pages, fails rather than passing silently;
+- every `BreadcrumbList` is valid JSON, uses ordered `ListItem` entries, and every crumb is an absolute URL that resolves to a real exported page.
 
 `scripts/content-contract.test.mjs` checks the source-side contracts that must fail before static generation: substantive four-locale section indexes, `pagesIndex` de-duplication, page-tree-derived directories, responsive brand labels, complete Schema inventory coverage and role counts, viewer derivation boundaries, CLI release authority, locale-preserving platform links, beginner-facing homepage and inventory language, four root glossaries, and the boundary between automated checks and professional LCA judgement.
 
