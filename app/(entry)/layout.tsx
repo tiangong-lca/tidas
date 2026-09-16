@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { i18nProvider } from 'fumadocs-ui/i18n';
 import { Provider } from '@/components/provider';
 import { toHtmlLang } from '@/lib/i18n';
-import { languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
+import { baiduVerificationMetadata, languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
 import { translations } from '@/lib/layout.shared';
 import '@/app/global.css';
 
@@ -32,6 +32,8 @@ export const metadata: Metadata = {
   ...(process.env.DEPLOY_ENV !== 'production'
     ? { robots: { index: false, follow: false } }
     : {}),
+  // Optional search-console ownership marker; supplied by the build environment, never hardcoded.
+  ...baiduVerificationMetadata(),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

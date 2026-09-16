@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 65653f829a3f487434cc4f19244a9964c6888b2f
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: `lib/seo-policy.mjs` also owns `baiduVerificationMetadata()`, which returns a spreadable metadata fragment from the optional BAIDU_SITE_VERIFICATION build variable; both document heads spread it so every locale home and documentation page inherits it, and the token is never hardcoded or logged. The pull-request workflow checks the generated `scripts/vendor/workspace-seo/` snapshot against its manifest before installing, then runs that snapshot after the build against `out/` with the real origin http://localhost:3000 and `--artifact-indexing disabled`, and uploads the JSON report under `if: always()`; it does not rebuild, and it fetches no private action or token. The locale and URL model now states the shipped behavior: `/` is the canonical Chinese home, the `/zh` and `/zh/` home pair is the only redirect (a provider 301 to `/`, with no `zh` home page generated), and every unrelated retired path keeps its 404. `.gitignore` now ignores `.docpact/runs/`, and the runtime contract covers that file so generated run artifacts stay out of commits. Independent review and production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -64,10 +64,22 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `content/docs/**` | four-language public specification and guidance |
 | `public/schemas/**` | directly downloadable JSON Schema files |
 | `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
-| `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts` | content loading, navigation, localization, and metadata policy |
+| `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts`, `lib/seo-policy.mjs` | content loading, navigation, localization, and metadata policy; `seo-policy.mjs` holds the home-path, alternate, page-summary, and breadcrumb rules that `scripts/seo-policy.test.mjs` exercises directly |
 | `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | bounded Node 24 and exact package-tool enforcement, deterministic build pipeline, and static-site gates |
+| `scripts/vendor/workspace-seo/**`, `.gitattributes` | generated shared-checker snapshot consumed read-only; `.gitattributes` pins its line endings so the digest that CI checks stays portable |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
-| `.github/workflows/publish-docs.yml` | pull-request validation |
+| `.github/workflows/publish-docs.yml` | pull-request validation; it checks the vendored shared checker against its manifest before installing, then runs that snapshot after the build against the export and uploads the JSON report |
+
+## Canonical URLs, summaries, and trails
+
+The default language's home is `/`. `/zh` and `/zh/` are permanent 301 redirects to `/`, declared in `edgeone.json`; they are never generated, never a canonical, and never an alternate. Documentation keeps its `/{lang}/docs/**` URL in every locale, so the alias pair covers the home only.
+
+`lib/seo-policy.mjs` is the single source for the rules that follow, and `lib/metadata.ts` re-exports them for the app. It avoids the `@/` alias and framework-only imports so plain `node --test` can exercise it.
+
+- **Alternates** are emitted only for locales that really publish that page, resolved with `source.getPage`. The default-language counterpart is the `x-default`; when it does not exist the `x-default` is omitted rather than pointed at an unrelated page.
+- **Sitemap** entries list only pages that exist and carry no `lastmod`, because the build's only date is the deployment commit time.
+- **Page summaries** are authored frontmatter first, then the page's own first block of prose after link cleanup; code, JSX, tables, list runs and navigation labels are rejected rather than trimmed into a sentence. A page with neither publishes no page-specific description, so Next inherits the layout's site description. That inherited value is a site default, not a page summary, and `verify:out` reports the URL as editorial content debt without changing indexability or blocking the build.
+- **Breadcrumbs** are built from resolved pages only. An ancestor that is a folder without a page of its own is skipped rather than linked to a URL that would 404, and home or index pages emit no trail.
 
 ## Request and build flow
 
@@ -107,13 +119,14 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 
 ## Locale and URL model
 
-- `/` is a real Chinese homepage and `x-default`; no redirect occurs.
-- `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
-- `/{lang}/docs/...` is the only documentation route family.
+- `/` is a real Chinese homepage, the canonical Chinese home, and `x-default`; it never redirects.
+- `/en/`, `/de/`, and `/fr/` are generated locale homepages. `/zh` and `/zh/` are the home only: `generateStaticParams` excludes the default language, so no `/{lang}/` home page exists for `zh`, and the pair is a permanent 301 provider redirect to `/` declared in `edgeone.json`.
+- `/{lang}/docs/...` is the only documentation route family, and it keeps its locale segment in all four languages, including `zh`.
+- The `/zh` home alias pair is the only redirect. It is never a canonical, alternates, or sitemap target, and no link may resolve to it.
 - First-party links are locale-absolute. Static verification resolves every emitted href from the public URL of its source HTML, so a relative link cannot silently become a nested retired route.
 - Dot-locale sources are independent; `fallbackLanguage` is disabled.
 - Canonical metadata, hreflang links, sitemap alternates, search tags, and HTML language attributes must describe the same locale graph.
-- Removed URL families receive 404. There is no compatibility or redirect layer.
+- Removed URL families receive 404. There is no compatibility copy, and no redirect other than the home alias pair.
 
 ## Cross-repository handoffs
 

@@ -7,3 +7,4 @@ next-env.d.ts
 .env
 npm-debug.log*
 .DS_Store
+.docpact/runs/

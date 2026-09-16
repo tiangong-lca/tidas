@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: a5f1de1f70a177fecf10f13e36c12c1617040aad
-lastReviewedNote: "Reviewed for TIDAS #68: shared navigation links the actual Chinese/English PCR production entries, with explicit English labels for German/French readers. Frozen install, lint, typecheck, full static build and four-locale/five-width/light-dark browser checks pass. PCR production readiness and exact workspace integration remain separate delivery gates."
+lastReviewedAt: 2026-09-16
+lastReviewedCommit: 65653f829a3f487434cc4f19244a9964c6888b2f
+lastReviewedNote: "Reviewed for TIDAS #70 follow-up: the Baidu search-console marker is optional and arrives as the build environment variable BAIDU_SITE_VERIFICATION through one helper, spread by both document heads, never hardcoded and never logged. `verify:out` requires the exact marker on the probed document heads when it is configured and its absence across every exported page when it is unset; four cases were exercised on real artifacts, including a real build without the variable and two failing controls, and no run printed the token. CI now checks the generated `scripts/vendor/workspace-seo/` snapshot against its manifest and runs that snapshot against the artifacts the existing build already produced (origin http://localhost:3000, artifact-indexing disabled, no rebuild) and retains its JSON report with actions/upload-artifact@043fb46d under `if: always()`. `.docpact/runs/` is ignored so generated run artifacts cannot enter a commit. Lint, typecheck, 48 tests, the full baseline with the marker set, and the shared checker over the TIDAS export pass. Independent review and production publication remain pending. No Portal links exist in this repository, so the Portal www change did not apply here."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -42,9 +42,10 @@ Next.js App Router static export using Fumadocs and TypeScript.
 
 ## Public URLs and locales
 
-- `/` renders the complete default Chinese homepage and serves as `x-default`.
-- `/zh/`, `/en/`, `/de/`, and `/fr/` are locale homepages.
-- Documentation uses `/{lang}/docs/...`.
+- `/` renders the complete default Chinese homepage and serves as `x-default`. It is the only Chinese home.
+- `/zh` and `/zh/` are permanent 301 redirects to `/` and are never generated, canonical, or used as an alternate.
+- `/en/`, `/de/`, and `/fr/` are locale homepages.
+- Documentation uses `/{lang}/docs/...` in all four locales, including `zh`.
 - Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
 - Each `/{lang}/docs/glossary/` page centrally explains LCA concepts, TIDAS data terms, and the difference between automated checks, data quality, independent review, and named compliance claims.
 - Chinese, English, German, and French content sources are independently maintained; no locale falls back to another.
@@ -82,12 +83,24 @@ origin, and search mode inputs.
 | `DEPLOY_ENV` | `ci`, `preview`, or `production` |
 | `CANONICAL_ORIGIN` | origin without a trailing path; production is `https://tidas.tiangong.earth` |
 | `NEXT_PUBLIC_SEARCH_MODE` | `static`, or explicitly configured `algolia` in production |
+| `BAIDU_SITE_VERIFICATION` | optional search-console ownership marker for the deployed site. Omitted, no marker is published; the value is never hardcoded in this repository, and gates report its presence or a mismatch without echoing it |
 
 `pnpm build` produces `out/` and runs both output-contract and site-quality
 verification. The gates cover generated endpoints, locale/search evidence,
 browser-resolved internal links and fragments, images, MDX hydration hazards,
 and Schema page budgets. Public MDX uses locale-absolute document routes rather
 than `./` or `../` links.
+
+The gates also hold the canonical URL model: `/` is the Chinese home, `/zh` and
+`/zh/` are permanent redirects declared in `edgeone.json` and are never exported,
+canonical, or used as an alternate; the sitemap lists only pages that exist and
+carries no `lastmod`. Page summaries are measured as authored, derived, or
+unresolved, and the unresolved URLs are printed as editorial debt that blocks
+nothing.
+
+`pnpm test` runs the environment, content, toolchain, and SEO policy suites.
+`pnpm test:env`, `pnpm test:content`, `pnpm test:toolchain`, and `pnpm test:seo`
+run one suite each for focused early feedback.
 
 ## Schema explorer
 

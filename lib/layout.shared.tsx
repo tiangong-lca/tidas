@@ -2,6 +2,7 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { zhCN } from '@fumadocs/language/zh-cn';
 import { uiTranslations } from 'fumadocs-ui/i18n';
 import { i18n } from '@/lib/i18n';
+import { homePath } from '@/lib/metadata';
 import { SiteBrand } from '@/components/site-brand';
 
 export const translations = i18n
@@ -55,7 +56,8 @@ export function baseOptions(locale: string, homeUrl?: string): BaseLayoutProps {
   return {
     nav: {
       title: <SiteBrand />,
-      url: homeUrl ?? `/${locale}`,
+      // The Chinese home is `/`; `/zh` and `/zh/` are provider aliases and never a navigation target.
+      url: homeUrl ?? homePath(locale),
       transparentMode: 'top',
     },
     githubUrl: 'https://github.com/tiangong-lca/tidas',
