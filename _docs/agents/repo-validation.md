@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: 65653f829a3f487434cc4f19244a9964c6888b2f
-lastReviewedNote: "Reviewed for TIDAS #70 follow-up: proof for the optional search-console marker means building with BAIDU_SITE_VERIFICATION set and confirming `verify:out` reports the exact marker on the document heads, then confirming the same gate reports absence across every page when it is unset; neither run may print the value. The absence branch scans all exported pages and the not-found pages are excluded from the presence requirement. Four cases were exercised on real artifacts: configured (pass), a real build without the variable (pass), unset against a marker-carrying artifact (fail, so the branch is not vacuous) and a wrong value (fail on exactness, value not echoed). CI additionally checks the generated shared-checker snapshot against its manifest and runs that snapshot over the built export, retaining its report; it fetches no private action and needs no token. Lint, typecheck, 48 tests and the full baseline pass; independent review and production publication remain pending."
+lastReviewedCommit: dfde428c8b6a3fac6f159e4e9030b5fca73823ef
+lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
