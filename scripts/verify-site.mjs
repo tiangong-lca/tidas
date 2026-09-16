@@ -213,6 +213,126 @@ if (!canonicalOrigin || !fs.existsSync(sitemapPath)) {
   passed.push(`${alternateUrls.length} sitemap alternate URLs are absolute and canonical`);
 }
 
+// --- hreflang: HTML and XML must name the same real counterparts ---
+// The declared alternates are compared per page between the built HTML and the sitemap, and every
+// target must resolve to an exported file. `/zh` and `/zh/` are permanent redirects, so they are
+// never a valid target even though `/zh/docs/**` remains a real route.
+const aliasPaths = new Set(['/zh', '/zh/']);
+const sitemapByUrl = new Map();
+if (fs.existsSync(sitemapPath)) {
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  for (const entry of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/gu)) {
+    const loc = decodeHtml(/<loc>([^<]+)<\/loc>/u.exec(entry[1])?.[1] ?? '');
+    if (!loc) continue;
+    const languages = {};
+    for (const link of entry[1].matchAll(/<xhtml:link\b[^>]*>/gu)) {
+      const language = /hreflang=["']([^"']+)["']/iu.exec(link[0])?.[1];
+      const href = /href=["']([^"']+)["']/u.exec(link[0])?.[1];
+      if (language && href) languages[language.toLowerCase()] = decodeHtml(href);
+    }
+    sitemapByUrl.set(loc, languages);
+  }
+}
+let alternatePageCount = 0;
+let alternateMismatch = null;
+let aliasAlternate = null;
+for (const htmlFile of walk(outRoot, (file) => file.endsWith('.html'))) {
+  const html = fs.readFileSync(htmlFile, 'utf8');
+  const relative = path.relative(outRoot, htmlFile).split(path.sep).join('/');
+  const declared = {};
+  for (const link of html.matchAll(/<link\b[^>]*>/gu)) {
+    if (!/rel=["']alternate["']/iu.test(link[0])) continue;
+    // Next renders the attribute as hrefLang in HTML; sitemap XML uses hrefLang-free lowercase.
+    const language = /hreflang=["']([^"']+)["']/iu.exec(link[0])?.[1];
+    const href = /href=["']([^"']+)["']/u.exec(link[0])?.[1];
+    if (language && href) declared[language.toLowerCase()] = decodeHtml(href);
+  }
+  if (Object.keys(declared).length === 0) continue;
+  alternatePageCount += 1;
+  for (const href of Object.values(declared)) {
+    let pathname;
+    try {
+      const url = new URL(href);
+      if (canonicalOrigin && url.origin !== canonicalOrigin) {
+        aliasAlternate ??= `${relative} declares a foreign alternate ${href}`;
+        continue;
+      }
+      pathname = url.pathname;
+    } catch {
+      aliasAlternate ??= `${relative} declares a non-absolute alternate ${href}`;
+      continue;
+    }
+    if (aliasPaths.has(pathname)) aliasAlternate ??= `${relative} declares the /zh alias as ${pathname}`;
+    const target = resolveOutputFile(pathname);
+    if (target.error) aliasAlternate ??= `${relative} alternate ${pathname} has ${target.error}`;
+  }
+  const loc = new URL(routeForHtml(htmlFile), canonicalOrigin).href;
+  const inSitemap = sitemapByUrl.get(loc);
+  if (inSitemap && JSON.stringify(inSitemap) !== JSON.stringify(declared)) {
+    alternateMismatch ??= `${relative} HTML ${JSON.stringify(declared)} != sitemap ${JSON.stringify(inSitemap)}`;
+  }
+}
+if (alternatePageCount === 0) errors.push('no page declared an hreflang alternate; the HTML check would be vacuous');
+if (aliasAlternate) errors.push(`hreflang target: ${aliasAlternate}`);
+if (alternateMismatch) errors.push(`hreflang disagreement between HTML and sitemap: ${alternateMismatch}`);
+if (!aliasAlternate && !alternateMismatch) {
+  passed.push(`${alternatePageCount} pages agree between HTML and sitemap hreflang with real targets`);
+}
+
+// --- BreadcrumbList: only real pages, absolute items, resolvable targets ---
+const crumbs = walk(outRoot, (file) => file.endsWith('.html'))
+  .map((file) => {
+    const html = fs.readFileSync(file, 'utf8');
+    const payload = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/u.exec(html)?.[1];
+    if (!payload) return null;
+    try {
+      const parsed = JSON.parse(decodeHtml(payload));
+      return { relative: path.relative(outRoot, file).split(path.sep).join('/'), parsed };
+    } catch {
+      return { relative: path.relative(outRoot, file).split(path.sep).join('/'), invalid: true };
+    }
+  })
+  .filter(Boolean);
+const invalidJsonLd = crumbs.find((crumb) => crumb.invalid);
+const breadcrumbLists = crumbs.filter((crumb) => crumb.parsed?.['@type'] === 'BreadcrumbList');
+let breadcrumbError = null;
+for (const { relative, parsed } of breadcrumbLists) {
+  const items = parsed.itemListElement;
+  if (!Array.isArray(items) || items.length < 2) {
+    breadcrumbError ??= `${relative} BreadcrumbList has ${items?.length ?? 0} items`;
+    continue;
+  }
+  const positions = items.map((item) => item.position);
+  if (positions.some((position, index) => position !== index + 1)) {
+    breadcrumbError ??= `${relative} BreadcrumbList positions are not sequential`;
+  }
+  if (items.some((item) => item['@type'] !== 'ListItem' || !item.name)) {
+    breadcrumbError ??= `${relative} BreadcrumbList item is malformed`;
+  }
+  for (const item of items) {
+    let pathname;
+    try {
+      const url = new URL(item.item);
+      if (canonicalOrigin && url.origin !== canonicalOrigin) {
+        breadcrumbError ??= `${relative} crumb ${item.item} has a foreign origin`;
+        continue;
+      }
+      pathname = url.pathname;
+    } catch {
+      breadcrumbError ??= `${relative} crumb ${item.item} is not absolute`;
+      continue;
+    }
+    const target = resolveOutputFile(pathname);
+    if (target.error) breadcrumbError ??= `${relative} crumb ${pathname} has ${target.error}`;
+  }
+}
+if (breadcrumbLists.length === 0) errors.push('no BreadcrumbList was found; the breadcrumb check would be vacuous');
+if (invalidJsonLd) errors.push(`JSON-LD is not valid JSON: ${invalidJsonLd.relative}`);
+if (breadcrumbError) errors.push(`breadcrumb trail: ${breadcrumbError}`);
+if (!invalidJsonLd && !breadcrumbError) {
+  passed.push(`${breadcrumbLists.length} BreadcrumbList trails use ordered, absolute, real page targets`);
+}
+
 let linkCount = 0;
 let imageCount = 0;
 let fragmentCount = 0;

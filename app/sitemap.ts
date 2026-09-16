@@ -1,46 +1,54 @@
 import type { MetadataRoute } from 'next';
-import { source } from '@/lib/source';
-import { i18n } from '@/lib/i18n';
-import { languageAlternates } from '@/lib/metadata';
+import { availableLocales, source } from '@/lib/source';
+import {
+  defaultLanguage,
+  homePath,
+  languageAlternates,
+  locales,
+  siteOrigin,
+  withTrailingSlash,
+} from '@/lib/metadata';
 
 export const dynamic = 'force-static';
 
 /**
- * 只列真实存在的语言页面（fallbackLanguage 为 null，缺译页面不生成路由）。
+ * Only real pages are listed. The default language's home is `/`; `/zh/` is a permanent redirect to
+ * it, so it is never an entry and never an alternate. Alternates are resolved from the locale
+ * versions that actually exist, so no alternate names a page that was never built.
+ *
+ * `lastModified` is omitted deliberately. The build's only date is the deployment commit time, which
+ * would claim that every page changed at deploy time; the governed policy accepts omitting lastmod
+ * when the available date is not a content date.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const origin = process.env.CANONICAL_ORIGIN ?? 'https://tidas.tiangong.earth';
-  const lastModified = new Date(Number(process.env.SOURCE_DATE_EPOCH ?? 0) * 1000);
-  const sitemapAlternates = (path = '') => Object.fromEntries(
-    Object.entries(languageAlternates(path)).map(([language, href]) => [language, new URL(href, `${origin}/`).href]),
-  );
+  const alternatesFor = (path = '', available?: string[]) => ({
+    languages: Object.fromEntries(
+      Object.entries(languageAlternates(path, available)).map(([language, href]) => [
+        language,
+        new URL(href, `${siteOrigin}/`).href,
+      ]),
+    ),
+  });
 
   const entries: MetadataRoute.Sitemap = [
-    {
-      url: `${origin}/`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: { languages: sitemapAlternates() },
-    },
+    { url: `${siteOrigin}/`, changeFrequency: 'weekly', priority: 1, alternates: alternatesFor() },
   ];
 
-  for (const lang of i18n.languages) {
-    entries.push({
-      url: `${origin}/${lang}/`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: { languages: sitemapAlternates() },
-    });
+  for (const lang of locales) {
+    if (lang !== defaultLanguage) {
+      entries.push({
+        url: `${siteOrigin}${homePath(lang)}`,
+        changeFrequency: 'weekly',
+        priority: 1,
+        alternates: alternatesFor(),
+      });
+    }
 
     for (const page of source.getPages(lang)) {
-      const url = page.url.endsWith('/') ? page.url : `${page.url}/`;
       entries.push({
-        url: `${origin}${url}`,
-        lastModified,
+        url: `${siteOrigin}${withTrailingSlash(page.url)}`,
         priority: 0.8,
-        alternates: { languages: sitemapAlternates(['docs', ...page.slugs].join('/')) },
+        alternates: alternatesFor(['docs', ...page.slugs].join('/'), availableLocales(page.slugs)),
       });
     }
   }
