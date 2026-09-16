@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: e981fc7a3bc42b55f441528ff349ef0dac2bfa9f
-lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
+lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
+lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -63,6 +63,8 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
 | `content/docs/**` | four-language public specification and guidance |
 | `public/schemas/**` | directly downloadable JSON Schema files |
+| `public/spec/<version>/**` | immutable, versioned TIDAS release closure: manifest, index, schema lock, localized schemas, and methodology assets |
+| `scripts/spec-pin.json`, `scripts/sync-versioned-spec.mjs` | pinned release identity and atomic archive-to-public synchronization/verification |
 | `public/img/**`, `public/assets/**`, `public/logo-*.svg` | public media and brand assets |
 | `lib/i18n.ts`, `lib/source.ts`, `lib/layout.shared.tsx`, `lib/metadata.ts`, `lib/seo-policy.mjs` | content loading, navigation, localization, and metadata policy; `seo-policy.mjs` holds the home-path, alternate, page-summary, and breadcrumb rules that `scripts/seo-policy.test.mjs` exercises directly |
 | `scripts/build.mjs`, `scripts/check-env.mjs`, `scripts/*.test.mjs`, `scripts/verify-*.mjs` | bounded Node 24 and exact package-tool enforcement, deterministic build pipeline, and static-site gates |
@@ -106,6 +108,8 @@ Before static generation, the build requires Node `>=24.18.0 <25`, exact pnpm `1
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
 `content/schema-inventory.json` classifies every published JSON asset and owns the public count vocabulary. It separates 8 dataset-object contracts, 9 classification-vocabulary contracts, 1 shared-types contract, and 1 derived viewer projection. The viewer projection is non-normative and presentation-only. The 18 contract file names match the logical entries in the `tidas-tools` schema lock, but the public directory is not an automatic mirror and the inventory does not claim structural or byte-for-byte equality.
+
+Versioned releases are separate from that legacy baseline. `scripts/spec-pin.json` records the exact immutable `tidas-spec` archive, source revision, imported-source commit, and digests. The sync script verifies the archive's manifest and asset closure before atomically writing `public/spec/<version>/`; the build verifies the committed closure without requiring network access. A localized schema-version page links to the release index and explicitly keeps `/schemas/**` as the unversioned compatibility baseline until a later migration decision.
 
 Localized section roots are real content pages as well as navigation folders. Each section `meta*.json` points `pagesIndex` at `index` and excludes `index` from its child list; `components/category-directory.tsx` resolves the current folder from `source.getPageTree(language)` and renders its children. This preserves existing URLs, removes folder/index duplicate labels, and makes new children discoverable without duplicating manual card lists.
 

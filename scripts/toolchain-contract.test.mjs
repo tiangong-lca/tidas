@@ -36,7 +36,7 @@ test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', 
   );
   assert.equal(
     packageJson.scripts.test,
-    'node --test scripts/check-env.test.mjs scripts/content-contract.test.mjs scripts/toolchain-contract.test.mjs scripts/seo-policy.test.mjs',
+    'node --test scripts/check-env.test.mjs scripts/content-contract.test.mjs scripts/toolchain-contract.test.mjs scripts/seo-policy.test.mjs scripts/versioned-spec.test.mjs',
   );
 });
 
@@ -132,7 +132,7 @@ function traceBuild(failAt = -1, failureStatus = 19) {
 }
 
 const expectedBuildTrace = [
-  ['node', 'scripts/check-env.mjs'], ['pnpm', 'test'], ['next', 'build'],
+  ['node', 'scripts/check-env.mjs'], ['node', 'scripts/sync-versioned-spec.mjs', '--verify'], ['pnpm', 'test'], ['next', 'build'],
   ['node', 'scripts/verify-out.mjs'], ['node', 'scripts/verify-site.mjs'],
 ];
 

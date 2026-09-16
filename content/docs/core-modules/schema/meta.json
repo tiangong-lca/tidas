@@ -2,6 +2,7 @@
   "title": "数据结构（JSON Schema）",
   "pages": [
     "tidas-schema-intro",
+    "tidas-schema-versions",
     "schema-content",
     "tidas-schema-validation"
   ]
