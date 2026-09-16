@@ -37,6 +37,8 @@ related:
   - ../../README.md
 ---
 
+Review note, 2026-09-16: W6a/A09 records the exact website/spec schema comparison, including the viewer projection boundary and retained W4 versioned output. It does not change the normative ownership, public URL model, or publication path.
+
 Historical review note, 2026-08-25: Issue #56 established one exact fail-closed Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 contract with deterministic pnpm-only CI tooling.
 
 Review note, 2026-08-26: Issue #58 changes only the current package-manager identity from pnpm 11.23.0 to exact pnpm 11.24.0. The same root workspace and byte-identical lock, Node 24.19.0, sole TypeScript 7.0.2 graph, static pipeline, schemas/generated output, dependencies, version, and publication path remain in place.

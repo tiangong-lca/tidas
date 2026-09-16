@@ -40,6 +40,8 @@ related:
   - README.md
 ---
 
+Review note, 2026-09-16: W6a/A09 adds only a dependency-free evidence ledger comparing retained `public/schemas` to exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`. The ledger does not switch public URLs, viewer assets, release identity, or site ownership; semantic dispositions remain open for review.
+
 Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 together with local markdownlint, immutable CI actions, and one fail-closed toolchain contract.
 
 Review note, 2026-08-26: Issue #58 advances only the current package-manager contract from exact pnpm 11.23.0 to 11.24.0. Root `packageManager`, package engines, the fail-closed environment check, CI bootstrap, and Node contracts agree on that version; pnpm 11.24.0 leaves the sole root workspace lock byte-identical. Node 24.19.0, the sole TypeScript 7.0.2 graph, package version and dependencies, public schemas/generated content, runtime behavior, tags, and publication remain unchanged, with no npm/Yarn fallback.

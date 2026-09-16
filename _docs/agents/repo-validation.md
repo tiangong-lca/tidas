@@ -39,6 +39,8 @@ related:
   - ../../README.md
 ---
 
+Review note, 2026-09-16: W6a/A09 comparison proof is dependency-free and does not alter public schemas or site output. Run `node scripts/ci/compare-tidas-spec.mjs --check _docs/agents/tidas-spec-difference-ledger.json` against the selected candidate; full site validation remains required for W6b adoption or URL changes.
+
 Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 checks, full Node contracts, local markdownlint, and immutable CI setup required proof.
 
 Review note, 2026-08-26: Issue #58 requires exact pnpm 11.24.0 for the current toolchain proofs while retaining Node 24.19.0 and sole TypeScript 7.0.2. Toolchain validation also audits that pnpm 11.24.0 leaves the single root workspace lock byte-identical and that no npm/Yarn fallback, schema/generated drift, dependency, package-version, tag, or publication change appears.
