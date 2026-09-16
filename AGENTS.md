@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: e981fc7a3bc42b55f441528ff349ef0dac2bfa9f
-lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
+lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
+lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

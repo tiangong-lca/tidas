@@ -2,6 +2,7 @@
   "title": "TIDAS Schema",
   "pages": [
     "tidas-schema-intro",
+    "tidas-schema-versions",
     "schema-content",
     "tidas-schema-validation"
   ]

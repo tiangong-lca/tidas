@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: e981fc7a3bc42b55f441528ff349ef0dac2bfa9f
-lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
+lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
+lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -68,6 +68,7 @@ pnpm build
 | --- | --- |
 | prose or navigation | `pnpm test:content`, lint, full build, generated-link gate, spot-check affected locale pages |
 | section index or Schema inventory | `pnpm test:content`, full build, verify folder/index de-duplication in all locales, reconcile every public JSON asset and 8/9/1/1 roles, confirm the viewer projection is non-normative |
+| versioned specification release | fixed-archive sync and verify, tracked-output verify without network, `pnpm test`, lint, typecheck, full build, and confirm the index's digest/reference closure plus four localized entry pages |
 | German or French translation | lint, full build, compare source meaning, verify no English body copy remains, inspect navigation and search in that locale |
 | site UI or responsive layout | baseline plus browser screenshots at 390, 1440, 1633, 2048, and 2560 widths, light and dark themes, keyboard focus, no horizontal overflow |
 | root or language behavior | visit `/` and all locale homes; switch from `/` to another language; verify there is no redirect and URLs remain within the current route model |

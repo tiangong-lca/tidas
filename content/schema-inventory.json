@@ -14,6 +14,19 @@
     "viewerProjections": 1,
     "derivedAssets": 1
   },
+  "versionedSpecs": [
+    {
+      "package": "@tiangong-lca/tidas-spec",
+      "version": "0.1.0",
+      "specRevision": "41e078b63336a31cd8c4bcab748afeb09c19c1e7",
+      "archiveSha256": "921a0ffa0d3703bc2d9bd8a5bbb02d327be7746177487af8245ac2788a7cf91e",
+      "manifestSha256": "646699afaf5c3bdfa6ccfe5153b11d6978ee62227fdace19f3b7715b59c50010",
+      "basePath": "/spec/0.1.0",
+      "indexPath": "/spec/0.1.0/index.json",
+      "assetCount": 39,
+      "legacyBaseline": "/schemas"
+    }
+  ],
   "assets": [
     {
       "file": "tidas_contacts.json",

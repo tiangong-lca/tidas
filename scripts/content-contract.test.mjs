@@ -154,6 +154,29 @@ test('public Schema counts come from the inventory and docs do not pin a CLI rel
   assert.doesNotMatch(publicContent, /17 (?:core )?JSON Schema|17 个核心 JSON Schema|17 logische Module|17 schémas JSON fondamentaux/iu);
 });
 
+test('versioned specification identity has a localized docs entry and a complete public closure', () => {
+  const inventory = readJson('content/schema-inventory.json');
+  assert.equal(inventory.versionedSpecs.length, 1);
+  const version = inventory.versionedSpecs[0];
+  assert.equal(version.version, '0.1.0');
+  assert.equal(version.assetCount, 39);
+  assert.match(version.basePath, /^\/spec\/0\.1\.0$/u);
+  const index = readJson('public/spec/0.1.0/index.json');
+  assert.equal(index.version, version.version);
+  assert.equal(index.archiveSha256, version.archiveSha256);
+  assert.equal(index.manifestSha256, version.manifestSha256);
+  assert.equal(index.referenceClosure.length, version.assetCount);
+  for (const locale of locales) {
+    const suffix = locale === 'zh' ? '' : `.${locale}`;
+    const meta = readJson(`content/docs/core-modules/schema/meta${suffix}.json`);
+    const page = read(`content/docs/core-modules/schema/tidas-schema-versions${suffix}.mdx`);
+    assert.ok(meta.pages.includes('tidas-schema-versions'), `${locale} schema navigation must expose the versioned entry`);
+    assert.match(page, /0\.1\.0/u, `${locale} versioned entry must name the exact specification version`);
+    assert.match(page, /\/spec\/0\.1\.0\/index\.json/u, `${locale} versioned entry must link its index`);
+    assert.match(page, /unversioned|无版本|unversionierte|ohne Versionsangabe|sans version/iu, `${locale} entry must preserve the legacy baseline statement`);
+  }
+});
+
 test('CLI guidance follows the release authority and preserves locale links', () => {
   for (const locale of locales) {
     const suffix = locale === 'zh' ? '' : `.${locale}`;
