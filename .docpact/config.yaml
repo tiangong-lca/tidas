@@ -49,6 +49,7 @@ ownership:
           - postcss.config.mjs
           - tsconfig.json
           - .gitignore
+          - .gitattributes
           - edgeone.json
           - crowdin.yml
           - context7.json
@@ -92,6 +93,7 @@ coverage:
     - postcss.config.mjs
     - tsconfig.json
     - .gitignore
+    - .gitattributes
     - edgeone.json
     - crowdin.yml
     - context7.json
@@ -290,6 +292,10 @@ rules:
         kind: site-media
       - path: scripts/*.mjs
         kind: site-build-and-proof
+      - path: scripts/vendor/workspace-seo/**
+        kind: generated-build-and-proof
+      - path: .gitattributes
+        kind: generated-snapshot-encoding
       - path: manifests/**
         kind: retired-artifact-removal
       - path: .github/workflows/publish-docs.yml
