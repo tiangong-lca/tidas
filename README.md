@@ -24,7 +24,7 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-09-16
-lastReviewedCommit: dfde428c8b6a3fac6f159e4e9030b5fca73823ef
+lastReviewedCommit: e981fc7a3bc42b55f441528ff349ef0dac2bfa9f
 lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
 ---
 

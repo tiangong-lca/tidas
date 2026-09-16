@@ -1,7 +1,7 @@
 version: 1
 layout: repo
 lastReviewedAt: "2026-09-16"
-lastReviewedCommit: "dfde428c8b6a3fac6f159e4e9030b5fca73823ef"
+lastReviewedCommit: "e981fc7a3bc42b55f441528ff349ef0dac2bfa9f"
 lastReviewedNote: "Reviewed for TIDAS #72: seven frontmatter edits add source-grounded shared-type descriptions in four languages and distinguish Schema Introduction titles in English/German/French. Normative body text, schema files, routes, dependencies and publication policy are unchanged. Lint/typecheck/full build and59-test shared reporter validation pass; all116exported pages now have no duplicate title/description leads (14before). All seven changed pages render correct metadata at390px without horizontal overflow. Independent PR review and exact production publication remain pending."
 # Review note, 2026-08-30: the beginner-facing terminology update adds a localized glossary and plain-language homepage, introduction, core, tool, and Schema inventory copy. Existing content/docs/**, components/**, and scripts/*.test.mjs coverage and required governed-document review remain sufficient.
 # Review note, 2026-08-30: Issue #61 keeps the existing ownership and rule graph while separating the local Node 24 selector, bounded runtime validation, EdgeOne's preinstalled 24.18.0 pin, and the reviewed PR CI runtime.
