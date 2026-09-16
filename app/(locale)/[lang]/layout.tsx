@@ -3,7 +3,7 @@ import { i18nProvider } from 'fumadocs-ui/i18n';
 import { Provider } from '@/components/provider';
 import { translations } from '@/lib/layout.shared';
 import { i18n, toHtmlLang } from '@/lib/i18n';
-import { homePath, languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
+import { baiduVerificationMetadata, homePath, languageAlternates, localeMetadata, pageImagePath, siteOrigin } from '@/lib/metadata';
 import '@/app/global.css';
 
 export function generateStaticParams() {
@@ -44,6 +44,8 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
     ...(process.env.DEPLOY_ENV !== 'production'
       ? { robots: { index: false, follow: false } }
       : {}),
+    // Optional search-console ownership marker; supplied by the build environment, never hardcoded.
+    ...baiduVerificationMetadata(),
   };
 }
 

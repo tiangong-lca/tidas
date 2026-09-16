@@ -1,4 +1,5 @@
 export {
+  baiduVerificationMetadata,
   breadcrumbJsonLd,
   breadcrumbTrail,
   classifyPageDescription,

@@ -50,3 +50,25 @@ jobs:
           NEXT_PUBLIC_SEARCH_MODE: static
           SOURCE_COMMIT: ${{ github.sha }}
         run: pnpm build
+
+      # Validates the artifacts the step above already produced; it does not rebuild. The pinned
+      # shared action is root-owned, so this repository adopts a reviewed commit rather than a
+      # moving branch.
+      - name: Verify SEO artifacts with the shared checker
+        id: seo
+        uses: tiangong-lca/workspace/.github/actions/seo-check@dff8180d00f5fbff8155be85ee354e522eb3c554
+        with:
+          origin: http://localhost:3000
+          artifact-root: out
+          artifact-indexing: disabled
+          report: ${{ runner.temp }}/seo-report.json
+
+      # The checker writes a report on every outcome, including an incomplete run, so the evidence is
+      # retained even when the step above fails.
+      - name: Retain the SEO report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tidas-seo-report
+          path: ${{ steps.seo.outputs.report-path }}
+          if-no-files-found: error

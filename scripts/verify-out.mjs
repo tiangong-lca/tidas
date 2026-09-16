@@ -118,6 +118,44 @@ for (const source of ['/zh', '/zh/']) {
   else errors.push(`edgeone.json must redirect ${source} to / with status 301`);
 }
 
+// 7d. 可选搜索引擎归属标记：仅在构建环境提供时输出。
+// 该标记是公开的，但本门禁仍然不回显其值：只报告存在/一致或缺失/不一致。
+const baiduToken = (process.env.BAIDU_SITE_VERIFICATION ?? '').trim();
+const headProbes = ['index.html', 'en/index.html', 'de/index.html', 'fr/index.html', 'zh/docs/intro/index.html']
+  .filter((relative) => exists(relative));
+const outHtmlFiles = [];
+(function collectHtml(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) collectHtml(full);
+    else if (entry.name.endsWith('.html')) outHtmlFiles.push(full);
+  }
+})(outRoot);
+
+if (headProbes.length === 0) {
+  errors.push('no document head was available to check the ownership marker');
+} else if (baiduToken) {
+  const notExact = headProbes.filter((relative) => !read(relative).includes(`content="${baiduToken}"`));
+  if (notExact.length > 0) {
+    errors.push(
+      `the configured baidu-site-verification marker is missing or not exact on ${notExact.length} of ` +
+        `${headProbes.length} document heads (first: ${notExact[0]})`,
+    );
+  } else {
+    passed.push(`baidu-site-verification marker present and exact on ${headProbes.length} document heads`);
+  }
+} else {
+  const carrying = outHtmlFiles.filter((file) => fs.readFileSync(file, 'utf8').includes('baidu-site-verification'));
+  if (carrying.length > 0) {
+    errors.push(
+      `baidu-site-verification appears in ${carrying.length} pages although no marker was configured ` +
+        `(first: ${path.relative(outRoot, carrying[0])}); it must come from the build environment, never from source`,
+    );
+  } else {
+    passed.push(`no baidu-site-verification marker across ${outHtmlFiles.length} pages (not configured)`);
+  }
+}
+
 // 8. sitemap 契约：locale 隔离、无 /zh 别名、无统一 lastmod、目标均为真实产物
 const sitemap = read('sitemap.xml');
 if (/\/ja\/docs/.test(sitemap)) errors.push('sitemap contains dropped ja locale');

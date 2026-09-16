@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import {
+  baiduVerificationMetadata,
   breadcrumbJsonLd,
   breadcrumbTrail,
   classifyPageDescription,
@@ -175,4 +177,56 @@ test('breadcrumb JSON-LD is absolute, ordered and typed', () => {
   assert.equal(jsonLd.itemListElement[0].item, `${siteOrigin}/`);
   assert.equal(jsonLd.itemListElement[1].item, `${siteOrigin}/zh/docs/intro/`);
   assert.ok(jsonLd.itemListElement.every((item) => item['@type'] === 'ListItem'));
+});
+
+const withVerification = (value, run) => {
+  const previous = process.env.BAIDU_SITE_VERIFICATION;
+  if (value === undefined) delete process.env.BAIDU_SITE_VERIFICATION;
+  else process.env.BAIDU_SITE_VERIFICATION = value;
+  try {
+    return run();
+  } finally {
+    if (previous === undefined) delete process.env.BAIDU_SITE_VERIFICATION;
+    else process.env.BAIDU_SITE_VERIFICATION = previous;
+  }
+};
+
+test('the ownership marker is absent unless the build supplies one', () => {
+  assert.deepEqual(withVerification(undefined, baiduVerificationMetadata), {});
+  assert.deepEqual(withVerification('', baiduVerificationMetadata), {});
+  assert.deepEqual(withVerification('   ', baiduVerificationMetadata), {});
+});
+
+test('a supplied marker is carried into the document head verbatim and trimmed', () => {
+  assert.deepEqual(withVerification('codeva-ExampleValue', baiduVerificationMetadata), {
+    other: { 'baidu-site-verification': 'codeva-ExampleValue' },
+  });
+  assert.deepEqual(withVerification('  codeva-ExampleValue  ', baiduVerificationMetadata), {
+    other: { 'baidu-site-verification': 'codeva-ExampleValue' },
+  });
+});
+
+test('the helper never logs the marker value', () => {
+  const calls = [];
+  const original = { log: console.log, error: console.error, warn: console.warn, info: console.info };
+  console.log = (...args) => calls.push(args);
+  console.error = (...args) => calls.push(args);
+  console.warn = (...args) => calls.push(args);
+  console.info = (...args) => calls.push(args);
+  try {
+    withVerification('codeva-SecretLookingValue', baiduVerificationMetadata);
+    withVerification(undefined, baiduVerificationMetadata);
+  } finally {
+    Object.assign(console, original);
+  }
+  assert.deepEqual(calls, []);
+});
+
+test('no verification token is hardcoded in the policy module or the app layouts', () => {
+  // The marker belongs to the deployed site and must come from the build environment. A literal
+  // here would publish one site's token from every checkout.
+  for (const relative of ['../lib/seo-policy.mjs', '../app/(entry)/layout.tsx', '../app/(locale)/[lang]/layout.tsx']) {
+    const source = readFileSync(new URL(relative, import.meta.url), 'utf8');
+    assert.doesNotMatch(source, /codeva-/u, `${relative} hardcodes a verification token`);
+  }
 });
