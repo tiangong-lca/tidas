@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-16
-lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
-lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
+lastReviewedAt: 2026-09-17
+lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
+lastReviewedNote: "Reviewed for TIDAS #78: the 18 normative public schema assets now converge byte-for-byte with the approved tidas-spec candidate and are source-bound by manifest metadata; the retained viewer projection is explicitly non-normative. Existing public URL, versioned output, publication, navigation, and runtime ownership remain unchanged."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -37,7 +37,7 @@ related:
   - ../../README.md
 ---
 
-Review note, 2026-09-16: W6a/A09 records the exact website/spec schema comparison, including the viewer projection boundary and retained W4 versioned output. It does not change the normative ownership, public URL model, or publication path.
+Review note, 2026-09-17: W6b/A09 resolves the exact website/spec schema comparison: all 18 normative public assets match the approved tidas-spec candidate, while the retained viewer projection stays non-normative. The source-bound sync/check contract does not change normative ownership, public URL model, versioned output, navigation, or publication path.
 
 Historical review note, 2026-08-25: Issue #56 established one exact fail-closed Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 contract with deterministic pnpm-only CI tooling.
 

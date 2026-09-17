@@ -1,10 +1,10 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-09-16"
-lastReviewedCommit: "5fb2b821cde73196888a5dbcf19fd02bf358c14f5"
-lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
+lastReviewedAt: "2026-09-17"
+lastReviewedCommit: "2b46fe5eb6ad16d43ee90a1b739113470c1658c0"
+lastReviewedNote: "Reviewed for TIDAS #78: 18 normative website schema assets converge byte-for-byte with the approved tidas-spec candidate and are source-bound by commit and manifest hashes; the retained viewer projection is explicitly non-normative. Fail-closed sync/check and positive/negative tests preserve existing public URL, version, publication, navigation, and runtime ownership boundaries."
 # Review note, 2026-08-30: the beginner-facing terminology update adds a localized glossary and plain-language homepage, introduction, core, tool, and Schema inventory copy. Existing content/docs/**, components/**, and scripts/*.test.mjs coverage and required governed-document review remain sufficient.
-# Review note, 2026-09-16: TIDAS #76 records the W6a/A09 semantic-difference ledger against exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`; the comparison is unresolved and changes no public schema, URL, publication, or ownership boundary.
+# Review note, 2026-09-17: TIDAS #78 resolves W6b/A09 against exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`: all 18 normative website schema assets are byte-identical, the viewer projection remains non-normative, and source/manifest drift fails closed without changing public schema URLs, publication, navigation, or ownership boundaries.
 # Review note, 2026-08-30: Issue #61 keeps the existing ownership and rule graph while separating the local Node 24 selector, bounded runtime validation, EdgeOne's preinstalled 24.18.0 pin, and the reviewed PR CI runtime.
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
 # Review note, 2026-08-26: Issue #58 only advances the current pnpm contract from 11.23.0 to 11.24.0. Existing site-runtime ownership, scripts/*.mjs and workflow coverage, routed governed documents, and proof rules already own the manifest, environment checker, tests, CI bootstrap, root workspace/lock, and active documentation; no ownership or routing change is required.

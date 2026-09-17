@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-16
-lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
-lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
+lastReviewedAt: 2026-09-17
+lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
+lastReviewedNote: "Reviewed for TIDAS #78: W6b source-bound sync/check, comparator resolution, positive/negative drift tests, content-contract assertions, and the existing full site validation gates qualify convergence of 18 normative schema assets while preserving the non-normative viewer projection and existing publication/runtime boundaries."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -39,7 +39,7 @@ related:
   - ../../README.md
 ---
 
-Review note, 2026-09-16: W6a/A09 comparison proof is dependency-free and does not alter public schemas or site output. Run `node scripts/ci/compare-tidas-spec.mjs --check _docs/agents/tidas-spec-difference-ledger.json` against the selected candidate; full site validation remains required for W6b adoption or URL changes.
+Review note, 2026-09-17: W6b/A09 requires `node scripts/ci/sync-tidas-spec.mjs --spec-root <tidas-spec> --spec-commit 6fb497bad562125ccc0c00a803351207b9ed438f --check`, the resolved comparator check, positive/negative sync tests, content-contract proof, and the existing full site validation. The checks prove 18 normative assets converge while the viewer projection remains non-normative and public URL/version/publication behavior is unchanged.
 
 Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 checks, full Node contracts, local markdownlint, and immutable CI setup required proof.
 
