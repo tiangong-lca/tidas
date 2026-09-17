@@ -322,6 +322,8 @@ rules:
         kind: site-media
       - path: scripts/*.mjs
         kind: site-build-and-proof
+      - path: scripts/ci/*.mjs
+        kind: site-build-and-proof
       - path: scripts/vendor/workspace-seo/**
         kind: generated-build-and-proof
       - path: .gitattributes
