@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "semantics": {
     "contractSchemas": "Assets marked normative are the 18 public validation contracts designated by this inventory.",
-    "sourceAlignment": "Their file-name set matches the 18 logical entries in the tidas-tools schema lock; structural or byte-for-byte equivalence is not implied.",
+    "sourceAlignment": "The 18 normative assets are source-bound to the exact tidas-spec candidate recorded in content/tidas-spec-source.json, whose semantics originate in the original tidas-tools schema; the retained viewer projection is not normative.",
     "viewerProjection": "The viewer projection is derived, non-normative, and must not be used for validation or conformance claims."
   },
   "counts": {

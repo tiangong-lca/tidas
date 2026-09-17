@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Dependency-free W6a comparison of the site's published schemas against one
+ * Dependency-free comparison of the site's published schemas against one
  * exact tidas-spec source tree. The report is evidence for semantic review;
- * it never changes public assets or performs a website cutover.
+ * W6b marks the report resolved only when every normative file is identical
+ * and the retained viewer projection is explicitly outside the comparison.
  */
 
 import { createHash } from 'node:crypto';
@@ -157,6 +158,17 @@ async function buildReport(specRoot, siteCommit = null) {
   let manifest = {};
   try { manifest = await readJson(manifestPath); } catch {}
   const packageInfo = manifest.package || {};
+  const disposition = differences.length === 0
+    ? {
+        status: 'resolved',
+        owner: 'workspace-user-decision-and-tidas-site-owner',
+        note: 'User decision #1240 establishes the original tidas-tools schema as semantic authority; tidas-spec is the controlled carrier, normative site assets match exactly, and the retained viewer projection is explicitly non-normative.',
+      }
+    : {
+        status: 'unresolved',
+        owner: 'tidas-spec-content-owner-and-tidas-site-owner',
+        note: 'W6a requires semantic review; this generated ledger is evidence, not approval.',
+      };
   return {
     reportVersion: 1,
     source: { siteRepository: 'tiangong-lca/tidas', siteCommit: siteCommit || gitHead(repoRoot), specRepository: 'tiangong-lca/tidas-spec', specCommit: gitHead(specRoot), specVersion: packageInfo.version || manifest.specVersion || null, manifestSha256: await readFile(manifestPath).then(sha256).catch(() => null) },
@@ -164,7 +176,7 @@ async function buildReport(specRoot, siteCommit = null) {
     summary: { siteFiles: names.length, specFiles: specNames.length, identicalFiles: files.filter((file) => file.status === 'identical').length, differentFiles: files.filter((file) => file.status === 'different').length, viewerProjectionFiles: files.filter((file) => file.status === 'viewer-projection').length, differenceCount: differences.length, unresolvedCount: differences.length },
     files,
     differences,
-    disposition: { status: 'unresolved', owner: 'tidas-spec-content-owner-and-tidas-site-owner', note: 'W6a requires semantic review; this generated ledger is evidence, not approval.' },
+    disposition,
   };
 }
 

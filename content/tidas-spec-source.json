@@ -1,0 +1,89 @@
+{
+  "schema": "tiangong-lca.tidas-site-spec-source.v1",
+  "spec_repository": "https://github.com/tiangong-lca/tidas-spec",
+  "spec_commit": "6fb497bad562125ccc0c00a803351207b9ed438f",
+  "spec_version": "0.1.0",
+  "source_repository": "https://github.com/tiangong-lca/tidas-toolkit",
+  "source_commit": "9c0d8b1c8ceb1841074f5bc6de5fbb7fcc9318f5",
+  "manifest_sha256": "fe82b77411e2a134469b206367556a52bf6be80419fcbc0749a2439dc785631b",
+  "schemas": [
+    {
+      "name": "tidas_contacts.json",
+      "sha256": "f16868bcdb99b4785b03a9b36dfe103d8f3ec61a463be9274d22884e6b7d8bda"
+    },
+    {
+      "name": "tidas_contacts_category.json",
+      "sha256": "2d043a6686320b5fec5d4012dfd03bdb57897375002b25fc6a64df8ea10092b5"
+    },
+    {
+      "name": "tidas_data_types.json",
+      "sha256": "d9e7fa47e2dd2a665332dc50b1d3b3fc03bba1ae2ab80b07bd52ed01471b1b81"
+    },
+    {
+      "name": "tidas_flowproperties.json",
+      "sha256": "bfc56348c4be7d8e20faebf197680b6a38c9e9b91812382710c6ab205f218432"
+    },
+    {
+      "name": "tidas_flowproperties_category.json",
+      "sha256": "0fd7f4b2e350532ba5809019a079f8fadb90f91702358c1ff7deea19c956a846"
+    },
+    {
+      "name": "tidas_flows.json",
+      "sha256": "e773b188271174f834dba5ab410644b9e246385c8005fb6d02e4c7a0a073d283"
+    },
+    {
+      "name": "tidas_flows_elementary_category.json",
+      "sha256": "e817d6e40dfa7b21cb947548027f32b393d1b06ee2a7326f7c59686a2cd3552d"
+    },
+    {
+      "name": "tidas_flows_product_category.json",
+      "sha256": "e62e1f676dedaeb6028b05f0c1cc84f53c1c47058ae6e17897f77b2cb17b7cb2"
+    },
+    {
+      "name": "tidas_lciamethods.json",
+      "sha256": "6a96fa34bda4d848eeaa1edb124a544f4511c824436514e62b58626919e57836"
+    },
+    {
+      "name": "tidas_lciamethods_category.json",
+      "sha256": "83b4bbfb53a2ad1cb1f9c97c261cc867ea6f509020a8ea9041ffba08601eaac9"
+    },
+    {
+      "name": "tidas_lifecyclemodels.json",
+      "sha256": "d3355d3c7910efadbee87fe36dacd6ca515c8fe1c5671f6dee2ba63d43c5d108"
+    },
+    {
+      "name": "tidas_locations_category.json",
+      "sha256": "415fe8c7ba4991a88bc66d9cd55541ee27b74f731541c64a9bc354679d109a71"
+    },
+    {
+      "name": "tidas_processes.json",
+      "sha256": "8476530740d2af11fe3c607afbeab68a318c6b08d7558417ebcad8ac33f0efdd"
+    },
+    {
+      "name": "tidas_processes_category.json",
+      "sha256": "cea1b97b46fd9faa2f7f4d7b911ff19f24a1655ff98b488ebaf5cc9ee6fdec64"
+    },
+    {
+      "name": "tidas_sources.json",
+      "sha256": "2f37df9004a05ed83f8c708b7edc5f482ec1f848c050fd9f54e1aad49687dd5d"
+    },
+    {
+      "name": "tidas_sources_category.json",
+      "sha256": "dc22fa07e7a2b4742133ea642505b6a18011552459b84764908166d1994c985f"
+    },
+    {
+      "name": "tidas_unitgroups.json",
+      "sha256": "d83ada361908ffc047d38ded3aa15be748c7d3421dc294f34c5afbcc6a58f127"
+    },
+    {
+      "name": "tidas_unitgroups_category.json",
+      "sha256": "c490544c405ee6ef06e52e121f29994d112040a3f4888541fa69569c998d8b72"
+    }
+  ],
+  "viewer_projection": {
+    "file": "tidas_data_types_viewer.json",
+    "normative": false,
+    "source": "tidas_data_types.json",
+    "sha256": "3d0052a137820f66d3b250f0d4b259e8158dbcfe0e8c161fd2083bc1ac88f9f6"
+  }
+}

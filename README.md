@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-16
-lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
-lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
+lastReviewedAt: 2026-09-17
+lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
+lastReviewedNote: "Reviewed for TIDAS #78: the 18 normative website schema assets converge byte-for-byte with the approved tidas-spec candidate, source identity is bound by commit and manifest hashes, and the retained viewer projection is non-normative. The sync/check gate, drift tests, full test suite, typecheck, and static output/site verification preserve existing public URL, version, publication, and runtime boundaries."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -35,6 +35,8 @@ Review note, 2026-08-26: Issue #58 updates the current pnpm-only toolchain to ex
 Review note, 2026-08-30: Issue #61 allows supported Node 24 patch releases from `24.18.0` up to (but not including) Node 25. Local `.nvmrc` selects Node major `24`, EdgeOne pins preinstalled Node `24.18.0`, and PR validation remains on reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
 
 Review note, 2026-08-30: the beginner-facing terminology update adds a localized `/docs/glossary/` page and rewrites the homepage, introduction, core overview, tool overview, and Schema inventory labels without changing contributor setup, schemas, executable tools, or publication behavior.
+
+Review note, 2026-09-17: TIDAS #78 adds the source-bound `scripts/ci/sync-tidas-spec.mjs` check/write gate and negative fixtures for manifest, file-set, hash, source-identity, and viewer-projection drift. It does not change the documented package, versioned archive, public URL, publication, or runtime contract.
 
 Public documentation and downloadable data contracts for
 [TIDAS](https://tidas.tiangong.earth), the TianGong LCA Data System. The site is a

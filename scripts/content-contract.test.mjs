@@ -114,7 +114,16 @@ test('schema inventory covers every published JSON asset and reconciles its coun
   assert.equal(viewer?.derivation.kind, 'viewer-projection');
   assert.equal(viewer?.derivation.source, 'tidas_data_types.json');
   assert.match(inventory.semantics.viewerProjection, /must not be used for validation or conformance/u);
-  assert.match(inventory.semantics.sourceAlignment, /byte-for-byte equivalence is not implied/u);
+  assert.match(inventory.semantics.sourceAlignment, /source-bound to the exact tidas-spec candidate/u);
+  const sourceIdentity = readJson('content/tidas-spec-source.json');
+  assert.equal(sourceIdentity.spec_commit, '6fb497bad562125ccc0c00a803351207b9ed438f');
+  assert.equal(sourceIdentity.source_commit, '9c0d8b1c8ceb1841074f5bc6de5fbb7fcc9318f5');
+  assert.equal(sourceIdentity.schemas.length, 18);
+  assert.equal(sourceIdentity.viewer_projection.normative, false);
+  const ledger = readJson('_docs/agents/tidas-spec-difference-ledger.json');
+  assert.equal(ledger.disposition.status, 'resolved');
+  assert.equal(ledger.summary.differenceCount, 0);
+  assert.equal(ledger.summary.viewerProjectionFiles, 1);
 
   const expectedDatasetObjects = [
     'tidas_contacts.json',

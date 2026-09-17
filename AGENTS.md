@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-16
-lastReviewedCommit: 5fb2b821cde73196888a5dbcf19fd02bf358c14f5
-lastReviewedNote: "Reviewed for TIDAS #74: versioned specification publication adds a pinned 0.1.0 archive identity, 39-file reference closure, atomic sync and tracked-output verification, four localized docs entries, and content/toolchain/build contracts while preserving the unversioned /schemas baseline. Lint, typecheck, 53-test suite, fixed-archive verification, tracked-output verification, and full static build with output/site gates pass. Independent PR review and exact production publication remain pending."
+lastReviewedAt: 2026-09-17
+lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
+lastReviewedNote: "Reviewed for TIDAS #78: the 18 normative website schema assets are now byte-identical to the approved tidas-spec candidate and source-bound by commit and manifest hashes; the retained viewer projection is explicitly non-normative. Fail-closed sync/check and positive/negative tests preserve the existing public URL, version, publication, navigation, and runtime ownership boundaries."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -40,7 +40,7 @@ related:
   - README.md
 ---
 
-Review note, 2026-09-16: W6a/A09 adds only a dependency-free evidence ledger comparing retained `public/schemas` to exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`. The ledger does not switch public URLs, viewer assets, release identity, or site ownership; semantic dispositions remain open for review.
+Review note, 2026-09-17: W6b/A09 resolves the website/spec comparison: all 18 normative `public/schemas` assets are byte-identical to exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`, while the retained viewer projection remains explicitly non-normative. Source identity, manifest hashes, fail-closed sync/check, and positive/negative tests are recorded without changing public URLs, release identity, publication, navigation, or site ownership.
 
 Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 together with local markdownlint, immutable CI actions, and one fail-closed toolchain contract.
 
