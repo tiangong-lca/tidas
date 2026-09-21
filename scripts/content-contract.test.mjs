@@ -193,7 +193,7 @@ test('CLI guidance follows the release authority and preserves locale links', ()
     const toolPage = read(toolPath);
     const introPage = read(`content/docs/intro${suffix}.mdx`);
 
-    assert.match(toolPage, /https:\/\/github\.com\/tiangong-lca\/tidas-tools\/releases\/latest/u);
+    assert.match(toolPage, /https:\/\/github\.com\/tiangong-lca\/tidas-toolkit\/releases\/latest/u);
     assert.match(toolPage, /tidas version --format json/u);
     assert.match(toolPage, /--schema-only/u);
     assert.doesNotMatch(toolPage, /\bv?\d+\.\d+\.\d+\b/u, `${toolPath} must not pin a release number`);

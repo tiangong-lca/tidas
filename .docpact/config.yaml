@@ -1,8 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-09-17"
-lastReviewedCommit: "2b46fe5eb6ad16d43ee90a1b739113470c1658c0"
-lastReviewedNote: "Reviewed for TIDAS #78: 18 normative website schema assets converge byte-for-byte with the approved tidas-spec candidate and are source-bound by commit and manifest hashes; the retained viewer projection is explicitly non-normative. Fail-closed sync/check and positive/negative tests preserve existing public URL, version, publication, navigation, and runtime ownership boundaries."
+lastReviewedAt: "2026-09-21"
+lastReviewedCommit: "866b5d3d8c7bd3f1fd6e026d92c184304314c610"
+lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
 # Review note, 2026-08-30: the beginner-facing terminology update adds a localized glossary and plain-language homepage, introduction, core, tool, and Schema inventory copy. Existing content/docs/**, components/**, and scripts/*.test.mjs coverage and required governed-document review remain sufficient.
 # Review note, 2026-09-17: TIDAS #78 resolves W6b/A09 against exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`: all 18 normative website schema assets are byte-identical, the viewer projection remains non-normative, and source/manifest drift fails closed without changing public schema URLs, publication, navigation, or ownership boundaries.
 # Review note, 2026-08-30: Issue #61 keeps the existing ownership and rule graph while separating the local Node 24 selector, bounded runtime validation, EdgeOne's preinstalled 24.18.0 pin, and the reviewed PR CI runtime.

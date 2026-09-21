@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-17
-lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
-lastReviewedNote: "Reviewed for TIDAS #78: the 18 normative public schema assets now converge byte-for-byte with the approved tidas-spec candidate and are source-bound by manifest metadata; the retained viewer projection is explicitly non-normative. Existing public URL, versioned output, publication, navigation, and runtime ownership remain unchanged."
+lastReviewedAt: 2026-09-21
+lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
+lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml

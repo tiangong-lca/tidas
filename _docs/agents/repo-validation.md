@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-17
-lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
-lastReviewedNote: "Reviewed for TIDAS #78: W6b source-bound sync/check, comparator resolution, positive/negative drift tests, content-contract assertions, and the existing full site validation gates qualify convergence of 18 normative schema assets while preserving the non-normative viewer projection and existing publication/runtime boundaries."
+lastReviewedAt: 2026-09-21
+lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
+lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml

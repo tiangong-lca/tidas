@@ -18,7 +18,7 @@ TIDAS Schema 用 JSON Schema 描述生命周期评估（LCA）的数据对象、
 - **结构合同**：JSON Schema 定义字段类型、层级、引用和可自动执行的结构约束。
 - **模块组合**：对象 Schema 引用共享类型和分类词表；消费方应从目标对象的根 Schema 开始解析引用。
 - **诊断与符合性分离**：`tidas validate --schema-only` 只执行 Schema 层诊断，不证明 eILCD 可转换性；需要符合性结论时，应运行适用 profile 的完整 `tidas validate`，并在需要交换格式时执行实际转换检查。
-- **版本可观察**：工具发布以 [`tidas-tools` Releases](https://github.com/tiangong-lca/tidas-tools/releases/latest) 为准。运行 `tidas version --format json` 可核对当前二进制版本、合同 Schema 和内嵌资产指纹。
+- **版本可观察**：工具发布以 [`tidas-toolkit` Releases](https://github.com/tiangong-lca/tidas-toolkit/releases/latest) 为准。运行 `tidas version --format json` 可核对当前二进制版本、合同 Schema 和内嵌资产指纹。
 
 ## 下一步
 

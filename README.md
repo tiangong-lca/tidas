@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-17
-lastReviewedCommit: 2b46fe5eb6ad16d43ee90a1b739113470c1658c0
-lastReviewedNote: "Reviewed for TIDAS #78: the 18 normative website schema assets converge byte-for-byte with the approved tidas-spec candidate, source identity is bound by commit and manifest hashes, and the retained viewer projection is non-normative. The sync/check gate, drift tests, full test suite, typecheck, and static output/site verification preserve existing public URL, version, publication, and runtime boundaries."
+lastReviewedAt: 2026-09-21
+lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
+lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
