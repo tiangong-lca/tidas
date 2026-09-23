@@ -7,7 +7,7 @@ authoritative: true
 owner: tidas
 language: en
 whenToUse:
-  - when changing the public TIDAS specification, schemas, navigation, localization, site runtime, or publication path
+  - when changing the site's presentation of the public TIDAS specification, schemas, navigation, localization, runtime, or publication path
   - when routing work from lca-workspace into tidas
   - when deciding whether work belongs in tidas, tidas-tools, tidas-sdk, or lca-workspace
 whenToUpdate:
@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-21
-lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
-lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
+lastReviewedAt: 2026-09-23
+lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
+lastReviewedNote: "The site owns public documentation and retained asset presentation; tidas-spec owns the specification source."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -40,19 +40,9 @@ related:
   - README.md
 ---
 
-Review note, 2026-09-17: W6b/A09 resolves the website/spec comparison: all 18 normative `public/schemas` assets are byte-identical to exact `tidas-spec` candidate `6fb497bad562125ccc0c00a803351207b9ed438f`, while the retained viewer projection remains explicitly non-normative. Source identity, manifest hashes, fail-closed sync/check, and positive/negative tests are recorded without changing public URLs, release identity, publication, navigation, or site ownership.
-
-Historical review note, 2026-08-25: Issue #56 established exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 together with local markdownlint, immutable CI actions, and one fail-closed toolchain contract.
-
-Review note, 2026-08-26: Issue #58 advances only the current package-manager contract from exact pnpm 11.23.0 to 11.24.0. Root `packageManager`, package engines, the fail-closed environment check, CI bootstrap, and Node contracts agree on that version; pnpm 11.24.0 leaves the sole root workspace lock byte-identical. Node 24.19.0, the sole TypeScript 7.0.2 graph, package version and dependencies, public schemas/generated content, runtime behavior, tags, and publication remain unchanged, with no npm/Yarn fallback.
-
-Review note, 2026-08-30: Issue #61 replaces the exact Node patch invariant with a bounded `>=24.18.0 <25` runtime policy. `.nvmrc` selects the current Node 24 release for local work, EdgeOne uses its preinstalled `24.18.0`, and PR validation remains pinned to reviewed Node `24.19.0`; pnpm `11.24.0` and TypeScript `7.0.2` remain exact.
-
-Review note, 2026-08-30: the beginner-facing terminology update adds one substantive four-locale `/docs/glossary/` route, rewrites the homepage, introduction, core overview, tool overview, and Schema inventory labels in plain LCA language, and makes format checks, documentation completeness, data quality, independent review, and named compliance claims distinct. It changes no Schema meaning or executable `tidas-tools` behavior.
-
 ## Repository contract
 
-`tidas` owns the public TIDAS specification and its static documentation site. That includes explanatory content, downloadable JSON Schema files, navigation, localization, search artifacts, and the site runtime that publishes them.
+`tidas-spec` owns the public TIDAS specification source and published specification assets. `tidas` owns the static documentation site that presents them: explanatory content, retained downloadable JSON Schema files, navigation, localization, search artifacts, and site publication. Until a reviewed migration moves an asset, its current repository maintains it without changing specification authority.
 
 ## Documentation roles
 
@@ -105,8 +95,8 @@ This is a greenfield URL model. The `/zh` pair above is the only redirect; do no
 
 This repository owns:
 
-- `content/docs/**` for the public specification, integrations, tools, examples, and FAQ;
-- `public/schemas/**` for published downloadable schemas;
+- `content/docs/**` for the public presentation of the specification, integrations, tools, examples, and FAQ;
+- `public/schemas/**` for retained downloadable schema presentation;
 - `app/**`, `components/**`, `lib/**`, `next.config.ts`, and site styles for routing and rendering;
 - `public/img/**`, `public/assets/**`, and brand files for site media;
 - `edgeone.json` and build verification for the EdgeOne publication contract;
@@ -114,11 +104,12 @@ This repository owns:
 
 It does not own:
 
+- public specification source, field semantics, or normative rule definitions: route to `tidas-spec`;
 - conversion, validation, import, export, or release implementation logic: route to `tidas-tools`;
 - generated SDK packages: route to `tidas-sdk`;
 - workspace integration after repository delivery: route to `lca-workspace`.
 
-Public guidance about tools remains here, but executable behavior remains in `tidas-tools`. Changes to schema meaning may require a tracked follow-up in `tidas-sdk`.
+Public guidance about tools remains here, while executable behavior remains in `tidas-tools`. Changes to specification meaning begin in `tidas-spec` and may require tracked consumer updates in the site, SDK, and toolkit.
 
 ## Runtime and content invariants
 
@@ -157,7 +148,7 @@ Do not copy the same detailed procedure into several documents.
 
 ## Delivery and workspace integration
 
-A merged repository PR is repository-complete, not workspace-delivery complete. If the updated specification must ship through the workspace:
+A merged repository PR is repository-complete, not workspace-delivery complete. If the site update must ship through the workspace:
 
 1. merge the child PR into `tidas/main`;
 2. select the exact eligible child commit;

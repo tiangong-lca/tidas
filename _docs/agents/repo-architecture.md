@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-21
-lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
-lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
+lastReviewedAt: 2026-09-23
+lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
+lastReviewedNote: "The site presents public specification assets sourced from tidas-spec and owns its runtime and routes."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -37,15 +37,7 @@ related:
   - ../../README.md
 ---
 
-Review note, 2026-09-17: W6b/A09 resolves the exact website/spec schema comparison: all 18 normative public assets match the approved tidas-spec candidate, while the retained viewer projection stays non-normative. The source-bound sync/check contract does not change normative ownership, public URL model, versioned output, navigation, or publication path.
-
 Historical review note, 2026-08-25: Issue #56 established one exact fail-closed Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 contract with deterministic pnpm-only CI tooling.
-
-Review note, 2026-08-26: Issue #58 changes only the current package-manager identity from pnpm 11.23.0 to exact pnpm 11.24.0. The same root workspace and byte-identical lock, Node 24.19.0, sole TypeScript 7.0.2 graph, static pipeline, schemas/generated output, dependencies, version, and publication path remain in place.
-
-Review note, 2026-08-30: Issue #61 separates the Node selectors by environment while retaining one bounded runtime contract: local `.nvmrc` tracks Node major `24`, EdgeOne uses preinstalled `24.18.0`, PR validation uses reviewed `24.19.0`, and all must satisfy `>=24.18.0 <25`.
-
-Review note, 2026-08-30: the beginner-facing terminology update keeps the existing route family and adds `/{lang}/docs/glossary/` as a substantive root page in each locale. The homepage, introduction, core overview, tool overview, and Schema inventory summary now introduce TIDAS as a shared way to organize and exchange LCA data, while advanced software identity remains subordinate and executable behavior remains in `tidas-tools`.
 
 ## Site shape
 
@@ -63,7 +55,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `components/schema-inventory-summary.tsx`, `content/schema-inventory.json` | rendered Schema role/count summary and its machine-readable asset authority |
 | `components/json-schema-viewer.tsx` | lazy semantic Schema structure table and taxonomy table |
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
-| `content/docs/**` | four-language public specification and guidance |
+| `content/docs/**` | four-language public specification presentation and guidance |
 | `public/schemas/**` | directly downloadable JSON Schema files |
 | `public/spec/<version>/**` | immutable, versioned TIDAS release closure: manifest, index, schema lock, localized schemas, and methodology assets |
 | `scripts/spec-pin.json`, `scripts/sync-versioned-spec.mjs` | pinned release identity and atomic archive-to-public synchronization/verification |
