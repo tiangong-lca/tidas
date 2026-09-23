@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-21
-lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
-lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
+lastReviewedAt: 2026-09-23
+lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
+lastReviewedNote: "The site validation rules remain current for documentation, schema presentation, and publication."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -39,15 +39,7 @@ related:
   - ../../README.md
 ---
 
-Review note, 2026-09-17: W6b/A09 requires `node scripts/ci/sync-tidas-spec.mjs --spec-root <tidas-spec> --spec-commit 6fb497bad562125ccc0c00a803351207b9ed438f --check`, the resolved comparator check, positive/negative sync tests, content-contract proof, and the existing full site validation. The checks prove 18 normative assets converge while the viewer projection remains non-normative and public URL/version/publication behavior is unchanged.
-
 Historical review note, 2026-08-25: Issue #56 made exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 checks, full Node contracts, local markdownlint, and immutable CI setup required proof.
-
-Review note, 2026-08-26: Issue #58 requires exact pnpm 11.24.0 for the current toolchain proofs while retaining Node 24.19.0 and sole TypeScript 7.0.2. Toolchain validation also audits that pnpm 11.24.0 leaves the single root workspace lock byte-identical and that no npm/Yarn fallback, schema/generated drift, dependency, package-version, tag, or publication change appears.
-
-Review note, 2026-08-30: Issue #61 requires Node `>=24.18.0 <25`, exact pnpm `11.24.0`, and exact TypeScript `7.0.2`. Proof must accept EdgeOne's preinstalled Node `24.18.0` and newer Node 24 patches while rejecting older Node 24 releases, major-only runtime strings, and Node 25+.
-
-Review note, 2026-08-30: the beginner-facing terminology update extends content-contract proof to require the four localized glossaries in root navigation, plain homepage and inventory labels, advanced placement of tool-version details, and explicit separation of format checks, documentation completeness, data quality, independent review, and named compliance claims.
 
 ## Default baseline
 
