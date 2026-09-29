@@ -74,7 +74,7 @@ const copy: Record<Language, HomeCopy> = {
     ],
     relatedEyebrow: '相关任务',
     relatedTitle: '在相关站点继续你的任务',
-    relatedDescription: '每个站点负责一个环节：查找公开发布的数据、学习平台操作、查看产品类别规则，以及按 ILCD 读取分发数据。',
+    relatedDescription: '每个站点负责一个环节：查找公开发布的数据、学习平台操作、查看产品类别规则，以及按 ILCD 格式读取数据。',
     related: [
       { label: '查找数据', title: '天工 LCA 公开数据库', description: '免登录查找并查看公开发布的 LCA 数据集。', url: 'https://www.tiangong.earth/zh-CN/lca-database' },
       { label: '平台文档', title: '天工 LCA 文档', description: '平台使用、建模与数据指南。', url: 'https://docs.tiangong.earth/' },
