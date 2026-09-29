@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-21
-lastReviewedCommit: 866b5d3d8c7bd3f1fd6e026d92c184304314c610
-lastReviewedNote: "Reviewed for TIDAS #81: active public guidance uses the canonical tidas-toolkit repository and release URLs in all four locales; explicit legacy-command migration tables remain historical mappings. Schema assets, routes, executable behavior, packages, and publication contracts are unchanged."
+lastReviewedAt: 2026-09-29
+lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
+lastReviewedNote: "Reviewed for TIDAS #85: reader navigation adds related-site task links in four locales; contributor setup, schema assets, routes, and publication contracts are unchanged."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.

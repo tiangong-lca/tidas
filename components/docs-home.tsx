@@ -13,6 +13,13 @@ interface SystemLayer {
   description: string;
 }
 
+interface RelatedLink {
+  label: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
 interface HomeCopy {
   eyebrow: string;
   title: string;
@@ -29,6 +36,10 @@ interface HomeCopy {
   pathsTitle: string;
   pathsDescription: string;
   paths: Array<{ title: string; description: string; slug: string; label: string }>;
+  relatedEyebrow: string;
+  relatedTitle: string;
+  relatedDescription: string;
+  related: [RelatedLink, RelatedLink, RelatedLink, RelatedLink];
   closingTitle: string;
   closingDescription: string;
   closingAction: string;
@@ -61,6 +72,15 @@ const copy: Record<Language, HomeCopy> = {
       { title: '检查或转换数据', description: '用 TIDAS 工具检查文件结构和引用，或在 TIDAS 与 eILCD 之间转换。', slug: 'tool', label: '工具' },
       { title: '查术语和缩写', description: '集中查看 LCA、LCI、LCIA、功能单位、系统边界等概念。', slug: 'glossary', label: '术语' },
     ],
+    relatedEyebrow: '数据与指南',
+    relatedTitle: '查找数据与使用方法',
+    relatedDescription: '查阅公开数据和产品类别规则，学习平台操作，或查看 ILCD 节点上可用的数据。',
+    related: [
+      { label: '查找数据', title: '天工 LCA 数据目录', description: '浏览公开的过程与流记录，核对适用范围和许可。', url: 'https://www.tiangong.earth/zh-CN/lca-database' },
+      { label: '平台文档', title: '天工 LCA 文档', description: '平台使用、建模与数据指南。', url: 'https://docs.tiangong.earth/' },
+      { label: '方法规则', title: 'PCR 文档', description: '按产品类别规定核算范围、参考流与数据收集要求。', url: 'https://pcr.tiangong.earth/' },
+      { label: '数据分发', title: 'ILCD 数据节点', description: '查看 ILCD 格式的数据集、可用版本与访问条件。', url: 'https://lcdn.tiangong.earth/' },
+    ],
     closingTitle: '第一次来？先用两分钟了解 TIDAS',
     closingDescription: '先了解它能帮你整理和交换什么，也了解哪些 LCA 判断仍需要专业人员完成。',
     closingAction: '阅读简介',
@@ -89,6 +109,15 @@ const copy: Record<Language, HomeCopy> = {
       { title: 'See how data is organized', description: 'Learn how processes, flows, units, sources, and links are recorded consistently.', slug: 'core-modules', label: 'STRUCTURE' },
       { title: 'Check or convert data', description: 'Use TIDAS tools to check file structure and links, or convert between TIDAS and eILCD.', slug: 'tool', label: 'TOOLS' },
       { title: 'Look up terms and abbreviations', description: 'Find plain explanations of LCA, LCI, LCIA, functional units, system boundaries, and more.', slug: 'glossary', label: 'TERMS' },
+    ],
+    relatedEyebrow: 'Data and guidance',
+    relatedTitle: 'Find data and put it to use',
+    relatedDescription: 'Explore public data, consult product category rules and platform guides, or check datasets available through the ILCD node.',
+    related: [
+      { label: 'Find data', title: 'TianGong LCA data catalog', description: 'Browse public process and flow records, and check their scope and licence.', url: 'https://www.tiangong.earth/en/lca-database' },
+      { label: 'Documentation', title: 'TianGong LCA Documentation', description: 'Platform, modelling and data guides.', url: 'https://docs.tiangong.earth/en/' },
+      { label: 'Rules', title: 'PCR documentation', description: 'Scope, reference flows, and data collection requirements per product category.', url: 'https://pcr.tiangong.earth/en/' },
+      { label: 'Distribution', title: 'ILCD data node', description: 'Check ILCD datasets, available versions and access conditions.', url: 'https://lcdn.tiangong.earth/' },
     ],
     closingTitle: 'New here? Understand TIDAS in two minutes',
     closingDescription: 'Learn what TIDAS can organize and exchange—and which LCA decisions still need professional judgement.',
@@ -119,6 +148,15 @@ const copy: Record<Language, HomeCopy> = {
       { title: 'Daten prüfen oder konvertieren', description: 'Prüfen Sie Dateistruktur und Verweise oder konvertieren Sie zwischen TIDAS und eILCD.', slug: 'tool', label: 'WERKZEUGE' },
       { title: 'Begriffe nachschlagen', description: 'Finden Sie verständliche Erklärungen zu LCA, LCI, LCIA, funktioneller Einheit und Systemgrenze.', slug: 'glossary', label: 'BEGRIFFE' },
     ],
+    relatedEyebrow: 'Daten und Anleitungen',
+    relatedTitle: 'Passende Daten und Anleitungen finden',
+    relatedDescription: 'Erkunden Sie öffentliche Daten, Produktkategorieregeln und Plattformanleitungen oder prüfen Sie die am ILCD-Knoten verfügbaren Datensätze.',
+    related: [
+      { label: 'Daten finden', title: 'TianGong-LCA-Datenkatalog', description: 'Öffentliche Prozess- und Flussdatensätze durchsuchen und Geltungsbereich sowie Lizenz prüfen.', url: 'https://www.tiangong.earth/de/lca-database' },
+      { label: 'Dokumentation', title: 'TianGong LCA Dokumentation', description: 'Leitfäden zu Plattformnutzung, Modellierung und Daten.', url: 'https://docs.tiangong.earth/de/' },
+      { label: 'Regeln', title: 'PCR-Dokumentation (Englisch)', description: 'Anwendungsbereich, Referenzflüsse und Datenerhebungsanforderungen je Produktkategorie.', url: 'https://pcr.tiangong.earth/en/' },
+      { label: 'Verteilung', title: 'ILCD-Datenknoten', description: 'ILCD-Datensätze, verfügbare Versionen und Zugangsbedingungen prüfen.', url: 'https://lcdn.tiangong.earth/' },
+    ],
     closingTitle: 'Neu hier? TIDAS in zwei Minuten verstehen',
     closingDescription: 'Erfahren Sie, was TIDAS ordnen und austauschen kann und welche LCA-Entscheidungen Fachwissen erfordern.',
     closingAction: 'Einführung lesen',
@@ -147,6 +185,15 @@ const copy: Record<Language, HomeCopy> = {
       { title: 'Comprendre l’organisation des données', description: 'Voyez comment processus, flux, unités, sources et références sont enregistrés de façon cohérente.', slug: 'core-modules', label: 'STRUCTURE' },
       { title: 'Vérifier ou convertir des données', description: 'Vérifiez la structure et les références, ou convertissez entre TIDAS et eILCD.', slug: 'tool', label: 'OUTILS' },
       { title: 'Consulter les termes et sigles', description: 'Trouvez des explications simples pour ACV, ICV, ACVI, unité fonctionnelle et frontière du système.', slug: 'glossary', label: 'TERMES' },
+    ],
+    relatedEyebrow: 'Données et guides',
+    relatedTitle: 'Trouver des données et savoir les utiliser',
+    relatedDescription: 'Explorez les données publiques, les règles de catégorie de produit et les guides de la plateforme, ou consultez les jeux de données disponibles sur le nœud ILCD.',
+    related: [
+      { label: 'Trouver des données', title: 'Catalogue de données TianGong LCA', description: 'Parcourir les fiches publiques de processus et de flux et vérifier leur périmètre et leur licence.', url: 'https://www.tiangong.earth/fr/lca-database' },
+      { label: 'Documentation', title: 'Documentation TianGong LCA', description: 'Guides d’utilisation de la plateforme, de modélisation et de données.', url: 'https://docs.tiangong.earth/fr/' },
+      { label: 'Règles', title: 'Documentation PCR (anglais)', description: 'Périmètre, flux de référence et exigences de collecte par catégorie de produit.', url: 'https://pcr.tiangong.earth/en/' },
+      { label: 'Diffusion', title: 'Nœud ILCD', description: 'Consulter les jeux de données ILCD, les versions disponibles et les conditions d’accès.', url: 'https://lcdn.tiangong.earth/' },
     ],
     closingTitle: 'Vous débutez ? Comprendre TIDAS en deux minutes',
     closingDescription: 'Voyez ce que TIDAS peut organiser et échanger, et quelles décisions d’ACV exigent toujours un jugement professionnel.',
@@ -237,6 +284,32 @@ export function DocsHome({ lang, root = false }: { lang: string; root?: boolean 
                 >
                   <span className="inline-flex items-center gap-2 text-xs font-medium text-fd-primary">
                     {path.label}
+                    <Arrow />
+                  </span>
+                </Card>
+              ))}
+            </Cards>
+          </div>
+        </section>
+
+        <section className="atlas-paths">
+          <div className="atlas-shell">
+            <div className="atlas-section-heading">
+              <p className="atlas-eyebrow">{content.relatedEyebrow}</p>
+              <h2>{content.relatedTitle}</h2>
+              <p>{content.relatedDescription}</p>
+            </div>
+            <Cards className="grid-cols-2 gap-3 max-[40rem]:grid-cols-1">
+              {content.related.map((item) => (
+                <Card
+                  className="grid min-h-40 content-start gap-2.5 rounded-[2px] border-fd-border bg-fd-card p-5 text-inherit transition-colors duration-100 hover:border-fd-primary hover:bg-fd-accent max-[40rem]:min-h-36 [&>div:last-child]:self-end [&_h3]:m-0 [&_h3]:text-lg [&_h3]:leading-[1.35] [&_h3]:font-semibold [&_h3]:tracking-[-0.02em] [&_p]:m-0! [&_p]:text-sm [&_p]:leading-[1.6] [&_p]:text-fd-muted-foreground"
+                  description={item.description}
+                  href={item.url}
+                  key={item.url}
+                  title={item.title}
+                >
+                  <span className="inline-flex items-center gap-2 text-xs font-medium text-fd-primary">
+                    {item.label}
                     <Arrow />
                   </span>
                 </Card>
