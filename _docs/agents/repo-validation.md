@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-23
-lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
-lastReviewedNote: "The site validation rules remain current for documentation, schema presentation, and publication."
+lastReviewedAt: 2026-09-29
+lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
+lastReviewedNote: "Reviewed for #85: lint, typecheck, the full test suite, static export with verify-out and verify-site, and rendered desktop/mobile light/dark browser review passed for the related-site links."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml

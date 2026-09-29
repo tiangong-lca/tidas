@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-23
-lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
-lastReviewedNote: "The site owns public documentation and retained asset presentation; tidas-spec owns the specification source."
+lastReviewedAt: 2026-09-29
+lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
+lastReviewedNote: "Reviewed for #85: the site adds reader task links to the public databases entry, platform documentation, PCR documentation, and the ILCD node; site ownership and specification-source boundaries unchanged."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-23
-lastReviewedCommit: 6dbb92ad12c88c22af0bec3558c908d00656e5fd
-lastReviewedNote: "The site presents public specification assets sourced from tidas-spec and owns its runtime and routes."
+lastReviewedAt: 2026-09-29
+lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
+lastReviewedNote: "Reviewed for #85: homepage and introduction gain related-site task links as presentation-owned additions; runtime, routes, and the specification-source split are unchanged."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
