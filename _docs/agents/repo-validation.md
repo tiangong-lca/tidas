@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-29
-lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
-lastReviewedNote: "Reviewed for #85: lint, typecheck, the full test suite, static export with verify-out and verify-site, and rendered desktop/mobile light/dark browser review passed for the related-site links."
+lastReviewedAt: 2026-10-08
+lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
+lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -65,11 +65,11 @@ pnpm build
 | versioned specification release | fixed-archive sync and verify, tracked-output verify without network, `pnpm test`, lint, typecheck, full build, and confirm the index's digest/reference closure plus four localized entry pages |
 | German or French translation | lint, full build, compare source meaning, verify no English body copy remains, inspect navigation and search in that locale |
 | site UI or responsive layout | baseline plus browser screenshots at 390, 1440, 1633, 2048, and 2560 widths, light and dark themes, keyboard focus, no horizontal overflow |
-| root or language behavior | visit `/` and all locale homes; switch from `/` to another language; verify there is no redirect and URLs remain within the current route model |
+| root or language behavior | run locale-preference tests; verify neutral `/` selects stored manual preference, then ordered browser languages, then English; explicit homes/deep links retain language; manual switches preserve query/hash and survive a fresh root visit; blocked storage still permits navigation |
 | Schema explorer | baseline plus generic structure and taxonomy interaction checks, raw download, error state, search cap, lazy expansion, and the budgets below |
 | media | full build image gate plus light/dark browser inspection |
 | metadata, sitemap, robots, search, or OG | inspect generated HTML/endpoints and verify canonical, alternate, locale, commit, and environment consistency |
-| canonical home, `/zh` alias, or alternate resolution | baseline plus `pnpm test:seo`; confirm `out/zh/index.html` is absent, `/` carries the canonical, no alternate or sitemap entry names `/zh`, and `edgeone.json` declares both permanent redirects |
+| canonical home, explicit `/zh/`, or alternate resolution | baseline plus `pnpm test:seo`; confirm `out/zh/index.html` is Chinese with canonical `/`, no alternate or sitemap entry names `/zh/`, and hosting has no locale redirects |
 | page summary or description coverage | baseline; read the `verify:out` authored/derived/unresolved measurement and its sorted unresolved URL list. Unresolved pages are editorial debt, never a build failure and never an auto-noindex |
 | breadcrumb or structured data | baseline; `verify-site` requires ordered, absolute crumb targets that resolve to real exported pages |
 | publication config | baseline with the same environment variables configured in EdgeOne; inspect `edgeone.json` and PR validation workflow |
@@ -79,7 +79,7 @@ pnpm build
 
 ## Static site gates
 
-`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion. It also checks the optional search-console ownership marker: when `BAIDU_SITE_VERIFICATION` is set the exact value must appear on the probed document heads, and when it is unset no page may carry the marker at all. The gate reports presence, absence or a mismatch, and never echoes the value. It also requires that `/zh` is not exported while `/` carries the canonical, that `edgeone.json` declares both permanent redirects, that the sitemap omits `lastmod` and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact. It measures page summaries from the artifacts as authored, derived, or unresolved, and prints the unresolved URLs as advisory editorial debt that blocks nothing.
+`scripts/verify-out.mjs` checks the build/output contract, including system endpoints, commit/digest evidence, locale counts, language attributes, robots behavior, and internal-path exclusion. It also checks the optional search-console ownership marker: when `BAIDU_SITE_VERIFICATION` is set the exact value must appear on the probed document heads, and when it is unset no page may carry the marker at all. The gate reports presence, absence or a mismatch, and never echoes the value. It also requires the explicit `/zh/` home to be exported with the same `/` canonical as the root, that `edgeone.json` has no locale redirects, that the sitemap omits `lastmod` and never names the alias, that every sitemap URL and alternate resolves to a real artifact, that the retired `/docs/intro/**` shapes stay absent, and that every source page exports an artifact. It measures page summaries from the artifacts as authored, derived, or unresolved, and prints the unresolved URLs as advisory editorial debt that blocks nothing.
 
 `scripts/verify-site.mjs` checks:
 
@@ -154,3 +154,5 @@ From an authorized workspace checkout, update or verify this consumer with
 (add `--check` for read-only exact-source verification). The public CI hash
 check proves local integrity, not the private source identity; workspace
 integration additionally compares the selected Git blob.
+
+Run the browser regression against a served static export with `node scripts/test-locale-browser.mjs <preview-origin>`. It uses an existing Playwright installation; set `PLAYWRIGHT_MODULE` to its absolute module entry when the package is outside the repository. The thirteen desktop/mobile cases cover real language-switcher clicks, new tabs, regional preferences, query/fragments, explicit Chinese homes and documents, storage getter/read/write failures, and browser back/forward.

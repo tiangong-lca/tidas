@@ -77,8 +77,8 @@ const copy: Record<Language, HomeCopy> = {
     relatedDescription: '查阅公开数据和产品类别规则，学习平台操作，或查看 ILCD 节点上可用的数据。',
     related: [
       { label: '查找数据', title: '天工 LCA 数据目录', description: '浏览公开的过程与流记录，核对适用范围和许可。', url: 'https://www.tiangong.earth/zh-CN/lca-database' },
-      { label: '平台文档', title: '天工 LCA 文档', description: '平台使用、建模与数据指南。', url: 'https://docs.tiangong.earth/' },
-      { label: '方法规则', title: 'PCR 文档', description: '按产品类别规定核算范围、参考流与数据收集要求。', url: 'https://pcr.tiangong.earth/' },
+      { label: '平台文档', title: '天工 LCA 文档', description: '平台使用、建模与数据指南。', url: 'https://docs.tiangong.earth/zh/' },
+      { label: '方法规则', title: 'PCR 文档', description: '按产品类别规定核算范围、参考流与数据收集要求。', url: 'https://pcr.tiangong.earth/zh/' },
       { label: '数据分发', title: 'ILCD 数据节点', description: '查看 ILCD 格式的数据集、可用版本与访问条件。', url: 'https://lcdn.tiangong.earth/' },
     ],
     closingTitle: '第一次来？先用两分钟了解 TIDAS',
@@ -209,12 +209,12 @@ function Arrow() {
   );
 }
 
-export function DocsHome({ lang, root = false }: { lang: string; root?: boolean }) {
+export function DocsHome({ lang }: { lang: string }) {
   const language: Language = lang in copy ? (lang as Language) : 'en';
   const content = copy[language];
 
   return (
-    <HomeLayout {...baseOptions(language, root ? '/' : undefined)}>
+    <HomeLayout {...baseOptions(language)}>
       <div className="atlas-home">
         <section className="atlas-hero">
           <div className="atlas-shell atlas-hero-grid">

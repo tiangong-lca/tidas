@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-09-29
-lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
-lastReviewedNote: "Reviewed for #85: the site adds reader task links to the public databases entry, platform documentation, PCR documentation, and the ILCD node; site ownership and specification-source boundaries unchanged."
+lastReviewedAt: 2026-10-08
+lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
+lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -75,9 +75,8 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 
 ## Current public surface
 
-- `/` directly renders the complete default Chinese homepage and is the `x-default` URL; it is not a redirect. It is the only home for Chinese.
-- `/zh` and `/zh/` are permanent 301 redirects to `/` declared in `edgeone.json`. They are never generated, never a canonical, and never an hreflang target. This is the only alias pair in the route model.
-- Locale homepages use `/{lang}/` for `en`, `de`, and `fr`.
+- The static `/` artifact remains the Chinese canonical and `x-default` home. In a browser, only neutral `/` negotiates: a valid manually saved language in localStorage (`tiangong.manual-language`) wins, then the first supported `navigator.languages` entry (regional/script variants map to `zh`, `en`, `de`, or `fr`), then English. An empty language list uses `navigator.language`. Automatic selection never writes storage. Every explicit locale URL, including `/zh/` and `/zh/docs/**`, retains its language. Manual switching saves the chosen language and keeps the page path, query and fragment; every manual home destination is explicit `/{lang}/`. Storage access failures do not block navigation. `/zh/` renders Chinese with canonical `/` and is omitted from sitemap/hreflang to avoid advertising a duplicate. Hosting must not redirect it back to neutral `/`.
+- Locale homepages use `/{lang}/` for all four languages.
 - Documentation uses `/{lang}/docs/...` for all four locales, including `zh`.
 - `/{lang}/docs/` is a system-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. Its governed markers are `data-docs-portal="tidas-system-hub"` and `data-docs-portal-map="tidas-system-matrix"`.
 - Section roots such as `/{lang}/docs/core-modules/` are substantive folder indexes. Their localized `meta*.json` files use `pagesIndex: "index"` and omit `index` from `pages`, while `CategoryDirectory` derives child cards from the Fumadocs page tree so the folder and its index are not duplicated in navigation.
@@ -89,7 +88,7 @@ Use exact versions and additional commands from `package.json`, `edgeone.json`, 
 - `content/schema-inventory.json` is the machine-readable count and role authority for the 19 published JSON assets: 8 dataset objects, 9 classification vocabularies, 1 shared-types contract, and 1 derived non-normative viewer projection. Matching the `tidas-tools` lock by file name does not assert structural or byte-for-byte parity.
 - `out/**` is generated static output and never an authority source.
 
-This is a greenfield URL model. The `/zh` pair above is the only redirect; do not add further aliases or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
+This is a greenfield URL model. Neutral-root browser language selection and explicit locale homes are the supported entry paths; do not add aliases or compatibility copies for removed paths. Update every first-party link to the current route and let unknown paths return 404.
 
 ## Ownership boundaries
 
@@ -119,7 +118,7 @@ Public guidance about tools remains here, while executable behavior remains in `
 - Keep root, locale, document, sitemap, search, OG, robots, and `llms.txt` outputs mutually consistent.
 - Resolve generated links with browser URL semantics and verify relative, root-absolute, same-origin absolute, and fragment targets against the static export; retired `/docs/intro/integration/**` and `/docs/intro/use-case/**` shapes must fail.
 - Every indexed page must expose canonical metadata and locale alternates; the sitemap must carry the same alternates.
-- Alternates name only locales that actually publish that page, resolved with `source.getPage` for both the HTML links and the sitemap. `x-default` is the default-language counterpart, and is omitted rather than pointed at an unrelated page when that counterpart does not exist. `/zh` is never a target.
+- Alternates name only locales that actually publish that page, resolved with `source.getPage` for both the HTML links and the sitemap. `x-default` is the default-language counterpart, and is omitted rather than pointed at an unrelated page when that counterpart does not exist. `/zh/` is never a canonical, hreflang, or sitemap target; it remains valid explicit navigation.
 - The sitemap lists only pages that exist and omits `lastmod`. The build's only date is the deployment commit time, which is not a content date; a uniform deployment-date `lastmod` must not be published.
 - A page summary comes from authored frontmatter or from the page's own prose. A page with neither publishes no page-specific description: it is reported as editorial debt by `verify:out` and is never filled with the locale site description, which is a site default rather than a page summary.
 - `BreadcrumbList` structured data is generated only from pages that exist. A crumb whose target is only a folder, or a trail that would 404, is omitted rather than invented.
