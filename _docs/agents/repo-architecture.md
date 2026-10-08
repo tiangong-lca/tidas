@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-29
-lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
-lastReviewedNote: "Reviewed for #85: homepage and introduction gain related-site task links as presentation-owned additions; runtime, routes, and the specification-source split are unchanged."
+lastReviewedAt: 2026-10-08
+lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
+lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -68,7 +68,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 
 ## Canonical URLs, summaries, and trails
 
-The default language's home is `/`. `/zh` and `/zh/` are permanent 301 redirects to `/`, declared in `edgeone.json`; they are never generated, never a canonical, and never an alternate. Documentation keeps its `/{lang}/docs/**` URL in every locale, so the alias pair covers the home only.
+The canonical Chinese home is `/`. The explicit `/zh/` home is generated with canonical `/`, and is excluded from sitemap/hreflang. Hosting does not redirect explicit language paths. Documentation keeps its `/{lang}/docs/**` URL in every locale.
 
 `lib/seo-policy.mjs` is the single source for the rules that follow, and `lib/metadata.ts` re-exports them for the app. It avoids the `@/` alias and framework-only imports so plain `node --test` can exercise it.
 
@@ -117,14 +117,14 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 
 ## Locale and URL model
 
-- `/` is a real Chinese homepage, the canonical Chinese home, and `x-default`; it never redirects.
-- `/en/`, `/de/`, and `/fr/` are generated locale homepages. `/zh` and `/zh/` are the home only: `generateStaticParams` excludes the default language, so no `/{lang}/` home page exists for `zh`, and the pair is a permanent 301 provider redirect to `/` declared in `edgeone.json`.
+- `/` is a static Chinese homepage, the Chinese canonical and `x-default`; browser visits to this neutral entry negotiate language.
+- `/zh/`, `/en/`, `/de/`, and `/fr/` are generated explicit locale homepages. `generateStaticParams` includes all four; no explicit locale URL is negotiated.
 - `/{lang}/docs/...` is the only documentation route family, and it keeps its locale segment in all four languages, including `zh`.
-- The `/zh` home alias pair is the only redirect. It is never a canonical, alternates, or sitemap target, and no link may resolve to it.
+- The `/zh/` home remains valid navigation, with canonical `/`; it is excluded from alternates and sitemap. Hosting has no locale redirects.
 - First-party links are locale-absolute. Static verification resolves every emitted href from the public URL of its source HTML, so a relative link cannot silently become a nested retired route.
 - Dot-locale sources are independent; `fallbackLanguage` is disabled.
 - Canonical metadata, hreflang links, sitemap alternates, search tags, and HTML language attributes must describe the same locale graph.
-- Removed URL families receive 404. There is no compatibility copy, and no redirect other than the home alias pair.
+- Removed URL families receive 404. There is no compatibility copy or hosting redirect.
 
 ## Cross-repository handoffs
 
@@ -147,3 +147,7 @@ Chinese readers receive its Chinese root; English, German and French readers
 receive its actual English entry, with the destination language identified for
 German/French readers. This entry point does not create additional PCR locales or
 change TIDAS schemas, content ownership, or the four-language TIDAS site contract.
+
+## Browser language preference
+
+The static `/` artifact remains the Chinese canonical and `x-default` home. In a browser, only neutral `/` negotiates: a valid manually saved language in localStorage (`tiangong.manual-language`) wins, then the first supported `navigator.languages` entry (regional/script variants map to `zh`, `en`, `de`, or `fr`), then English. An empty language list uses `navigator.language`. Automatic selection never writes storage. Every explicit locale URL, including `/zh/` and `/zh/docs/**`, retains its language. Manual switching saves the chosen language and keeps the page path, query and fragment; every manual home destination is explicit `/{lang}/`. Storage access failures do not block navigation. `/zh/` renders Chinese with canonical `/` and is omitted from sitemap/hreflang to avoid advertising a duplicate. Hosting must not redirect it back to neutral `/`.

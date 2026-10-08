@@ -1,8 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: 2026-09-29
-lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
-lastReviewedNote: "Reviewed for #85: the introduction and homepage add related-site task links without changing routes, ownership, or publication rules."
+lastReviewedAt: "2026-10-08"
+lastReviewedCommit: "6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424"
+lastReviewedNote: "Reviewed for #87: browser-neutral root resolves manual preference, ordered browser languages and English; explicit /zh/ is generated without hosting redirect and shares canonical /. Existing ownership and documentation routing cover the locale module and regression scripts."
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
 
 catalog:

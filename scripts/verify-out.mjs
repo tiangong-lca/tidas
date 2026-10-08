@@ -81,8 +81,8 @@ if (llmsEntries < 42) errors.push(`llms entries = ${llmsEntries}, expected >= 42
 else passed.push(`llms entries ${llmsEntries} + commit`);
 
 // 6. html lang 映射（默认语言首页就是 / 本身）
-if (!exists('zh/index.html')) passed.push('no duplicate /zh home in the export');
-else errors.push('zh/index.html exists: /zh is a permanent redirect and must not be exported');
+if (exists('zh/index.html') && read('zh/index.html').includes('lang="zh-CN"')) passed.push('explicit /zh/ Chinese home is exported');
+else errors.push('explicit /zh/ Chinese home is missing or has incorrect html lang');
 if (read('index.html').includes('lang="zh-CN"')) passed.push('html lang zh-CN at /');
 else errors.push('root html lang is not zh-CN');
 
@@ -103,20 +103,20 @@ if (canonicalOrigin && homeCanonical === `${canonicalOrigin.replace(/\/+$/u, '')
   errors.push(`root canonical is ${JSON.stringify(homeCanonical)}, expected ${canonicalOrigin}/`);
 }
 const aliasHrefs = new Set([`${canonicalOrigin}/zh`, `${canonicalOrigin}/zh/`, '/zh', '/zh/']);
-const homes = ['index.html', 'en/index.html', 'de/index.html', 'fr/index.html'];
+const homes = ['index.html', 'zh/index.html', 'en/index.html', 'de/index.html', 'fr/index.html'];
+const zhCanonical = /<link rel="canonical" href="([^"]+)"/u.exec(read('zh/index.html'))?.[1];
+if (zhCanonical === homeCanonical) passed.push('explicit /zh/ shares the root Chinese canonical');
+else errors.push('explicit /zh/ canonical differs from the Chinese root');
 const aliasTarget = homes
   .flatMap((relative) => [...read(relative).matchAll(/hreflang="([^"]+)"\s+href="([^"]+)"/gu)])
   .find(([, , href]) => aliasHrefs.has(href));
 if (aliasTarget) errors.push(`/zh alias is used as an hreflang target: ${aliasTarget[2]}`);
 else passed.push('no /zh alias in home hreflang targets');
 
-// 7c. 托管重定向声明：/zh 与 /zh/ 永久跳转到 /
+// 7c. Explicit Chinese home must remain reachable without a hosting redirect.
 const edgeOne = JSON.parse(fs.readFileSync(path.join(ROOT, 'edgeone.json'), 'utf8'));
-const redirects = new Map((edgeOne.redirects ?? []).map((entry) => [`${entry.source} ${entry.statusCode}`, entry.destination]));
-for (const source of ['/zh', '/zh/']) {
-  if (redirects.get(`${source} 301`) === '/') passed.push(`redirect ${source} -> / (301)`);
-  else errors.push(`edgeone.json must redirect ${source} to / with status 301`);
-}
+if ((edgeOne.redirects ?? []).length === 0) passed.push('no hosting locale redirects');
+else errors.push('edgeone.json must not redirect explicit locale homes');
 
 // 7d. 可选搜索引擎归属标记：仅在构建环境提供时输出。
 // 该标记是公开的，但本门禁仍然不回显其值：只报告存在/一致或缺失/不一致。

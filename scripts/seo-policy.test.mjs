@@ -26,7 +26,7 @@ test('the default language home is the site root, never a locale alias', () => {
 });
 
 test('no alternate or canonical target is the /zh alias', () => {
-  // `/zh` and `/zh/` are permanent redirects to `/`. Documentation keeps its `/zh/docs/**` URLs,
+  // `/zh/` is an explicit Chinese home with canonical `/`. Documentation keeps its `/zh/docs/**` URLs,
   // so only the alias itself is forbidden as a target -- not every `/zh/...` path.
   const alias = new Set(['/zh', '/zh/']);
   for (const available of [locales, ['zh'], ['zh', 'en'], ['en', 'fr']]) {

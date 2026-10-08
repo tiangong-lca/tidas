@@ -12,8 +12,8 @@ import {
 export const dynamic = 'force-static';
 
 /**
- * Only real pages are listed. The default language's home is `/`; `/zh/` is a permanent redirect to
- * it, so it is never an entry and never an alternate. Alternates are resolved from the locale
+ * Only canonical pages are listed. The Chinese canonical home is `/`; the explicit `/zh/`
+ * home shares that canonical, so it is never an entry or alternate. Alternates are resolved from the locale
  * versions that actually exist, so no alternate names a page that was never built.
  *
  * `lastModified` is omitted deliberately. The build's only date is the deployment commit time, which

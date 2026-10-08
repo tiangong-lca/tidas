@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-09-29
-lastReviewedCommit: cd14ef1a8cb0369e8b1f2d0d4108fa7d7e72ba2d
-lastReviewedNote: "Reviewed for TIDAS #85: reader navigation adds related-site task links in four locales; contributor setup, schema assets, routes, and publication contracts are unchanged."
+lastReviewedAt: 2026-10-08
+lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
+lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -45,7 +45,7 @@ Next.js App Router static export using Fumadocs and TypeScript.
 ## Public URLs and locales
 
 - `/` renders the complete default Chinese homepage and serves as `x-default`. It is the only Chinese home.
-- `/zh` and `/zh/` are permanent 301 redirects to `/` and are never generated, canonical, or used as an alternate.
+- `/zh/` is the explicit Chinese homepage, generated with canonical `/` and excluded from sitemap/hreflang. Hosting does not redirect locale homes.
 - `/en/`, `/de/`, and `/fr/` are locale homepages.
 - Documentation uses `/{lang}/docs/...` in all four locales, including `zh`.
 - Each `/{lang}/docs/` root is a system-navigation hub with recommended entry points, a TIDAS module matrix, and representative Schema links; it does not duplicate the marketing homepage.
@@ -93,9 +93,9 @@ browser-resolved internal links and fragments, images, MDX hydration hazards,
 and Schema page budgets. Public MDX uses locale-absolute document routes rather
 than `./` or `../` links.
 
-The gates also hold the canonical URL model: `/` is the Chinese home, `/zh` and
-`/zh/` are permanent redirects declared in `edgeone.json` and are never exported,
-canonical, or used as an alternate; the sitemap lists only pages that exist and
+The gates also hold the canonical URL model: `/` is the Chinese canonical home,
+`/zh/` is an explicit Chinese home with canonical `/`, and is omitted from
+sitemap/hreflang; the sitemap lists only pages that exist and
 carries no `lastmod`. Page summaries are measured as authored, derived, or
 unresolved, and the unresolved URLs are printed as editorial debt that blocks
 nothing.
@@ -144,3 +144,5 @@ _docs/agents/    retained architecture and validation guidance
 Read `AGENTS.md` before changing repository-owned behavior. Use Docpact routing
 with this repository as the explicit root before implementation, and run the
 governed diff workflow afterward.
+
+Neutral `/` chooses a valid manually saved localStorage language, then the first supported browser language (including regional variants), then English. Automatic choices never write storage. Explicit locale URLs retain their language; manual switches preserve the document, query and fragment. Storage failures do not prevent switching.

@@ -215,8 +215,8 @@ if (!canonicalOrigin || !fs.existsSync(sitemapPath)) {
 
 // --- hreflang: HTML and XML must name the same real counterparts ---
 // The declared alternates are compared per page between the built HTML and the sitemap, and every
-// target must resolve to an exported file. `/zh` and `/zh/` are permanent redirects, so they are
-// never a valid target even though `/zh/docs/**` remains a real route.
+// target must resolve to an exported file. The explicit `/zh/` home shares canonical `/`, so it is
+// excluded from hreflang targets even though it remains valid navigation.
 const aliasPaths = new Set(['/zh', '/zh/']);
 const sitemapByUrl = new Map();
 if (fs.existsSync(sitemapPath)) {

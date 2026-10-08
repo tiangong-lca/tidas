@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
     },
     description: copy.description,
     alternates: {
-      // The default language's home is `/`; `/zh` and `/zh/` are redirects and never a canonical.
+      // The explicit Chinese home shares canonical `/`.
       canonical: homePath(lang),
       languages: languageAlternates(),
     },
