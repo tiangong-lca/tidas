@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-10-16
-lastReviewedCommit: d7295264fb04fcc18a859896988a92c4be7d4cc8
-lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
+lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
+lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md

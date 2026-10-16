@@ -1,0 +1,72 @@
+---
+title: "How Models, Processes and Flows Relate"
+description: "Understand TIDAS references between models, processes, exchanges, flows and measurement definitions, and how a calculated inventory saved as a result process can be reused."
+---
+
+Models, Processes and Flows are complementary core objects. A flow identifies what is exchanged, a process records an input/output inventory, and a model organizes process instances and their connections. You can build a model from existing processes and reuse a saved result process in a later model.
+
+<DataRelationshipsDiagram lang="en" />
+
+## Three core objects
+
+| Object | What it records | How it relates |
+| --- | --- | --- |
+| **Model** | Process instances, connections and a reference target for a product system | Instances reference specific process versions; the model can reference a resulting process |
+| **Process** | An input/output inventory at a specified reference scale, with its documentation | References flows through exchanges; can be a model component or hold an aggregated inventory |
+| **Flow** | Identity, classification and measurement properties of a product, substance, energy carrier or waste | Referenced by process exchanges and used to identify connected flows in a model |
+
+**Processes are not limited to unit processes.** A process dataset can also describe an aggregated LCI result or a partly terminated system. The model retains the structure between processes; a result process provides an inventory that can be referenced again.
+
+## Reading the structural references
+
+The table below gives field-reference directions. In the relationship diagram, grey solid arrows show processes referencing flows; purple solid arrows show composition, calculation and reuse; dashed arrows show provenance tracing. Process instances and exchanges are structures inside datasets, rather than separate datasets in every case.
+
+| Reference | Field or meaning |
+| --- | --- |
+| Model → Process | `processInstance.referenceToProcess` references a process and its version; model connections record linked exchanges between instances |
+| Model → resulting Process | `referenceToResultingProcess` references an LCI result or partly terminated system process dataset generated from the model |
+| Process → Exchange → Flow | `exchanges.exchange[].referenceToFlowDataSet` references the flow dataset used by an input or output |
+| Flow → Flow property | `referenceToFlowPropertyDataSet` references a measurement property such as mass, energy or volume |
+| Flow property → Unit group | `referenceToReferenceUnitGroup` references the related unit group and its reference unit |
+
+A flow defines **what is exchanged**; an exchange records **direction and quantity**. Different processes can reference the same flow with different input or output quantities. Product flows describe products, materials or energy exchanged within the technical system; waste flows describe exchanges sent for treatment; elementary flows describe resource uptake or emissions between the technical system and the environment.
+
+A process's `referenceToReferenceFlow` selects a reference exchange by its internal exchange ID. It is not the UUID of another flow dataset. A model's reference process instance, a process's reference exchange and a flow's reference measurement property also have different roles.
+
+When reusing data, check identity, exact version and measurement basis, and assess whether geography, time and technology suit the study. Matching names alone do not establish compatibility.
+
+## From processes to a model, then reuse a result process
+
+1. Select specific versions of existing processes, use them as model instances and connect the corresponding inputs and outputs.
+2. Define the reference process, reference exchange and target quantity to state the calculation demand.
+3. Calculate the aggregated input/output inventory for that target and save it as a result process through a workflow supported by the software in use.
+4. Reference that result process in the next model to build a larger product system.
+
+A model may have a primary result and other product results. Check the selected result's reference product, quantity and system boundary before reuse. **An aggregated inventory alone cannot reconstruct a missing original model graph.** Retain the source model and its referenced data to trace constituent processes and connections.
+
+These are data relationships and a reuse path. Consumer software defines when calculations run and how results are saved and updated. For the TianGong LCA Platform's current operation, see [model saving and result reuse](https://docs.tiangong.earth/en/docs/overview/data-relationships/). The model structure does not guarantee that one Save action performs every step above automatically.
+
+### A simplified aluminium-sheet example
+
+An aluminium-sheet model references electricity, primary-aluminium and rolling processes, connected through electricity, aluminium and other flows. Calculate for a reference target of **1 kg of aluminium sheet**, then save the aggregated input/output inventory as an aluminium-sheet result process. A vehicle model can then reference that process for its required amount of sheet.
+
+The aluminium-sheet flow identifies the exchange; the process provides the inventory; the source model retains the process structure that produced it. Check which activities the result boundary already includes so that adding them again does not double count them. This example illustrates relationships, not verified production data.
+
+## Measurement, evidence and responsibility
+
+| Supporting data | Purpose |
+| --- | --- |
+| **Flow property** | Defines a measurement basis such as mass, energy or volume and references a unit group |
+| **Unit group** | Defines related units and conversion factors, such as kg and g |
+| **Source** | Records publications, reports and other evidence; datasets or individual exchanges can reference it |
+| **Contact** | Records people, organizations and responsibilities such as generation, data entry and ownership |
+
+Sources and contacts support interpretation and traceability. They are not physical flow connections in the product system. The diagram shows them in a support band separate from the measurement reference chain.
+
+## Inventory, impact assessment and the specification boundary
+
+A life cycle inventory (LCI) records inputs, outputs and quantities. Life cycle impact assessment (LCIA) maps relevant elementary flows to indicators of potential environmental impacts. Saving an inventory does not establish complete characterization-factor coverage for every impact category, and a single carbon-footprint value cannot replace a reusable input/output inventory.
+
+This page explains concepts. The selected schema version governs fields, constraints and required values; see the [version entry](/en/docs/core-modules/schema/tidas-schema-versions/). This page adds no specification constraints and does not define software saving behavior. Format checks, data quality and professional review remain separate assessments; see [core content](/en/docs/core-modules/) and [terms and abbreviations](/en/docs/glossary/).
+
+Continue with the structures for [Models](/en/docs/core-modules/schema/schema-content/json-schema-model/), [Processes](/en/docs/core-modules/schema/schema-content/json-schema-processes/), [Flows](/en/docs/core-modules/schema/schema-content/json-schema-flows/), [Flow properties](/en/docs/core-modules/schema/schema-content/json-schema-flowproperty/) and [Unit groups](/en/docs/core-modules/schema/schema-content/json-schema-unitgroup/).

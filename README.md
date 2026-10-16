@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-10-08
-lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
-lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
+lastReviewedAt: 2026-10-16
+lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
+lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
