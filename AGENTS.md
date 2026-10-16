@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-10-08
-lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
-lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
+lastReviewedAt: 2026-10-16
+lastReviewedCommit: d7295264fb04fcc18a859896988a92c4be7d4cc8
+lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
