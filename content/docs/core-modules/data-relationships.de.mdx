@@ -1,0 +1,72 @@
+---
+title: "Wie Modelle, Prozesse und Flüsse zusammenhängen"
+description: "Verweise zwischen TIDAS-Modellen, Prozessen, Austauschen, Flüssen und Messdefinitionen verstehen und berechnete Inventare als Ergebnisprozesse weiterverwenden."
+---
+
+Modelle, Prozesse und Flüsse sind drei einander ergänzende Kernobjekte. Ein Fluss bezeichnet, was ausgetauscht wird, ein Prozess erfasst ein Ein- und Ausgangsinventar und ein Modell ordnet Prozessinstanzen und ihre Verbindungen. Aus vorhandenen Prozessen lässt sich ein Modell bilden; ein gespeicherter Ergebnisprozess kann in einem weiteren Modell verwendet werden.
+
+<DataRelationshipsDiagram lang="de" />
+
+## Drei Kernobjekte
+
+| Objekt | Inhalt | Beziehung |
+| --- | --- | --- |
+| **Modell** | Prozessinstanzen, Verbindungen und Referenzziel eines Produktsystems | Instanzen verweisen auf bestimmte Prozessversionen; das Modell kann auf einen Ergebnisprozess verweisen |
+| **Prozess** | Ein- und Ausgangsinventar mit definiertem Referenzmaßstab und Dokumentation | Verweist über Austausche auf Flüsse; dient als Modellkomponente oder enthält ein aggregiertes Inventar |
+| **Fluss** | Identität, Klassifikation und Messeigenschaften eines Produkts, Stoffes, Energieträgers oder Abfalls | Wird von Prozessaustauschen referenziert und bezeichnet verbundene Flüsse im Modell |
+
+**Prozesse sind nicht auf Einheitsprozesse beschränkt.** Ein Prozessdatensatz kann auch ein aggregiertes Sachbilanzergebnis oder ein teilweise abgeschlossenes System beschreiben. Das Modell bewahrt die Struktur zwischen Prozessen; der Ergebnisprozess stellt ein erneut referenzierbares Inventar bereit.
+
+## Die strukturellen Verweise lesen
+
+Die folgende Tabelle zeigt die Richtung der Feldreferenzen. Im Beziehungsdiagramm zeigen graue durchgezogene Pfeile die Flussreferenzen der Prozesse, violette durchgezogene Pfeile Zusammensetzung, Berechnung und Wiederverwendung und gestrichelte Pfeile die Herkunftsverfolgung. Prozessinstanzen und Austausche sind Strukturen innerhalb von Datensätzen und nicht in jedem Fall eigene Datensätze.
+
+| Verweis | Feld oder Bedeutung |
+| --- | --- |
+| Modell → Prozess | `processInstance.referenceToProcess` verweist auf einen Prozess und seine Version; Modellverbindungen erfassen verbundene Austausche zwischen Instanzen |
+| Modell → Ergebnisprozess | `referenceToResultingProcess` verweist auf den aus dem Modell erzeugten Prozessdatensatz eines Sachbilanzergebnisses oder teilweise abgeschlossenen Systems |
+| Prozess → Austausch → Fluss | `exchanges.exchange[].referenceToFlowDataSet` verweist auf den Flussdatensatz eines Ein- oder Ausgangs |
+| Fluss → Flusseigenschaft | `referenceToFlowPropertyDataSet` verweist auf eine Messgröße wie Masse, Energie oder Volumen |
+| Flusseigenschaft → Einheitengruppe | `referenceToReferenceUnitGroup` verweist auf die zugehörige Einheitengruppe und deren Referenzeinheit |
+
+Der Fluss definiert, **was ausgetauscht wird**; der Austausch erfasst **Richtung und Menge**. Verschiedene Prozesse können denselben Fluss mit unterschiedlichen Ein- oder Ausgangsmengen referenzieren. Produktflüsse beschreiben Produkte, Materialien oder Energie innerhalb des technischen Systems; Abfallflüsse gehen zur Behandlung; Elementarflüsse beschreiben Ressourcenentnahmen oder Emissionen zwischen technischem System und Umwelt.
+
+`referenceToReferenceFlow` eines Prozesses wählt einen Referenzaustausch anhand seiner internen Austauschkennung. Es ist nicht die UUID eines anderen Flussdatensatzes. Auch Referenzprozessinstanz des Modells, Referenzaustausch des Prozesses und Referenzmessgröße des Flusses erfüllen unterschiedliche Aufgaben.
+
+Prüfen Sie bei der Wiederverwendung Identität, genaue Version und Messgrundlage sowie die geografische, zeitliche und technische Eignung. Übereinstimmende Namen allein belegen keine Kompatibilität.
+
+## Von Prozessen zum Modell und zum wiederverwendbaren Ergebnisprozess
+
+1. Bestimmte Versionen vorhandener Prozesse als Modellinstanzen auswählen und die entsprechenden Ein- und Ausgänge verbinden.
+2. Referenzprozess, Referenzaustausch und Zielmenge festlegen, um den Berechnungsbedarf zu beschreiben.
+3. Das aggregierte Ein- und Ausgangsinventar für dieses Ziel berechnen und über einen von der verwendeten Software unterstützten Ablauf als Ergebnisprozess speichern.
+4. Diesen Ergebnisprozess im nächsten Modell referenzieren und so ein größeres Produktsystem aufbauen.
+
+Ein Modell kann ein Hauptergebnis und weitere Produktergebnisse haben. Vor der Wiederverwendung Referenzprodukt, Menge und Systemgrenze des gewählten Ergebnisses prüfen. **Ein aggregiertes Inventar allein kann einen fehlenden ursprünglichen Modellgraphen nicht rekonstruieren.** Das Quellmodell und die referenzierten Daten müssen erhalten bleiben, um Prozesse und Verbindungen nachzuvollziehen.
+
+Dies beschreibt Datenbeziehungen und einen Wiederverwendungsweg. Die konsumierende Software definiert, wann berechnet und wie gespeichert oder aktualisiert wird. Den aktuellen Ablauf der TianGong LCA Platform erläutert [Modelle speichern und Ergebnisse wiederverwenden](https://docs.tiangong.earth/de/docs/overview/data-relationships/). Die Modellstruktur garantiert nicht, dass ein einzelner Speichervorgang automatisch alle genannten Schritte ausführt.
+
+### Ein vereinfachtes Beispiel mit Aluminiumblech
+
+Ein Aluminiumblechmodell referenziert Strom-, Primäraluminium- und Walzprozesse, die durch Strom-, Aluminium- und weitere Flüsse verbunden sind. Für das Referenzziel **1 kg Aluminiumblech** wird das aggregierte Inventar berechnet und als Aluminiumblech-Ergebnisprozess gespeichert. Ein Fahrzeugmodell kann diesen Prozess anschließend für seine benötigte Blechmenge referenzieren.
+
+Der Aluminiumblechfluss bezeichnet den Austauschgegenstand; der Prozess liefert das Inventar; das Quellmodell bewahrt die zugrunde liegende Prozessstruktur. Bereits in der Ergebnisgrenze enthaltene Aktivitäten dürfen nicht durch erneutes Hinzufügen doppelt gezählt werden. Das Beispiel erläutert Beziehungen und stellt keine verifizierten Produktionsdaten dar.
+
+## Messung, Nachweise und Verantwortung
+
+| Unterstützende Daten | Zweck |
+| --- | --- |
+| **Flusseigenschaft** | Definiert eine Messgrundlage wie Masse, Energie oder Volumen und verweist auf eine Einheitengruppe |
+| **Einheitengruppe** | Definiert zusammengehörige Einheiten und Umrechnungsfaktoren, etwa kg und g |
+| **Quelle** | Dokumentiert Publikationen, Berichte und weitere Nachweise; Datensätze oder einzelne Austausche können darauf verweisen |
+| **Kontakt** | Dokumentiert Personen, Organisationen und Zuständigkeiten für Erstellung, Dateneingabe oder Eigentum |
+
+Quellen und Kontakte unterstützen Interpretation und Rückverfolgbarkeit. Sie sind keine physischen Flussverbindungen im Produktsystem. Das Diagramm zeigt sie in einem eigenen Bereich neben der Kette der Messverweise.
+
+## Sachbilanz, Wirkungsabschätzung und Spezifikationsgrenze
+
+Eine Sachbilanz (LCI) erfasst Ein- und Ausgänge und ihre Mengen. Die Wirkungsabschätzung (LCIA) ordnet relevante Elementarflüsse Indikatoren potenzieller Umweltwirkungen zu. Ein gespeichertes Inventar belegt keine vollständige Abdeckung mit Charakterisierungsfaktoren für jede Wirkungskategorie. Ein einzelner CO₂-Fußabdruck ersetzt kein wiederverwendbares Ein- und Ausgangsinventar.
+
+Diese Seite erläutert Konzepte. Für Felder, Einschränkungen und Pflichtangaben gilt die gewählte Schema-Version; siehe [Versionseinstieg](/de/docs/core-modules/schema/tidas-schema-versions/). Diese Seite ergänzt keine Spezifikationsvorgaben und definiert kein Speicherverhalten. Formatprüfung, Datenqualität und fachliche Prüfung bleiben getrennte Bewertungen; siehe [Kerninhalte](/de/docs/core-modules/) und [Begriffe und Abkürzungen](/de/docs/glossary/).
+
+Weiter zu den Strukturen für [Modelle](/de/docs/core-modules/schema/schema-content/json-schema-model/), [Prozesse](/de/docs/core-modules/schema/schema-content/json-schema-processes/), [Flüsse](/de/docs/core-modules/schema/schema-content/json-schema-flows/), [Flusseigenschaften](/de/docs/core-modules/schema/schema-content/json-schema-flowproperty/) und [Einheitengruppen](/de/docs/core-modules/schema/schema-content/json-schema-unitgroup/).

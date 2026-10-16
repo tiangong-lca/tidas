@@ -2,6 +2,7 @@
   "title": "Kernmodule",
   "pagesIndex": "index",
   "pages": [
+    "data-relationships",
     "schema"
   ]
 }

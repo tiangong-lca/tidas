@@ -1,0 +1,72 @@
+---
+title: "Comment modèles, processus et flux sont liés"
+description: "Comprendre les références entre modèles, processus, échanges, flux et définitions de mesure TIDAS, et réutiliser un inventaire calculé enregistré comme processus de résultat."
+---
+
+Modèles, processus et flux sont trois objets principaux complémentaires. Un flux identifie ce qui est échangé, un processus consigne un inventaire d’entrées et de sorties, et un modèle organise les instances de processus et leurs connexions. On peut construire un modèle à partir de processus existants, puis réutiliser un processus de résultat enregistré dans un autre modèle.
+
+<DataRelationshipsDiagram lang="fr" />
+
+## Trois objets principaux
+
+| Objet | Contenu | Relations |
+| --- | --- | --- |
+| **Modèle** | Instances de processus, connexions et cible de référence d’un système de produit | Les instances référencent des versions précises de processus ; le modèle peut référencer un processus résultant |
+| **Processus** | Inventaire d’entrées et de sorties à une échelle de référence définie, avec sa documentation | Référence des flux par les échanges ; peut être un composant de modèle ou porter un inventaire agrégé |
+| **Flux** | Identité, classification et propriétés de mesure d’un produit, d’une substance, d’un vecteur énergétique ou d’un déchet | Référencé par les échanges des processus et utilisé pour identifier les flux connectés dans un modèle |
+
+**Les processus ne se limitent pas aux processus unitaires.** Un jeu de données de processus peut aussi décrire un résultat d’inventaire agrégé ou un système partiellement terminé. Le modèle conserve la structure entre processus ; le processus de résultat fournit un inventaire réutilisable par référence.
+
+## Lire les références structurelles
+
+Le tableau ci-dessous indique le sens des références de champs. Dans le schéma relationnel, les flèches grises continues représentent les processus référençant les flux, les flèches violettes continues la composition, le calcul et la réutilisation, et les flèches pointillées la traçabilité. Les instances de processus et les échanges sont des structures internes aux jeux de données, et ne constituent pas systématiquement des jeux de données distincts.
+
+| Référence | Champ ou signification |
+| --- | --- |
+| Modèle → Processus | `processInstance.referenceToProcess` référence un processus et sa version ; les connexions du modèle relient des échanges entre instances |
+| Modèle → Processus résultant | `referenceToResultingProcess` référence un jeu de données de processus portant le résultat d’inventaire ou le système partiellement terminé généré par le modèle |
+| Processus → Échange → Flux | `exchanges.exchange[].referenceToFlowDataSet` référence le jeu de données de flux utilisé par une entrée ou une sortie |
+| Flux → Propriété de flux | `referenceToFlowPropertyDataSet` référence une propriété de mesure telle que la masse, l’énergie ou le volume |
+| Propriété de flux → Groupe d’unités | `referenceToReferenceUnitGroup` référence le groupe d’unités associé et son unité de référence |
+
+Un flux définit **ce qui est échangé** ; un échange consigne **le sens et la quantité**. Plusieurs processus peuvent référencer le même flux avec des quantités d’entrée ou de sortie différentes. Les flux de produits décrivent les produits, matériaux ou énergies échangés dans le système technique ; les flux de déchets sont destinés au traitement ; les flux élémentaires décrivent les prélèvements de ressources ou émissions entre système technique et environnement.
+
+Le champ `referenceToReferenceFlow` d’un processus sélectionne un échange de référence par son identifiant interne. Ce n’est pas l’UUID d’un autre jeu de données de flux. L’instance de processus de référence du modèle, l’échange de référence du processus et la propriété de mesure de référence du flux ont également des rôles distincts.
+
+Avant toute réutilisation, vérifier l’identité, la version exacte et la base de mesure, ainsi que la pertinence géographique, temporelle et technique. Des noms identiques ne suffisent pas à établir la compatibilité.
+
+## Des processus au modèle, puis à un processus de résultat réutilisable
+
+1. Choisir des versions précises de processus existants, les utiliser comme instances du modèle et connecter les entrées et sorties correspondantes.
+2. Définir le processus de référence, l’échange de référence et la quantité cible pour exprimer la demande de calcul.
+3. Calculer l’inventaire agrégé d’entrées et de sorties pour cette cible et l’enregistrer comme processus de résultat par un parcours pris en charge par le logiciel utilisé.
+4. Référencer ce processus de résultat dans le modèle suivant pour construire un système de produit plus large.
+
+Un modèle peut avoir un résultat principal et d’autres résultats de produits. Vérifier le produit de référence, la quantité et la frontière du système du résultat choisi. **Un inventaire agrégé seul ne permet pas de reconstruire le graphe du modèle d’origine s’il manque.** Conserver le modèle source et les données référencées pour retracer les processus et connexions.
+
+Il s’agit de relations de données et d’un parcours de réutilisation. Le logiciel consommateur définit quand calculer et comment enregistrer ou actualiser les résultats. Pour le fonctionnement actuel de la TianGong LCA Platform, voir [enregistrement des modèles et réutilisation des résultats](https://docs.tiangong.earth/fr/docs/overview/data-relationships/). La structure du modèle ne garantit pas qu’une seule action d’enregistrement exécute automatiquement toutes ces étapes.
+
+### Un exemple simplifié de tôle d’aluminium
+
+Un modèle de tôle d’aluminium référence des processus d’électricité, d’aluminium primaire et de laminage, reliés par des flux d’électricité, d’aluminium et d’autres flux. Pour une cible de référence de **1 kg de tôle d’aluminium**, calculer l’inventaire agrégé, puis l’enregistrer comme processus de résultat de tôle d’aluminium. Un modèle de véhicule peut ensuite référencer ce processus pour la quantité de tôle nécessaire.
+
+Le flux de tôle identifie l’objet échangé ; le processus fournit l’inventaire ; le modèle source conserve la structure des processus qui l’a produit. Vérifier les activités déjà incluses dans la frontière du résultat pour éviter de les compter deux fois en les ajoutant de nouveau. Cet exemple illustre les relations et ne constitue pas des données de production vérifiées.
+
+## Mesure, preuves et responsabilités
+
+| Donnée de soutien | Rôle |
+| --- | --- |
+| **Propriété de flux** | Définit une base de mesure telle que la masse, l’énergie ou le volume et référence un groupe d’unités |
+| **Groupe d’unités** | Définit les unités associées et les facteurs de conversion, par exemple kg et g |
+| **Source** | Consigne publications, rapports et autres preuves ; un jeu de données ou un échange particulier peut la référencer |
+| **Contact** | Consigne personnes, organisations et responsabilités de production, de saisie ou de propriété |
+
+Sources et contacts facilitent l’interprétation et la traçabilité. Ce ne sont pas des connexions physiques de flux dans le système de produit. Le diagramme les présente dans une bande de soutien distincte de la chaîne des références de mesure.
+
+## Inventaire, évaluation des impacts et frontière de la spécification
+
+L’inventaire du cycle de vie (ICV ou LCI) consigne entrées, sorties et quantités. L’évaluation de l’impact du cycle de vie (ACVI ou LCIA) associe les flux élémentaires pertinents à des indicateurs d’impacts environnementaux potentiels. Enregistrer un inventaire ne prouve pas que les facteurs de caractérisation couvrent entièrement chaque catégorie d’impact. Une seule valeur d’empreinte carbone ne remplace pas un inventaire réutilisable d’entrées et de sorties.
+
+Cette page explique les concepts. La version de schéma choisie régit les champs, contraintes et valeurs obligatoires ; voir l’[entrée des versions](/fr/docs/core-modules/schema/tidas-schema-versions/). Cette page n’ajoute aucune contrainte normative et ne définit pas le comportement d’enregistrement du logiciel. Contrôle de format, qualité des données et revue professionnelle restent des évaluations distinctes ; voir le [contenu principal](/fr/docs/core-modules/) et les [termes et sigles](/fr/docs/glossary/).
+
+Consulter ensuite les structures des [modèles](/fr/docs/core-modules/schema/schema-content/json-schema-model/), [processus](/fr/docs/core-modules/schema/schema-content/json-schema-processes/), [flux](/fr/docs/core-modules/schema/schema-content/json-schema-flows/), [propriétés de flux](/fr/docs/core-modules/schema/schema-content/json-schema-flowproperty/) et [groupes d’unités](/fr/docs/core-modules/schema/schema-content/json-schema-unitgroup/).

@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-10-16
-lastReviewedCommit: d7295264fb04fcc18a859896988a92c4be7d4cc8
-lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
+lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
+lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -52,6 +52,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `app/api`, `app/llms.txt`, `app/search-records.json`, `app/sitemap.ts`, `app/robots.ts`, `app/og` | generated discovery, search, crawler, and sharing surfaces |
 | `components/docs-home.tsx`, `components/docs-portal.tsx`, `components/site-brand.tsx`, `app/global.css` | neutral Fumadocs foundation, landing identity, compact/full responsive brand, and documentation-root navigation |
 | `components/category-directory.tsx` | localized section directories derived from the Fumadocs page tree |
+| `components/data-relationships-diagram.tsx`, `components/data-relationships-diagram.module.css` | localized, server-rendered relationship network with reference, generation/reuse and provenance edges; SVG text with separate desktop/mobile graph layouts |
 | `components/schema-inventory-summary.tsx`, `content/schema-inventory.json` | rendered Schema role/count summary and its machine-readable asset authority |
 | `components/json-schema-viewer.tsx` | lazy semantic Schema structure table and taxonomy table |
 | `components/search.tsx`, `components/provider.tsx` | locale-scoped search and UI context |
@@ -102,6 +103,10 @@ Before static generation, the build requires Node `>=24.18.0 <25`, exact pnpm `1
 
 Large Schema JSON files remain separate public assets. MDX passes a public `src` to the viewer, so the static HTML contains only the explorer shell. A reader explicitly opens the explorer before the browser fetches and interprets the Schema.
 
+The MDX link mapping uses native anchors for JSON/YAML downloads under
+`/schemas/` and `/spec/`. These files do not have App Router prefetch payloads;
+ordinary documentation and external links retain the default Fumadocs mapping.
+
 `content/schema-inventory.json` classifies every published JSON asset and owns the public count vocabulary. It separates 8 dataset-object contracts, 9 classification-vocabulary contracts, 1 shared-types contract, and 1 derived viewer projection. The viewer projection is non-normative and presentation-only. The 18 contract file names match the logical entries in the `tidas-tools` schema lock, but the public directory is not an automatic mirror and the inventory does not claim structural or byte-for-byte equality.
 
 Versioned releases are separate from that legacy baseline. `scripts/spec-pin.json` records the exact immutable `tidas-spec` archive, source revision, imported-source commit, and digests. The sync script verifies the archive's manifest and asset closure before atomically writing `public/spec/<version>/`; the build verifies the committed closure without requiring network access. A localized schema-version page links to the release index and explicitly keeps `/schemas/**` as the unversioned compatibility baseline until a later migration decision.
@@ -128,6 +133,15 @@ The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` i
 - Removed URL families receive 404. There is no compatibility copy or hosting redirect.
 
 ## Cross-repository handoffs
+
+`/{lang}/docs/core-modules/data-relationships/` presents the general Model,
+Process and Flow relationships. Its accessible static network distinguishes dataset
+references, calculation/persistence/reuse and conditional provenance tracing; supporting evidence and
+responsibility records are not quantity-flow edges. The selected specification
+version remains authoritative. The TianGong LCA docs site retains the separate
+`/{lang}/docs/overview/data-relationships/` platform Save/results workflow and
+links to this conceptual explanation; neither site duplicates ownership of
+software save behavior or specification semantics.
 
 - `tidas` explains the specification and publishes Schema downloads.
 - `tidas-tools` implements conversion, validation, import, export, and reproducible release behavior.

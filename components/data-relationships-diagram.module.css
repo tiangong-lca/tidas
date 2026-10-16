@@ -1,0 +1,205 @@
+.figure {
+  container-type: inline-size;
+  --diagram-secondary: color-mix(in srgb, var(--system-ink) 75%, var(--system-surface));
+  margin: 1.75rem 0;
+  color: var(--system-ink);
+  border: 1px solid var(--system-line);
+  border-radius: 0.5rem;
+  background: var(--system-surface);
+  overflow: hidden;
+}
+
+.caption {
+  padding: 1.1rem 1.25rem 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 0 1.25rem 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend i {
+  width: 1.5rem;
+  border-top: 2px solid var(--system-muted);
+}
+
+.legend .legendOperation {
+  border-color: var(--tidas-accent);
+}
+
+.legend .legendTrace {
+  border-top-style: dashed;
+}
+
+.desktop,
+.mobile {
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+}
+
+.mobile {
+  display: none;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+.flowNode rect {
+  fill: var(--system-surface-subtle);
+  stroke: var(--system-line);
+  stroke-width: 1.5;
+}
+
+.coreNode rect {
+  fill: var(--tidas-accent-soft);
+  stroke: var(--tidas-accent);
+  stroke-width: 1.2;
+}
+
+.modelNode rect {
+  fill: var(--system-surface);
+  stroke: var(--tidas-accent);
+  stroke-width: 1.6;
+}
+
+.flowNode text,
+.coreNode text,
+.modelNode text,
+.referenceLabel text {
+  fill: var(--system-ink);
+}
+
+.nodeTitle {
+  font-weight: 600;
+}
+
+.figure .nodeDetail,
+.measurement text {
+  fill: var(--diagram-secondary);
+}
+
+.measurement path {
+  stroke: var(--system-line);
+}
+
+.measureDivider {
+  stroke: var(--system-line);
+}
+
+.edges path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.referenceEdge,
+.traceEdge {
+  stroke: var(--system-muted);
+}
+
+.operationEdge {
+  stroke: var(--tidas-accent);
+}
+
+.traceEdge {
+  stroke-dasharray: 6 5;
+}
+
+.referenceArrow,
+.operationArrow {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.referenceArrow {
+  stroke: var(--system-muted);
+}
+
+.operationArrow {
+  stroke: var(--tidas-accent);
+}
+
+.referenceLabel text,
+.operationLabel text {
+  paint-order: stroke;
+  stroke: var(--system-surface);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.referenceLabel text {
+  fill: var(--diagram-secondary);
+}
+
+.operationLabel text {
+  fill: var(--tidas-accent);
+}
+
+.traceNote {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--system-muted);
+}
+
+.support {
+  padding: 1.1rem 1.25rem;
+  border-top: 1px solid var(--system-line);
+}
+
+.support h3 {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 650;
+}
+
+.support dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.support dt {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.support dd,
+.support p {
+  margin: 0.25rem 0 0;
+  color: var(--system-muted);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+@container (max-width: 640px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .support dl {
+    grid-template-columns: 1fr;
+  }
+}
