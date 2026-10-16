@@ -1,8 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-10-08"
-lastReviewedCommit: "6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424"
-lastReviewedNote: "Reviewed for #87: browser-neutral root resolves manual preference, ordered browser languages and English; explicit /zh/ is generated without hosting redirect and shares canonical /. Existing ownership and documentation routing cover the locale module and regression scripts."
+lastReviewedAt: "2026-10-16"
+lastReviewedCommit: "d7295264fb04fcc18a859896988a92c4be7d4cc8"
+lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
 
 catalog:
@@ -26,6 +26,7 @@ ownership:
           - .docpact/**
           - _docs/agents/**
           - .github/workflows/ai-doc-lint.yml
+          - .github/dependabot.yml
       ownerRepo: tidas
     - id: public-spec-presentation-and-schema-surface
       paths:
@@ -82,6 +83,7 @@ coverage:
     - .docpact/**
     - _docs/agents/**
     - .github/workflows/**
+    - .github/dependabot.yml
     - .githooks/**
     - package.json
     - .nvmrc
@@ -190,6 +192,7 @@ docInventory:
     - .docpact/config.yaml
     - _docs/agents/repo-validation.md
     - _docs/agents/repo-architecture.md
+    - _docs/agents/dependency-maintenance.md
 
 repo:
   id: tidas
@@ -284,8 +287,6 @@ rules:
         kind: site-runtime-config
       - path: .markdownlint.json
         kind: site-proof-config
-      - path: pnpm-lock.yaml
-        kind: site-runtime-config
       - path: pnpm-workspace.yaml
         kind: site-runtime-config
       - path: postcss.config.mjs
@@ -354,6 +355,28 @@ rules:
       - path: _docs/agents/repo-validation.md
         mode: review_or_update
     reason: Remote governance reproduction must stay aligned with repository policy and proof guidance.
+  - id: tidas-dependency-resolution
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: pnpm-lock.yaml
+        kind: dependency-resolution
+    requiredDocs:
+      - path: _docs/agents/repo-validation.md
+        mode: must_exist
+    reason: Lockfile-only updates retain canonical validation without automatic runtime-document review churn.
+  - id: tidas-dependency-maintenance
+    scope: repo
+    repo: tidas
+    triggers:
+      - path: .github/dependabot.yml
+        kind: dependency-discovery
+      - path: _docs/agents/dependency-maintenance.md
+        kind: maintenance-guide
+    requiredDocs:
+      - path: _docs/agents/dependency-maintenance.md
+        mode: review_or_update
+    reason: Dependency-discovery scope and traffic changes require the focused maintenance guide, not unrelated runtime documentation.
   - id: tidas-local-docpact-push-gate
     scope: repo
     repo: tidas

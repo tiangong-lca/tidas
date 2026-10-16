@@ -27,9 +27,9 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-10-08
-lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
-lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
+lastReviewedAt: 2026-10-16
+lastReviewedCommit: d7295264fb04fcc18a859896988a92c4be7d4cc8
+lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -65,6 +65,7 @@ The repository publishes a Next.js App Router static export using Fumadocs. Edge
 | `scripts/vendor/workspace-seo/**`, `.gitattributes` | generated shared-checker snapshot consumed read-only; `.gitattributes` pins its line endings so the digest that CI checks stays portable |
 | `edgeone.json` | EdgeOne install, build, output, and Node contract |
 | `.github/workflows/publish-docs.yml` | pull-request validation; it checks the vendored shared checker against its manifest before installing, then runs that snapshot after the build against the export and uploads the JSON report |
+| `.github/dependabot.yml` | bounded npm/Actions proposal discovery; the focused dependency-maintenance guide owns acceptance and traffic guidance |
 
 ## Canonical URLs, summaries, and trails
 

@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-10-08
-lastReviewedCommit: 6ddeb436ad6acb9fe0eb15e46c104a1bf0e22424
-lastReviewedNote: "Reviewed for #87: neutral-root browser selection, manual-only localStorage preference and explicit localized homes preserve the static Chinese canonical and sitemap policy; locale unit and browser regression proof added."
+lastReviewedAt: 2026-10-16
+lastReviewedCommit: d7295264fb04fcc18a859896988a92c4be7d4cc8
+lastReviewedNote: "TIDAS #90: bounded npm/Actions discovery reuses secretless PR validation; lock-only governance avoids five-document churn while semantic manifest, source and specification rules remain active. No dependency, public asset or publication change."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -76,6 +76,12 @@ pnpm build
 | toolchain, package manager, environment checker, or CI actions | clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and full build; require Node `>=24.18.0 <25`, exact pnpm `11.24.0`, exact TypeScript `7.0.2`, EdgeOne `24.18.0`, local `.nvmrc` major `24`, and reviewed executable action commits |
 | search-console ownership marker | build with `BAIDU_SITE_VERIFICATION` set and confirm `verify:out` reports the exact marker on the document heads; build without it and confirm the same gate reports absence across every page. Neither run may print the value |
 | repository docs or Docpact | strict config validation, coverage, list-rules, route, governed diff lint, and review marks when required |
+
+Dependency proposals reuse the existing PR workflow and baseline. A lockfile-only
+change requires compatibility validation but no automatic review stamps in
+runtime documents; manifest, source, toolchain and specification changes keep
+their semantic rules. See [dependency maintenance](./dependency-maintenance.md)
+for bounded discovery and the live merge-authority check before bot intake.
 
 ## Static site gates
 
