@@ -1,8 +1,8 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-10-16"
-lastReviewedCommit: "e6f5efdfb399929d6f8bf00a932b5c0158b09e51"
-lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
+lastReviewedAt: "2026-10-19"
+lastReviewedCommit: "c1ec7573ef12882f926fc9aa969be61e8104c46e"
+lastReviewedNote: "Reviewed for TIDAS #101: mature Next 16.4.2, React 19.3.1/types 19.3.0, Fumadocs 16.17.5/MDX 15.4.7/language 0.2.15, Algolia 5.60.0, markdownlint 0.23.3 and PostCSS 8.5.30 retain exact Node/pnpm/TypeScript, accepted #100 source-map/Sharp inputs and specification/publication boundaries. Local qualification does not prove hosted/default-worker behavior or deployment."
 # Historical review note, 2026-08-25: Issue #56 confirmed that the existing ownership, scripts/*.mjs coverage, routing, and site-runtime rules governed the exact Node 24.19.0, pnpm 11.23.0, and TypeScript 7.0.2 toolchain and its Node contracts.
 
 catalog:
