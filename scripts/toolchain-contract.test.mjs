@@ -27,7 +27,7 @@ test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', 
   assert.equal(packageJson.packageManager, 'pnpm@11.24.0');
   assert.deepEqual(packageJson.engines, { node: '>=24.18.0 <25', pnpm: '11.24.0' });
   assert.equal(packageJson.devDependencies.typescript, '7.0.2');
-  assert.equal(packageJson.devDependencies['markdownlint-cli2'], '0.23.2');
+  assert.equal(packageJson.devDependencies['markdownlint-cli2'], '0.23.3');
   assert.equal(read('.nvmrc').trim(), '24');
   assert.equal(edgeOne.nodeVersion, '24.18.0');
   assert.equal(
@@ -43,7 +43,7 @@ test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', 
 test('keeps the canonical repository on one pnpm lock and TypeScript 7 graph', () => {
   const lockfile = read('pnpm-lock.yaml');
 
-  assert.match(lockfile, /^\s{2}markdownlint-cli2@0\.23\.2:/mu);
+  assert.match(lockfile, /^\s{2}markdownlint-cli2@0\.23\.3:/mu);
   assert.match(lockfile, /^\s{2}typescript@7\.0\.2:/mu);
   assert.doesNotMatch(lockfile, /^\s{2}typescript@[0-6]\./mu);
   assert.equal(fs.existsSync(path.join(repositoryRoot, 'package-lock.json')), false);
