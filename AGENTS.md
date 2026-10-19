@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-10-19
-lastReviewedCommit: c3f5e7110009393fba62e26705feef5551eb0019
-lastReviewedNote: "TIDAS #101: reviewed the build-owned native-image regression at c3f5e711. The existing aggregate retains all prior test entries and adds direct installed Next dependency loading, bounded SVG/PNG/lossless WebP pixel/metadata and malformed-input checks. Exact Node24.19 macOSarm64 positive and blocked-loader negatives pass independent review; Linux successor CI remains required. Dependency versions, lock/policy, product, workflows, specification and production boundaries are unchanged."
+lastReviewedCommit: 0f5acf7bc6454f2003865a011b5d0bbabf0b5897
+lastReviewedNote: "TIDAS #101: reviewed the exact eight-file aggregate expectation at 0f5acf7. The original seven entries and strict equality remain; the new native image file is appended consistently with package.json. Focused ten-test local proof passes. Prior bca hosted native cases passed Linux x64, while its stale aggregate expectation failed; that run remains failed. Final full hosted build is pending; package versions, lock, product, workflows, specification and publication policy are unchanged."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
