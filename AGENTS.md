@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-10-16
-lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
-lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
+lastReviewedAt: 2026-10-19
+lastReviewedCommit: 0f5acf7bc6454f2003865a011b5d0bbabf0b5897
+lastReviewedNote: "TIDAS #101: reviewed the exact eight-file aggregate expectation at 0f5acf7. The original seven entries and strict equality remain; the new native image file is appended consistently with package.json. Focused ten-test local proof passes. Prior bca hosted native cases passed Linux x64, while its stale aggregate expectation failed; that run remains failed. Final full hosted build is pending; package versions, lock, product, workflows, specification and publication policy are unchanged."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
