@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-10-19
-lastReviewedCommit: c1ec7573ef12882f926fc9aa969be61e8104c46e
-lastReviewedNote: "Reviewed for TIDAS #101: mature Next 16.4.2, React 19.3.1/types 19.3.0, Fumadocs 16.17.5/MDX 15.4.7/language 0.2.15, Algolia 5.60.0, markdownlint 0.23.3 and PostCSS 8.5.30 retain exact Node/pnpm/TypeScript, accepted #100 source-map/Sharp inputs and specification/publication boundaries. Local qualification does not prove hosted/default-worker behavior or deployment."
+lastReviewedCommit: c3f5e7110009393fba62e26705feef5551eb0019
+lastReviewedNote: "TIDAS #101: reviewed the build-owned native-image regression at c3f5e711. The existing aggregate retains all prior test entries and adds direct installed Next dependency loading, bounded SVG/PNG/lossless WebP pixel/metadata and malformed-input checks. Exact Node24.19 macOSarm64 positive and blocked-loader negatives pass independent review; Linux successor CI remains required. Dependency versions, lock/policy, product, workflows, specification and production boundaries are unchanged."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
