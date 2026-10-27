@@ -30,6 +30,10 @@ limit. Major updates stay individually visible; no blanket major-version ignore
 is configured. Security alerts, update settings and security PR limits are
 separate from these version-update traffic budgets.
 
+To match the approved Node 24 LTS runtime, npm ignores `@types/node` versions
+`>=25.0.0` while retaining Node 24 updates; revisit this bound only with explicit
+approval for a future Node major.
+
 Discovery grants no merge or deployment authority. Automatic merge stays off.
 Before accepting or associating a Dependabot proposal, verify both its native
 merge state and any independent review/merge service's effective live policy,
