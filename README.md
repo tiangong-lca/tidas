@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-10-16
-lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
-lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
+lastReviewedAt: 2026-10-19
+lastReviewedCommit: 0f5acf7bc6454f2003865a011b5d0bbabf0b5897
+lastReviewedNote: "TIDAS #101: reviewed the exact eight-file aggregate expectation at 0f5acf7. The original seven entries and strict equality remain; the new native image file is appended consistently with package.json. Focused ten-test local proof passes. Prior bca hosted native cases passed Linux x64, while its stale aggregate expectation failed; that run remains failed. Final full hosted build is pending; package versions, lock, product, workflows, specification and publication policy are unchanged."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -100,7 +100,7 @@ carries no `lastmod`. Page summaries are measured as authored, derived, or
 unresolved, and the unresolved URLs are printed as editorial debt that blocks
 nothing.
 
-`pnpm test` runs the environment, content, toolchain, and SEO policy suites.
+`pnpm test` runs the environment, content, toolchain, SEO policy, and native image suites.
 `pnpm test:env`, `pnpm test:content`, `pnpm test:toolchain`, and `pnpm test:seo`
 run one suite each for focused early feedback.
 
