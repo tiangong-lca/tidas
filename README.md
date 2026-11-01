@@ -24,8 +24,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-11-02
-lastReviewedCommit: 482343de596d66bc92f9d90119c86bbdd7085736
-lastReviewedNote: "TIDAS #101: reviewed the nine-package cohort, scoped RE2JS/KaTeX fixes and exact markdownlint expectations. Frozen install, published payloads, audit, lint, typecheck and actual consumer/table-edge checks pass locally; full build, browser and hosted proof remain pending. Node/pnpm/TypeScript, strict policy, specification assets, four-locale routes and publication boundaries remain unchanged."
+lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
+lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.
@@ -100,7 +100,7 @@ carries no `lastmod`. Page summaries are measured as authored, derived, or
 unresolved, and the unresolved URLs are printed as editorial debt that blocks
 nothing.
 
-`pnpm test` runs the environment, content, toolchain, SEO policy, and native image suites.
+`pnpm test` runs the environment, content, toolchain, SEO policy, native image, and taxonomy hierarchy suites.
 `pnpm test:env`, `pnpm test:content`, `pnpm test:toolchain`, and `pnpm test:seo`
 run one suite each for focused early feedback.
 

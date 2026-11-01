@@ -28,8 +28,8 @@ checkPaths:
   - edgeone.json
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-11-02
-lastReviewedCommit: 482343de596d66bc92f9d90119c86bbdd7085736
-lastReviewedNote: "TIDAS #101: reviewed the nine-package cohort, scoped RE2JS/KaTeX fixes and exact markdownlint expectations. Frozen install, published payloads, audit, lint, typecheck and actual consumer/table-edge checks pass locally; full build, browser and hosted proof remain pending. Node/pnpm/TypeScript, strict policy, specification assets, four-locale routes and publication boundaries remain unchanged."
+lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
+lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -114,6 +114,14 @@ Versioned releases are separate from that legacy baseline. `scripts/spec-pin.jso
 Localized section roots are real content pages as well as navigation folders. Each section `meta*.json` points `pagesIndex` at `index` and excludes `index` from its child list; `components/category-directory.tsx` resolves the current folder from `source.getPageTree(language)` and renders its children. This preserves existing URLs, removes folder/index duplicate labels, and makes new children discoverable without duplicating manual card lists.
 
 Taxonomy schemas are identified by root `oneOf` branches that contain constant `#text`, `@catId` or `@classId`, and `@level` fields. They render as a bounded flat native table: only the name cell is indented, identifier and child-count columns remain aligned, branches are interactive, and leaves remain non-button rows. Search uses the same columns and adds the parent breadcrumb. Other schemas render as a lazy flat structure table whose branch labels prefer title, constants, enums, and references over ordinal names.
+
+When every taxonomy identifier is a numeric dot path whose segment depth equals
+its declared level, the viewer resolves each unique parent identifier at the
+preceding level independently of `oneOf` order. Missing or ambiguous parents
+remain unparented rows. Other schemes retain ordered-level interpretation,
+including compact product identifiers and process groups such as `A → 01`.
+This presentation policy preserves all source entries and sibling order; it does
+not modify the published vocabulary or assert specification conformance.
 
 The landing page uses Fumadocs neutral primitives and a TIDAS-specific system stack that presents LCA work requirements, data-entry rules, and reference data in beginner-facing language. Primary controls keep the accessible TIDAS brand purple as a solid color while supporting surfaces remain neutral; the system map and Schema tables are the deliberately custom product surfaces. Each locale links directly to its root glossary, which centralizes LCA terminology and separates structural checks from data quality, independent review, and named compliance claims.
 

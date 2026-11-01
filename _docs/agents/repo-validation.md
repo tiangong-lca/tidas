@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-11-02
-lastReviewedCommit: 482343de596d66bc92f9d90119c86bbdd7085736
-lastReviewedNote: "TIDAS #101: reviewed the nine-package cohort, scoped RE2JS/KaTeX fixes and exact markdownlint expectations. Frozen install, published payloads, audit, lint, typecheck and actual consumer/table-edge checks pass locally; full build, browser and hosted proof remain pending. Node/pnpm/TypeScript, strict policy, specification assets, four-locale routes and publication boundaries remain unchanged."
+lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
+lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
@@ -57,6 +57,12 @@ pnpm build
 `pnpm build` runs the bounded Node 24 and exact package-tool environment contract, all toolchain tests, static export, output contract, and site-quality gate. A green compile without the final gates is incomplete proof. Run `pnpm test` or the named `test:env`, `test:content`, `test:toolchain`, and `test:seo` commands for focused early feedback; they need not be repeated separately when running the full baseline because build already runs the complete suite.
 
 The build-owned native image regression resolves Sharp through the installed Next dependency context and fails when that native dependency cannot load, even though OG rendering can fall back to WASM. It checks bounded, in-memory SVG resize/PNG pixels, RGBA PNG and lossless WebP metadata and exact decoded pixels, plus malformed-input rejection without network or fonts. Its diagnostics record Node, platform, architecture, resolved Sharp and libvips identities; results qualify only the platform actually running the suite.
+
+The canonical suite also runs `scripts/schema-taxonomy.test.mjs`. It checks real
+elementary entries appended after unrelated groups, reordered dotted inputs,
+missing or ambiguous parents, and compatibility with undotted product/process
+identifiers. Browser evidence must still verify the actual hierarchy, lazy
+expansion, search, keyboard access, alignment and rendering budgets below.
 
 ## Change matrix
 
