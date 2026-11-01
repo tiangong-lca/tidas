@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-10-19
-lastReviewedCommit: 0f5acf7bc6454f2003865a011b5d0bbabf0b5897
-lastReviewedNote: "TIDAS #101: reviewed the exact eight-file aggregate expectation at 0f5acf7. The original seven entries and strict equality remain; the new native image file is appended consistently with package.json. Focused ten-test local proof passes. Prior bca hosted native cases passed Linux x64, while its stale aggregate expectation failed; that run remains failed. Final full hosted build is pending; package versions, lock, product, workflows, specification and publication policy are unchanged."
+lastReviewedAt: 2026-11-02
+lastReviewedCommit: 482343de596d66bc92f9d90119c86bbdd7085736
+lastReviewedNote: "TIDAS #101: reviewed the nine-package cohort, scoped RE2JS/KaTeX fixes and exact markdownlint expectations. Frozen install, published payloads, audit, lint, typecheck and actual consumer/table-edge checks pass locally; full build, browser and hosted proof remain pending. Node/pnpm/TypeScript, strict policy, specification assets, four-locale routes and publication boundaries remain unchanged."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
