@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-10-16
-lastReviewedCommit: e6f5efdfb399929d6f8bf00a932b5c0158b09e51
-lastReviewedNote: "Reviewed for TIDAS #98: localized conceptual relationships and accessible responsive schematic are site presentation; versioned specification assets and normative authority remain unchanged. Platform Save/results guidance is linked to Docs #226."
+lastReviewedAt: 2026-11-02
+lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
+lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
@@ -127,6 +127,7 @@ Public guidance about tools remains here, while executable behavior remains in `
 - Schema taxonomies must expose semantic identifiers, names, levels, search, and a raw download; anonymous `oneOf N` lists are forbidden.
 - Public Schema counts and role summaries must derive from `content/schema-inventory.json`. The viewer projection is presentation-only and must never be described or used as a validation Schema or conformance proof.
 - Schema taxonomies render as a flat native table whose name column alone carries hierarchy indentation; identifier and child-count columns remain aligned across levels.
+- Uniform numeric dotted taxonomies use identifiers and declared levels to determine parentage independently of flat alternative order. Other supported identifier schemes retain their documented hierarchy interpretation; missing or ambiguous parents must not invent ancestry.
 - Taxonomy branch controls expose expansion state, leaf rows are not buttons, and the governed `data-schema-taxonomy`, `data-taxonomy-row`, `data-taxonomy-id`, and `data-taxonomy-label` markers remain available to browser proof.
 - Do not render more than 50 taxonomy search results or eagerly materialize an unbounded taxonomy tree.
 - Public branding names TIDAS as the TianGong Data System. The Schema specification is one system layer, not the product subtitle.

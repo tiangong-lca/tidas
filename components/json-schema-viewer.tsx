@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { useI18n } from 'fumadocs-ui/contexts/i18n';
+import { buildTaxonomy, type TaxonomyItem } from '@/lib/schema-taxonomy';
 
 type Schema = Record<string, unknown>;
 
@@ -11,15 +12,6 @@ export interface JsonSchemaViewerProps {
   /** Public URL to a JSON Schema. It is fetched only after the reader opens the explorer. */
   src: string;
   title?: string;
-}
-
-interface TaxonomyItem {
-  id: string;
-  key: string;
-  level: number;
-  label: string;
-  parents: string[];
-  children: TaxonomyItem[];
 }
 
 interface SchemaCopy {
@@ -221,25 +213,7 @@ function taxonomyFrom(schema: Schema): { roots: TaxonomyItem[]; flat: TaxonomyIt
     raw.push({ label, id, level: Number(levelValue) });
   }
 
-  const roots: TaxonomyItem[] = [];
-  const flat: TaxonomyItem[] = [];
-  const stack: TaxonomyItem[] = [];
-  let maxLevel = 0;
-  for (const [index, entry] of raw.entries()) {
-    const parent = entry.level > 0 ? stack[entry.level - 1] : undefined;
-    const item: TaxonomyItem = {
-      ...entry,
-      key: `${parent?.key ?? 'root'}/${entry.level}:${entry.id}:${index}`,
-      parents: parent ? [...parent.parents, parent.label] : [],
-      children: [],
-    };
-    if (parent) parent.children.push(item); else roots.push(item);
-    stack.splice(entry.level);
-    stack[entry.level] = item;
-    flat.push(item);
-    maxLevel = Math.max(maxLevel, entry.level);
-  }
-  return { roots, flat, maxLevel };
+  return buildTaxonomy(raw);
 }
 
 function Chevron() {
