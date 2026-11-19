@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-11-19
-lastReviewedCommit: ac3a955a985ca3821adfac274522fbb97db16de5
-lastReviewedNote: "TIDAS #113. Reviewed the Next.js 16.4.6 patch for the existing static site, deployment inputs and public specification boundary."
+lastReviewedCommit: 7d61d3d5250f95846ab5da1b582b024fda8c1d3d
+lastReviewedNote: "TIDAS #112 and #113. Reviewed the pnpm/setup 3.1.2 immutable pin, explicit runtime and changed cache behavior on the qualified Next.js 16.4.6 site baseline."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
