@@ -30,9 +30,9 @@ checkPaths:
   - public/schemas/**
   - scripts/**
   - .github/workflows/**
-lastReviewedAt: 2026-11-02
-lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
-lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
+lastReviewedAt: 2026-11-19
+lastReviewedCommit: ac3a955a985ca3821adfac274522fbb97db16de5
+lastReviewedNote: "TIDAS #113. Reviewed the Next.js 16.4.6 patch for the existing static site, deployment inputs and public specification boundary."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
