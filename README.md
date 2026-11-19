@@ -23,9 +23,9 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-11-02
-lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
-lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
+lastReviewedAt: 2026-11-19
+lastReviewedCommit: 9cc103d005648b501125ba9bca12d35f7016d75c
+lastReviewedNote: "TIDAS #112. Reviewed the explicit Node and pnpm selection and frozen install used for the static site build."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.

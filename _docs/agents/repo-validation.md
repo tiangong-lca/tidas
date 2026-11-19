@@ -29,9 +29,9 @@ checkPaths:
   - app/**
   - components/**
   - .github/workflows/**
-lastReviewedAt: 2026-11-02
-lastReviewedCommit: 85799d5bef15c5bebd9e908c3a52c2bf0b3536ab
-lastReviewedNote: "TIDAS #101: reviewed numeric dotted taxonomy parentage independent of alternative order, ambiguous-parent handling, retained product/process interpretation and the new canonical regression suite. Published vocabularies, specification pin, dependency graph and publication policy remain unchanged. Eight focused tests pass; full candidate revalidation remains pending."
+lastReviewedAt: 2026-11-19
+lastReviewedCommit: 9cc103d005648b501125ba9bca12d35f7016d75c
+lastReviewedNote: "TIDAS #112. Reviewed the exact Action allowlist, runtime precedence and cache-key change in pnpm/setup 3.1.2 for the existing site and SEO checks."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml
