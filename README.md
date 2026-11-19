@@ -24,8 +24,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/publish-docs.yml
 lastReviewedAt: 2026-11-19
-lastReviewedCommit: 9cc103d005648b501125ba9bca12d35f7016d75c
-lastReviewedNote: "TIDAS #112. Reviewed the explicit Node and pnpm selection and frozen install used for the static site build."
+lastReviewedCommit: ac3a955a985ca3821adfac274522fbb97db16de5
+lastReviewedNote: "TIDAS #113. Reviewed the Next.js 16.4.6 patch for the existing static site, deployment inputs and public specification boundary."
 ---
 
 Historical review note, 2026-08-25: Issue #56 confirmed the pnpm/Fumadocs setup with exact pnpm 11.23.0, while `.nvmrc`, `package.json`, and `edgeone.json` remained the version authorities.

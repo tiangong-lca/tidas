@@ -30,8 +30,8 @@ checkPaths:
   - components/**
   - .github/workflows/**
 lastReviewedAt: 2026-11-19
-lastReviewedCommit: 9cc103d005648b501125ba9bca12d35f7016d75c
-lastReviewedNote: "TIDAS #112. Reviewed the exact Action allowlist, runtime precedence and cache-key change in pnpm/setup 3.1.2 for the existing site and SEO checks."
+lastReviewedCommit: ac3a955a985ca3821adfac274522fbb97db16de5
+lastReviewedNote: "TIDAS #113. Checked both framework advisories against the frozen graph and reviewed the site build, versioned assets and static output qualification."
 related:
   - ../../AGENTS.md
   - ../../.docpact/config.yaml

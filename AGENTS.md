@@ -31,8 +31,8 @@ checkPaths:
   - scripts/**
   - .github/workflows/**
 lastReviewedAt: 2026-11-19
-lastReviewedCommit: 9cc103d005648b501125ba9bca12d35f7016d75c
-lastReviewedNote: "TIDAS #112. Reviewed the pnpm/setup major update at the sole site-validation call and its immutable executable allowlist."
+lastReviewedCommit: ac3a955a985ca3821adfac274522fbb97db16de5
+lastReviewedNote: "TIDAS #113. Reviewed the Next.js 16.4.6 patch for the existing static site, deployment inputs and public specification boundary."
 related:
   - .docpact/config.yaml
   - _docs/agents/repo-validation.md
