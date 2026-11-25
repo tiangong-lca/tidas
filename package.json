@@ -39,8 +39,8 @@
     "@types/node": "24.19.2",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "markdownlint-cli2": "0.24.0",
-    "postcss": "8.5.32",
+    "markdownlint-cli2": "0.24.1",
+    "postcss": "8.5.33",
     "tailwindcss": "4.3.5",
     "typescript": "7.0.2"
   }
