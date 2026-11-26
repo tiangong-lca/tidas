@@ -18,7 +18,7 @@ const expectedActions = new Map([
   ['actions/cache', '55cc8345863c7cc4c66a329aec7e433d2d1c52a9'],
   ['actions/upload-artifact', 'cf430e030ddbb5b0abf93d22962f4752f3646cd9'],
   ['dtolnay/rust-toolchain', '4360b52568e2003a75bf9bc1d59f33a8e3fc893c'],
-  ['pnpm/setup', 'fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e'],
+  ['pnpm/setup', '731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1'],
 ]);
 
 test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', () => {
