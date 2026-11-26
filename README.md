@@ -23,8 +23,8 @@ checkPaths:
   - content/docs/**
   - scripts/**
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-11-24
-lastReviewedCommit: 4cbc218b85b4fe437e337dc043201de2e6b15c77
+lastReviewedAt: 2026-11-26
+lastReviewedCommit: 49642fe64263e1f2b65a6528cf71f1068920ea1f
 lastReviewedNote: "TIDAS #112 and #113. Reviewed the pnpm/setup 3.1.2 immutable pin, explicit runtime and changed cache behavior on the qualified Next.js 16.4.6 site baseline."
 ---
 
