@@ -27,8 +27,8 @@ checkPaths:
   - scripts/*.test.mjs
   - edgeone.json
   - .github/workflows/publish-docs.yml
-lastReviewedAt: 2026-11-24
-lastReviewedCommit: 3f406f15188e43f499d34b9bb404dd71779cc73b
+lastReviewedAt: 2026-11-26
+lastReviewedCommit: 49642fe64263e1f2b65a6528cf71f1068920ea1f
 lastReviewedNote: "TIDAS #112 and #113. Reviewed the pnpm/setup 3.1.2 immutable pin, explicit runtime and changed cache behavior on the qualified Next.js 16.4.6 site baseline."
 related:
   - ../../AGENTS.md
